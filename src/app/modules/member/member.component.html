@@ -1,0 +1,504 @@
+<div class="bg-white">
+  <div class="d-flex p-2 justify-content-between align-items-center mb-2" style="background-color: #f4f6fa;">
+    <div class="left-toolbar d-flex gap-3 justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M9 7H4.6C4.03995 7 3.75992 7 3.54601 7.10899C3.35785 7.20487 3.20487 7.35785 3.10899 7.54601C3 7.75992 3 8.03995 3 8.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21H9M9 21H15M9 21L9 4.6C9 4.03995 9 3.75992 9.10899 3.54601C9.20487 3.35785 9.35785 3.20487 9.54601 3.10899C9.75992 3 10.0399 3 10.6 3L13.4 3C13.9601 3 14.2401 3 14.454 3.10899C14.6422 3.20487 14.7951 3.35785 14.891 3.54601C15 3.75992 15 4.03995 15 4.6V21M15 11H19.4C19.9601 11 20.2401 11 20.454 11.109C20.6422 11.2049 20.7951 11.3578 20.891 11.546C21 11.7599 21 12.0399 21 12.6V19.4C21 19.9601 21 20.2401 20.891 20.454C20.7951 20.6422 20.6422 20.7951 20.454 20.891C20.2401 21 19.9601 21 19.4 21H15"
+            stroke="#0174BE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="label-vote">Danh sách đoàn viên</span>
+      </div>
+      <div class="position-relative">
+        <div class="icon-search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+              stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <input placeholder="Tìm kiếm..." class="input-search" type="text" [(ngModel)]="SearchText" (keyup.enter)="onLoadSearch()">
+      </div>
+    </div>
+    <div class="right-toolbar d-flex justify-content-between align-items-center gap-2">
+      <!-- <div class="sort-date d-flex align-items-center pointer"  (click)="SortListUnions()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M17 4V20M17 20L13 16M17 20L21 16M7 20V4M7 4L3 8M7 4L11 8" stroke="#626262" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="text-common-black fs-14 fw-400">
+          Ngày tạo
+        </span>
+      </div> -->
+      <div class="add  d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalVote" (click)="doAddUnion(true)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M9 3.75V14.25M3.75 9H14.25" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span class="text-common-black fs-14 fw-400">Thêm</span>
+      </div>
+      <div class="add  d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalVote" (click)="doAddUnion(false)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <g clip-path="url(#clip0_55_5700)">
+            <path
+              d="M8.25 3.00017H5.1C3.83988 3.00017 3.20982 3.00017 2.72852 3.24541C2.30516 3.46112 1.96095 3.80533 1.74524 4.22869C1.5 4.70999 1.5 5.34005 1.5 6.60017V12.9002C1.5 14.1603 1.5 14.7903 1.74524 15.2716C1.96095 15.695 2.30516 16.0392 2.72852 16.2549C3.20982 16.5002 3.83988 16.5002 5.1 16.5002H11.4C12.6601 16.5002 13.2902 16.5002 13.7715 16.2549C14.1948 16.0392 14.539 15.695 14.7548 15.2716C15 14.7903 15 14.1603 15 12.9002V9.75017M5.99998 12.0002H7.25589C7.62277 12.0002 7.80622 12.0002 7.97885 11.9587C8.1319 11.922 8.27822 11.8614 8.41243 11.7791C8.5638 11.6864 8.69352 11.5567 8.95294 11.2972L16.125 4.12517C16.7463 3.50385 16.7463 2.49649 16.125 1.87517C15.5037 1.25385 14.4963 1.25385 13.875 1.87517L6.70293 9.04723C6.4435 9.30665 6.31378 9.43637 6.22102 9.58774C6.13878 9.72195 6.07817 9.86827 6.04143 10.0213C5.99998 10.194 5.99998 10.3774 5.99998 10.7443V12.0002Z"
+              stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <defs>
+            <clipPath id="clip0_55_5700">
+              <rect width="18" height="18" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+        <span class="text-common-black fs-14 fw-400">Sửa</span>
+      </div>
+      <div class="add  d-flex align-items-center" (click)="doDeleteUnion()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path
+            d="M12 4.5V3.9C12 3.05992 12 2.63988 11.8365 2.31901C11.6927 2.03677 11.4632 1.8073 11.181 1.66349C10.8601 1.5 10.4401 1.5 9.6 1.5H8.4C7.55992 1.5 7.13988 1.5 6.81901 1.66349C6.53677 1.8073 6.3073 2.03677 6.16349 2.31901C6 2.63988 6 3.05992 6 3.9V4.5M7.5 8.625V12.375M10.5 8.625V12.375M2.25 4.5H15.75M14.25 4.5V12.9C14.25 14.1601 14.25 14.7902 14.0048 15.2715C13.789 15.6948 13.4448 16.039 13.0215 16.2548C12.5402 16.5 11.9101 16.5 10.65 16.5H7.35C6.08988 16.5 5.45982 16.5 4.97852 16.2548C4.55516 16.039 4.21095 15.6948 3.99524 15.2715C3.75 14.7902 3.75 14.1601 3.75 12.9V4.5"
+            stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="text-common-black fs-14 fw-400">Xoá</span>
+      </div>
+      <div class="add  d-flex align-items-center" data-bs-target="#modalCard" data-bs-toggle="modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 8.5H2M2 12.5H5.54668C6.08687 12.5 6.35696 12.5 6.61813 12.5466C6.84995 12.5879 7.0761 12.6563 7.29191 12.7506C7.53504 12.8567 7.75977 13.0065 8.20924 13.3062L8.79076 13.6938C9.24023 13.9935 9.46496 14.1433 9.70809 14.2494C9.9239 14.3437 10.15 14.4121 10.3819 14.4534C10.643 14.5 10.9131 14.5 11.4533 14.5H12.5467C13.0869 14.5 13.357 14.5 13.6181 14.4534C13.85 14.4121 14.0761 14.3437 14.2919 14.2494C14.535 14.1433 14.7598 13.9935 15.2092 13.6938L15.7908 13.3062C16.2402 13.0065 16.465 12.8567 16.7081 12.7506C16.9239 12.6563 17.15 12.5879 17.3819 12.5466C17.643 12.5 17.9131 12.5 18.4533 12.5H22M2 7.2L2 16.8C2 17.9201 2 18.4802 2.21799 18.908C2.40973 19.2843 2.71569 19.5903 3.09202 19.782C3.51984 20 4.07989 20 5.2 20L18.8 20C19.9201 20 20.4802 20 20.908 19.782C21.2843 19.5903 21.5903 19.2843 21.782 18.908C22 18.4802 22 17.9201 22 16.8V7.2C22 6.0799 22 5.51984 21.782 5.09202C21.5903 4.7157 21.2843 4.40974 20.908 4.21799C20.4802 4 19.9201 4 18.8 4L5.2 4C4.0799 4 3.51984 4 3.09202 4.21799C2.7157 4.40973 2.40973 4.71569 2.21799 5.09202C2 5.51984 2 6.07989 2 7.2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="text-common-black fs-14 fw-400">Nạp thẻ</span>
+      </div>
+      <div class="add  d-flex align-items-center" (click)="file.click()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path
+            d="M15.75 9V12.15C15.75 13.4101 15.75 14.0402 15.5048 14.5215C15.289 14.9448 14.9448 15.289 14.5215 15.5048C14.0402 15.75 13.4101 15.75 12.15 15.75H5.85C4.58988 15.75 3.95982 15.75 3.47852 15.5048C3.05516 15.289 2.71095 14.9448 2.49524 14.5215C2.25 14.0402 2.25 13.4101 2.25 12.15V9M12 5.25L9 2.25M9 2.25L6 5.25M9 2.25V11.25"
+            stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <input onclick="this.value=null;" #file type="file" multiple (change)="selectFileImport($event)" style="display: none" />
+        <span class="text-common-black fs-14 fw-400">Import</span>
+      </div>
+      <div class="add  d-flex align-items-center" (click)="doExport()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path
+            d="M15.75 11.25V12.15C15.75 13.4101 15.75 14.0402 15.5048 14.5215C15.289 14.9448 14.9448 15.289 14.5215 15.5048C14.0402 15.75 13.4101 15.75 12.15 15.75H5.85C4.58988 15.75 3.95982 15.75 3.47852 15.5048C3.05516 15.289 2.71095 14.9448 2.49524 14.5215C2.25 14.0402 2.25 13.4101 2.25 12.15V11.25M12.75 7.5L9 11.25M9 11.25L5.25 7.5M9 11.25V2.25"
+            stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="text-common-black fs-14 fw-400">Export</span>
+      </div>
+      <div class="add  d-flex align-items-center pointer dropdown" style="padding: 2px 3px;">
+        <span id="dropdownMenuButton121" data-bs-toggle="dropdown"
+        aria-expanded="false" class="py-1"><i class="bi bi-three-dots-vertical"></i></span>
+        <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton121" style="    min-width: 200px;
+        margin-top: 6px;">
+          <li>
+            <div class="d-flex gap-2 align-items-center">
+              <div><i class="bi bi-arrow-clockwise"></i></div>
+              <div>Reset số dư thẻ</div>
+            </div>
+          </li>
+          <li>
+            <div class="d-flex gap-2 align-items-center">
+              <div><i class="bi bi-upload"></i></div>
+              <div>Import số dư thẻ</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="mx-2">
+    <!-- <app-table [template]="template"  (indexTable)="onClickTable($event)"  [isActive]="isActive"
+    (selectedRow)="selectedRow($event)" [templateField]="templateFields" [tableData]="listUnion"></app-table> -->
+    <ejs-grid #grid
+      allowTextWrap='true' [textWrapSettings]='wrapSettings'
+      (recordClick)="selectedRow($event)"
+      [height]="height"  [sortSettings]='sortOptions'
+      [dataSource]='listEmployee'  [allowSorting]="true"
+      [pageSettings]="pageSettings">
+      <e-columns>
+          <e-column headerText="Mã" textAlign='Left' width=110>
+            <ng-template #template let-item>
+              <div class="text-start">{{item.Ma}}</div>
+          </ng-template>
+          </e-column>
+          <e-column headerText="Tên đoàn viên" width=180 textAlign='Left'>
+            <ng-template #template let-item>
+              <div class="d-flex align-items-center gap-2">
+                <img [src]="GetPhoto(item.PhotoID)" alt="" class="img-table">
+                <span class="text-start">{{item.FullName}}</span>
+              </div>
+          </ng-template>
+          </e-column>
+          <e-column headerText="Đơn vị công tác" textAlign='Left'  width=180>
+            <ng-template #template let-item>
+              <span class="text-start">{{item.DepartmentName}}</span>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Chức vụ" textAlign='Left'  width=180>
+            <ng-template #template let-item>
+              <span class="text-start">Kế toán trưởng</span>
+            </ng-template>
+          </e-column>
+          <e-column  headerText="Giới tính" textAlign='Left' width=110>
+            <ng-template #template let-item>
+              <div [ngClass]="{'gender0': item.Gender == 0,'gender1': item.Gender == 1}">
+                <span class="text-start" *ngIf="item.Gender == 0">{{item.GenderName}}</span>
+            </div>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Ngày sinh" textAlign='Left'  width=120>
+            <ng-template #template let-item>
+              <span class="text-start">{{item.DateOfBirth}}</span>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Email" textAlign='Left' width=180>
+            <ng-template #template let-item>
+              <span class="text-start">{{item.Email}}</span>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Điện thoại" textAlign='Left' width=140>
+            <ng-template #template let-item>
+              <span class="text-start">{{item.Phone}}</span>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Ghi chú" width=200  textAlign='Left'>
+            <ng-template #template let-item>
+              <ejs-tooltip id='tooltip' [content]='item.Note' target="#target">
+                <span id="target" class="text-start text-truncate-2" style="width: 200px;">{{item.Note}}</span>
+              </ejs-tooltip>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Tình trạng" width=120 textAlign='Left'>
+            <ng-template #template let-item>
+              <div [ngClass]="{'status0': item.Status == 0,'status1': item.Status == 1}">
+                <ng-container>{{item.StatusName}}</ng-container>
+            </div>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Ngày cấp thẻ" textAlign='Left'  width=150>
+            <ng-template #template let-item>
+              <span class="text-start">{{item.NgayCapThe  | date:'dd/MM/yyyy'}}</span>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Số xu định mức" textAlign='Center'  width=150>
+            <ng-template #template let-item>
+              <span class="text-center colorXu fw-600">{{item.SoXuDinhMuc}} Xu</span>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Số xu nạp thêm" textAlign='Center'  width=150>
+            <ng-template #template let-item>
+              <span class="text-center colorXu fw-600">{{item.SoXuNapThem}} Xu</span>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Lần nạp gần nhất" textAlign='Left'  width=180>
+            <ng-template #template let-item>
+              <span class="text-start">{{item.LanNapGanNhat | date:'dd/MM/yyyy'}}</span>
+            </ng-template>
+          </e-column>
+          <e-column headerText="Xem lịch sử" textAlign='Center'  width=150>
+            <ng-template #template let-item>
+              <div data-bs-target="#modalHistory" data-bs-toggle="modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                  <path d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </ng-template>
+          </e-column>
+      </e-columns>
+      </ejs-grid>
+      <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSize" (click)="LoadWithIndex($event)">
+      </ejs-pager>
+  </div>
+</div>
+
+<div class="modal fade" id="modalVote" tabindex="-1" aria-labelledby="modalVoteLabel" aria-hidden="false">
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 585px;">
+    <div class="modal-content " style="height: 714px;">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="text-common-black fs-18 fw-500" *ngIf="isNew">Thêm đoàn viên</div>
+          <div class="text-common-black fs-18 fw-500" *ngIf="!isNew">Sửa đoàn viên</div>
+          <div data-bs-dismiss="modal" class="pointer" id="hideModalAdd" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <!-- <div class="text-common-black fw-500 fs-14 pt-2 pb-1" *ngIf="isNew == true">Mã đoàn viên</div>
+        <div *ngIf="isNew == true">
+          <input type="text" class="input-text" [(ngModel)]="Union.UnionCode">
+        </div> -->
+        <div class="d-flex align-items-end gap-2">
+          <div class="flex-grow-1">
+            <div class="text-common-black fw-500 fs-14 pb-1">Tên đoàn viên</div>
+            <div >
+            <input type="text" class="input-text" [(ngModel)]="Union.UnionName">
+            </div>
+          </div>
+          <div class="img-picker  pointer" (click)="file2.click()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"  *ngIf="!stringImage">
+            <path d="M16.2 21H6.93137C6.32555 21 6.02265 21 5.88238 20.8802C5.76068 20.7763 5.69609 20.6203 5.70865 20.4608C5.72312 20.2769 5.93731 20.0627 6.36569 19.6343L14.8686 11.1314C15.2646 10.7354 15.4627 10.5373 15.691 10.4632C15.8918 10.3979 16.1082 10.3979 16.309 10.4632C16.5373 10.5373 16.7354 10.7354 17.1314 11.1314L21 15V16.2M16.2 21C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2M16.2 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V7.8C3 6.11984 3 5.27976 3.32698 4.63803C3.6146 4.07354 4.07354 3.6146 4.63803 3.32698C5.27976 3 6.11984 3 7.8 3H16.2C17.8802 3 18.7202 3 19.362 3.32698C19.9265 3.6146 20.3854 4.07354 20.673 4.63803C21 5.27976 21 6.11984 21 7.8V16.2M10.5 8.5C10.5 9.60457 9.60457 10.5 8.5 10.5C7.39543 10.5 6.5 9.60457 6.5 8.5C6.5 7.39543 7.39543 6.5 8.5 6.5C9.60457 6.5 10.5 7.39543 10.5 8.5Z" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div *ngIf="stringImage"
+              [style]="'background-repeat:no-repeat;background-position:center;background-size: 50px 50px;width: 50px;height: 50px;
+              background-image:url(' + stringImage + ')'"
+                class="pointer rounded" alt=""></div>
+            <input #file2 type="file" multiple (change)="selectImage($event)" style="display: none;" />
+          </div>
+        </div>
+        <div class="d-flex gap-5">
+          <div class="" style="width: 254px;">
+            <div class="text-common-black fs-14 fw-500 py-2">Email</div>
+            <div>
+              <input type="text">
+            </div>
+          </div>
+          <div style="width: 254px;">
+            <div class="text-common-black fs-14 fw-500 py-2">Ngày sinh</div>
+            <div>
+              <input type="text">
+            </div>
+          </div>
+        </div>
+        <div class="d-flex gap-5">
+          <div style="width: 254px;">
+            <div class="text-common-black fs-14 fw-500 py-2">Điện thoại</div>
+            <div class="">
+              <input type="text">
+            </div>
+          </div>
+          <div class="" style="width: 254px;">
+            <div class="text-common-black fs-14 fw-500 py-2">Tình trạng</div>
+            <div class="dropdown">
+              <div class="input-dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <div>{{selectUnionStatus?.Caption}}</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton1">
+                <li *ngFor="let item of DataUnionStatus" (click)="selectUnionStatus = item">{{item.Caption}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex gap-5">
+          <div class="" style="width: 254px;">
+            <div class="text-common-black fs-14 fw-500 py-2">Giới tính</div>
+            <div class="dropdown">
+              <div class="input-dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <div>{{selectGender?.Caption}}</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton1">
+                <li *ngFor="let item of DataGender" (click)="selectGender = item">{{item.Caption}}</li>
+              </ul>
+            </div>
+          </div>
+          <div style="width: 254px;">
+            <div class="text-common-black fs-14 fw-500 py-2">Ngày sinh</div>
+            <div class="position-relative date">
+              <input id="datepicker" type="text" name="holidayDate" mwlFlatpickr [(ngModel)]="Union.Birthday"
+                [altInput]="false" [convertModelValue]="false" [enableTime]="false" defaultDate="2016-10-20"
+                dateFormat="d-m-Y" altFormat="F j, Y" placeholder="Ngày sinh">
+              <div class="icon-date">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M21 10H3M16 2V6M8 2V6M7.8 22H16.2C17.8802 22 18.7202 22 19.362 21.673C19.9265 21.3854 20.3854 20.9265 20.673 20.362C21 19.7202 21 18.8802 21 17.2V8.8C21 7.11984 21 6.27976 20.673 5.63803C20.3854 5.07354 19.9265 4.6146 19.362 4.32698C18.7202 4 17.8802 4 16.2 4H7.8C6.11984 4 5.27976 4 4.63803 4.32698C4.07354 4.6146 3.6146 5.07354 3.32698 5.63803C3 6.27976 3 7.11984 3 8.8V17.2C3 18.8802 3 19.7202 3.32698 20.362C3.6146 20.9265 4.07354 21.3854 4.63803 21.673C5.27976 22 6.11984 22 7.8 22Z"
+                    stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-common-black fw-500 fs-14 pt-2 pb-1">Đơn vị công tác</div>
+        <div>
+          <input type="text" class="input-text" [(ngModel)]="Union.DepartmentName">
+        </div>
+        <div class="text-common-black fw-500 fs-14 pt-2 pb-1">Chức vụ</div>
+        <div>
+          <input name="1321" type="text" class="input-text" [(ngModel)]="Union.ManagerCode">
+        </div>
+        <div class="text-common-black fw-500 fs-14 pt-2 pb-1">Ghi chú</div>
+        <div>
+          <textarea name="sadas" id="" rows="4" [(ngModel)]="Union.Note"></textarea>
+        </div>
+      </div>
+      <div
+        class="p-4 toolbar-modal d-flex justify-content-between align-items-center position-sticky bottom-0 bg-white z-1 pb-3">
+        <div></div>
+        <div class="modal-submit" (click)="SaveUnion(isNew)">Đăng</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalCard" tabindex="-1" aria-labelledby="modalCardLabel" aria-hidden="false">
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 585px;">
+    <div class="modal-content " style="height: 714px;">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="text-common-black fs-18 fw-500">Nạp thẻ nhân viên</div>
+          <div data-bs-dismiss="modal" class="pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="text-common-black fs-14 fw-500 py-2">Chọn nhân viên</div>
+        <div class="dropdown">
+          <div class="input-dropdown" type="button" id="dropdownCard" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <div>{{selectUnionStatus?.Caption}}</div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownCard">
+            <li *ngFor="let item of DataUnionStatus" (click)="selectUnionStatus = item">{{item.Caption}}</li>
+          </ul>
+        </div>
+        <div class="text-common-black fw-500 fs-14 pt-2 pb-1">Chức vụ</div>
+        <div>
+          <input type="text" class="input-text">
+        </div>
+        <div class="text-common-black fw-500 fs-14 pt-2 pb-1">Đơn vị công tác</div>
+        <div>
+          <input type="text" class="input-text">
+        </div>
+        <div class="d-flex gap-5">
+          <div class="" style="width: 254px;">
+            <div class="text-common-black fs-14 fw-500 py-2">Số xu hiện tại</div>
+            <div>
+              <input type="text">
+            </div>
+          </div>
+          <div style="width: 254px;">
+            <div class="text-common-black fs-14 fw-500 py-2">Số xu cần nạp thêm</div>
+            <div>
+              <input type="text">
+            </div>
+          </div>
+        </div>
+        <div class="text-common-black fw-500 fs-14 pt-2 pb-1">Ghi chú</div>
+        <div>
+          <textarea name="sadas" id="" rows="4" [(ngModel)]="Union.Note"></textarea>
+        </div>
+      </div>
+      <div
+        class="p-4 toolbar-modal d-flex justify-content-between align-items-center position-sticky bottom-0 bg-white z-1 pb-3">
+        <div></div>
+        <div class="modal-submit" (click)="SaveUnion(isNew)">Đăng</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalHistory" tabindex="-1" aria-labelledby="modalHistoryLabel" aria-hidden="false">
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 1157px;">
+    <div class="modal-content " style="height: 800px;">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="text-common-black fs-18 fw-500">Lịch sử thẻ</div>
+          <div data-bs-dismiss="modal" class="pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body ">
+        <div class="header-history d-flex align-items-center justify-content-between px-2">
+          <div class="d-flex gap-3">
+            <img class="rounded" width="60" height="60" src="/assets/images/avatar.png" alt="" srcset="">
+            <div>
+              <div class="text-common-black">Carold Keith</div>
+              <div class="text-common-black fs-14 fw-400">Kế toán trưởng</div>
+              <div class="text-common-black fs-14 fw-400">Phòng kế toán khu A</div>
+            </div>
+          </div>
+          <div>
+            <div class="text-common-black fs-14 fw-400">Ngày cấp thẻ: 27/01/24</div>
+            <div class="text-common-black fs-14 fw-400">Ngày nạp thẻ gần nhất: 27/01/2024</div>
+          </div>
+          <div>
+            <div class="text-common-black fs-14 fw-400">Xu định mức: <span class="text-common-primary fw-600">300</span></div>
+            <div class="text-common-black fs-14 fw-400">Xu nạp thêm: <span class="fw-600" style="color:var(--Color5);">450</span></div>
+          </div>
+        </div>
+        <div class="px-2 pt-2">
+          <ejs-grid  [height]="470"  [sortSettings]='sortOptions' [dataSource]='listHistory'  [allowSorting]="true" [pageSettings]="pageSettings">
+            <e-columns>
+                <e-column  headerText="Ngày phát sinh" textAlign='Left' width=150>
+                  <ng-template #template let-item>
+                    <div>{{item.NgayPhatSinh | date:'dd/MM/yyyy'}}</div>
+                </ng-template>
+                </e-column>
+                <e-column headerText="Phân loại" width=150 textAlign='Left'>
+                  <ng-template #template let-item>
+                    <div class="text-start" [ngClass]="{'statusH1': item.Type == 1,'statusH2': item.Type == 2,'statusH3': item.Type == 3}">
+                      <div *ngIf="item.Type == 1">Nạp thẻ</div>
+                      <div *ngIf="item.Type == 2">Đặt món</div>
+                      <div *ngIf="item.Type ==3">Hoàn trả xu</div>
+                    </div>
+                  </ng-template>
+                </e-column>
+                <e-column headerText="Mô tả"  textAlign='Left' width=450>
+                  <ng-template #template let-item>
+                    <div style="width: 420px;" class="d-flex gap-2 flex-wrap">
+                      <ng-container *ngFor="let food of listFood;let i  = index">
+                        <div class="p-1 rounded" [ngStyle]="{'background': defaultColor[i % 10]}">
+                        {{food.Name}}
+                        </div>
+                      </ng-container>
+                    </div>
+                  </ng-template>
+                </e-column>
+                <e-column headerText="Người chỉnh sửa"  textAlign='Left' width=160>
+                  <ng-template #template let-item>
+                    <div class="d-flex align-items-center gap-2">
+                      <img [src]="getPhotoByUserID(item.CreatedBy)" alt="" class="img-table">
+                      <div>Cao Minh Quân</div>
+                    </div>
+                  </ng-template>
+                </e-column>
+                <e-column headerText="Tổng xu"  textAlign='Center' width=175>
+                  <ng-template #template let-item>
+                    <div class="d-flex align-items-center gap-2 justify-content-center">
+                      <div *ngIf="item.Total > 0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M7.99998 3.33337V12.6667M3.33331 8.00004H12.6666" stroke="#54BF61" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div *ngIf="item.Total < 0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M3.33331 8H12.6666" stroke="#C13535" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div class="text-common-black">{{item.Total}} xu</div>
+                    </div>
+                  </ng-template>
+                </e-column>
+            </e-columns>
+            </ejs-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

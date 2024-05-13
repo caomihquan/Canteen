@@ -1,0 +1,95 @@
+<div class="container-home">
+  <div class="main-home bg-white mt-2 ms-3 me-2 p-2">
+    <div class="">
+      <div class="">
+        <span class="fs-14 fw-600">Thực đơn hôm nay: </span>
+        <span class="text-common-primary fs-22 fw-600"> {{today | date:'dd/MM/yyyy'}}</span>
+      </div>
+      <div class="py-2">
+        <span class="text-common-black fs-14">Tổng số món: </span>
+        <span class="text-common-black fs-14"> 14</span>
+      </div>
+    </div>
+    <div>
+      <div class="accordion border-home mb-4" *ngFor="let itemGroup of listAllBook;let i = index">
+        <div class="accordion-item border-0">
+          <div class="accordion-header pointer" id="panelsStayOpen-headingOne">
+            <div class="d-flex gap-3 accordion-button background-main-canteen" style="box-shadow: none"
+              data-bs-toggle="collapse" attr.data-bs-target="#vote{{itemGroup.ID}}" aria-expanded="true"
+              attr.aria-controls="vote{{itemGroup.ID}}">
+              <div class="d-flex align-items-center gap-2 text-common-black fs-14">
+                <div style="transform: translate(-4px, -3px);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M15 5C14.6044 5.28396 14.2838 5.65997 14.066 6.09553C13.8482 6.5311 13.7398 7.01313 13.75 7.5C13.7398 7.98687 13.8482 8.4689 14.066 8.90447C14.2838 9.34003 14.6044 9.71604 15 10M20 5C19.6044 5.28396 19.2838 5.65997 19.066 6.09553C18.8482 6.5311 18.7398 7.01313 18.75 7.5C18.7398 7.98687 18.8482 8.4689 19.066 8.90447C19.2838 9.34003 19.6044 9.71604 20 10M9.99997 5C9.60436 5.28396 9.28381 5.65997 9.06603 6.09553C8.84825 6.5311 8.73977 7.01313 8.74997 7.5C8.73977 7.98687 8.84825 8.4689 9.06603 8.90447C9.28381 9.34003 9.60436 9.71604 9.99997 10M5 13.75H25C25.3315 13.75 25.6495 13.8817 25.8839 14.1161C26.1183 14.3505 26.25 14.6685 26.25 15V15.625C26.25 17.5 23.1038 22.5913 21.25 23.75V25C21.25 25.3315 21.1183 25.6495 20.8839 25.8839C20.6495 26.1183 20.3315 26.25 20 26.25H10C9.66848 26.25 9.35054 26.1183 9.11612 25.8839C8.8817 25.6495 8.75 25.3315 8.75 25V23.75C6.64125 22.4325 3.75 17.5 3.75 15.625V15C3.75 14.6685 3.8817 14.3505 4.11612 14.1161C4.35054 13.8817 4.66848 13.75 5 13.75Z" stroke="#FFB100" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>{{itemGroup.Name}}</div>
+                <div>({{itemGroup.SL}}) Món</div>
+              </div>
+            </div>
+          </div>
+          <div id="vote{{itemGroup.ID}}" [ngClass]="{'show': i == 0}" class=" background-main-canteen accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body p-2 pt-0 background-main-canteen ">
+              <div class="d-grid row-gap-2 column-gap-2 w-100" style="grid-template-columns: 50% 50%">
+                  <div class="d-flex p-2 gap-2 bg-white rounded">
+                    <img width="95" height="95" src="/assets/images/avatar.png" alt="">
+                    <div class="d-flex flex-column justify-content-between">
+                        <div class="fs-14 fw-600">Cơm tấm</div>
+                        <div class="fs-14 text-common-black fw-400 text-truncate-2">Cơm với sườn cốt lết nướng</div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="fw-400 fs-14 text-common-gray">Đơn giá: <span class="text-common-primary fw-600">54000 VND</span></div>
+                            <div class="fw-400 fs-14 text-common-gray">SL đã đặt: <span class="text-common-primary fw-600">54</span></div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="d-flex p-2 gap-2 bg-white rounded">
+                    <img width="95" height="95" src="/assets/images/avatar.png" alt="">
+                    <div class="d-flex flex-column justify-content-between">
+                        <div class="fs-14 fw-600">Cơm tấm</div>
+                        <div class="fs-14 text-common-black fw-400 text-truncate-2">Cơm với sườn cốt lết nướng</div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="fw-400 fs-14 text-common-gray">Đơn giá: <span class="text-common-primary fw-600">54000 VND</span></div>
+                            <div class="fw-400 fs-14 text-common-gray">SL đã đặt: <span class="text-common-primary fw-600">54</span></div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-right">
+    <div class="bg-white  mt-2 me-3 p-4 py-3">
+      <div class="text-common-black fw-600 fs-18 pb-2">Tổng số lượt đặt món</div>
+      <div class="text-center text-common-primary fw-700 my-5" style="font-size:60px;">112</div>
+      <div class="mt-3">
+        <div class="align-items-center d-flex item-all-book justify-content-between p-2 mb-2" *ngFor="let item of listAllBook">
+          <span class="text-common-black fs-14 fw-600 fs">{{item.Name}}</span>
+          <span class="item-all-book-SL fs-14">{{item.SL}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white my-2 me-3 p-4 py-3">
+      <div class="text-common-black fw-600 fs-18 pb-2">Thống kê lượt đặt món ăn</div>
+      <div class="mt-3">
+        <!-- <div st class="align-items-center d-flex item-all-book justify-content-between p-2 mb-2" *ngFor="let item of listEachBook">
+          <span class="item-all-book-SL fs-14">{{item.SL}}</span>
+          <span class="text-common-black fs-14 fw-600 fs text-end">{{item.Name}}</span>
+        </div> -->
+        <div  class="progress-container view-vote-container d-flex justify-content-end" *ngFor="let item of listEachBook;let i = index">
+          <div  class="progress progress-selection "  [ngStyle]="{'background-color': defaultColor[i % 10],'width': ((item.SL) / maxSL * 100) + '%'}">
+            <div class="progress-bar progress-bar-selection w-100%" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+              aria-valuemax="100" ></div>
+            <div class="align-items-center d-flex justify-content-between">
+              <span class="text-common-black fs-14 fw-600 fs text-end me-3">{{item.SL}}</span>
+              <span class="text-common-black fs-14 fw-600 fs text-end me-3">{{item.Name}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

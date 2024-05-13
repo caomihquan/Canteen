@@ -1,0 +1,20 @@
+export const AppRoutes = {
+  vote:'vote',
+  home:'',
+  news:'news',
+  managenews:'news/manage-news',
+  addnews:'news/manage-news/add-news',
+  editnews:'news/manage-news/edit-news',
+  newsdetail:'news/news-detail',
+  searchnews:'news/news-search',
+  rules:'rules',
+  addrules:'rules/add-rules',
+  editrules:'rules/edit-rules',
+  payment:'payment',
+  mails:'mails',
+  member:'member',
+  manage:'manage',
+  login:'login',
+  changepassword:'changepassword',
+  notAuthor:'notAuthor'
+}

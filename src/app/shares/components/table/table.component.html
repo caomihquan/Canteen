@@ -1,0 +1,38 @@
+<div class="bg-white">
+  <table class="table">
+    <thead>
+      <tr>
+        <ng-container *ngTemplateOutlet="
+        templateField;"></ng-container>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [ngClass]="{'active':isActive == i}" *ngFor="let item of tableData | slice: (currentPage-1) * pageSize : currentPage * pageSize;let i = index"
+      (click)="ClickRow(item,i)"
+      >
+        <ng-container *ngTemplateOutlet="
+          template;
+          context: { $implicit: item }"></ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <nav *ngIf="tableData.length > 0" style="float: right;">
+    <ul class="pagination">
+      <!-- <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="currentPage = 1">{{'<'}}</a>
+      </li> -->
+      <li class="page-item pointer" [class.disabled]="currentPage === 1" *ngIf="tableData.length > 0">
+        <a class="page-link" (click)="currentPage = currentPage - 1">{{'<'}}</a>
+      </li>
+      <li class="page-item pointer" *ngFor="let page of pages" [class.active]="currentPage === page">
+        <a class="page-link" (click)="currentPage = page">{{ page }}</a>
+      </li>
+      <li class="page-item pointer" [class.disabled]="currentPage === totalPages" *ngIf="tableData.length > 0">
+        <a class="page-link" (click)="currentPage = currentPage + 1">{{'>'}}</a>
+      </li>
+      <!-- <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="currentPage = totalPages">{{'>'}}</a>
+      </li> -->
+    </ul>
+  </nav>
+</div>

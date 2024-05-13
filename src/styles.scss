@@ -1,0 +1,265 @@
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-notifications/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-grids/styles/material.css';
+@import "../node_modules/@syncfusion/ej2-angular-popups/styles/material.css";
+@font-face {
+  font-family: InterCustom;
+  src: url(assets/font/Inter.ttf) format("truetype");
+}
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --AppColor1: #A21232;
+  --AppColor2: #E9290F;
+  --AppColor3: #C02727;
+  --AppColor4: #FFFBCC;
+  --AppColor5: #FDC8AA;
+  --AppColor6: #99B19C;
+  --AppColor7: #D7D1C9;
+  --AppColor8: #E9E5DD;
+  --AppColor9: #696464;
+  --AppColor10: #000000;
+  --AppColor11: #626262;
+  --AppColor12: #626262;
+  --AppColor13: #EAEAEA;
+  --AppColor14: #FFFFFF;
+  --primaryApp:#D3222A;
+  --Color1:#007455;
+  --Color2:#FFC436;
+  --Color3:#0C356A;
+  --Color4:#FFF0CE;
+  --Color5:#91CEFF;
+  --Color6:#EEF3FF;
+  --Color7:#FFFFE3;
+  --Color8:#E9E5DD;
+  --Color9:#696464;
+  --bg-main:#f7f9fd;
+
+  --glimmer-animation-direction: alternate;
+  --glimmer-animation-duration: 1000ms;
+  --glimmer-animation-timing-function: steps(10, end);
+  --glimmer-opacity-min: 0.25;
+  --glimmer-opacity-max: 1;
+}
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+*{
+  font-family: InterCustom;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+.text-common-black{
+  color: #000;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 122.222% */
+  letter-spacing: -0.18px;
+}
+.text-common-primary{
+  color: var(--Color1);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 122.222% */
+  letter-spacing: -0.18px;
+}
+.text-common-gray{
+  color: #626262;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 122.222% */
+  letter-spacing: -0.18px;
+}
+.fs-16{
+  font-size: 16px !important;
+}
+.fs-18{
+  font-size: 18px !important;
+}
+.fs-12{
+  font-size: 12px !important;
+}
+.fs-14{
+  font-size: 14px !important;
+}
+.fs-20{
+  font-size: 14px !important;
+}
+.fs-22{
+  font-size: 22px !important;
+}
+.fs-24{
+  font-size: 22px !important;
+}
+.fw-400{
+  font-weight: 400;
+}
+.fw-500{
+  font-weight: 500;
+}
+.fw-600{
+  font-weight: 600;
+}
+.fw-700{
+  font-weight: 600;
+}
+.pointer{
+  cursor: pointer;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius:10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #aeaeae;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+tr.active td{
+  background: var(--Color6, #EEF3FF) !important;
+    color: #fff;
+    font-weight: 600;
+}
+.e-grid td.e-active{
+  background: var(--Color6, #EEF3FF) !important;
+}
+tr.active div{
+  color: #fff;
+  font-weight: 600;
+}
+
+tr:hover:not(.active) td{
+  cursor: pointer;
+  background: #EEFBFF !important;
+}
+.normal{
+  line-height: normal;
+}
+.bg-main{
+  background-color: var(--Color1);
+}
+
+.e-pager .e-currentitem, .e-pager .e-currentitem:hover,.e-pager .e-currentitem.e-numericitem.e-focused{
+  background: var(--Color1);
+}
+.e-grid .e-headercell, .e-grid .e-detailheadercell{
+  background: #F7F9FD;
+}
+.e-grid .e-focused:not(.e-menu-item):not(.e-editedbatchcell){
+  box-shadow: none;
+}
+.e-headertext{
+  color: #000;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transform: translateX(-6px);
+}
+
+.e-grid .e-gridheader .e-sortfilter .e-headercelldiv, .e-grid .e-gridheader .e-stackedheadercelldiv{
+  padding: 0 1.8em 0 6px;
+}
+
+.e-pager .e-pagercontainer{
+  margin: 0;
+  margin-left: 18px;
+}
+
+.e-pager{
+  border-top: 0;
+}
+
+.modal-header{
+  padding: 0.6rem 1rem;
+}
+
+.text-truncate-2{
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-wrap: wrap;
+}
+.text-truncate-3{
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.text-truncate{
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.background-main-canteen{
+  background-color: var(--bg-main) !important;
+}

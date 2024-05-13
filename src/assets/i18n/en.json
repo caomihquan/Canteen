@@ -1,0 +1,22 @@
+{
+  "LoginPage":{
+    "Login":"Đăng nhập",
+    "UserID":"UserID",
+    "Password":"Password",
+    "ForgetPassword":"Quên mật khẩu"
+  },
+  "Feedback":{
+    "TimKiem":"Tìm kiếm...",
+    "CapNhat":"Cập nhật",
+    "TinhTrang":"Tình trạng",
+    "GhiChu":"Ghi chú",
+    "DinhKem":"Đính kèm",
+    "DanhSachDinhKem":"Danh sách đính kèm",
+    "TaoMoi":"Tạo mới", "Luu":"Lưu",
+    "ThemThuGopY": "Thêm thư góp ý","TieuDe": "Tiêu đề",
+    "TaiFile" : "Tải File", "FileName":"Tên tệp", "Download":"Tải tệp",
+    "Ma": "Mã","TenDoanVien": "Tên đoàn viên","GioiTinh": "Giới tính",
+    "NgaySinh":"Ngày sinh","NgayThamGIa":"Ngày tham gia","DonViCongTac":"Đơn vị công tác",
+    "QuanLyTrucTiep":"Quản lý trực tiếp"
+  }
+}

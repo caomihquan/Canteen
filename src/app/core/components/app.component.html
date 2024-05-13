@@ -1,0 +1,20 @@
+<!-- app.component.html -->
+<!-- <div class="comments">
+  <app-comment *ngFor="let comment of nestedComments;" [comment]="comment" [isFirst]="true"></app-comment>
+</div> -->
+<ngx-spinner bdColor="rgba(51,51,51,0)"
+size="medium"
+color="#0d6efd"
+type="ball-scale-multiple">
+<p style="font-size: 20px; color: #0d6efd">Loading...</p>
+</ngx-spinner>
+<app-header *ngIf="showHead"></app-header>
+<div class="d-flex;w-100;h-100">
+  <app-sidebar *ngIf="showHead"></app-sidebar>
+  <!-- 77 -->
+  <div style="flex:1;background-color: #F7F9FD;" [ngClass]="{'isNotLogin':showHead}">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+

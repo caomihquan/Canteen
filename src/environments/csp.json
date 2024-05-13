@@ -1,0 +1,12 @@
+{
+  "default-src": "'self'",
+  "script-src": "'self'",
+  "style-src": "'self'",
+  "img-src": "'self'",
+  "font-src": "'self'",
+  "object-src": "'none'",
+  "base-uri": "'self'",
+  "frame-ancestors": "'none'",
+  "form-action": "'self'",
+  "upgrade-insecure-requests": true
+}

@@ -1,0 +1,4 @@
+
+<div class="mail-container p-2 mt-3"  *ngFor="let item of tableData;let i = index" (click)="ClickRow(item,i)">
+  <ng-container *ngTemplateOutlet="template; context: { $implicit: item }"></ng-container>
+</div>

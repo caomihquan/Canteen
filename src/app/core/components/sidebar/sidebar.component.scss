@@ -1,0 +1,78 @@
+.container-sidebar{
+  width: 84px;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--Color1);
+}
+.label-sidebar{
+  color: var(--AppColor14);
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 0 2px;
+  text-align: center;
+}
+.content-sidebar:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+.svg{
+  position: relative;
+  z-index: -1;
+}
+
+.active-tab{
+  cursor: pointer;
+  background: #FFF;
+  border-radius: 10px;
+  margin-left: 1.5px;
+}
+.active-tab div,.active-tab i{
+  color: var(--Color1) !important;
+}
+.icon-sidebar{
+  color: var(--AppColor14);
+  font-size:20px;
+}
+.content-sidebar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 4px;
+  min-height: 76px;
+  max-height: 80px;
+  gap: 5px;
+
+}
+img{
+  filter: grayscale(100%) brightness(200%);
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  border-radius:10px
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+.scroll{
+  overflow-y: scroll;
+}

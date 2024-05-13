@@ -1,0 +1,42 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from './authentication/login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/app.module';
+import { HttpClient } from '@angular/common/http';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ErrorComponent } from './error/error.component';
+import { NotAuthorComponent } from './notAuthorization/notAuthorization.component';
+
+@NgModule({
+  declarations: [
+    LoginComponent,
+    HeaderComponent,
+    SidebarComponent,
+    ErrorComponent,
+    NotAuthorComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'vn'
+    }),
+    ModalModule.forRoot()
+  ],
+  exports:[
+    HeaderComponent,
+    SidebarComponent,
+    LoginComponent
+  ]
+})
+export class CoreModule { }
