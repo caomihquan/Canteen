@@ -29,13 +29,7 @@ export class AppComponent {
         else {
           this.showHead = true;
         }
-        //
-        this.showHead = true;
-
       }
-      //
-      this.showHead = true;
-
     });
 
     //idle time

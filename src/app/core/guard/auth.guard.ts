@@ -22,12 +22,11 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
 
-    // return this._userService
-    //   .checkLogin()
-    //   .pipe(
-    //     tap((authenticated:boolean) => this.handleAuth(authenticated, state))
-    //     )
-    return true;
+    return this._userService
+      .checkLogin()
+      .pipe(
+        tap((authenticated:boolean) => this.handleAuth(authenticated, state))
+        )
   }
 
   private handleAuth(isAuthenticated: boolean, state: RouterStateSnapshot) {

@@ -4,17 +4,17 @@ import { LoginComponent } from './authentication/login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { NotAuthorComponent } from './notAuthorization/notAuthorization.component';
 const routes: Routes = [
-  // {
-  //   path: 'login', component: LoginComponent
-  // },
+  {
+    path: 'login', component: LoginComponent
+  },
   {
     path: 'food',
     loadChildren: () => import('./../../modules/food/food.module').then(m => m.FoodModule)
   },
-  // {
-  //   path: 'changepassword',
-  //   loadChildren: () => import('./../../modules/changepassword/changepassword.module').then(m => m.ChangepasswordModule)
-  // },
+  {
+    path: 'changepassword',
+    loadChildren: () => import('./../../modules/changepassword/changepassword.module').then(m => m.ChangepasswordModule)
+  },
   {
     path: 'guess',
     loadChildren: () => import('./../../modules/guess/guess.module').then(m => m.GuessModule)
@@ -31,10 +31,10 @@ const routes: Routes = [
     path: 'member',
     loadChildren: () => import('./../../modules/member/member.module').then(m => m.MemberModule)
   },
-  // {
-  //   path: 'manage',
-  //   loadChildren: () => import('./../../modules/manage/manage.module').then(m => m.ManageModule)
-  // },
+  {
+    path: 'book-group',
+    loadChildren: () => import('./../../modules/book-group/book-group.module').then(m => m.BookGroupModule)
+  },
   {
     path: 'notAuthor',
     component:NotAuthorComponent

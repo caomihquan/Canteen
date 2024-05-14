@@ -179,3 +179,67 @@ textarea{
   width: 152px;
   height: 152px;
 }
+
+.date{
+  width: 141px;
+  position: relative;
+  .icon-date{
+    position: absolute;
+    right: 8px;
+    bottom: 6px;
+  }
+}
+.child-container{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  column-gap: 12px;
+  row-gap: 12px;
+}
+
+.checkbox-round {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.checkbox-round:checked {
+  background-color: var(--Color1);
+}
+.background-group{
+  background: #EFFFD4;
+}
+.left-add{
+  overflow: hidden;
+  scrollbar-gutter: stable;
+  width: 461px;
+}
+.left-add::-webkit-scrollbar {
+  width: 10px;
+  border-radius:10px;
+  height: 10px;
+  transform: translateX(10px);
+}
+.left-add:hover{
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.button-add{
+  background: var(--Color1);
+  padding: 1rem;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+  padding-top:1rem;
+}

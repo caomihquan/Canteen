@@ -141,7 +141,7 @@ table {
   font-size: 22px !important;
 }
 .fs-24{
-  font-size: 22px !important;
+  font-size: 24px !important;
 }
 .fw-400{
   font-weight: 400;
@@ -262,4 +262,8 @@ tr:hover:not(.active) td{
 }
 .background-main-canteen{
   background-color: var(--bg-main) !important;
+}
+
+.color-primary{
+  color: var(--Color1);
 }

@@ -4,11 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/core/guard/auth.guard';
 import { SharesModule } from 'src/app/shares/shares.module';
 import { FormsModule } from '@angular/forms';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'src/app/app.module';
-import { HttpClient } from '@angular/common/http';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { FoodComponent } from './food.component';
+import { BookGroupComponent } from './book-group.component';
 
 
 const routes: Routes = [
@@ -16,27 +13,19 @@ const routes: Routes = [
     path:'',
     canActivate: [AuthGuard],
     children:[
-      {path: '', component: FoodComponent},
+      {path: '', component: BookGroupComponent},
     ]
   },
 ];
 
 @NgModule({
-  declarations: [FoodComponent],
+  declarations: [BookGroupComponent],
   imports: [
     CommonModule,
     SharesModule,
     FormsModule,
     FlatpickrModule.forRoot(),
     RouterModule.forChild(routes),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      defaultLanguage: 'vn'
-    }),
   ],
 })
-export class FoodModule { }
+export class BookGroupModule { }

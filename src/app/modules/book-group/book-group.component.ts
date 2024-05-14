@@ -9,28 +9,28 @@ import { TranslateService } from '@ngx-translate/core';
 import { fnCommon } from 'src/app/shares/helpers/common';
 
 @Component({
-  selector: 'app-food',
-  templateUrl: './food.component.html',
-  styleUrls: ['./food.component.scss']
+  selector: 'app-book-group',
+  templateUrl: './book-group.component.html',
+  styleUrls: ['./book-group.component.scss']
 })
-export class FoodComponent implements OnInit {
+export class BookGroupComponent implements OnInit {
   selectedDate = new Date().toISOString()
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
   totalItems:number;
   height:number = (window.innerHeight - 202)
-  heightHistory:number = (window.innerHeight - 300)
+  heightHistory:number = (window.innerHeight - 220)
   width:number = (window.innerWidth - 250)
   searchText:string;
   selectedFood:any;
-  
+
   modalRef: BsModalRef
   I18nLang:any
   defaultColor = AppCommon.defaultColor
-  
+
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
- 
+
   ListPhanLoai = [
     {
       ID:1,
@@ -49,52 +49,29 @@ export class FoodComponent implements OnInit {
 
   listFood = [
     {
-      Name:"Cơm tấm",
-      SL:54,
-      GroupID:1,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      BookDate:new Date().toISOString(),
+      BookBy:'Maria Joyce',
+      JobWName:'Kế toán trưởng',
+      Department:'Phòng kế toán',
+      SL:53,
       CreatedOn:new Date().toISOString(),
       CreatedBy:''
     },
     {
-      Name:"Bánh canh cá lóc",
-      SL:48,
-      GroupID:1,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      BookDate:new Date().toISOString(),
+      BookBy:'Maria Joyce',
+      JobWName:'Kế toán trưởng',
+      Department:'Phòng kế toán',
+      SL:53,
       CreatedOn:new Date().toISOString(),
       CreatedBy:''
     },
     {
-      Name:"Bún riêu cua",
-      SL:40,
-      GroupID:2,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-    {
-      Name:"Bánh canh cá lóc",
-      SL:48,
-      GroupID:1,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-    {
-      Name:"Bún riêu cua",
-      SL:40,
-      GroupID:3,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      BookDate:new Date().toISOString(),
+      BookBy:'Maria Joyce',
+      JobWName:'Kế toán trưởng',
+      Department:'Phòng kế toán',
+      SL:53,
       CreatedOn:new Date().toISOString(),
       CreatedBy:''
     },
@@ -107,6 +84,28 @@ export class FoodComponent implements OnInit {
       CreatedBy:'cmquan'
     },
   ]
+
+  ListFoodToday:any[] = [
+    {ID:1,Group:1,Food:'Cơm tấm'},
+    {ID:2,Group:1,Food:'Cá kho'},
+    {ID:3,Group:1,Food:'Cá chiên'},
+    {ID:4,Group:1,Food:'Thịt kho'},
+    {ID:5,Group:1,Food:'Canh Chua'},
+    {ID:6,Group:2,Food:'Bún thịt nướng'},
+    {ID:7,Group:2,Food:'Bún riêu'},
+    {ID:8,Group:3,Food:'Mì Ý'},
+  ]
+  ListFoodGroup:any[] = [
+    {ID:1,Food:"Cơm"},
+    {ID:2,Food:"Bún"},
+  ]
+
+  ListOrder:any[] = [
+    {EmployeeCode:'NV001',EmployeeName:'Cao Minh Quân',Orders:'1;2;3'},
+    {EmployeeCode:'NV001',EmployeeName:'Cao Minh Quân1',Orders:'1;2;3'},
+    {EmployeeCode:'NV001',EmployeeName:'Cao Minh Quân2',Orders:'1;5;8'},
+  ]
+
   moTa:string;
   tenMonAn:string;
   donGia:string;
@@ -132,7 +131,7 @@ export class FoodComponent implements OnInit {
 
 
   AddFood(){
-    
+
   }
 
   selectedRowTable(evt:any){
@@ -140,10 +139,10 @@ export class FoodComponent implements OnInit {
     this.selectedFood = item;
   }
 
-  
+
 
   GetMenu(){
-    
+
   }
 
   onSearch(event:KeyboardEvent){
@@ -166,7 +165,7 @@ export class FoodComponent implements OnInit {
       title: this.I18nLang.Common.Notification,
       content:this.I18nLang.Common.WantToDelete,
       fnYes:()=>{
-        
+
       },
       fnNo:()=>{
         this.modalRef.hide()
@@ -202,13 +201,24 @@ export class FoodComponent implements OnInit {
   }
 
   PostFood(){
-    
+
 
   }
   getPhoto(userid:string){
     return fnCommon.ConvertPhotoEmpByUserID(userid)
   }
 
- 
+
+  filterGroup(group:any){
+    return this.ListFoodToday.filter(x =>x.Group == group.ID)
+  }
+
+  getFoodName(orders:any){
+
+    return this.ListFoodToday.filter(x =>orders.split(';').includes(x.ID.toString()));
+  }
+
+
+
 
 }

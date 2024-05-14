@@ -50,18 +50,17 @@ export class HeaderComponent {
     private _langService:LanguageService,
     private _apiHttp:ApiHttpService,
     private _modalService:BsModalService){
-    this.renderer.listen('window', 'click',(e:Event) => {
-     if(e.target !== this.toggleButton.nativeElement && e.target!==this.menu.nativeElement){
-         if((this.toggleButton.nativeElement as HTMLElement).contains(e.target as HTMLElement) || (this.menu.nativeElement as HTMLElement).contains(e.target as HTMLElement)){
-         }
-         else{
-            this.showNoti = false;
-         }
-     }
-    });
+    // this.renderer.listen('window', 'click',(e:Event) => {
+    //  if(e.target !== this.toggleButton.nativeElement && e.target!==this.menu.nativeElement){
+    //      if((this.toggleButton.nativeElement as HTMLElement).contains(e.target as HTMLElement) || (this.menu.nativeElement as HTMLElement).contains(e.target as HTMLElement)){
+    //      }
+    //      else{
+    //         this.showNoti = false;
+    //      }
+    //  }
+    // });
     this.user = this._user.getUser();
     this.getLanguage();
-    //this.getNotification();
   }
 
   fnOnClickNoti(){

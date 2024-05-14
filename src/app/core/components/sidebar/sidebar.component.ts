@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
+import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 
 @Component({
@@ -36,7 +37,7 @@ export class SidebarComponent implements OnInit {
       MenuID: 'M004',
       Label: 'Nhân viên',
       Icon:'people-fill',
-      route: '',
+      route: 'member',
     },
     {
       MenuID: 'M005',
@@ -47,8 +48,8 @@ export class SidebarComponent implements OnInit {
     {
       MenuID: 'M006',
       Label: 'Đặt theo món',
-      Icon:'person-plus-fill',
-      route: '',
+      Icon:'person-lines-fill',
+      route: 'book-group',
     },
     {
       MenuID: 'M007',
@@ -64,7 +65,8 @@ export class SidebarComponent implements OnInit {
     private _router:Router,
     private _activeRoute:ActivatedRoute,
     private _apiHttp:ApiHttpService,
-    private _ordinal:OrdinalService
+    private _ordinal:OrdinalService,
+    private _auth:AuthService
     ){
 
 
@@ -110,8 +112,26 @@ export class SidebarComponent implements OnInit {
   // }
 
   getMenu(){
+    // if(!this._auth.getUser()?.Administrator){
+    //   this.ListSideBar = this.ListSideBarCheck.filter(x =>x.MenuID == 'M002');
+    //   this.fnClickTab(this.ListSideBar[0])
+    //   return;
+    // }
     this.ListSideBar = this.ListSideBarCheck;
-    return
+    this._activeRoute.params.subscribe(_x=>{
+      if(this.ListSideBar.length > 0){
+        let url = this._router.url;
+        if(url == "/"){
+          url = "/home"
+        }
+        let item = this.ListSideBar.find(y => y.route == url.split('?')[0].split('/').reverse()[0]);
+        if(!item){
+          item = this.ListSideBar[0];
+        }
+        this.tabSelected = item.MenuID
+      }
+    })
+    return;
     this._apiHttp.post(AppAPIConst.SIDEBAR.SideBar,'',null,true).subscribe(res=>{
       if(!res.Error){
         this.ListSideBar = res.Data.Data;
