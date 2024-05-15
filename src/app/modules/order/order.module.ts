@@ -9,6 +9,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { OrderComponent } from './order.component';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 
 const routes: Routes = [
@@ -30,15 +31,17 @@ const routes: Routes = [
     CommonModule,
     SharesModule,
     FormsModule,
+    FlatpickrModule.forRoot(),
+
     RouterModule.forChild(routes),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      defaultLanguage: 'vn'
-    }),
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: HttpLoaderFactory,
+    //     deps: [HttpClient]
+    //   },
+    //   defaultLanguage: 'vn'
+    // }),
     InfiniteScrollModule
   ],
 })

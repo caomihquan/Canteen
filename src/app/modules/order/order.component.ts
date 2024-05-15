@@ -176,13 +176,19 @@ export class OrderComponent implements OnInit {
       this.modalRef = this._modalService.show(ModalComponent,{initialState});
       return;
     }
+    var day = this.today
+    if(this.today.includes('Z')){
+       day = fnCommon.formatDateddMMYYYY(this.today)
+    }
     const initialState = {
       title:"Thành Công",
-      content:"Bạn đã đặt món thành công",
+      content:`Bạn đã đặt món cho ngày ${day} thành công`,
     };
     this.modalRef = this._modalService.show(ModalComponent,{initialState});
     return;
   }
+
+
 
   TotalPay(){
     return this.listAddFood.map(x=>(x.Price / 1000)).reduce((x,y) => x + y,0)

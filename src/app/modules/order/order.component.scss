@@ -134,3 +134,23 @@ textarea{
   background: #ecffee;
   color:var(--Color1);
 }
+:host::ng-deep{
+  input{
+    border: 0;
+    outline: 0;
+    display: flex;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 3px;
+    border: 0.5px solid var(--Text3, #C1C1C1);
+  }
+}
+.icon-date{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
