@@ -5,7 +5,15 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class OrdinalService {
   finishSideBar = new BehaviorSubject<boolean>(false);
+  Coin:number = 330;
   constructor() {
   }
+
+
+  setCoin(coin:number){
+    this.Coin = coin;
+  }
+
+
 
 }

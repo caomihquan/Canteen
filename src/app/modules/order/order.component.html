@@ -1,0 +1,107 @@
+<div class="container-home">
+  <div class="main-home bg-white mt-2 ms-3 me-2 p-2">
+    <div class="d-flex justify-content-between">
+      <div>
+        <div class="">
+          <span class="fs-14 fw-600">Thực đơn hôm nay: </span>
+          <span class="text-common-primary fs-22 fw-600"> {{today | date:'dd/MM/yyyy'}}</span>
+        </div>
+        <div class="my-2">Tổng số món: {{listFood.length}}</div>
+        <div class="my-2 mb-4">Đã hết món: 0</div>
+        <!-- <div class="history-header d-flex gap-2 align-items-center my-2">
+          <img class="rounded-circle" width="100" height="100" [src]="getPhoto()" alt="" srcset="">
+          <div class="align-items-start d-flex flex-column gap-2">
+            <div class="text-common-black fs-14 fw-600">{{this.user?.EmployeeFullName || 'Ẩn danh'}}</div>
+            <div class="text-common-black fs-14 fw-400 text-truncate-2">Trưởng phòng nhân sự</div>
+            <div class="status1">Phòng nhân sự</div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div>
+      <div class="header-modal-add d-flex align-items-center gap-2">
+        <div class="item-header-add text-common-black fs-14 pointer" (click)="ClickTabFood(1)" [ngClass]="{'active-header':selectedTab == 1}">Tất cả</div>
+        <div class="item-header-add text-common-black fs-14 pointer" (click)="ClickTabFood(2)" [ngClass]="{'active-header':selectedTab == 2}">Món chính</div>
+        <div class="item-header-add text-common-black fs-14 pointer" (click)="ClickTabFood(3)" [ngClass]="{'active-header':selectedTab == 3}">Món phụ</div>
+        <div class="item-header-add text-common-black fs-14 pointer" (click)="ClickTabFood(4)" [ngClass]="{'active-header':selectedTab == 4}">Tráng miệng</div>
+      </div>
+      <div class="container-list-food" [ngStyle]="{'height':height + 'px'}">
+        <div [ngClass]="{'active-item': ActiveItem(item)}" *ngFor="let item of listFoodFilter" class="pointer d-flex gap-2 align-items-center mb-3" (click)="AddMon(item)">
+          <img src="./assets//images/food/{{item.Image}}" alt="" srcset="">
+          <div class="d-flex gap-2 flex-column">
+            <div class="text-common-black fs-18 fw-600">{{item.Name}}</div>
+            <div class="text-truncate-2">{{item.Mota}}</div>
+            <div class="d-flex gap-3">
+              <div class="d-flex gap-2">
+                <div>Đơn giá</div>
+                <div class="color-primary fs-16 fw-600">{{item.Price}} VND</div>
+              </div>
+              <div class="d-flex gap-2">
+                <div>SL đã đặt</div>
+                <div class="color-primary fs-16 fw-600">{{item.SL}} VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="d-flex justify-content-between">
+      <div class="history-header d-flex gap-2 align-items-center my-2">
+            <img class="rounded-circle" width="100" height="100" [src]="getPhoto()" alt="" srcset="">
+            <div class="align-items-start d-flex flex-column gap-2">
+              <div class="text-common-black fs-14 fw-600">{{this.user?.EmployeeFullName || 'Ẩn danh'}}</div>
+              <div class="text-common-black fs-14 fw-400 text-truncate-2">Trưởng phòng nhân sự</div>
+              <div class="status1">Phòng nhân sự</div>
+            </div>
+        </div>
+        <div class="d-flex gap-2 flex-column mt-2">
+          <div class="fs-14">Xu định mức<span class="fs-20 ms-2 color-primary fs-18 fw-600">{{_orinal.Coin}} xu</span></div>
+          <div class="fs-14">Xu nạp thêm<span class="fs-20 ms-2 color-primary fs-18 fw-600">{{XuNapThem}} xu</span></div>
+        </div>
+    </div>
+    <div>
+      <div [ngStyle]="{'height':(height - 200) + 'px'}"  *ngIf="listAddFood.length == 0"></div>
+      <div>
+        <ejs-grid [height]="height - 220"  [dataSource]='listAddFood' *ngIf="listAddFood.length > 0">
+          <e-columns>
+              <e-column  headerText="Tên món ăn" textAlign='Center' width=200>
+                <ng-template #template let-item>
+                  <div class="d-flex gap-2 align-items-center">
+                    <img width="40" height="40" src="./assets//images/food/{{item?.Image}}" alt="" srcset="">
+                    <div>{{item.Name}}</div>
+                  </div>
+                </ng-template>
+              </e-column>
+              <e-column  headerText="SL Phần ăn" textAlign='Center' width=140>
+                <ng-template #template let-item>
+                  <div>1</div>
+                </ng-template>
+              </e-column>
+            </e-columns>
+        </ejs-grid>
+      </div>
+      <div class="border-top mt-2 p-2">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>Tổng số món ăn</div>
+          <div class="fs-18 fw-600 color-primary me-4">{{listAddFood.length}}</div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div>Tổng số xu cần thanh toán</div>
+          <div class="fs-18 fw-600 color-primary me-4">{{TotalPay()}} Xu</div>
+        </div>
+      </div>
+
+      <div class="border-top mt-2 p-2">
+        <div class="mb-2">Ghi chú đặt món </div>
+        <textarea name="" id="" rows="1" [(ngModel)]="Note"></textarea>
+      </div>
+      <div>
+        <button class="button-add text-white rounded" (click)="OrderFood()">
+          Đặt món
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
