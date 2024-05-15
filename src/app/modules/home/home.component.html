@@ -7,7 +7,7 @@
       </div>
       <div class="py-2">
         <span class="text-common-black fs-14">Tổng số món: </span>
-        <span class="text-common-black fs-14"> 14</span>
+        <span class="text-common-black fs-14">{{listEachBook.length}}</span>
       </div>
     </div>
     <div>
@@ -32,7 +32,18 @@
             aria-labelledby="panelsStayOpen-headingOne">
             <div class="accordion-body p-2 pt-0 background-main-canteen ">
               <div class="d-grid row-gap-2 column-gap-2 w-100" style="grid-template-columns: 50% 50%">
-                  <div class="d-flex p-2 gap-2 bg-white rounded">
+                  <div class="d-flex p-2 gap-2 bg-white rounded" *ngFor="let item of filterGroup(itemGroup.ID)">
+                    <img width="95" height="95" src="./assets/images/food/{{item.Image}}" alt="">
+                    <div class="d-flex flex-column justify-content-between">
+                        <div class="fs-14 fw-600">{{item.Name}}</div>
+                        <div class="fs-14 text-common-black fw-400 text-truncate-2">{{item.Mota}}</div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="fw-400 fs-14 text-common-gray">Đơn giá: <span class="text-common-primary fw-600">{{item.Price}} VND</span></div>
+                            <div class="fw-400 fs-14 text-common-gray">SL đã đặt: <span class="text-common-primary fw-600">{{item.SL}}</span></div>
+                        </div>
+                    </div>
+                  </div>
+                  <!-- <div class="d-flex p-2 gap-2 bg-white rounded">
                     <img width="95" height="95" src="/assets/images/avatar.png" alt="">
                     <div class="d-flex flex-column justify-content-between">
                         <div class="fs-14 fw-600">Cơm tấm</div>
@@ -42,18 +53,7 @@
                             <div class="fw-400 fs-14 text-common-gray">SL đã đặt: <span class="text-common-primary fw-600">54</span></div>
                         </div>
                     </div>
-                  </div>
-                  <div class="d-flex p-2 gap-2 bg-white rounded">
-                    <img width="95" height="95" src="/assets/images/avatar.png" alt="">
-                    <div class="d-flex flex-column justify-content-between">
-                        <div class="fs-14 fw-600">Cơm tấm</div>
-                        <div class="fs-14 text-common-black fw-400 text-truncate-2">Cơm với sườn cốt lết nướng</div>
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="fw-400 fs-14 text-common-gray">Đơn giá: <span class="text-common-primary fw-600">54000 VND</span></div>
-                            <div class="fw-400 fs-14 text-common-gray">SL đã đặt: <span class="text-common-primary fw-600">54</span></div>
-                        </div>
-                    </div>
-                  </div>
+                  </div> -->
               </div>
             </div>
           </div>
