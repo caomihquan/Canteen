@@ -65,7 +65,7 @@
         <e-column  headerText="Tên món ăn" textAlign='Left' width=200>
           <ng-template #template let-item>
             <div class="d-flex gap-2 align-items-center">
-              <img src="/assets/images/avatar.png" alt="" srcset="">
+              <img src="{{item.img}}" alt="" srcset="" width="40" height="40">
               <div style="width: 200px" class="text-common-black text-truncate fs-14">{{item.Name}}</div>
             </div>
         </ng-template>

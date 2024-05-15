@@ -49,6 +49,7 @@ export class FoodComponent implements OnInit {
 
   listFood = [
     {
+      img:"/assets/images/food/comtam.png",
       Name:"Cơm tấm",
       SL:54,
       GroupID:1,
@@ -59,42 +60,68 @@ export class FoodComponent implements OnInit {
       CreatedBy:''
     },
     {
+      img:"/assets/images/food/banhcanhcaloc.png",
       Name:"Bánh canh cá lóc",
       SL:48,
       GroupID:1,
       Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      Price:'40000VND',
+      Mota:'Thịt cá lóc thơm ngon ăn cùng với rau bắp cải cùng rau đắng',
       CreatedOn:new Date().toISOString(),
       CreatedBy:''
     },
     {
-      Name:"Bún riêu cua",
+      img:"/assets/images/food/Bunthitnuong.png",
+      Name:"Bún thịt nướng",
       SL:40,
       GroupID:2,
-      Type:1,
+      Type:2,
       Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      Mota:'Thịt ngon thịt đậm đà thì khi ăn cùng bún mới quyện vào nhau hoàn hảo được',
       CreatedOn:new Date().toISOString(),
       CreatedBy:''
     },
     {
-      Name:"Bánh canh cá lóc",
+      img:"/assets/images/food/crepe.png",
+      Name:"Crepe",
+      SL:48,
+      GroupID:1,
+      Type:3,
+      Price:'25000VND',
+      Mota:'Có vỏ mỏng làm từ bột mì, trứng, sữa,…',
+      CreatedOn:new Date().toISOString(),
+      CreatedBy:''
+    },
+    {
+      img:"/assets/images/food/bunrieucua.png",
+      Name:"Bún riêu cua",
       SL:48,
       GroupID:1,
       Type:1,
       Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      Mota:'Từng tảng gạch cua nổi cùng miếng huyết, nước dùng hòa quyện cùng nhau',
       CreatedOn:new Date().toISOString(),
       CreatedBy:''
     },
     {
-      Name:"Bún riêu cua",
+      img:"/assets/images/food/thanglong.png",
+      Name:"Thanh long",
+      SL:40,
+      GroupID:3,
+      Type:3,
+      Price:'35000VND',
+      Mota:'Trái cây ăn kèm',
+      CreatedOn:new Date().toISOString(),
+      CreatedBy:''
+    },
+    {
+      img:"/assets/images/food/miochen.png",
+      Name:"Mì ý",
       SL:40,
       GroupID:3,
       Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      Price:'55000VND',
+      Mota:'Nước sốt cà chua và thịt bò bằm hòa quyện từng sợi mì dai',
       CreatedOn:new Date().toISOString(),
       CreatedBy:''
     },
@@ -103,9 +130,21 @@ export class FoodComponent implements OnInit {
     {
       Price:'45000VND',
       Note:'Tăng vật giá',
-      CreatedOn:new Date().toISOString(),
+      CreatedOn: "2024/05/10",
       CreatedBy:'cmquan'
     },
+    {
+      Price:'55000VND',
+      Note:'Tăng ngày lễ',
+      CreatedOn:"2024/05/01",
+      CreatedBy:'cmquan'
+    },
+    {
+      Price:'55000VND',
+      Note:'Tăng ngày lễ',
+      CreatedOn:"2024/01/01",
+      CreatedBy:'cmquan'
+    }
   ]
   moTa:string;
   tenMonAn:string;
