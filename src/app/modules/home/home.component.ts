@@ -28,29 +28,68 @@ export class HomeComponent implements OnInit {
   ]
   listEachBook = [
     {
+      FoodID:1,
       Name:"Cơm tấm",
       SL:54,
-      Image:'comtam.png'
+      Mota:'Cơm tấm thơm ngon',
+      Image:'comtam.png',
+      Price:40000,
+      Group:1
     },
     {
+      FoodID:2,
       Name:"Bánh canh cá lóc",
       SL:46,
-      Image:'banhcanhcaloc.png'
+      Image:'banhcanhcaloc.png',
+      Price:40000,
+      Mota:'Bánh canh cá lócthơm ngon',
+      Group:1
 
     },
     {
+      FoodID:3,
       Name:"Bún riêu cua",
       SL:40,
-      Image:'bunrieucua.png'
+      Image:'bunrieucua.png',
+      Price:40000,
+      Mota:'Bún riêu cua thơm ngon',
+      Group:1
     },
     {
-      Name:"Bún chả hà nội",
+      FoodID:4,
+      Name:"Bánh xèo",
       SL:38,
-      Image:'bunrieucua.png'
+      Image:'banhxeo.png',
+      Price:40000,
+      Mota:'Bánh xèo thơm ngon',
+      Group:1
     },
     {
-      Name:"Canh chua cá lóc",
-      SL:35
+      FoodID:5,
+      Name:"Bún bò huế",
+      SL:35,
+      Image:'Bunbohue.png',
+      Price:40000,
+      Mota:'Bún bò huế" thơm ngon',
+      Group:1
+    },
+    {
+      FoodID:6,
+      Name:"Crepe",
+      SL:35,
+      Image:'crepe.png',
+      Price:40000,
+      Mota:'Crepe thơm ngon',
+      Group:2
+    },
+    {
+      FoodID:7,
+      Name:"Thăng Long",
+      SL:35,
+      Image:'thanglong.png',
+      Price:40000,
+      Mota:'Thăng Long thơm ngon',
+      Group:3
     },
   ]
   maxSL:number = 0;
@@ -59,6 +98,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.maxSL =  this.listEachBook.reduce((max, book) => Math.max(max, book.SL), 0);
     console.log(this.maxSL);
+  }
+
+  filterGroup(groupID:any){
+    return this.listEachBook.filter(x =>x.Group == groupID);
   }
 
 }

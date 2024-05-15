@@ -1,0 +1,156 @@
+.container-home{
+  background: var(--bg-main);
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 550px auto;
+  column-gap: 1rem;
+}
+
+.main-home{
+  min-height: calc(100vh - 62px)
+}
+.item-all-book{
+  width: 100%;
+  background-color: #ffffe6;
+}
+.item-all-book-SL{
+  color: #54bf61;
+}
+
+
+.progress-selection{
+  height: 36px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 20px;
+}
+.progress-selection:hover{
+  opacity: 0.8;
+}
+
+.progress-selection div{
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 8px;
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+  letter-spacing: -0.14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  -webkit-line-clamp :1;
+  width: 100%;
+}
+
+.progress-check-selection{
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right:10px;
+}
+
+.progress-bar-selection{
+  background: var(--Color4, #FFF0CE);
+
+}
+.progress-value-selection{
+  color: #000;
+  text-align: right;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-wrap: anywhere;
+}
+
+.border-home{
+  border-left: 6px solid #54bf61 !important;
+}
+
+.item-header-add{
+  background: var(--bg-main);
+  padding:8px;
+}
+
+.item-header-add.active-header{
+  background: #ecffee;
+  color:var(--Color1);
+}
+.item-header-add:hover{
+  opacity: 0.8;
+}
+
+
+.container-list-food{
+  overflow: hidden;
+  scrollbar-gutter: stable;
+  width: 531px;
+}
+.container-list-food::-webkit-scrollbar {
+  width: 10px;
+  border-radius:10px;
+  height: 10px;
+  transform: translateX(10px);
+}
+.container-list-food:hover{
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+textarea{
+  width: 100%;
+  outline: none;
+  border: 0.5px solid var(--Text3, #C1C1C1);
+  border-radius: 5px;
+  resize: none;
+  padding: 1rem;
+}
+.button-add{
+  background: var(--Color1);
+  padding: 1rem;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+  padding:1rem 0;
+}
+.active-item{
+  background: #ecffee;
+  color:var(--Color1);
+}
+:host::ng-deep{
+  input{
+    border: 0;
+    outline: 0;
+    display: flex;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 3px;
+    border: 0.5px solid var(--Text3, #C1C1C1);
+  }
+}
+.icon-date{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

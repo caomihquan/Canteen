@@ -12,6 +12,7 @@ import { UserModel } from 'src/app/shares/models/user-model';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
+import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 
 @Component({
   selector: 'app-header',
@@ -49,6 +50,7 @@ export class HeaderComponent {
     private _serviceChangePassword:ChangePasswordService,
     private _langService:LanguageService,
     private _apiHttp:ApiHttpService,
+    protected _ordinal:OrdinalService,
     private _modalService:BsModalService){
     // this.renderer.listen('window', 'click',(e:Event) => {
     //  if(e.target !== this.toggleButton.nativeElement && e.target!==this.menu.nativeElement){

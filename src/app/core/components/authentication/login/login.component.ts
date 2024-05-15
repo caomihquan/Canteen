@@ -9,6 +9,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
+import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
     private _AuthService:AuthService,
     private _modalService: BsModalService,
     private _translate:TranslateService,
+    private _ordinal:OrdinalService,
     private _languageService:LanguageService
     ){
       _translate.use('en')
@@ -81,6 +83,8 @@ export class LoginComponent implements OnInit {
         if (userData.FirstChange) {
           this._router.navigate([AppRoutes.changepassword]);
         } else {
+          var xu = Math.floor(Math.random() * (500 - 280 + 1) + 280)
+          this._ordinal.setCoin(xu);
           this._router.navigate([AppRoutes.home]);
         }
     }

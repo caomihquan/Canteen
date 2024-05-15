@@ -14,6 +14,14 @@ import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service'
 })
 export class SidebarComponent implements OnInit {
   ListSideBar:Array<any> = [];
+  ListBarNhanVien = [
+    {
+      MenuID: 'M001',
+      Label: 'Đặt món',
+      Icon:'basket',
+      route:'order',
+    },
+  ]
   ListSideBarCheck = [
     {
       MenuID: 'M001',
@@ -112,11 +120,11 @@ export class SidebarComponent implements OnInit {
   // }
 
   getMenu(){
-    // if(!this._auth.getUser()?.Administrator){
-    //   this.ListSideBar = this.ListSideBarCheck.filter(x =>x.MenuID == 'M002');
-    //   this.fnClickTab(this.ListSideBar[0])
-    //   return;
-    // }
+    if(!this._auth.getUser()?.Administrator){
+      this.ListSideBar = this.ListBarNhanVien;
+      this.fnClickTab(this.ListSideBar[0])
+      return;
+    }
     this.ListSideBar = this.ListSideBarCheck;
     this._activeRoute.params.subscribe(_x=>{
       if(this.ListSideBar.length > 0){
