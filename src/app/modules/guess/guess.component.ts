@@ -34,7 +34,7 @@ export class GuessComponent implements OnInit {
 
   listGuess = [
     {
-      Code:"ABC123",
+      Code:"TK001",
       Note:"Khách hàng đến công ty công tác",
       Status:false,
       BeginDate:new Date().toISOString(),
@@ -44,7 +44,40 @@ export class GuessComponent implements OnInit {
       NguoiNhan:'cmquan',
       NguoiTra:'cmquan',
       TongXu:300
-    },
+    },{
+      Code:"TK002",
+      Note:"Khách hàng đến công ty công tác",
+      Status:false,
+      BeginDate:new Date().toISOString(),
+      EndDate:new Date().toISOString(),
+      UserName:'cmquan',
+      CreatedBy:'cmquan',
+      NguoiNhan:'cmquan',
+      NguoiTra:'cmquan',
+      TongXu:250
+    },{
+      Code:"TK003",
+      Note:"Khách hàng đến công ty công tác",
+      Status:false,
+      BeginDate:new Date().toISOString(),
+      EndDate:new Date().toISOString(),
+      UserName:'cmquan',
+      CreatedBy:'cmquan',
+      NguoiNhan:'cmquan',
+      NguoiTra:'cmquan',
+      TongXu:500
+    },{
+      Code:"TK004",
+      Note:"Khách hàng đến công ty công tác",
+      Status:false,
+      BeginDate:new Date().toISOString(),
+      EndDate:new Date().toISOString(),
+      UserName:'cmquan',
+      CreatedBy:'cmquan',
+      NguoiNhan:'cmquan',
+      NguoiTra:'cmquan',
+      TongXu:500
+    }
   ]
 
   listFood=[{

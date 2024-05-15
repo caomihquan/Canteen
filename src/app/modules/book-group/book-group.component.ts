@@ -41,7 +41,7 @@ export class BookGroupComponent implements OnInit {
       Name:"Món ăn phụ"
     },
     {
-      ID:1,
+      ID:3,
       Name:"Tráng miệng"
     }
   ]
@@ -53,25 +53,25 @@ export class BookGroupComponent implements OnInit {
       BookBy:'Maria Joyce',
       JobWName:'Kế toán trưởng',
       Department:'Phòng kế toán',
-      SL:53,
+      SL:5,
       CreatedOn:new Date().toISOString(),
       CreatedBy:''
     },
     {
       BookDate:new Date().toISOString(),
-      BookBy:'Maria Joyce',
-      JobWName:'Kế toán trưởng',
-      Department:'Phòng kế toán',
-      SL:53,
+      BookBy:'Cao THanh thúy',
+      JobWName:'Developer',
+      Department:'Phòng IT',
+      SL:3,
       CreatedOn:new Date().toISOString(),
       CreatedBy:''
     },
     {
       BookDate:new Date().toISOString(),
-      BookBy:'Maria Joyce',
-      JobWName:'Kế toán trưởng',
-      Department:'Phòng kế toán',
-      SL:53,
+      BookBy:'Nguyễn Hoàng Minh',
+      JobWName:'Developer',
+      Department:'Phòng IT',
+      SL:4,
       CreatedOn:new Date().toISOString(),
       CreatedBy:''
     },
@@ -86,18 +86,20 @@ export class BookGroupComponent implements OnInit {
   ]
 
   ListFoodToday:any[] = [
-    {ID:1,Group:1,Food:'Cơm tấm'},
-    {ID:2,Group:1,Food:'Cá kho'},
-    {ID:3,Group:1,Food:'Cá chiên'},
-    {ID:4,Group:1,Food:'Thịt kho'},
-    {ID:5,Group:1,Food:'Canh Chua'},
-    {ID:6,Group:2,Food:'Bún thịt nướng'},
-    {ID:7,Group:2,Food:'Bún riêu'},
-    {ID:8,Group:3,Food:'Mì Ý'},
+    {ID:1,Group:1,Food:'Cơm tấm',img:"/assets/images/food/comtam.png"},
+    {ID:2,Group:1,Food:'Bánh canh cá lóc',img:"/assets/images/food/banhcanhcaloc.png"},
+    {ID:3,Group:2,Food:'Bún bò huế',img:"/assets/images/food/Bunbohue.png"},
+    {ID:4,Group:2,Food:'Bún thịt nướng', img:"/assets/images/food/Bunthitnuong.png"},
+    {ID:5,Group:1,Food:'Bánh xèo', img:"/assets/images/food/banhxeo.png"},
+    {ID:6,Group:3,Food:'Thăng long', img:"/assets/images/food/thanglong.png"},
+    {ID:7,Group:2,Food:'Bún riêu', img:"/assets/images/food/bunrieucua.png"},
+    {ID:8,Group:1,Food:'Mì Ý', img:"/assets/images/food/miochen.png"},
+    {ID:9,Group:3,Food:'Crepe', img:"/assets/images/food/crepe.png"}
   ]
   ListFoodGroup:any[] = [
     {ID:1,Food:"Cơm"},
     {ID:2,Food:"Bún"},
+    {ID:3,Food:"Tráng miệng"}
   ]
 
   ListOrder:any[] = [

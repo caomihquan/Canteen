@@ -71,6 +71,17 @@ export class FoodComponent implements OnInit {
       CreatedBy:''
     },
     {
+      img:"/assets/images/food/Bunbohue.png",
+      Name:"Bún bò huế",
+      SL:100,
+      GroupID:1,
+      Type:1,
+      Price:'45000VND',
+      Mota:'Thơm ngon ăn cùng với rau muốn bào',
+      CreatedOn:new Date().toISOString(),
+      CreatedBy:''
+    },
+    {
       img:"/assets/images/food/Bunthitnuong.png",
       Name:"Bún thịt nướng",
       SL:40,
@@ -84,7 +95,7 @@ export class FoodComponent implements OnInit {
     {
       img:"/assets/images/food/crepe.png",
       Name:"Crepe",
-      SL:48,
+      SL:20,
       GroupID:1,
       Type:3,
       Price:'25000VND',
@@ -95,7 +106,7 @@ export class FoodComponent implements OnInit {
     {
       img:"/assets/images/food/bunrieucua.png",
       Name:"Bún riêu cua",
-      SL:48,
+      SL:50,
       GroupID:1,
       Type:1,
       Price:'45000VND',
@@ -106,7 +117,7 @@ export class FoodComponent implements OnInit {
     {
       img:"/assets/images/food/thanglong.png",
       Name:"Thanh long",
-      SL:40,
+      SL:100,
       GroupID:3,
       Type:3,
       Price:'35000VND',
@@ -117,7 +128,7 @@ export class FoodComponent implements OnInit {
     {
       img:"/assets/images/food/miochen.png",
       Name:"Mì ý",
-      SL:40,
+      SL:30,
       GroupID:3,
       Type:1,
       Price:'55000VND',

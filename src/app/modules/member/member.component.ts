@@ -173,9 +173,9 @@ export class MemberComponent implements OnInit {
     StatusName:"Chính thức"
   },{
     Ma:'DV07',
-    FullName:'Cao Mỹ Lan',
+    FullName:'Maria Joyce',
     DepartmentName:'Phòng IT',
-    JobWName:"Developer",
+    JobWName:"Kế toán trưởng",
     Gender:0,
     DateOfBirth:"05/12/2000",
     Email:"cmlan@lac.cm",

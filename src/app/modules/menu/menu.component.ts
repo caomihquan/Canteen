@@ -33,7 +33,27 @@ export class MenuComponent implements OnInit {
  
   listMenu = [
     {
-      Date: new Date().toISOString(),
+      Date: "2024/05/20",
+      Day:2
+    },
+    {
+      Date: "2024/05/21",
+      Day:3
+    },
+    {
+      Date: "2024/05/22",
+      Day:4
+    },
+    {
+      Date: "2024/05/23",
+      Day:5
+    },
+    {
+      Date: "2024/05/24",
+      Day:6
+    },
+    {
+      Date: "2024/05/25",
       Day:7
     }
   ]
@@ -50,17 +70,22 @@ export class MenuComponent implements OnInit {
       GroupID:1
     },
     {
-      Name:"Bún riêu cua",
+      Name:"Crepe",
+      SL:40,
+      GroupID:3
+    },
+    {
+      Name:"Bún thịt nướng",
       SL:40,
       GroupID:2
     },
     {
-      Name:"Bánh canh cá lóc",
+      Name:"Bún bò huế",
       SL:48,
       GroupID:1
     },
     {
-      Name:"Bún riêu cua",
+      Name:"Thăng long",
       SL:40,
       GroupID:3
     },
