@@ -1,7 +1,7 @@
 <div class="bg-white container-guess">
-  <div style="display: sticky;position: relative;" class="p-2 border-end">
+  <div style="display: sticky;position: relative;height: calc(100vh - 70px);" class="p-2 border-end">
     <div [ngClass]="{'active-tab': selectedTabs() == 0}" class="items-tab  mb-2 pointer" (click)="ClickTabs(0)">
-      <div><i class="fs-24 fw-600 bi bi-people"></i></div>
+      <i class="bi bi-person-badge-fill color-primary fs-24"></i>
       <div class="fs-14 fw-600">Cấp phát thẻ khách</div>
     </div>
     <div [ngClass]="{'active-tab': selectedTabs() == 1}" class="items-tab pointer" (click)="ClickTabs(1)">

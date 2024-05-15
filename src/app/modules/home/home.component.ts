@@ -13,35 +13,40 @@ export class HomeComponent implements OnInit {
     {
       ID:1,
       Name:"Món ăn chính",
-      SL:112
+      SL:4
     },
     {
       ID:2,
       Name:"Món ăn phụ",
-      SL:50
+      SL:2
     },
     {
       ID:3,
       Name:"Tráng miệng",
-      SL:99
+      SL:1
     },
   ]
   listEachBook = [
     {
       Name:"Cơm tấm",
-      SL:54
+      SL:54,
+      Image:'comtam.png'
     },
     {
       Name:"Bánh canh cá lóc",
-      SL:48
+      SL:46,
+      Image:'banhcanhcaloc.png'
+
     },
     {
       Name:"Bún riêu cua",
-      SL:40
+      SL:40,
+      Image:'bunrieucua.png'
     },
     {
       Name:"Bún chả hà nội",
-      SL:38
+      SL:38,
+      Image:'bunrieucua.png'
     },
     {
       Name:"Canh chua cá lóc",
@@ -55,5 +60,5 @@ export class HomeComponent implements OnInit {
     this.maxSL =  this.listEachBook.reduce((max, book) => Math.max(max, book.SL), 0);
     console.log(this.maxSL);
   }
-  
+
 }
