@@ -1,5 +1,5 @@
 {
-    "strUrl": "https://api.smarttechco.vn/Canteen_WS/",
+    "strUrl": "https://api.smarttechco.vn/Ati_WS/",
     "IdleTime": 99999999999,
     "ContentPolicy": [
         { "http-equiv": "Content-Security-Policy", "content": "default-src 'self'  localhost 'unsafe-inline'; img-src https://* 'self' data:;" }

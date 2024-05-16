@@ -21,6 +21,12 @@ export class SidebarComponent implements OnInit {
       Icon:'basket',
       route:'order',
     },
+    {
+      MenuID: 'M002',
+      Label: 'Đặt món theo ngày',
+      Icon:'file-text',
+      route:'menu-employee',
+    },
   ]
   ListSideBarCheck = [
     {
@@ -122,10 +128,11 @@ export class SidebarComponent implements OnInit {
   getMenu(){
     if(!this._auth.getUser()?.Administrator){
       this.ListSideBar = this.ListBarNhanVien;
-      this.fnClickTab(this.ListSideBar[0])
-      return;
+      //this.fnClickTab(this.ListSideBar[0])
     }
-    this.ListSideBar = this.ListSideBarCheck;
+    else{
+      this.ListSideBar = this.ListSideBarCheck;
+    }
     this._activeRoute.params.subscribe(_x=>{
       if(this.ListSideBar.length > 0){
         let url = this._router.url;
