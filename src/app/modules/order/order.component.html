@@ -62,12 +62,12 @@
       <div class="history-header d-flex gap-2 align-items-center my-2">
             <img class="rounded-circle" width="100" height="100" [src]="getPhoto()" alt="" srcset="">
             <div class="align-items-start d-flex flex-column gap-2">
-              <div class="text-common-black fs-14 fw-600">{{this.user?.EmployeeFullName || 'Ẩn danh'}}</div>
+              <div class="text-common-black fs-14 fw-600">{{this.user?.UserName || 'Ẩn danh'}}</div>
               <div class="text-common-black fs-14 fw-400 text-truncate-2">Trưởng phòng nhân sự</div>
               <div class="status1">Phòng nhân sự</div>
             </div>
         </div>
-        <div class="d-flex gap-2 flex-column mt-2">
+        <div class="d-flex gap-2 flex-column mt-4 me-4">
           <div class="fs-14">Xu định mức<span class="fs-20 ms-2 color-primary fs-18 fw-600">{{_orinal.Coin}} xu</span></div>
           <div class="fs-14">Xu nạp thêm<span class="fs-20 ms-2 color-primary fs-18 fw-600">{{XuNapThem}} xu</span></div>
         </div>
@@ -109,10 +109,35 @@
         <textarea name="" id="" rows="1" [(ngModel)]="Note"></textarea>
       </div>
       <div>
-        <button class="button-add text-white rounded" (click)="OrderFood()">
-          Đặt món
+        <button class="button-add text-white rounded" (click)="OpenModalScan()" data-bs-target="#modalScan" data-bs-toggle="modal">
+          Thanh toán
         </button>
       </div>
     </div>
+    <div data-bs-dismiss="modal" id="hideModalAdd" style="display:none"></div>
+  </div>
+</div>
+
+<!-- modal lịch sử -->
+<div class="modal fade" id="modalScan" tabindex="-1" aria-labelledby="modalAddLabel" aria-hidden="false">
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 585px;">
+      <div class="modal-content " style="height: 414px;">
+          <div class="modal-header">
+              <div class="d-flex align-items-center justify-content-between w-100">
+                  <div class="text-common-black fs-18 fw-500">Thanh toán</div>
+                  <div data-bs-dismiss="modal" class="pointer" id="hidemodalScan">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-body">
+              <div class="text-common-black fw-500 fs-14 pb-1">Vui lòng quét thẻ thanh toán</div>
+              <div class="max-width:585px;margin:0 auto">
+                  <input (keyup.enter)="EnterCode()" type="password" id="inputCode" #inputCode [(ngModel)]="tenMonAn" autofocus />
+              </div>
+          </div>
+      </div>
   </div>
 </div>

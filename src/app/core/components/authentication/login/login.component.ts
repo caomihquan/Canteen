@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
         if (userData.FirstChange) {
           this._router.navigate([AppRoutes.changepassword]);
         } else {
-          var xu = Math.floor(Math.random() * (500 - 280 + 1) + 280)
+          var xu = 330// Math.floor(Math.random() * (500 - 280 + 1) + 280)
           this._ordinal.setCoin(xu);
           this._router.navigate([AppRoutes.home]);
         }
