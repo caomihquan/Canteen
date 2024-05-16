@@ -25,7 +25,7 @@
       </svg>
                 <span class="text-common-black fs-14 fw-400">{{'Common.Add' | translate}}</span>
             </div>
-            <div class="add  d-flex align-items-center" (click)="EditMenu()" data-bs-target="#modalAdd" data-bs-toggle="modal">
+            <div class="add  d-flex align-items-center" (click)="EditMenu()" attr.data-bs-target="{{selectedMenu ? '#modalAdd' : ''}}" data-bs-toggle="modal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
         <g clip-path="url(#clip0_55_5700)">
           <path
@@ -62,6 +62,12 @@
                     <ng-template #template let-item>
                         <span class="fw-600 fs-14">{{item.Day}}</span>
                     </ng-template>
+                </e-column>
+                <e-column headerText="Tình trạng" width=160 textAlign='Left'>
+                  <ng-template #template let-item>
+                      <span class="fw-400 fs-12 text-danger" *ngIf="!item.Status">Chưa thanh toán</span>
+                      <span class="fw-400 fs-12 text-success" *ngIf="item.Status">Đã thanh toán</span>
+                  </ng-template>
                 </e-column>
                 <e-column headerText="Thực đơn" textAlign='Left' width=width>
                     <ng-template #template let-item>

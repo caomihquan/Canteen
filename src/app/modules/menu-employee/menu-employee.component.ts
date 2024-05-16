@@ -132,6 +132,7 @@ export class MenuEmployeeComponent implements OnInit {
   listAddFood:any[] = []
 
   selectedTab = 0;
+  selectedItem:any
   constructor(
     private _ordinal:OrdinalService,
     private _modalService: BsModalService,
@@ -203,6 +204,33 @@ export class MenuEmployeeComponent implements OnInit {
   }
 
   DeleteMenu(){
+    debugger
+    if(!this.selectedMenu){
+      const initialState = {
+        title: "Thông báo",
+        content:"Không có dòng nào được chọn",
+      }
+      this.modalRef = this._modalService.show(ModalComponent,{initialState});
+      return;
+    }
+    const initialState = {
+      title:  "Thông báo",
+      content:"Bạn có muốn xoá",
+      fnYes:()=>{
+        this.listMenuOrder = this.listMenuOrder.filter((x:any) => x.ID != this.selectedMenu.ID)
+        this.selectedMenu = null;
+        this.modalRef.hide()
+
+      },
+      fnNo:()=>{
+        this.modalRef.hide()
+      }
+    }
+    this.modalRef = this._modalService.show(ModalComponent,{initialState});
+    return;
+  }
+
+  EditMenu(){
     if(!this.selectedMenu){
       const initialState = {
         title: this.I18nLang.Common.Alert,
@@ -211,29 +239,6 @@ export class MenuEmployeeComponent implements OnInit {
       this.modalRef = this._modalService.show(ModalComponent,{initialState});
       return;
     }
-    const initialState = {
-      title: this.I18nLang.Common.Notification,
-      content:this.I18nLang.Common.WantToDelete,
-      fnYes:()=>{
-
-      },
-      fnNo:()=>{
-        this.modalRef.hide()
-      }
-    }
-    this.modalRef = this._modalService.show(ModalComponent,{initialState});
-
-  }
-
-  EditMenu(){
-    // if(!this.selectedMenu){
-    //   const initialState = {
-    //     title: this.I18nLang.Common.Alert,
-    //     content:this.I18nLang.Error.NoRowSelected,
-    //   }
-    //   this.modalRef = this._modalService.show(ModalComponent,{initialState});
-    //   return;
-    // }
   }
 
   ClickPagerIndex(evt:any){
@@ -324,9 +329,11 @@ export class MenuEmployeeComponent implements OnInit {
        day = fnCommon.formatDateddMMYYYY(this.selectedDate)
     }
     var data = {
+      ID:fnCommon.uuidv4(),
       Date:this.getDate(day),
       Day:new Date(this.getDate(day)).getDay(),
       ListOrder:this.listAddFood,
+      Status:0
     };
     this.listAddFood = [];
     this.selectedDate = new Date().toISOString();
