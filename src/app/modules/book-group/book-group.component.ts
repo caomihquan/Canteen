@@ -55,7 +55,39 @@ export class BookGroupComponent implements OnInit {
       Department:'Phòng kế toán',
       SL:5,
       CreatedOn:new Date().toISOString(),
-      CreatedBy:''
+      CreatedBy:'',
+      listFood:[
+        {
+      Name:"Cơm tấm",
+      SL:54,
+      GroupID:1
+    },
+    {
+      Name:"Bánh canh cá lóc",
+      SL:48,
+      GroupID:1
+    },
+    {
+      Name:"Crepe",
+      SL:40,
+      GroupID:3
+    },
+    {
+      Name:"Bún thịt nướng",
+      SL:40,
+      GroupID:2
+    },
+    {
+      Name:"Bún bò huế",
+      SL:48,
+      GroupID:1
+    },
+    {
+      Name:"Thăng long",
+      SL:40,
+      GroupID:3
+    },
+      ]
     },
     {
       BookDate:new Date().toISOString(),
@@ -64,7 +96,39 @@ export class BookGroupComponent implements OnInit {
       Department:'Phòng IT',
       SL:3,
       CreatedOn:new Date().toISOString(),
-      CreatedBy:''
+      CreatedBy:'',
+      listFood:[
+        {
+      Name:"Cơm tấm",
+      SL:54,
+      GroupID:1
+    },
+    {
+      Name:"Bánh canh cá lóc",
+      SL:48,
+      GroupID:1
+    },
+    {
+      Name:"Crepe",
+      SL:40,
+      GroupID:3
+    },
+    {
+      Name:"Bún thịt nướng",
+      SL:40,
+      GroupID:2
+    },
+    {
+      Name:"Bún bò huế",
+      SL:48,
+      GroupID:1
+    },
+    {
+      Name:"Thăng long",
+      SL:40,
+      GroupID:3
+    },
+      ]
     },
     {
       BookDate:new Date().toISOString(),
@@ -73,7 +137,39 @@ export class BookGroupComponent implements OnInit {
       Department:'Phòng IT',
       SL:4,
       CreatedOn:new Date().toISOString(),
-      CreatedBy:''
+      CreatedBy:'',
+      listFood:[
+        {
+      Name:"Cơm tấm",
+      SL:54,
+      GroupID:1
+    },
+    {
+      Name:"Bánh canh cá lóc",
+      SL:48,
+      GroupID:1
+    },
+    {
+      Name:"Crepe",
+      SL:40,
+      GroupID:3
+    },
+    {
+      Name:"Bún thịt nướng",
+      SL:40,
+      GroupID:2
+    },
+    {
+      Name:"Bún bò huế",
+      SL:48,
+      GroupID:1
+    },
+    {
+      Name:"Thăng long",
+      SL:40,
+      GroupID:3
+    },
+      ]
     },
   ]
   listHistory = [
@@ -81,7 +177,7 @@ export class BookGroupComponent implements OnInit {
       Price:'45000VND',
       Note:'Tăng vật giá',
       CreatedOn:new Date().toISOString(),
-      CreatedBy:'cmquan'
+      CreatedBy:'cmquan',
     },
   ]
 

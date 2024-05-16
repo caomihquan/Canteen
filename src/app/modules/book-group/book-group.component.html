@@ -89,10 +89,16 @@
                         <div>{{item.Department}}</div>
                     </ng-template>
                 </e-column>
-                <e-column headerText="Số lượng đặt" textAlign='Left' width=180>
+                <e-column headerText="Món ăn" textAlign='Left' width=450>
                     <ng-template #template let-item>
-                        <div class="text-common-black fs-14 fw-600">{{item.SL}} Phần</div>
-                    </ng-template>
+                        <div style="width: 420px;" class="d-flex gap-2 flex-wrap">
+                          <ng-container *ngFor="let food of item.listFood;let i  = index">
+                            <div class="p-1 rounded" [ngStyle]="{'background': defaultColor[i % 10]}">
+                            {{food.Name}}
+                            </div>
+                          </ng-container>
+                        </div>
+                      </ng-template>
                 </e-column>
                 <e-column headerText="Người chỉnh sửa" textAlign='Left' width=200>
                     <ng-template #template let-item>
