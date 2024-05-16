@@ -49,7 +49,7 @@ export class FoodComponent implements OnInit {
 
   listFood = [
     {
-      img:"/assets/images/food/comtam.png",
+      img:"./assets/images/food/comtam.png",
       Name:"Cơm tấm",
       SL:54,
       GroupID:1,
@@ -60,7 +60,7 @@ export class FoodComponent implements OnInit {
       CreatedBy:''
     },
     {
-      img:"/assets/images/food/banhcanhcaloc.png",
+      img:"./assets/images/food/banhcanhcaloc.png",
       Name:"Bánh canh cá lóc",
       SL:48,
       GroupID:1,
@@ -71,7 +71,7 @@ export class FoodComponent implements OnInit {
       CreatedBy:''
     },
     {
-      img:"/assets/images/food/Bunbohue.png",
+      img:"./assets/images/food/Bunbohue.png",
       Name:"Bún bò huế",
       SL:100,
       GroupID:1,
@@ -82,7 +82,7 @@ export class FoodComponent implements OnInit {
       CreatedBy:''
     },
     {
-      img:"/assets/images/food/Bunthitnuong.png",
+      img:"./assets/images/food/Bunthitnuong.png",
       Name:"Bún thịt nướng",
       SL:40,
       GroupID:2,
@@ -93,7 +93,7 @@ export class FoodComponent implements OnInit {
       CreatedBy:''
     },
     {
-      img:"/assets/images/food/crepe.png",
+      img:"./assets/images/food/crepe.png",
       Name:"Crepe",
       SL:20,
       GroupID:1,
@@ -104,7 +104,7 @@ export class FoodComponent implements OnInit {
       CreatedBy:''
     },
     {
-      img:"/assets/images/food/bunrieucua.png",
+      img:"./assets/images/food/bunrieucua.png",
       Name:"Bún riêu cua",
       SL:50,
       GroupID:1,
@@ -115,7 +115,7 @@ export class FoodComponent implements OnInit {
       CreatedBy:''
     },
     {
-      img:"/assets/images/food/thanglong.png",
+      img:"./assets/images/food/thanglong.png",
       Name:"Thanh long",
       SL:100,
       GroupID:3,
@@ -126,7 +126,7 @@ export class FoodComponent implements OnInit {
       CreatedBy:''
     },
     {
-      img:"/assets/images/food/miochen.png",
+      img:"./assets/images/food/miochen.png",
       Name:"Mì ý",
       SL:30,
       GroupID:3,
