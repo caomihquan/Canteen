@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ErrorComponent } from './error/error.component';
 import { NotAuthorComponent } from './notAuthorization/notAuthorization.component';
+import { GridModule } from '@syncfusion/ej2-angular-grids';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NotAuthorComponent } from './notAuthorization/notAuthorization.componen
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    GridModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -15,7 +15,7 @@ import { ModalComponent } from "src/app/shares/components/modal/modal.component"
 export class OrderComponent implements OnInit {
   today = fnCommon.convertTo0h(new Date().toISOString())
   selectedTab = 1;
-  height = window.innerHeight - 220
+  height = window.innerHeight - 230
   listAllBook = [
     {
       ID:1,

@@ -1,6 +1,7 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GridModule } from '@syncfusion/ej2-angular-grids';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ChangePasswordService } from 'src/app/modules/changepassword/services/change-password.service';
 import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
@@ -17,7 +18,7 @@ import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   showNoti:boolean = false;
@@ -25,7 +26,7 @@ export class HeaderComponent {
   @ViewChild('menu') menu: ElementRef;
   @ViewChild('img') img: ElementRef;
   user:UserModel | null;
-
+  heightHistory:number = (window.innerHeight - 260)
   isShowPasswordOld = false;
   isShowPasswordNew = false;
   isShowPasswordConfirm = false;
@@ -43,6 +44,71 @@ export class HeaderComponent {
   listNotification:Array<any> = [];
   TotalItems:number = 0
   TotalPages:number = 0
+  listHistory:Array<any>= [
+    {
+      NgayPhatSinh:new Date().toISOString(),
+      Type:2,
+      Description:'',
+      CreatedBy:'cmquan',
+      UserName:'cmquan',
+      Total:- 100,
+    }
+  ]
+
+  listFood = [
+    {
+      Name:"Cơm tấm",
+      SL:54,
+      GroupID:1,
+      Type:1,
+      Price:'45000VND',
+      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      CreatedOn:new Date().toISOString(),
+      CreatedBy:''
+    },
+    {
+      Name:"Bánh canh cá lóc",
+      SL:48,
+      GroupID:1,
+      Type:1,
+      Price:'45000VND',
+      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      CreatedOn:new Date().toISOString(),
+      CreatedBy:''
+    },
+    {
+      Name:"Bún riêu cua",
+      SL:40,
+      GroupID:2,
+      Type:1,
+      Price:'45000VND',
+      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      CreatedOn:new Date().toISOString(),
+      CreatedBy:''
+    },
+    {
+      Name:"Bánh canh cá lóc",
+      SL:48,
+      GroupID:1,
+      Type:1,
+      Price:'45000VND',
+      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      CreatedOn:new Date().toISOString(),
+      CreatedBy:''
+    },
+    {
+      Name:"Bún riêu cua",
+      SL:40,
+      GroupID:3,
+      Type:1,
+      Price:'45000VND',
+      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
+      CreatedOn:new Date().toISOString(),
+      CreatedBy:''
+    },
+  ]
+  defaultColor = AppCommon.defaultColor
+
   constructor(
     private renderer: Renderer2,
     private _router:Router,
@@ -115,6 +181,9 @@ export class HeaderComponent {
     return fnCommon.ConvertPhotoEmpByUserID(this.user?.UserID ?? '');
   }
 
+  Abs(number:number){
+    return Math.abs(number)
+  }
 
 
 }

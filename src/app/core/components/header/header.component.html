@@ -11,9 +11,9 @@
         <path d="M11.739 20.5H7.73903M15.739 7.5C15.739 5.9087 15.1069 4.38258 13.9817 3.25736C12.8565 2.13214 11.3303 1.5 9.73903 1.5C8.14773 1.5 6.62161 2.13214 5.49639 3.25736C4.37117 4.38258 3.73903 5.9087 3.73903 7.5C3.73903 10.5902 2.9595 12.706 2.0887 14.1054C1.35416 15.2859 0.986891 15.8761 1.00036 16.0408C1.01527 16.2231 1.05389 16.2926 1.20081 16.4016C1.33349 16.5 1.93162 16.5 3.12789 16.5H16.3502C17.5464 16.5 18.1446 16.5 18.2773 16.4016C18.4242 16.2926 18.4628 16.2231 18.4777 16.0408C18.4912 15.8761 18.1239 15.2859 17.3894 14.1054C16.5186 12.706 15.739 10.5902 15.739 7.5Z" stroke="#007455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div> -->
-    <div class="d-flex gap-2 align-items-center">
+    <div class="d-flex gap-2 align-items-center pointer" data-bs-target="#modalHistory" data-bs-toggle="modal">
       <i class="bi bi-coin"></i>
-      <div class="text-common-black text-danger fs-14 fw-600">{{_ordinal.Coin}} Xu</div>
+      <div  class="text-common-black text-danger fs-14 fw-600">{{_ordinal.Coin}} Xu</div>
       <div style="color: #c1c1c1;" class="ms-3">|</div>
     </div>
     <div class="align-items-center d-flex justify-content-center">
@@ -158,3 +158,99 @@
 </ng-template>
 <div data-bs-target="modal" id="hideModal" style="display:none"></div>
 
+
+
+
+<div class="modal fade" id="modalHistory" tabindex="-1" aria-labelledby="modalHistoryLabel" aria-hidden="false">
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 1157px;">
+    <div class="modal-content " style="height: 800px;">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="text-common-black fs-18 fw-500">Lịch sử thẻ</div>
+          <div data-bs-dismiss="modal" class="pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body ">
+        <div class="header-history d-flex align-items-center justify-content-between px-2">
+          <div class="d-flex gap-3">
+            <img class="rounded" width="60" height="60" [src]="getPhoto()" alt="" srcset="">
+            <div>
+              <div class="text-common-black">{{user?.UserName}}</div>
+              <div class="text-common-black fs-14 fw-400">Kế toán trưởng</div>
+              <div class="text-common-black fs-14 fw-400">Phòng kế toán khu A</div>
+            </div>
+          </div>
+          <div>
+            <div class="text-common-black fs-14 fw-400">Ngày cấp thẻ: 27/01/24</div>
+            <div class="text-common-black fs-14 fw-400">Ngày nạp thẻ gần nhất: 27/01/2024</div>
+          </div>
+          <div>
+            <div class="text-common-black fs-14 fw-400">Xu định mức: <span class="text-common-primary fw-600">{{_ordinal.Coin}}</span></div>
+            <div class="text-common-black fs-14 fw-400">Xu nạp thêm: <span class="fw-600" style="color:var(--Color5);">0</span></div>
+          </div>
+        </div>
+        <div class="px-2 pt-2">
+          <ejs-grid  [height]="heightHistory"  [dataSource]='listHistory' >
+            <e-columns>
+                <e-column  headerText="Ngày phát sinh" textAlign='Left' width=150>
+                  <ng-template #template let-item>
+                    <div>{{item.NgayPhatSinh | date:'dd/MM/yyyy'}}</div>
+                </ng-template>
+                </e-column>
+                <e-column headerText="Phân loại" width=150 textAlign='Left'>
+                  <ng-template #template let-item>
+                    <div class="text-start" [ngClass]="{'statusH1': item.Type == 1,'statusH2': item.Type == 2,'statusH3': item.Type == 3}">
+                      <div *ngIf="item.Type == 1">Nạp thẻ</div>
+                      <div *ngIf="item.Type == 2">Đặt món</div>
+                      <div *ngIf="item.Type ==3">Hoàn trả xu</div>
+                    </div>
+                  </ng-template>
+                </e-column>
+                <e-column headerText="Mô tả"  textAlign='Left' width=450>
+                  <ng-template #template let-item>
+                    <div style="width: 420px;" class="d-flex gap-2 flex-wrap">
+                      <ng-container *ngFor="let food of listFood;let i  = index">
+                        <div class="p-1 rounded" [ngStyle]="{'background': defaultColor[i % 10]}">
+                        {{food.Name}}
+                        </div>
+                      </ng-container>
+                    </div>
+                  </ng-template>
+                </e-column>
+                <e-column headerText="Người chỉnh sửa"  textAlign='Left' width=160>
+                  <ng-template #template let-item>
+                    <div class="d-flex align-items-center gap-2">
+                      <img width="40" height="40" [src]="getPhoto()" alt="" class="img-table rounded">
+                      <div>{{user?.UserName}}</div>
+                    </div>
+                  </ng-template>
+                </e-column>
+                <e-column headerText="Tổng xu"  textAlign='Center' width=175>
+                  <ng-template #template let-item>
+                    <div class="d-flex align-items-center gap-2 justify-content-center">
+                      <div *ngIf="item.Total > 0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M7.99998 3.33337V12.6667M3.33331 8.00004H12.6666" stroke="#54BF61" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div *ngIf="item.Total < 0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M3.33331 8H12.6666" stroke="#C13535" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div class="text-common-black">{{Abs(item.Total)}} xu</div>
+                    </div>
+                  </ng-template>
+                </e-column>
+            </e-columns>
+            </ejs-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
