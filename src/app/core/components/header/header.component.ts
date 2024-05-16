@@ -44,16 +44,7 @@ export class HeaderComponent {
   listNotification:Array<any> = [];
   TotalItems:number = 0
   TotalPages:number = 0
-  listHistory:Array<any>= [
-    {
-      NgayPhatSinh:new Date().toISOString(),
-      Type:2,
-      Description:'',
-      CreatedBy:'cmquan',
-      UserName:'cmquan',
-      Total:- 100,
-    }
-  ]
+  
 
   listFood = [
     {

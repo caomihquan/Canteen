@@ -33,6 +33,7 @@ export class OrderComponent implements OnInit {
       SL:1
     },
   ]
+  tenMonAn:string;
   XuDinhMuc = 330
   XuNapThem = 0
   Note:string;
@@ -146,16 +147,16 @@ export class OrderComponent implements OnInit {
     var exists = this.listAddFood.some((x:any) =>x.FoodID == item.FoodID)
     if(exists){
       this.listAddFood = this.listAddFood.filter((x:any) => x.FoodID != item.FoodID)
-      this._orinal.setCoin(this._orinal.Coin + (item.Price/1000))
+      //this._orinal.setCoin(this._orinal.Coin + (item.Price/1000))
     }
     else{
       this.listAddFood = [...this.listAddFood,item];
-      if(this._orinal.Coin - (item.Price/1000) < 0){
-        this.listAddFood = this.listAddFood.filter((x:any) => x.FoodID != item.FoodID)
-        alert('vượt số xu định mức')
-        return;
-      }
-      this._orinal.setCoin(this._orinal.Coin - (item.Price/1000))
+      // if(this._orinal.Coin - (item.Price/1000) < 0){
+      //   this.listAddFood = this.listAddFood.filter((x:any) => x.FoodID != item.FoodID)
+      //   alert('vượt số xu định mức')
+      //   return;
+      // }
+      //this._orinal.setCoin(this._orinal.Coin - (item.Price/1000))
 
     }
 
@@ -168,6 +169,53 @@ export class OrderComponent implements OnInit {
   }
 
   OrderFood(){
+   
+    document.getElementById('hidemodalScan')?.click();
+    var day = this.today
+    if(this.today.includes('Z')){
+       day = fnCommon.formatDateddMMYYYY(this.today)
+    }
+    const initialState = {
+      title:"Thành Công",
+      content:`Bạn đã đặt món cho ngày ${day} thành công`,
+    };
+    this.modalRef = this._modalService.show(ModalComponent,{initialState});
+    this.listAddFood = []
+    this.tenMonAn = ''
+
+    
+    return;
+  }
+
+
+
+  TotalPay(){
+    return this.listAddFood.map(x=>(x.Price / 1000)).reduce((x,y) => x + y,0)
+  }
+
+  OpenModalScan(){
+    this.tenMonAn =''
+    setTimeout(() => {
+    document.getElementById('inputCode')?.focus();
+      
+    }, 600);
+  }
+
+  EnterCode(){
+
+    if(this.user?.UserType != this.tenMonAn){
+      this.tenMonAn =''
+      alert('Thẻ không đúng')
+      return;
+    }
+
+
+    var coin = this.listAddFood.map(x =>(x.Price/1000)).reduce((x,y) =>x+y,0)
+    if(this._orinal.Coin - coin < 0){
+      this.tenMonAn =''
+      alert('vượt số xu định mức')
+      return;
+    }
     if(this.listAddFood.length == 0){
       const initialState = {
         title:"Thông báo",
@@ -180,18 +228,23 @@ export class OrderComponent implements OnInit {
     if(this.today.includes('Z')){
        day = fnCommon.formatDateddMMYYYY(this.today)
     }
-    const initialState = {
-      title:"Thành Công",
-      content:`Bạn đã đặt món cho ngày ${day} thành công`,
-    };
-    this.modalRef = this._modalService.show(ModalComponent,{initialState});
-    return;
+    this._orinal.setCoin(this._orinal.Coin - coin);
+    var data = {
+      NgayPhatSinh:new Date(this.getDate(day)).toISOString(),
+      Type:2,
+      Description:'',
+      CreatedBy:this.user?.UserID,
+      UserName:this.user?.UserName,
+      Total:-coin,
+      listFood:this.listAddFood
+    }
+    this._orinal.AddHistory(data)
+    this.OrderFood();
   }
 
-
-
-  TotalPay(){
-    return this.listAddFood.map(x=>(x.Price / 1000)).reduce((x,y) => x + y,0)
+  getDate(item:string){
+    var date = item.split('-');
+    return `${date[2]}/${date[1]}/${date[0]}`
   }
 
 }

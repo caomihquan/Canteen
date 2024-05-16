@@ -195,7 +195,7 @@
           </div>
         </div>
         <div class="px-2 pt-2">
-          <ejs-grid  [height]="heightHistory"  [dataSource]='listHistory' >
+          <ejs-grid  [height]="heightHistory"  [dataSource]='_ordinal.listHistory' >
             <e-columns>
                 <e-column  headerText="Ngày phát sinh" textAlign='Left' width=150>
                   <ng-template #template let-item>
@@ -206,7 +206,7 @@
                   <ng-template #template let-item>
                     <div class="text-start" [ngClass]="{'statusH1': item.Type == 1,'statusH2': item.Type == 2,'statusH3': item.Type == 3}">
                       <div *ngIf="item.Type == 1">Nạp thẻ</div>
-                      <div *ngIf="item.Type == 2">Đặt món</div>
+                      <div *ngIf="item.Type == 2">Thanh toán</div>
                       <div *ngIf="item.Type ==3">Hoàn trả xu</div>
                     </div>
                   </ng-template>
@@ -214,7 +214,7 @@
                 <e-column headerText="Mô tả"  textAlign='Left' width=450>
                   <ng-template #template let-item>
                     <div style="width: 420px;" class="d-flex gap-2 flex-wrap">
-                      <ng-container *ngFor="let food of listFood;let i  = index">
+                      <ng-container *ngFor="let food of item.listFood;let i  = index">
                         <div class="p-1 rounded" [ngStyle]="{'background': defaultColor[i % 10]}">
                         {{food.Name}}
                         </div>
