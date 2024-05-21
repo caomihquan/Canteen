@@ -149,12 +149,17 @@ export class MenuEmployeeComponent implements OnInit {
     //       this.GetMenu();
     //   }
     // })
-
+    var listmenuemp = localStorage.getItem('listmenuemp');
+    if(listmenuemp){
+      var a = JSON.parse(listmenuemp) ?? [];
+      this.listMenuOrder = a;
+    }
     if(this.selectedTab == 0){
       this.listFoodFilter = this.listFood
       return
     }
     this.listFoodFilter = this.listFood.filter(x =>x.Group == this.selectedTab + 1)
+
   }
   getLanguage = async()=>{
     this.I18nLang = await this._languageService.getLanguage();
@@ -220,7 +225,7 @@ export class MenuEmployeeComponent implements OnInit {
         this.listMenuOrder = this.listMenuOrder.filter((x:any) => x.ID != this.selectedMenu.ID)
         this.selectedMenu = null;
         this.modalRef.hide()
-
+        localStorage.setItem('listmenuemp',JSON.stringify(this.listMenuOrder))
       },
       fnNo:()=>{
         this.modalRef.hide()
@@ -331,7 +336,7 @@ export class MenuEmployeeComponent implements OnInit {
     var data = {
       ID:fnCommon.uuidv4(),
       Date:this.getDate(day),
-      Day:new Date(this.getDate(day)).getDay(),
+      Day:new Date(this.getDate(day)).getDay() + 1,
       ListOrder:this.listAddFood,
       Status:0
     };
@@ -346,4 +351,7 @@ export class MenuEmployeeComponent implements OnInit {
     var date = item.split('-');
     return `${date[2]}/${date[1]}/${date[0]}`
   }
+
+
+
 }

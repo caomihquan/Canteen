@@ -169,7 +169,7 @@ export class OrderComponent implements OnInit {
   }
 
   OrderFood(){
-   
+
     document.getElementById('hidemodalScan')?.click();
     var day = this.today
     if(this.today.includes('Z')){
@@ -183,7 +183,7 @@ export class OrderComponent implements OnInit {
     this.listAddFood = []
     this.tenMonAn = ''
 
-    
+
     return;
   }
 
@@ -197,7 +197,7 @@ export class OrderComponent implements OnInit {
     this.tenMonAn =''
     setTimeout(() => {
     document.getElementById('inputCode')?.focus();
-      
+
     }, 600);
   }
 
@@ -238,6 +238,23 @@ export class OrderComponent implements OnInit {
       Total:-coin,
       listFood:this.listAddFood
     }
+
+    var listmenuemp = localStorage.getItem('listmenuemp');
+debugger
+    var dataOrder = {
+      ID:fnCommon.uuidv4(),
+      Date:this.getDate(day),
+      Day:new Date(this.getDate(day)).getDay() + 1,
+      ListOrder:this.listAddFood,
+      Status:0
+    };
+    //if(listmenuemp){
+      var a = listmenuemp ? JSON.parse(listmenuemp) : [];
+      a = [...a,dataOrder]
+      localStorage.setItem('listmenuemp',JSON.stringify(a))
+    //}
+
+
     this._orinal.AddHistory(data)
     this.OrderFood();
   }
