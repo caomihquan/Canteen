@@ -1,0 +1,30 @@
+.input-switch{
+  font-size: 18px;
+    margin: 0;
+}
+
+.dropdown-menu-custom{
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.dropdown-menu-custom li:hover{
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.dropdown-menu-custom li{
+  padding: 0.8rem;
+}
+
+
+
+.item-combobox{
+  padding: 1rem;
+}
+
+.item-combobox:hover{
+  background-color: #eaeaea;
+  cursor: pointer;
+}

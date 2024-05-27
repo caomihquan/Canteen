@@ -1,0 +1,25 @@
+
+<div>
+  <ejs-grid *ngIf="!template" (actionBegin)="actionComplete($event)" (actionComplete)="actionComplete($event)" [allowFiltering]='isFilter' [filterSettings]='filterOptions' [pageSettings]="pageSettings" [dataSource]='dataSource' [height]="height">
+    <e-columns *ngIf="configField.length > 0">
+      <e-column 
+        [field]="item.field"
+        [headerText]="item.headerText"
+        [textAlign]="item.textAlign || 'Left'"
+        [width]="item.width || 100"
+        *ngFor="let item of configField">
+        <ng-template #template let-item>
+            <span>{{item[item.field]}}</span>
+        </ng-template>
+      </e-column>
+    </e-columns>
+    <e-columns>
+      <ng-content></ng-content>
+    </e-columns>
+</ejs-grid>
+<ng-container *ngIf="template" [ngTemplateOutlet]="template"></ng-container>
+<ejs-pager [totalRecordsCount]='totalItems' [pageSize]="pageSize" (click)="ClickPager($event)">
+</ejs-pager>
+</div>
+
+

@@ -1,0 +1,41 @@
+
+<div *ngIf="type=='text'">
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}}</label>
+  <input [disabled]="disabled" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text"/>
+</div>
+<div *ngIf="type=='number'">
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}}</label>
+  <input  [disabled]="disabled" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text" onlyNumber/>
+</div>
+<div *ngIf="type=='text-area'">
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}}</label>
+  <textarea [rows]=""  [disabled]="disabled" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text"></textarea>
+</div>
+
+<!--
+<div *ngIf="type=='dropdown'">
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}}</label>
+  <div class="dropdown">
+    <div class="input-dropdown w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      <div *ngIf="selectedItem">{{selectedItem[fieldName]}}</div>
+      <div *ngIf="!selectedItem"></div>
+      <span class="icon-Arrows-66"></span>
+    </div>
+
+    <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton1">
+      <div *ngIf="showSeachDropDown"  class="mx-2">
+        <input (input)="ChangeSearch()" class="rounded border p-2 rounded w-100 " type="text">
+      </div>
+      <li *ngFor="let item of dataSource" (click)="clickItem.emit(item)">{{item[fieldName]}}</li>
+    </ul>
+  </div>
+</div> -->
+
+
+<div *ngIf="type=='switch'">
+  <div class="form-check form-switch d-flex gap-3 align-items-center">
+    <input [(ngModel)]="value" class="form-check-input input-switch" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+    <label class="py-1 text-common-black fs-14 fw-500" for="flexSwitchCheckDefault">{{title}}</label>
+  </div>
+</div>

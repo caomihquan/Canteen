@@ -1,0 +1,13 @@
+<div (click)="date?.show()">
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}}</label>
+  <div class="dropdown">
+    <div class="input-dropdown w-100">
+      <div class="d-flex">
+        <div >{{value | date:'dd/MM/yyyy'}}</div>
+        <ejs-datetimepicker [(ngModel)]='value' style="width:0;height: 0;" #date></ejs-datetimepicker>
+      </div>
+      <span class="icon-Time-2 fs-24"></span>
+  </div>
+</div>
+
+

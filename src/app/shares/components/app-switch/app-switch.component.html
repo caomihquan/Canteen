@@ -1,0 +1,9 @@
+
+
+
+<div (click)="ChangeInput()">
+  <div class="form-check form-switch d-flex gap-3 align-items-center ps-0">
+    <input  [(ngModel)]="value" class="form-check-input input-switch" type="checkbox" role="switch" id="{{id}}">
+    <label class="py-1 text-common-black fs-14 fw-500" for="{{id}}">{{title}}</label>
+  </div>
+</div>

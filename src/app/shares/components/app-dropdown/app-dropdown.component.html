@@ -1,0 +1,18 @@
+<div>
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}}</label>
+  <div class="dropdown">
+    <div class="input-dropdown w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      <div *ngIf="selectedItem">{{selectedItem[fieldName]}}</div>
+      <div *ngIf="!selectedItem"></div>
+      <span class="icon-Arrows-66"></span>
+    <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton1">
+      <div *ngIf="showSeachDropDown"  class="mx-2">
+        <input (input)="ChangeSearch()" class="rounded border p-2 rounded w-100 " type="text">
+      </div>
+      <li *ngFor="let item of dataSource" (click)="clickItem.emit(item)">{{item[fieldName]}}</li>
+    </ul>
+  </div>
+</div>
+
+
