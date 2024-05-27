@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
+import { SidebarModel } from 'src/app/shares/models/SidebarModel';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
@@ -13,7 +14,8 @@ import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service'
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  ListSideBar:Array<any> = [];
+  ListSideBar:Array<SidebarModel> = [];
+  height = window.innerHeight;
   ListBarNhanVien = [
     {
       MenuID: 'M001',
@@ -28,48 +30,69 @@ export class SidebarComponent implements OnInit {
       route:'menu-employee',
     },
   ]
-  ListSideBarCheck = [
+  ListSideBarCheck:Array<SidebarModel> = [
     {
-      MenuID: 'M001',
-      Label: 'Trang Chủ',
+      FunctionID: 'M001',
+      DefaultName: 'Trang Chủ',
       Icon:'house-door',
-      route:'home',
+      Url:'home',
+      Active:false,
+      Children:[],
+      ParentID:''
     },
     {
-      MenuID: 'M002',
-      Label: 'Thực đơn',
+      FunctionID: 'M002',
+      DefaultName: 'Thực đơn',
       Icon:'file-text',
-      route:'menu',
+      Url:'menu',
+      Active:false,
+      Children:[],
+      ParentID:''
     },
     {
-      MenuID: 'M003',
-      Label: 'Món ăn',
+      FunctionID: 'M003',
+      DefaultName: 'Món ăn',
        Icon:'ticket-perforated',
-      route: 'food',
+      Url: 'food',
+      Active:false,
+      Children:[],
+      ParentID:''
     },
     {
-      MenuID: 'M004',
-      Label: 'Nhân viên',
+      FunctionID: 'M004',
+      DefaultName: 'Nhân viên',
       Icon:'people-fill',
-      route: 'member',
+      Url: 'member',
+      Active:false,
+      Children:[],
+      ParentID:''
     },
     {
-      MenuID: 'M005',
-      Label: 'Thẻ khách',
+      FunctionID: 'M005',
+      DefaultName: 'Thẻ khách',
       Icon:'person-badge-fill',
-      route:'guess',
+      Url:'guess',
+      Active:false,
+      Children:[],
+      ParentID:''
     },
     {
-      MenuID: 'M006',
-      Label: 'Đặt theo món',
+      FunctionID: 'M006',
+      DefaultName: 'Đặt theo món',
       Icon:'person-lines-fill',
-      route: 'book-group',
+      Url: 'book-group',
+      Active:false,
+      Children:[],
+      ParentID:''
     },
     {
-      MenuID: 'M007',
-      Label: 'Quản trị',
+      FunctionID: 'M007',
+      DefaultName: 'Quản trị',
       Icon:'gear',
-      route:'setting',
+      Url:'setting',
+      Active:false,
+      Children:[],
+      ParentID:''
     },
   ];
 
@@ -95,103 +118,66 @@ export class SidebarComponent implements OnInit {
   }
 
   fnClickTab(item:any){
-
-    this.tabSelected = item.MenuID
-    this._router.navigate([item.route])
-    return
-    this._apiHttp.post(AppAPIConst.SYSTEM.CheckPermission,'',{
-      MenuID:item.MenuID
-    }).subscribe(res=>{
-      debugger
-      if(!res.Error && res.Data.OutputParams.IsView){
-        item.Icon = item.Icon.replaceAll('stroke="white"','stroke="#0174BE"')
-        this.ListSideBar.filter(x=>x.MenuID != item.MenuID).forEach(y=>{
-          y.Icon = y.Icon.replaceAll('stroke="#0174BE"','stroke="white"');
-        })
-        this.tabSelected = item.MenuID
-        this._router.navigate([item.route])
-      }
-      else{
-        this._router.navigate([AppRoutes.notAuthor])
-      }
-    })
+    this.tabSelected = item.FunctionID
+    this._router.navigate([item.Url])
   }
 
-  // fnCheckPermission(MenuID:string){
-  //   this._apiHttp.post(AppAPIConst.SYSTEM.CheckPermission,'',{
-  //     MenuID:MenuID
-  //   }).subscribe(res=>{
-  //     console.log(res);
-  //   })
-  // }
+  buildNested(tabs: SidebarModel[], ParentID: string | null): SidebarModel[] {
+    const nestedTabs: SidebarModel[] = [];
+    const Empty: SidebarModel[] = [];
+    for (const tab of tabs) {
+      if (tab.ParentID === ParentID) {
+        const nestedTab = { ...tab, Children:Empty};
+        nestedTab.Children = this.buildNested(tabs, tab.FunctionID);
+        nestedTabs.push(nestedTab);
+      }
+    }
+    return nestedTabs;
+  }
+
 
   getMenu(){
-    if(!this._auth.getUser()?.Administrator){
-      this.ListSideBar = this.ListBarNhanVien;
-      //this.fnClickTab(this.ListSideBar[0])
-    }
-    else{
-      this.ListSideBar = this.ListSideBarCheck;
-    }
+    this.ListSideBar = this.buildNested(this.ListSideBarCheck,null)
+
     this._activeRoute.params.subscribe(_x=>{
-      if(this.ListSideBar.length > 0){
+      if(this.ListSideBarCheck.length > 0){
         let url = this._router.url;
         if(url == "/"){
           url = "/home"
         }
-        let item = this.ListSideBar.find(y => y.route == url.split('?')[0].split('/').reverse()[0]);
+        let item = this.ListSideBarCheck.find(y => y.Url == window.location.pathname);
         if(!item){
-          item = this.ListSideBar[0];
+          item = this.ListSideBarCheck[0];
         }
-        this.tabSelected = item.MenuID
+        this.tabSelected = item.FunctionID
       }
     })
     return;
-    this._apiHttp.post(AppAPIConst.SIDEBAR.SideBar,'',null,true).subscribe(res=>{
-      if(!res.Error){
-        this.ListSideBar = res.Data.Data;
-        this._ordinal.finishSideBar.next(true);
-        this._activeRoute.params.subscribe(_x=>{
-          console.log(this._router.url);
-          if(this.ListSideBar.length > 0){
-            let url = this._router.url;
-            if(url == "/"){
-              url = "/home"
-            }
-            let itemCheck = this.ListSideBarCheck.find(y => url.startsWith('/'+y.route));
-            if(itemCheck){
-              this._apiHttp.post(AppAPIConst.SYSTEM.CheckPermission,'',{
-                MenuID:itemCheck.MenuID
-              }).subscribe(res=>{
-                if(!res.Data.OutputParams.IsView || res.Error){
-                  this._router.navigate([AppRoutes.notAuthor])
-                }
-                else{
-                  let item = this.ListSideBar.find(y => url.startsWith('/'+y.route));
-                  if(item){
-                    item.Icon = item.Icon.replaceAll('stroke="white"','stroke="#0174BE"')
-                    this.ListSideBar.filter(x=>x.MenuID != item.MenuID).forEach(y=>{
-                      y.Icon = y.Icon.replaceAll('stroke="#0174BE"','stroke="white"');
-                    })
-                    this.tabSelected = item.MenuID
-                  }
-                  else{
-                    item = this.ListSideBar[0];
-                    item.Icon = item.Icon.replaceAll('stroke="white"','stroke="#0174BE"')
-                    this.ListSideBar.filter(x=>x.MenuID != item.MenuID).forEach(y=>{
-                      y.Icon = y.Icon.replaceAll('stroke="#0174BE"','stroke="white"');
-                    })
-                    this.tabSelected = item.MenuID;
-                  }
-                }
-              })
-            }
-            else{
-              this._router.navigate([AppRoutes.notAuthor])
-            }
-          }
-        })
+  }
+
+  ToogleTabs(item:any){
+    const index = this.ListSideBar.findIndex(x =>x.FunctionID == item.FunctionID)
+    this.ListSideBar[index].Active = !this.ListSideBar[index].Active
+    if(item.Children.length == 0){
+      this.tabSelected = item.MenuID;
+      this.ListSideBar.forEach((x)=>{
+        if(item.FunctionID != x.FunctionID){
+          x.Active = false
+        }
+      })
+      this._router.navigate([item.Url])
+    }
+  }
+
+
+  checkActicSidebar(item:any,tab:any){
+    if(item.FunctionID == this.tabSelected) return true
+    if(item.Children.length == 0) return false;
+    for (const x of item.Children) {
+      if(x.FunctionID == tab){
+        return true
       }
-    })
+    }
+    return false;
   }
 }

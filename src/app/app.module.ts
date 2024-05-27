@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { AuthService } from './shares/services/authentication/authentication.service';
 import { AppConfigService } from './shares/services/app-config/app-config.service';
+import { LayoutComponent } from './core/components/layout/layout.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http,'./assets/i18n/', '.json');
@@ -31,7 +32,7 @@ function appInitializer(authService: AuthService, config: AppConfigService) {
 }
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent,LayoutComponent
   ],
   imports: [
     BrowserModule,

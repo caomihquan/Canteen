@@ -1,107 +1,41 @@
-<div class="bg-white">
-    <div class="d-flex p-2 justify-content-between align-items-center mb-2" style="background-color: #f4f6fa;">
-        <div class="left-toolbar d-flex gap-3 justify-content-between align-items-center">
-            <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-people-fill color-primary fs-24"></i>
-                <span class="label-vote">Danh sách đoàn viên</span>
-            </div>
-            <div class="position-relative">
-                <div class="icon-search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
-              stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-                </div>
-                <input placeholder="Tìm kiếm..." class="input-search" type="text" [(ngModel)]="SearchText" (keyup.enter)="onLoadSearch()">
-            </div>
-        </div>
-        <div class="right-toolbar d-flex justify-content-between align-items-center gap-2">
-            <!-- <div class="sort-date d-flex align-items-center pointer"  (click)="SortListUnions()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M17 4V20M17 20L13 16M17 20L21 16M7 20V4M7 4L3 8M7 4L11 8" stroke="#626262" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <span class="text-common-black fs-14 fw-400">
-          Ngày tạo
-        </span>
-      </div> -->
-            <div class="add  d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalVote" (click)="doAddUnion(true)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M9 3.75V14.25M3.75 9H14.25" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" />
-        </svg>
-                <span class="text-common-black fs-14 fw-400">Thêm</span>
-            </div>
-            <div class="add  d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalVote" (click)="doAddUnion(false)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <g clip-path="url(#clip0_55_5700)">
-            <path
-              d="M8.25 3.00017H5.1C3.83988 3.00017 3.20982 3.00017 2.72852 3.24541C2.30516 3.46112 1.96095 3.80533 1.74524 4.22869C1.5 4.70999 1.5 5.34005 1.5 6.60017V12.9002C1.5 14.1603 1.5 14.7903 1.74524 15.2716C1.96095 15.695 2.30516 16.0392 2.72852 16.2549C3.20982 16.5002 3.83988 16.5002 5.1 16.5002H11.4C12.6601 16.5002 13.2902 16.5002 13.7715 16.2549C14.1948 16.0392 14.539 15.695 14.7548 15.2716C15 14.7903 15 14.1603 15 12.9002V9.75017M5.99998 12.0002H7.25589C7.62277 12.0002 7.80622 12.0002 7.97885 11.9587C8.1319 11.922 8.27822 11.8614 8.41243 11.7791C8.5638 11.6864 8.69352 11.5567 8.95294 11.2972L16.125 4.12517C16.7463 3.50385 16.7463 2.49649 16.125 1.87517C15.5037 1.25385 14.4963 1.25385 13.875 1.87517L6.70293 9.04723C6.4435 9.30665 6.31378 9.43637 6.22102 9.58774C6.13878 9.72195 6.07817 9.86827 6.04143 10.0213C5.99998 10.194 5.99998 10.3774 5.99998 10.7443V12.0002Z"
-              stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </g>
-          <defs>
-            <clipPath id="clip0_55_5700">
-              <rect width="18" height="18" fill="white" />
-            </clipPath>
-          </defs>
-        </svg>
-                <span class="text-common-black fs-14 fw-400">Sửa</span>
-            </div>
-            <div class="add  d-flex align-items-center" (click)="doDeleteUnion()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path
-            d="M12 4.5V3.9C12 3.05992 12 2.63988 11.8365 2.31901C11.6927 2.03677 11.4632 1.8073 11.181 1.66349C10.8601 1.5 10.4401 1.5 9.6 1.5H8.4C7.55992 1.5 7.13988 1.5 6.81901 1.66349C6.53677 1.8073 6.3073 2.03677 6.16349 2.31901C6 2.63988 6 3.05992 6 3.9V4.5M7.5 8.625V12.375M10.5 8.625V12.375M2.25 4.5H15.75M14.25 4.5V12.9C14.25 14.1601 14.25 14.7902 14.0048 15.2715C13.789 15.6948 13.4448 16.039 13.0215 16.2548C12.5402 16.5 11.9101 16.5 10.65 16.5H7.35C6.08988 16.5 5.45982 16.5 4.97852 16.2548C4.55516 16.039 4.21095 15.6948 3.99524 15.2715C3.75 14.7902 3.75 14.1601 3.75 12.9V4.5"
-            stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-                <span class="text-common-black fs-14 fw-400">Xoá</span>
-            </div>
-            <div class="add  d-flex align-items-center" data-bs-target="#modalCard" data-bs-toggle="modal">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 8.5H2M2 12.5H5.54668C6.08687 12.5 6.35696 12.5 6.61813 12.5466C6.84995 12.5879 7.0761 12.6563 7.29191 12.7506C7.53504 12.8567 7.75977 13.0065 8.20924 13.3062L8.79076 13.6938C9.24023 13.9935 9.46496 14.1433 9.70809 14.2494C9.9239 14.3437 10.15 14.4121 10.3819 14.4534C10.643 14.5 10.9131 14.5 11.4533 14.5H12.5467C13.0869 14.5 13.357 14.5 13.6181 14.4534C13.85 14.4121 14.0761 14.3437 14.2919 14.2494C14.535 14.1433 14.7598 13.9935 15.2092 13.6938L15.7908 13.3062C16.2402 13.0065 16.465 12.8567 16.7081 12.7506C16.9239 12.6563 17.15 12.5879 17.3819 12.5466C17.643 12.5 17.9131 12.5 18.4533 12.5H22M2 7.2L2 16.8C2 17.9201 2 18.4802 2.21799 18.908C2.40973 19.2843 2.71569 19.5903 3.09202 19.782C3.51984 20 4.07989 20 5.2 20L18.8 20C19.9201 20 20.4802 20 20.908 19.782C21.2843 19.5903 21.5903 19.2843 21.782 18.908C22 18.4802 22 17.9201 22 16.8V7.2C22 6.0799 22 5.51984 21.782 5.09202C21.5903 4.7157 21.2843 4.40974 20.908 4.21799C20.4802 4 19.9201 4 18.8 4L5.2 4C4.0799 4 3.51984 4 3.09202 4.21799C2.7157 4.40973 2.40973 4.71569 2.21799 5.09202C2 5.51984 2 6.07989 2 7.2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-                <span class="text-common-black fs-14 fw-400">Nạp thẻ</span>
-            </div>
-            <div class="add  d-flex align-items-center" (click)="file.click()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path
-            d="M15.75 9V12.15C15.75 13.4101 15.75 14.0402 15.5048 14.5215C15.289 14.9448 14.9448 15.289 14.5215 15.5048C14.0402 15.75 13.4101 15.75 12.15 15.75H5.85C4.58988 15.75 3.95982 15.75 3.47852 15.5048C3.05516 15.289 2.71095 14.9448 2.49524 14.5215C2.25 14.0402 2.25 13.4101 2.25 12.15V9M12 5.25L9 2.25M9 2.25L6 5.25M9 2.25V11.25"
-            stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-                <input onclick="this.value=null;" #file type="file" multiple (change)="selectFileImport($event)" style="display: none" />
-                <span class="text-common-black fs-14 fw-400">Import</span>
-            </div>
-            <div class="add  d-flex align-items-center" (click)="doExport()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path
-            d="M15.75 11.25V12.15C15.75 13.4101 15.75 14.0402 15.5048 14.5215C15.289 14.9448 14.9448 15.289 14.5215 15.5048C14.0402 15.75 13.4101 15.75 12.15 15.75H5.85C4.58988 15.75 3.95982 15.75 3.47852 15.5048C3.05516 15.289 2.71095 14.9448 2.49524 14.5215C2.25 14.0402 2.25 13.4101 2.25 12.15V11.25M12.75 7.5L9 11.25M9 11.25L5.25 7.5M9 11.25V2.25"
-            stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-                <span class="text-common-black fs-14 fw-400">Export</span>
-            </div>
-            <div class="add  d-flex align-items-center pointer dropdown" style="padding: 2px 3px;">
-                <span id="dropdownMenuButton121" data-bs-toggle="dropdown" aria-expanded="false" class="py-1"><i class="bi bi-three-dots-vertical"></i></span>
-                <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton121" style="    min-width: 200px;
-        margin-top: 6px;">
-                    <li>
-                        <div class="d-flex gap-2 align-items-center">
-                            <div><i class="bi bi-arrow-clockwise"></i></div>
-                            <div>Reset số dư thẻ</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d-flex gap-2 align-items-center">
-                            <div><i class="bi bi-upload"></i></div>
-                            <div>Import số dư thẻ</div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<div class="bg-white width-screen">
+  <div class="container-toolbar">
+  <div class="left-toolbar d-flex gap-2 align-items-center">
+    <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
+    <span class="text-common-black fw-600 fs-16">Quản lý tài khoản</span>
+    <span class="text-common-black fw-500 fs-16">></span>
+    <span class="text-common-black fw-500 fs-16">Phân công phụ trách</span>
+  </div>
+  <div class="right-toolbar">
+    <div class="button-toolbar">
+      <span class="icon-General-113"></span>
+      <span>Thêm</span>
     </div>
-    <div class="mx-2">
-        <!-- <app-table [template]="template"  (indexTable)="onClickTable($event)"  [isActive]="isActive"
-    (selectedRow)="selectedRow($event)" [templateField]="templateFields" [tableData]="listUnion"></app-table> -->
+    <div class="button-toolbar">
+      <span class="icon-General-84"></span>
+      <span>Sửa</span>
+    </div>
+    <div class="button-toolbar">
+      <span class="icon-General-163"></span>
+      <span>Xoá</span>
+    </div>
+    <div class="button-toolbar">
+      <span class="icon-General-3"></span>
+      <span>Xuất khẩu</span>
+    </div>
+    <div class="button-toolbar">
+      <span class="icon-General-101"></span>
+      <span>Nhập khẩu</span>
+    </div>
+  </div>
+</div>
+<div class="mx-2">
+    <grid-view [template]="templategrid"></grid-view>
+</div>
+
+
+
+    <ng-template #templategrid >
         <ejs-grid #grid allowTextWrap='true' [textWrapSettings]='wrapSettings' (recordClick)="selectedRow($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listEmployee' [allowSorting]="true" [pageSettings]="pageSettings">
             <e-columns>
                 <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
@@ -140,9 +74,13 @@
                       <span class="text-start">{{item.NgayNhanViec  | date:'dd/MM/yyyy'}}</span>
                   </ng-template>
                 </e-column>
-                <e-column headerText="Nhóm phụ nhân viên" width=180 textAlign='Left'>
+                <e-column headerText="Nhóm phụ nhân viên" width=200 textAlign='Left'>
                   <ng-template #template let-item>
-                      <div [ngClass]="{'status0': item.Status == 0,'status1': item.Status == 1}">
+                      <div [ngClass]="{
+                        'Staff': item.Status == 0,
+                        'DL': item.Status == 1,
+                        'IDL': item.Status == 2,
+                        }">
                           <ng-container>{{item.StatusName}}</ng-container>
                       </div>
                   </ng-template>
@@ -197,11 +135,7 @@
                 </e-column>
             </e-columns>
         </ejs-grid>
-        <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSize" (click)="LoadWithIndex($event)">
-        </ejs-pager>
-    </div>
-</div>
-
+    </ng-template>
 <div class="modal fade" id="modalVote" tabindex="-1" aria-labelledby="modalVoteLabel" aria-hidden="false">
     <div class="modal-dialog modal-dialog-scrollable" style="max-width: 585px;">
         <div class="modal-content " style="height: 714px;">

@@ -6,6 +6,7 @@ import { SharesModule } from 'src/app/shares/shares.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MemberComponent } from './member.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
     SharesModule,
     FormsModule,
     ReactiveFormsModule,
+    GridViewComponent,
     RouterModule.forChild(routes),
     FlatpickrModule.forRoot()
   ],
