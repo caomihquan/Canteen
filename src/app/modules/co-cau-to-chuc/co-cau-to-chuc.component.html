@@ -1,0 +1,73 @@
+<div class="bg-white width-screen">
+    <div class="container-toolbar">
+        <div class="left-toolbar d-flex gap-2 align-items-center">
+            <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
+            <span class="text-common-black fw-600 fs-16">Quản lý tài khoản</span>
+            <span class="text-common-black fw-500 fs-16">></span>
+            <span class="text-common-black fw-500 fs-16">Nhóm người dùng</span>
+        </div>
+        <div class="right-toolbar">
+            <div class="button-toolbar">
+                <span class="icon-General-113"></span>
+                <span>Thêm</span>
+            </div>
+            <div class="button-toolbar">
+                <span class="icon-General-84"></span>
+                <span>Sửa</span>
+            </div>
+            <div class="button-toolbar">
+                <span class="icon-General-163"></span>
+                <span>Xoá</span>
+            </div>
+            <div class="button-toolbar">
+                <span class="icon-General-101"></span>
+                <span>Nhập khẩu</span>
+            </div>
+        </div>
+    </div>
+    <div class="mx-2">
+        <div class="container-group">
+            <div class="border-end">
+                <div class="container-sidebar pe-4 pt-2 position-relative" [ngStyle]="{height: height + 'px'}">
+                    <ul>
+                        <ng-template #templateTree let-dataList>
+                            <li *ngFor="let item of dataList" class="mb-2">
+                                <div (click)="ToggleTabs(item)" [ngClass]="{'active-child':item.RoleID == tabSelected?.RoleID}" class="tabs d-flex gap-2 align-items-center rounded w-100 pointer">
+                                    <i class="bi bi-dot" style="font-size: 30px;"></i>
+                                    <span class="caret flex-1 fs-14 fw-500">{{item.RoleName}}</span>
+                                </div>
+                                <ul class="nested mt-2" *ngIf="item.Children.length > 0">
+                                    <ng-container *ngTemplateOutlet="templateTree; context: {$implicit: item.Children}"></ng-container>
+                                </ul>
+                            </li>
+                        </ng-template>
+                        <ng-container *ngTemplateOutlet="templateTree; context: {$implicit: listDepartment}"></ng-container>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-2">
+                <div class="d-flex align-items-center justify-content-between mx-2">
+                    <div class="d-flex flex-column gap-2">
+                        <div class="text-common-black fs-22 fw-600">Phòng kế toán</div>
+                        <div class="text-common-gray fs-14 fw-400">Phòng kế toán</div>
+                    </div>
+                    <div class="d-flex flex-column gap-2">
+                        <div class="NumMember">10</div>
+                        <div>Phòng kế toán</div>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <grid-view [template]="templateGrid"></grid-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #templateGrid>
+    <ejs-grid [dataSource]="listDepartment" [height]="height - 150">
+        <e-columns>
+
+        </e-columns>
+    </ejs-grid>
+</ng-template>
