@@ -8,7 +8,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { GuessComponent } from './guess.component';
+import { GuessComponent } from './danh-sach-the-khach/guess.component';
 
 
 const routes: Routes = [

@@ -6,8 +6,8 @@ import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { TranslateService } from '@ngx-translate/core';
-import { fnCommon } from 'src/app/shares/helpers/common';
 import { VideoService } from './services/setting.service';
+import { fnCommon } from 'src/app/shares/helpers/common';
 
 @Component({
   selector: 'app-setting',

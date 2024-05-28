@@ -1,13 +1,9 @@
-<div class="bg-white container-guess">
+<!-- <div class="bg-white container-guess">
     <div style="display: sticky;position: relative;height: calc(100vh - 70px);" class="p-2 border-end">
         <div [ngClass]="{'active-tab': selectedTabs() == 0}" class="items-tab  mb-2 pointer" (click)="ClickTabs(0)">
             <i class="bi bi-person-badge-fill color-primary fs-24"></i>
             <div class="fs-14 fw-600">Cấp phát thẻ khách</div>
         </div>
-        <!-- <div [ngClass]="{'active-tab': selectedTabs() == 1}" class="items-tab pointer" (click)="ClickTabs(1)">
-            <div><i class="fs-24 fw-600 bi bi-credit-card "></i></div>
-            <div class="fs-14 fw-600">Danh sách thẻ khác</div>
-        </div> -->
         <div class="position-absolute bottom-0" style="left: 50%;transform: translateX(-50%);">
             <svg xmlns="http://www.w3.org/2000/svg" width="179" height="186" viewBox="0 0 179 186" fill="none">
         <path d="M89.5 185.549C138.929 185.549 179 163.364 179 135.997C179 108.63 138.929 86.4446 89.5 86.4446C40.0705 86.4446 0 108.63 0 135.997C0 163.364 40.0705 185.549 89.5 185.549Z" fill="#F5F5F5"/>
@@ -269,7 +265,7 @@
                             <div class="text-start text-common-black fs-14">80 xu</div>
                         </ng-template>
                     </e-column>
-                    
+
 
                     <e-column headerText="Người cấp thẻ" textAlign='Left' width=200>
                         <ng-template #template let-item>
@@ -464,6 +460,43 @@
             </ejs-pager>
         </div>
     </div>
+</div> -->
+
+
+<div class="bg-white width-screen">
+  <div class="container-toolbar">
+    <div class="left-toolbar d-flex gap-2 align-items-center">
+      <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
+      <span class="text-common-black fw-600 fs-16">Quản lý tài khoản</span>
+      <span class="text-common-black fw-500 fs-16">></span>
+      <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
+    </div>
+    <div class="right-toolbar">
+      <div class="button-toolbar">
+        <span class="icon-General-113"></span>
+        <span>Thêm</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-84"></span>
+        <span>Sửa</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-163"></span>
+        <span>Xoá</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-3"></span>
+        <span>Xuất khẩu</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-101"></span>
+        <span>Nhập khẩu</span>
+      </div>
+    </div>
+  </div>
+  <div class="mx-2">
+    <!-- <grid-view [template]="templategrid"></grid-view> -->
+  </div>
 </div>
 
 <!-- modal Thêm -->

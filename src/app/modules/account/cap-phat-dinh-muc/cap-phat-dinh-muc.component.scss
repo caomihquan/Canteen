@@ -1,0 +1,45 @@
+.Staff{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 3px;
+  border-radius: 5px;
+  background: #FFEFE0;
+  color:#FF8A00
+}
+.DL{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 3px;
+  border-radius: 5px;
+  background: #EFFFD4;
+  color:#54BF61
+}
+.IDL{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 3px;
+  border-radius: 5px;
+  background: #FFFFE6;
+  color:#FFB100
+}
+.Cong{
+  font-weight: 600;
+  color: #007455;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.Tru{
+  font-weight: 600;
+  color: #980F0F;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}

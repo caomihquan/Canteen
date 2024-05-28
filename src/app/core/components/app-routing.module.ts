@@ -41,8 +41,8 @@ const routes: Routes = [
         loadChildren: () => import('./../../modules/menu-employee/menu-employee.module').then(m => m.MenuEmployeeModule)
       },
       {
-        path: 'member',
-        loadChildren: () => import('./../../modules/member/member.module').then(m => m.MemberModule)
+        path: 'account',
+        loadChildren: () => import('./../../modules/account/account.module').then(m => m.AccountModule)
       },
       {
         path: 'book-group',

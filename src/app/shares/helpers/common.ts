@@ -110,5 +110,37 @@ export const fnCommon = {
 
     const formattedToday = dd + '-' + mm + '-' + yyyy;
     return formattedToday
+  },
+  getGridHeight(){
+    return window.innerHeight - 220;
+  },
+  preventLoseGridFocus(row:any){
+    const tdsall = document.querySelectorAll('td.e-active');
+    if(tdsall.length > 0){
+      tdsall.forEach((x:any)=>{
+          x.className = x.classList.toString().split(' ').filter((x:any) => x != 'e-active').join(' ')
+      })
+    }
+    const tds = row.querySelectorAll('td')
+    if(tds.length > 0){
+      tds.forEach((x:any)=>{
+        setTimeout(() => {
+          x.classList.remove('e-active')
+          x.classList.add('e-active')
+        }, 100);
+      })
+    }
+  },
+  validateEmail(email:string){
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  },
+
+  validatePhoneNumber(phone:string){
+    const regexPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+    return phone.match(regexPhoneNumber) ? true : false;
   }
 }

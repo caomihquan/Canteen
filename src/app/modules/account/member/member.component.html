@@ -1,38 +1,38 @@
 <div class="bg-white width-screen">
   <div class="container-toolbar">
-  <div class="left-toolbar d-flex gap-2 align-items-center">
-    <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
-    <span class="text-common-black fw-600 fs-16">Quản lý tài khoản</span>
-    <span class="text-common-black fw-500 fs-16">></span>
-    <span class="text-common-black fw-500 fs-16">Phân công phụ trách</span>
+    <div class="left-toolbar d-flex gap-2 align-items-center">
+      <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
+      <span class="text-common-black fw-600 fs-16">Quản lý tài khoản</span>
+      <span class="text-common-black fw-500 fs-16">></span>
+      <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
+    </div>
+    <div class="right-toolbar">
+      <div class="button-toolbar">
+        <span class="icon-General-113"></span>
+        <span>Thêm</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-84"></span>
+        <span>Sửa</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-163"></span>
+        <span>Xoá</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-3"></span>
+        <span>Xuất khẩu</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-101"></span>
+        <span>Nhập khẩu</span>
+      </div>
+    </div>
   </div>
-  <div class="right-toolbar">
-    <div class="button-toolbar">
-      <span class="icon-General-113"></span>
-      <span>Thêm</span>
-    </div>
-    <div class="button-toolbar">
-      <span class="icon-General-84"></span>
-      <span>Sửa</span>
-    </div>
-    <div class="button-toolbar">
-      <span class="icon-General-163"></span>
-      <span>Xoá</span>
-    </div>
-    <div class="button-toolbar">
-      <span class="icon-General-3"></span>
-      <span>Xuất khẩu</span>
-    </div>
-    <div class="button-toolbar">
-      <span class="icon-General-101"></span>
-      <span>Nhập khẩu</span>
-    </div>
-  </div>
-</div>
-<div class="mx-2">
+  <div class="mx-2">
     <grid-view [template]="templategrid"></grid-view>
+  </div>
 </div>
-
 
 
     <ng-template #templategrid >
@@ -76,12 +76,13 @@
                 </e-column>
                 <e-column headerText="Nhóm phụ nhân viên" width=200 textAlign='Left'>
                   <ng-template #template let-item>
-                      <div [ngClass]="{
-                        'Staff': item.Status == 0,
+                      <div class="d-flex gap-2 align-items-center" [ngClass]="{
+                        'Staff': item.Status == 0 || true,
                         'DL': item.Status == 1,
                         'IDL': item.Status == 2,
                         }">
-                          <ng-container>{{item.StatusName}}</ng-container>
+                          <span class="icon-Users-11"></span>
+                          <div>{{item.V3ID}}</div>
                       </div>
                   </ng-template>
                 </e-column>
