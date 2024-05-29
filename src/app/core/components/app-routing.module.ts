@@ -4,6 +4,7 @@ import { LoginComponent } from './authentication/login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { NotAuthorComponent } from './notAuthorization/notAuthorization.component';
 import { LayoutComponent } from './layout/layout.component';
+import { AuthGuard } from '../guard/auth.guard';
 const routes: Routes = [
   {
     path: 'login', component: LoginComponent
@@ -12,18 +13,18 @@ const routes: Routes = [
     path:'',
     component:LayoutComponent,
     children:[
-      {
-        path: 'food',
-        loadChildren: () => import('./../../modules/food/food.module').then(m => m.FoodModule)
-      },
-      {
-        path: 'order',
-        loadChildren: () => import('./../../modules/order/order.module').then(m => m.OrderModule)
-      },
-      {
-        path: 'changepassword',
-        loadChildren: () => import('./../../modules/changepassword/changepassword.module').then(m => m.ChangepasswordModule)
-      },
+      // {
+      //   path: 'food',
+      //   loadChildren: () => import('./../../modules/food/food.module').then(m => m.FoodModule)
+      // },
+      // {
+      //   path: 'order',
+      //   loadChildren: () => import('./../../modules/order/order.module').then(m => m.OrderModule)
+      // },
+      // {
+      //   path: 'changepassword',
+      //   loadChildren: () => import('./../../modules/changepassword/changepassword.module').then(m => m.ChangepasswordModule)
+      // },
       {
         path: 'guess',
         loadChildren: () => import('./../../modules/guess/guess.module').then(m => m.GuessModule)
@@ -32,28 +33,37 @@ const routes: Routes = [
         path: 'setting',
         loadChildren: () => import('./../../modules/setting/setting.module').then(m => m.SettingModule)
       },
-      {
-        path: 'menu',
-        loadChildren: () => import('./../../modules/menu/menu.module').then(m => m.MenuModule)
-      },
-      {
-        path: 'menu-employee',
-        loadChildren: () => import('./../../modules/menu-employee/menu-employee.module').then(m => m.MenuEmployeeModule)
-      },
+      // {
+      //   path: 'menu',
+      //   loadChildren: () => import('./../../modules/menu/menu.module').then(m => m.MenuModule)
+      // },
+      // {
+      //   path: 'menu-employee',
+      //   loadChildren: () => import('./../../modules/menu-employee/menu-employee.module').then(m => m.MenuEmployeeModule)
+      // },
       {
         path: 'account',
         loadChildren: () => import('./../../modules/account/account.module').then(m => m.AccountModule)
       },
       {
-        path: 'book-group',
-        loadChildren: () => import('./../../modules/book-group/book-group.module').then(m => m.BookGroupModule)
+        path: 'co-cau-to-chuc',
+        loadChildren: () => import('./../../modules/co-cau-to-chuc/co-cau-to-chuc.module').then(m => m.CoCauToChucModule)
       },
+      // {
+      //   path: 'book-group',
+      //   loadChildren: () => import('./../../modules/book-group/book-group.module').then(m => m.BookGroupModule)
+      // },
       {
         path:'',
         pathMatch:'full',
         redirectTo:'home'
       }
     ]
+  },
+  {
+    path:'scan',
+    // canActivate:[AuthGuard],
+    loadChildren: () => import('./../../modules/scan/scan.module').then(m => m.ScanModule)
   },
   {
     path: 'notAuthor',

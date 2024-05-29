@@ -1,0 +1,115 @@
+<div class="bg-white width-screen">
+  <div class="container-toolbar">
+    <div class="left-toolbar d-flex gap-2 align-items-center">
+      <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
+      <span class="text-common-black fw-600 fs-16">Quản lý tài khoản</span>
+      <span class="text-common-black fw-500 fs-16">></span>
+      <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
+    </div>
+    <div class="right-toolbar">
+      <div class="button-toolbar">
+        <span class="icon-General-113"></span>
+        <span>Thêm</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-84"></span>
+        <span>Sửa</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-163"></span>
+        <span>Xoá</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-3"></span>
+        <span>Trả thẻ</span>
+      </div>
+    </div>
+  </div>
+  <div class="mx-2">
+    <grid-view [template]="templateGrid"></grid-view>
+  </div>
+</div>
+
+<ng-template #templateGrid>
+  <ejs-grid
+  [dataSource]="listHistory"
+  [height]="heightGrid - 30"
+  [allowTextWrap]="true"
+  [textWrapSettings]='wrapSettings'>
+  <e-columns>
+
+    <e-column headerText="Mã thẻ" textAlign='Left' width=110>
+      <ng-template #template let-item>
+          <div class="text-start">{{item.V3ID}}</div>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Giờ quét thẻ" textAlign='Left' width=150>
+      <ng-template #template let-item>
+          <div class="text-start">{{item.V3ID}}</div>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Thứ" textAlign='Left' width=110>
+      <ng-template #template let-item>
+          <div class="text-start">{{item.V3ID}}</div>
+      </ng-template>
+    </e-column>
+
+
+
+    <e-column headerText="Ngày quét thẻ" textAlign='Left' width=140>
+      <ng-template #template let-item>
+          <div class="text-start">{{item.V3ID}}</div>
+      </ng-template>
+    </e-column>
+
+
+    <e-column headerText="Line" textAlign='Left' width=140>
+      <ng-template #template let-item>
+          <div class="text-start">{{item.V3ID}}</div>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Loại món" textAlign='Left' width=140>
+      <ng-template #template let-item>
+          <div class="d-flex gap-2 align-items-center" [ngClass]="{
+            'type-food-1': item.LoaiMon == 1 || true,
+            'type-food-2': item.LoaiMon == 2,
+            'type-food-3': item.LoaiMon == 3,
+            }">
+            <span class="icon-FinanceCommerce-68"></span>
+            <div
+            class="text-start">{{item.V3ID}}</div>
+          </div>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Ca làm việc" textAlign='Left' width=180>
+      <ng-template #template let-item>
+          <span class="text-start">04/2024</span>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Số lượng" textAlign='Left' width=150>
+      <ng-template #template let-item>
+          <span class="text-start">2</span>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Đơn giá" textAlign='Left' width=200>
+      <ng-template #template let-item>
+          <span class="text-start">500.000</span>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Thành tiền" textAlign='Left' width=200>
+      <ng-template #template let-item>
+          <span class="text-start">500.000</span>
+      </ng-template>
+    </e-column>
+
+    </e-columns>
+  </ejs-grid>
+
+</ng-template>

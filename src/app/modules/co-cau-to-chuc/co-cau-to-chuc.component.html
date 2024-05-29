@@ -2,9 +2,7 @@
     <div class="container-toolbar">
         <div class="left-toolbar d-flex gap-2 align-items-center">
             <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
-            <span class="text-common-black fw-600 fs-16">Quản lý tài khoản</span>
-            <span class="text-common-black fw-500 fs-16">></span>
-            <span class="text-common-black fw-500 fs-16">Nhóm người dùng</span>
+            <span class="text-common-black fw-600 fs-16">Cơ cấu tổ chức</span>
         </div>
         <div class="right-toolbar">
             <div class="button-toolbar">
@@ -13,7 +11,7 @@
             </div>
             <div class="button-toolbar">
                 <span class="icon-General-84"></span>
-                <span>Sửa</span>
+                <span>Chỉnh Sửa</span>
             </div>
             <div class="button-toolbar">
                 <span class="icon-General-163"></span>
@@ -66,7 +64,49 @@
 
 <ng-template #templateGrid>
     <ejs-grid [dataSource]="listDepartment" [height]="height - 150">
-        <e-columns>
+        <e-columns >
+          <e-column headerText="Mã đơn vị" width =120 textAlign='Left'>
+            <ng-template #template let-item>
+              <div>dđ</div>
+            </ng-template>
+          </e-column>
+
+          <e-column headerText="Mã đơn vị" width =120 textAlign='Left'>
+            <ng-template #template let-item>
+              <div>dđ</div>
+            </ng-template>
+          </e-column>
+
+          <e-column headerText="Phân loại" width =120 textAlign='Left'>
+            <ng-template #template let-item>
+              <div>dđ</div>
+            </ng-template>
+          </e-column>
+
+          <e-column headerText="Tên đơn vị" width =200 textAlign='Left'>
+            <ng-template #template let-item>
+              <div>dđ</div>
+            </ng-template>
+          </e-column>
+
+          <e-column headerText="Đơn vị trực thuộc" width =200 textAlign='Left'>
+            <ng-template #template let-item>
+              <div>dđ</div>
+            </ng-template>
+          </e-column>
+
+          <e-column headerText="Trưởng đơn vị" width =200 textAlign='Left'>
+            <ng-template #template let-item>
+              <div>dđ</div>
+            </ng-template>
+          </e-column>
+
+
+          <e-column headerText="Chức vụ trưởng đơn vị" width =200 textAlign='Left'>
+            <ng-template #template let-item>
+              <div>dđ</div>
+            </ng-template>
+          </e-column>
 
         </e-columns>
     </ejs-grid>

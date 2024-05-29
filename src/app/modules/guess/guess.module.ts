@@ -9,6 +9,9 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { GuessComponent } from './danh-sach-the-khach/guess.component';
+import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view';
+import { CapPhatTheKhachComponent } from './cap-phat-the-khach/cap-phat-the-khach.component';
+import { TheoDoiLichSuThanhToanComponent } from './theo-doi-lich-su-thanh-toan/theo-doi-lich-su-thanh-toan.component';
 
 
 const routes: Routes = [
@@ -17,26 +20,20 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children:[
       {path: '', component: GuessComponent},
+      {path: 'cap-phat-the-khach', component: CapPhatTheKhachComponent},
     ]
   },
 ];
 
 @NgModule({
-  declarations: [GuessComponent],
+  declarations: [GuessComponent, CapPhatTheKhachComponent, TheoDoiLichSuThanhToanComponent],
   imports: [
     CommonModule,
     SharesModule,
     FormsModule,
     FlatpickrModule.forRoot(),
     RouterModule.forChild(routes),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      defaultLanguage: 'vn'
-    }),
+    GridViewComponent,
   ],
 })
 export class GuessModule { }

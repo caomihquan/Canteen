@@ -486,18 +486,82 @@
       </div>
       <div class="button-toolbar">
         <span class="icon-General-3"></span>
-        <span>Xuất khẩu</span>
-      </div>
-      <div class="button-toolbar">
-        <span class="icon-General-101"></span>
-        <span>Nhập khẩu</span>
+        <span>Cấp phát định mức</span>
       </div>
     </div>
   </div>
   <div class="mx-2">
-    <!-- <grid-view [template]="templategrid"></grid-view> -->
+    <grid-view [template]="templategrid"></grid-view>
   </div>
 </div>
+
+
+<ng-template #templategrid>
+
+  <ejs-grid class="border-0" [height]="height" [dataSource]='listCard' [pageSettings]="pageSettings">
+    <e-columns>
+        <e-column headerText="Mã thẻ" textAlign='Left' width=110>
+            <ng-template #template let-item>
+                <div>{{item.MaThe}}</div>
+            </ng-template>
+        </e-column>
+        <e-column headerText="Ghi chú" textAlign='Left' width=250>
+            <ng-template #template let-item>
+                <ejs-tooltip id='tooltip' [content]='item.Note' target="#targetCard">
+                    <div id="targetCard" style="width: 230px;" class="text-start text-truncate-2">{{item.Note}}</div>
+                </ejs-tooltip>
+            </ng-template>
+        </e-column>
+        <e-column headerText="Tình trạng" width=130 textAlign='Left'>
+            <ng-template #template let-item>
+                <div class="text-start" [ngClass]="{'statusCard0':!item.Status,'statusCard1':item.Status}">
+                    <div class="fs-12 fw-600" *ngIf="!item.Status">Đang sử dụng</div>
+                    <div class="fs-12 fw-600" *ngIf="item.Status">Chưa sử dụng</div>
+                </div>
+            </ng-template>
+        </e-column>
+        <e-column headerText="Định mức sử dụng" textAlign='Left' width=160>
+            <ng-template #template let-item>
+                <div class="text-center text-common-primary fs-12 fw-600">100 xu</div>
+            </ng-template>
+        </e-column>
+        <e-column headerText="Hạn mức sử dụng" textAlign='Left' width=160>
+          <ng-template #template let-item>
+              <div class="text-center text-common-primary fs-12 fw-600">100 xu</div>
+          </ng-template>
+      </e-column>
+        <e-column headerText="Lần nạp gần nhất" textAlign='Left' width=150>
+            <ng-template #template let-item>
+                <div class="d-flex gap-2">
+                    <div class="fs-12">{{item.LanNapGanNhat | date:'dd/MM/yyyy'}}</div>
+                </div>
+            </ng-template>
+        </e-column>
+        <e-column headerText="Lịch sử cấp phát" textAlign='Center' width=140>
+            <ng-template #template let-item>
+                <div data-bs-target="#modalHistoryCapPhat" data-bs-toggle="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+      <path d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+                </div>
+            </ng-template>
+        </e-column>
+        <e-column headerText="Lịch sử xu" textAlign='Center' width=140>
+            <ng-template #template let-item>
+                <div data-bs-target="#modalHistoryXu" data-bs-toggle="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+      <path d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+                </div>
+            </ng-template>
+        </e-column>
+    </e-columns>
+  </ejs-grid>
+</ng-template>
 
 <!-- modal Thêm -->
 <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="modalAddLabel" aria-hidden="false">
