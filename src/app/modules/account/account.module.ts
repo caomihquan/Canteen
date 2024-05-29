@@ -19,7 +19,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children:[
       {
-        path: '', component: MemberComponent
+        path: 'danh-sach-nhan-vien', component: MemberComponent
       },
       {
         path: 'cap-phat-dinh-muc', component: CapPhatDinhMucComponent

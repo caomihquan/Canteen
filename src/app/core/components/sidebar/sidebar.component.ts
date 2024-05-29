@@ -16,84 +16,121 @@ import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service'
 export class SidebarComponent implements OnInit {
   ListSideBar:Array<SidebarModel> = [];
   height = window.innerHeight;
-  ListBarNhanVien = [
-    {
-      MenuID: 'M001',
-      Label: 'Đặt món',
-      Icon:'basket',
-      route:'order',
-    },
-    {
-      MenuID: 'M002',
-      Label: 'Đặt món theo ngày',
-      Icon:'file-text',
-      route:'menu-employee',
-    },
-  ]
+  // ListBarNhanVien = [
+  //   {
+  //     MenuID: 'M001',
+  //     Label: 'Đặt món',
+  //     Icon:'basket',
+  //     route:'order',
+  //   },
+  //   {
+  //     MenuID: 'M002',
+  //     Label: 'Đặt món theo ngày',
+  //     Icon:'file-text',
+  //     route:'menu-employee',
+  //   },
+  // ]
   ListSideBarCheck:Array<SidebarModel> = [
     {
       FunctionID: 'M001',
-      DefaultName: 'Trang Chủ',
-      Icon:'house-door',
-      Url:'home',
+      DefaultName: 'Cơ cấu tổ chức',
+      Icon:'icon-Development-29',
+      Url:'co-cau-to-chuc',
       Active:false,
       Children:[],
-      ParentID:''
+      ParentID:null
     },
     {
       FunctionID: 'M002',
-      DefaultName: 'Thực đơn',
-      Icon:'file-text',
+      DefaultName: 'Danh mục',
+      Icon:'icon-Development-11',
       Url:'menu',
       Active:false,
       Children:[],
-      ParentID:''
+      ParentID:null
     },
     {
       FunctionID: 'M003',
-      DefaultName: 'Món ăn',
-       Icon:'ticket-perforated',
+      DefaultName: 'Quản lý thẻ nhân viên',
+      Icon:'icon-Users-37',
       Url: 'food',
       Active:false,
       Children:[],
-      ParentID:''
+      ParentID:null
     },
     {
       FunctionID: 'M004',
-      DefaultName: 'Nhân viên',
-      Icon:'people-fill',
+      DefaultName: 'Quản lý thẻ khách',
+      Icon:'icon-MapTravel-42',
       Url: 'member',
       Active:false,
       Children:[],
-      ParentID:''
+      ParentID:null
     },
     {
       FunctionID: 'M005',
-      DefaultName: 'Thẻ khách',
-      Icon:'person-badge-fill',
+      DefaultName: 'Báo cáo',
+      Icon:'icon-Files-55',
       Url:'guess',
       Active:false,
       Children:[],
-      ParentID:''
+      ParentID:null
     },
     {
       FunctionID: 'M006',
-      DefaultName: 'Đặt theo món',
-      Icon:'person-lines-fill',
-      Url: 'book-group',
+      DefaultName: 'Danh sách nhân viên',
+      Icon:'icon-Files-55',
+      Url:'/account/danh-sach-nhan-vien',
       Active:false,
       Children:[],
-      ParentID:''
+      ParentID:'M003'
     },
     {
       FunctionID: 'M007',
-      DefaultName: 'Quản trị',
-      Icon:'gear',
-      Url:'setting',
+      DefaultName: 'Cấp phát định mức sử dụng',
+      Icon:'icon-Files-55',
+      Url:'/account/cap-phat-dinh-muc',
       Active:false,
       Children:[],
-      ParentID:''
+      ParentID:'M003'
     },
+    {
+      FunctionID: 'M008',
+      DefaultName: 'Theo dõi lịch sử thanh toán',
+      Icon:'icon-Files-55',
+      Url:'/account/theo-doi-lich-su-thanh-toan',
+      Active:false,
+      Children:[],
+      ParentID:'M003'
+    }
+    ,
+    {
+      FunctionID: 'M009',
+      DefaultName: 'Danh sách thẻ khách',
+      Icon:'icon-Files-55',
+      Url:'/guess/danh-sach-the-khach',
+      Active:false,
+      Children:[],
+      ParentID:'M004'
+    },
+    {
+      FunctionID: 'M010',
+      DefaultName: 'Cấp phát thẻ khách',
+      Icon:'icon-Files-55',
+      Url:'/guess/cap-phat-the-khach',
+      Active:false,
+      Children:[],
+      ParentID:'M004'
+    },
+    {
+      FunctionID: 'M011',
+      DefaultName: 'Theo dõi lịch sử thanh toán',
+      Icon:'icon-Files-55',
+      Url:'/guess/theo-doi-lich-su-thanh-toan',
+      Active:false,
+      Children:[],
+      ParentID:'M004'
+    }
   ];
 
   tabSelected:any = 1;
@@ -138,6 +175,7 @@ export class SidebarComponent implements OnInit {
 
   getMenu(){
     this.ListSideBar = this.buildNested(this.ListSideBarCheck,null)
+    console.log( this.ListSideBar,1111);
 
     this._activeRoute.params.subscribe(_x=>{
       if(this.ListSideBarCheck.length > 0){

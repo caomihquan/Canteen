@@ -19,8 +19,9 @@ const routes: Routes = [
     path:'',
     canActivate: [AuthGuard],
     children:[
-      {path: '', component: GuessComponent},
+      {path: 'danh-sach-the-khach', component: GuessComponent},
       {path: 'cap-phat-the-khach', component: CapPhatTheKhachComponent},
+      {path: 'theo-doi-lich-su-thanh-toan', component: TheoDoiLichSuThanhToanComponent},
     ]
   },
 ];
