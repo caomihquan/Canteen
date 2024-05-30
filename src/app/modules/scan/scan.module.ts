@@ -20,7 +20,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     GridModule,
-    DialogAllModule,
     RouterModule.forChild(routes),
   ]
 })

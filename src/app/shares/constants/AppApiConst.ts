@@ -65,6 +65,9 @@ export const AppAPIConst = {
     Employees_get:'HrmMobileApp/CnB/Danhmuc/Employees_get',
     Employees_napxu:'HrmMobileApp/CnB/Danhmuc/Employees_napxu',
     Danhmuc_get:'HrmMobileApp/CnB/Danhmuc/Danhmuc_get'
+  },
+  Scan:{
+    Line_GetInfo:"HrmMobileApp/CnB/Danhmuc/Line_GetInfo"
   }
 
 }

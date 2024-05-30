@@ -135,30 +135,30 @@
 
     <e-column headerText="Tổng định mức" textAlign='Left' width=200>
       <ng-template #template let-item>
-          <span class="text-start">{{item.DinhMuc1}}</span>
+          <span class="text-start">{{item.TongDinhMuc}}</span>
       </ng-template>
     </e-column>
 
 
     <e-column headerText="Tổng tiền đã thanh toán" textAlign='Left' width=150>
       <ng-template #template let-item>
-          <span class="text-start">{{item.DinhMuc2}}</span>
+          <span class="text-start">{{item.TongTienDaThanhToan}}</span>
       </ng-template>
     </e-column>
     <e-column headerText="Định mức còn lại" textAlign='Left' width=180>
       <ng-template #template let-item>
         <div class="d-flex align-items-center gap-2 justify-content-center">
-          <div *ngIf="item.Total > 0">
+          <div *ngIf="item.DinhMucConLai > 0">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M7.99998 3.33337V12.6667M3.33331 8.00004H12.6666" stroke="#54BF61" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div *ngIf="item.Total < 0">
+          <div *ngIf="item.DinhMucConLai < 0">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3.33331 8H12.6666" stroke="#C13535" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div [ngClass]="{'Cong': item.Total > 0,'True': item.Total < 0}">0{{item.Total}}</div>
+          <div [ngClass]="{'Cong': item.DinhMucConLai > 0,'True': item.DinhMucConLai < 0}">{{item.DinhMucConLai}}</div>
         </div>
       </ng-template>
     </e-column>
