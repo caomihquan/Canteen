@@ -14,6 +14,8 @@ import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { enableRipple } from '@syncfusion/ej2-base';
+import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
+import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 
 
 enableRipple(true);
@@ -100,19 +102,30 @@ export class FoodShiftComponent implements OnInit {
     private _languageService:LanguageService,
     private _translate:TranslateService,
     private _menuService:MenuService,
-    private _userService:AuthService
+    private _userService:AuthService,
+    private _api:ApiHttpService
     ){
       _translate.use('vn');
       this.loginInfo = this._userService.getUser();
   }
   ngOnInit() {
-    this.getLanguage()
-    this._ordinal.finishSideBar.subscribe(res=>{
-      if(res){
-          this.GetMenu();
-      }
+    this.getListFoodLine();
+  }
+
+
+  getListFoodLine(){
+    this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
+      Option:3,
+      PageIndex:this.PageIndex,
+      PageSize:this.PageSize,
+    }).subscribe(res=>{
+      console.log(res);
+      this.listSubgroup = res.Data.Data
+      this.totalItems = res.Data.OutputParams.TotalItems
+
     })
   }
+
   getLanguage = async()=>{
     this.I18nLang = await this._languageService.getLanguage();
   }

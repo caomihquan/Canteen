@@ -131,6 +131,61 @@ export class SidebarComponent implements OnInit {
       Children:[],
       ParentID:'M004'
     }
+    ,
+    {
+      FunctionID: 'M012',
+      DefaultName: 'Nhóm phụ nhân viên',
+      Icon:'icon-Files-55',
+      Url:'/setting/emp-subgroup',
+      Active:false,
+      Children:[],
+      ParentID:'M002'
+    },
+    {
+      FunctionID: 'M013',
+      DefaultName: 'Ca ăn',
+      Icon:'icon-Files-55',
+      Url:'/setting/food-shift',
+      Active:false,
+      Children:[],
+      ParentID:'M002'
+    },
+    {
+      FunctionID: 'M014',
+      DefaultName: 'Loại nhân viên',
+      Icon:'icon-Files-55',
+      Url:'/setting/food-shift',
+      Active:false,
+      Children:[],
+      ParentID:'M002'
+    },
+    {
+      FunctionID: 'M015',
+      DefaultName: 'Địa điểm làm việc',
+      Icon:'icon-Files-55',
+      Url:'/setting/food-shift',
+      Active:false,
+      Children:[],
+      ParentID:'M002'
+    },
+    {
+      FunctionID: 'M016',
+      DefaultName: 'Transaction Entity',
+      Icon:'icon-Files-55',
+      Url:'/setting/food-shift',
+      Active:false,
+      Children:[],
+      ParentID:'M002'
+    },
+    {
+      FunctionID: 'M017',
+      DefaultName: 'Phân loại line món ăn',
+      Icon:'icon-Files-55',
+      Url:'/setting/food-line',
+      Active:false,
+      Children:[],
+      ParentID:'M002'
+    }
   ];
 
   tabSelected:any = 1;

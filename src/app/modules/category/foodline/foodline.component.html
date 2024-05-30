@@ -72,12 +72,12 @@
       <e-columns>
         <e-column headerText="Mã ca" textAlign='Left' width=50>
           <ng-template #template let-item>
-            <div>{{item.LineCode}}</div>
+            <div>{{item.MaLine}}</div>
           </ng-template>
         </e-column>
         <e-column headerText="Tên ca" width=40 textAlign='Left'>
           <ng-template #template let-item>
-               <span> {{item.LineName}}</span>
+               <span> {{item.TenLine}}</span>
 
           </ng-template>
         </e-column>
@@ -87,7 +87,7 @@
                 <div class="type-subgroup"  style="background-color: #FFF5E1;">
                   <i class="icon-Users-3"></i>
                   <div class="type-font" >
-                    {{item.LineType}}
+                    {{item.PhanLoaiLine}}
                   </div>
                 </div>
               </div>
@@ -95,12 +95,12 @@
         </e-column>
         <e-column headerText="Đơn giá" width=100 textAlign='Center'>
           <ng-template #template let-item>
-            <span class="fw-600 fs-14">{{item.Price}}</span>
+            <span class="fw-600 fs-14">{{item.DonGia}}</span>
           </ng-template>
         </e-column>
         <e-column headerText="Ngày hiệu lực" width=70 textAlign='Center'>
           <ng-template #template let-item>
-            <span class="fw-600 fs-14">{{item.EffectedDate | date:'dd/MM/yyyy'}}</span>
+            <span class="fw-600 fs-14">{{item.NgayHieuLuc | date:'dd/MM/yyyy'}}</span>
           </ng-template>
         </e-column>
         <e-column headerText="Người chỉnh sửa" width=70 textAlign='Center'>
@@ -110,8 +110,8 @@
                   <img src="assets/images/avatar.png" alt="">
               </div>
               <div class="user-info">
-                  <span class="name"> {{item.Name}}</span>
-                  <span class="time">{{item.ModifiedDate | date:'dd/MM/yyyy hh:mm'}}</span>
+                  <span class="name"> {{item.ModifiedBy}}</span>
+                  <span class="time">{{item.ModifiedOn | date:'dd/MM/yyyy hh:mm'}}</span>
               </div>
             </div>
           </ng-template>

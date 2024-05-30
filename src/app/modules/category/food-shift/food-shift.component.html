@@ -72,28 +72,28 @@
       <e-columns>
         <e-column headerText="Mã ca" textAlign='Left' width=50>
           <ng-template #template let-item>
-            <div>{{item.ShiftCode}}</div>
+            <div>{{item.MaCa}}</div>
           </ng-template>
         </e-column>
         <e-column headerText="Tên ca" width=40 textAlign='Left'>
           <ng-template #template let-item>
-               <span> {{item.ShiftName}}</span>
+               <span> {{item.TenCa}}</span>
 
           </ng-template>
         </e-column>
         <e-column headerText="Ghi chú" width=100 textAlign='Center'>
           <ng-template #template let-item>
-            <span class="fw-600 fs-14">{{item.Note}}</span>
+            <span class="fw-600 fs-14">{{item.GhiChu}}</span>
           </ng-template>
         </e-column>
         <e-column headerText="Thời gian bắt đầu" width=70 textAlign='Center'>
           <ng-template #template let-item>
-            <span class="fw-600 fs-14">{{item.StartTime | date:'hh:mm'}}</span>
+            <span class="fw-600 fs-14">{{item.ThoiGianBatDau}}</span>
           </ng-template>
         </e-column>
         <e-column headerText="Thời gian kết thúc" width=70 textAlign='Center'>
           <ng-template #template let-item>
-            <span class="fw-600 fs-14">{{item.StartTime | date:'hh:mm'}}</span>
+            <span class="fw-600 fs-14">{{item.ThoiGianKetThuc}}</span>
           </ng-template>
         </e-column>
         <!-- <e-column headerText="Xem lịch sử" width=70 textAlign='Center'>

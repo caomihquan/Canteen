@@ -47,4 +47,8 @@ export class CapPhatDinhMucComponent implements OnInit {
       }
     })
   }
+
+  CapPhatDinhMuc(){
+
+  }
 }

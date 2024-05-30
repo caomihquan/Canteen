@@ -13,6 +13,8 @@ import { MenuService } from '../../menu/services/menu.service';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
 import { fnCommon } from 'src/app/shares/helpers/common';
+import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
+import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 
 @Component({
   selector: 'app-foodline',
@@ -107,18 +109,14 @@ export class FoodlineComponent implements OnInit {
     private _languageService:LanguageService,
     private _translate:TranslateService,
     private _menuService:MenuService,
-    private _userService:AuthService
+    private _userService:AuthService,
+    private _api:ApiHttpService
     ){
       _translate.use('vn');
       this.loginInfo = this._userService.getUser();
   }
   ngOnInit() {
-    this.getLanguage()
-    this._ordinal.finishSideBar.subscribe(res=>{
-      if(res){
-          this.GetMenu();
-      }
-    })
+    this.getListFoodLine();
   }
   getLanguage = async()=>{
     this.I18nLang = await this._languageService.getLanguage();
@@ -161,6 +159,19 @@ export class FoodlineComponent implements OnInit {
 
         this.totalItems = res.Data.Output[0].TotalItems
       }
+    })
+  }
+
+  getListFoodLine(){
+    this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
+      Option:4,
+      PageIndex:this.PageIndex,
+      PageSize:this.PageSize,
+    }).subscribe(res=>{
+      console.log(res);
+      this.listSubgroup = res.Data.Data
+      this.totalItems = res.Data.OutputParams.totalItems
+
     })
   }
 
