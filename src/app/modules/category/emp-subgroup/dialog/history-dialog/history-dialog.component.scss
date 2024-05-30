@@ -1,0 +1,74 @@
+.header-dialog{
+  color: var(--Text1, #000);
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 100% */
+  letter-spacing: -0.22px;
+}
+.updated-person{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+    .img-user{
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 5px;
+    }
+    .info-user{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        .name{
+          color: var(--Text1, #000);
+
+          font-family: Inter;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 22px; /* 157.143% */
+          letter-spacing: -0.14px;
+        }
+        .code{
+          color: var(--Text1, #000);
+          font-family: Inter;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          letter-spacing: -0.12px;
+        }
+    }
+}
+.content{
+    white-space: normal;
+}
+.dialogContent{
+  margin-top: 25px;
+}
+
+.dialog-footer{
+  padding: 0 35px 25px 0;
+  .cancel-btn{
+    color: var(--White, #FFF);
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px; /* 157.143% */
+    letter-spacing: -0.14px;
+    display: inline-flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    background: var(--Color1, #007455);
+    border: none;
+    width: 120px;
+    height: 42px;
+  }
+}

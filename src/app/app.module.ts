@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { AuthService } from './shares/services/authentication/authentication.service';
 import { AppConfigService } from './shares/services/app-config/app-config.service';
+import { FoodshiftAddnewDialogComponent } from './modules/category/emp-subgroup/dialog/foodshift-addnew-dialog/foodshift-addnew-dialog.component';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http,'./assets/i18n/', '.json');
@@ -31,7 +33,7 @@ function appInitializer(authService: AuthService, config: AppConfigService) {
 }
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

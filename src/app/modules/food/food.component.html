@@ -1,276 +1,290 @@
 <div class="bg-white">
-    <div class="d-flex p-2 justify-content-between align-items-center mb-2" style="background-color: #f4f6fa;">
-        <div class="left-toolbar d-flex gap-3 justify-content-between align-items-center">
-            <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-ticket-perforated color-primary fs-24"></i>
-                <span class="label-vote">Món ăn</span>
-            </div>
-            <div class="position-relative">
-                <div class="icon-search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
-            stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-                </div>
-                <input (keyup)="onSearch($event)" [(ngModel)]="searchText" [placeholder]="'Rules.TimKiem' | translate" class="input-search" type="text">
-            </div>
+  <div class="d-flex p-2 justify-content-between align-items-center mb-2" style="background-color: #f4f6fa;">
+    <div class="left-toolbar d-flex gap-3 justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-2">
+        <i class="bi bi-ticket-perforated color-primary fs-24"></i>
+        <span class="label-vote">Món ăn</span>
+      </div>
+      <div class="position-relative">
+        <div class="icon-search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+              stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </div>
-        <div class="right-toolbar d-flex justify-content-between align-items-center gap-2">
+        <input (keyup)="onSearch($event)" [(ngModel)]="searchText" [placeholder]="'Rules.TimKiem' | translate"
+          class="input-search" type="text">
+      </div>
+    </div>
+    <div class="right-toolbar d-flex justify-content-between align-items-center gap-2">
 
-            <div class="add  d-flex align-items-center" data-bs-target="#modalAdd" data-bs-toggle="modal" (click)="AddFood()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <path d="M9 3.75V14.25M3.75 9H14.25" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" />
-      </svg>
-                <span class="text-common-black fs-14 fw-400">{{'Common.Add' | translate}}</span>
-            </div>
-            <div class="add  d-flex align-items-center" (click)="EditFood()" data-bs-target="#modalAdd" data-bs-toggle="modal">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <g clip-path="url(#clip0_55_5700)">
+      <div class="add  d-flex align-items-center" data-bs-target="#modalAdd" data-bs-toggle="modal" (click)="AddFood()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M9 3.75V14.25M3.75 9H14.25" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span class="text-common-black fs-14 fw-400">{{'Common.Add' | translate}}</span>
+      </div>
+      <div class="add  d-flex align-items-center" (click)="EditFood()" data-bs-target="#modalAdd"
+        data-bs-toggle="modal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <g clip-path="url(#clip0_55_5700)">
+            <path
+              d="M8.25 3.00017H5.1C3.83988 3.00017 3.20982 3.00017 2.72852 3.24541C2.30516 3.46112 1.96095 3.80533 1.74524 4.22869C1.5 4.70999 1.5 5.34005 1.5 6.60017V12.9002C1.5 14.1603 1.5 14.7903 1.74524 15.2716C1.96095 15.695 2.30516 16.0392 2.72852 16.2549C3.20982 16.5002 3.83988 16.5002 5.1 16.5002H11.4C12.6601 16.5002 13.2902 16.5002 13.7715 16.2549C14.1948 16.0392 14.539 15.695 14.7548 15.2716C15 14.7903 15 14.1603 15 12.9002V9.75017M5.99998 12.0002H7.25589C7.62277 12.0002 7.80622 12.0002 7.97885 11.9587C8.1319 11.922 8.27822 11.8614 8.41243 11.7791C8.5638 11.6864 8.69352 11.5567 8.95294 11.2972L16.125 4.12517C16.7463 3.50385 16.7463 2.49649 16.125 1.87517C15.5037 1.25385 14.4963 1.25385 13.875 1.87517L6.70293 9.04723C6.4435 9.30665 6.31378 9.43637 6.22102 9.58774C6.13878 9.72195 6.07817 9.86827 6.04143 10.0213C5.99998 10.194 5.99998 10.3774 5.99998 10.7443V12.0002Z"
+              stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <defs>
+            <clipPath id="clip0_55_5700">
+              <rect width="18" height="18" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+        <span class="text-common-black fs-14 fw-400">{{'Common.Edit' | translate}}</span>
+      </div>
+      <div class="add  d-flex align-items-center" (click)="DeleteMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
           <path
-            d="M8.25 3.00017H5.1C3.83988 3.00017 3.20982 3.00017 2.72852 3.24541C2.30516 3.46112 1.96095 3.80533 1.74524 4.22869C1.5 4.70999 1.5 5.34005 1.5 6.60017V12.9002C1.5 14.1603 1.5 14.7903 1.74524 15.2716C1.96095 15.695 2.30516 16.0392 2.72852 16.2549C3.20982 16.5002 3.83988 16.5002 5.1 16.5002H11.4C12.6601 16.5002 13.2902 16.5002 13.7715 16.2549C14.1948 16.0392 14.539 15.695 14.7548 15.2716C15 14.7903 15 14.1603 15 12.9002V9.75017M5.99998 12.0002H7.25589C7.62277 12.0002 7.80622 12.0002 7.97885 11.9587C8.1319 11.922 8.27822 11.8614 8.41243 11.7791C8.5638 11.6864 8.69352 11.5567 8.95294 11.2972L16.125 4.12517C16.7463 3.50385 16.7463 2.49649 16.125 1.87517C15.5037 1.25385 14.4963 1.25385 13.875 1.87517L6.70293 9.04723C6.4435 9.30665 6.31378 9.43637 6.22102 9.58774C6.13878 9.72195 6.07817 9.86827 6.04143 10.0213C5.99998 10.194 5.99998 10.3774 5.99998 10.7443V12.0002Z"
+            d="M12 4.5V3.9C12 3.05992 12 2.63988 11.8365 2.31901C11.6927 2.03677 11.4632 1.8073 11.181 1.66349C10.8601 1.5 10.4401 1.5 9.6 1.5H8.4C7.55992 1.5 7.13988 1.5 6.81901 1.66349C6.53677 1.8073 6.3073 2.03677 6.16349 2.31901C6 2.63988 6 3.05992 6 3.9V4.5M7.5 8.625V12.375M10.5 8.625V12.375M2.25 4.5H15.75M14.25 4.5V12.9C14.25 14.1601 14.25 14.7902 14.0048 15.2715C13.789 15.6948 13.4448 16.039 13.0215 16.2548C12.5402 16.5 11.9101 16.5 10.65 16.5H7.35C6.08988 16.5 5.45982 16.5 4.97852 16.2548C4.55516 16.039 4.21095 15.6948 3.99524 15.2715C3.75 14.7902 3.75 14.1601 3.75 12.9V4.5"
             stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </g>
-        <defs>
-          <clipPath id="clip0_55_5700">
-            <rect width="18" height="18" fill="white" />
-          </clipPath>
-        </defs>
-      </svg>
-                <span class="text-common-black fs-14 fw-400">{{'Common.Edit' | translate}}</span>
-            </div>
-            <div class="add  d-flex align-items-center" (click)="DeleteMenu()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <path
-          d="M12 4.5V3.9C12 3.05992 12 2.63988 11.8365 2.31901C11.6927 2.03677 11.4632 1.8073 11.181 1.66349C10.8601 1.5 10.4401 1.5 9.6 1.5H8.4C7.55992 1.5 7.13988 1.5 6.81901 1.66349C6.53677 1.8073 6.3073 2.03677 6.16349 2.31901C6 2.63988 6 3.05992 6 3.9V4.5M7.5 8.625V12.375M10.5 8.625V12.375M2.25 4.5H15.75M14.25 4.5V12.9C14.25 14.1601 14.25 14.7902 14.0048 15.2715C13.789 15.6948 13.4448 16.039 13.0215 16.2548C12.5402 16.5 11.9101 16.5 10.65 16.5H7.35C6.08988 16.5 5.45982 16.5 4.97852 16.2548C4.55516 16.039 4.21095 15.6948 3.99524 15.2715C3.75 14.7902 3.75 14.1601 3.75 12.9V4.5"
-          stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-                <span class="text-common-black fs-14 fw-400">{{'Common.Delete' | translate}}</span>
-            </div>
-            <div data-bs-target="#modalHistory" data-bs-toggle="modal" class="add  d-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <path
-          d="M12 4.5V3.9C12 3.05992 12 2.63988 11.8365 2.31901C11.6927 2.03677 11.4632 1.8073 11.181 1.66349C10.8601 1.5 10.4401 1.5 9.6 1.5H8.4C7.55992 1.5 7.13988 1.5 6.81901 1.66349C6.53677 1.8073 6.3073 2.03677 6.16349 2.31901C6 2.63988 6 3.05992 6 3.9V4.5M7.5 8.625V12.375M10.5 8.625V12.375M2.25 4.5H15.75M14.25 4.5V12.9C14.25 14.1601 14.25 14.7902 14.0048 15.2715C13.789 15.6948 13.4448 16.039 13.0215 16.2548C12.5402 16.5 11.9101 16.5 10.65 16.5H7.35C6.08988 16.5 5.45982 16.5 4.97852 16.2548C4.55516 16.039 4.21095 15.6948 3.99524 15.2715C3.75 14.7902 3.75 14.1601 3.75 12.9V4.5"
-          stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-                <span class="text-common-black fs-14 fw-400">Xem lịch sử giá</span>
-            </div>
-        </div>
+        </svg>
+        <span class="text-common-black fs-14 fw-400">{{'Common.Delete' | translate}}</span>
+      </div>
+      <div data-bs-target="#modalHistory" data-bs-toggle="modal" class="add  d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path
+            d="M12 4.5V3.9C12 3.05992 12 2.63988 11.8365 2.31901C11.6927 2.03677 11.4632 1.8073 11.181 1.66349C10.8601 1.5 10.4401 1.5 9.6 1.5H8.4C7.55992 1.5 7.13988 1.5 6.81901 1.66349C6.53677 1.8073 6.3073 2.03677 6.16349 2.31901C6 2.63988 6 3.05992 6 3.9V4.5M7.5 8.625V12.375M10.5 8.625V12.375M2.25 4.5H15.75M14.25 4.5V12.9C14.25 14.1601 14.25 14.7902 14.0048 15.2715C13.789 15.6948 13.4448 16.039 13.0215 16.2548C12.5402 16.5 11.9101 16.5 10.65 16.5H7.35C6.08988 16.5 5.45982 16.5 4.97852 16.2548C4.55516 16.039 4.21095 15.6948 3.99524 15.2715C3.75 14.7902 3.75 14.1601 3.75 12.9V4.5"
+            stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="text-common-black fs-14 fw-400">Xem lịch sử giá</span>
+      </div>
     </div>
-    <div class="mx-2">
-        <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listFood' [allowSorting]="true" [pageSettings]="pageSettings">
-            <e-columns>
-                <e-column headerText="Tên món ăn" textAlign='Left' width=200>
-                    <ng-template #template let-item>
-                        <div class="d-flex gap-2 align-items-center">
-                            <img src="{{item.img}}" alt="" srcset="" width="40" height="40">
-                            <div style="width: 200px" class="text-common-black text-truncate fs-14">{{item.Name}}</div>
-                        </div>
-                    </ng-template>
-                </e-column>
-                <e-column headerText="Phân loại" width=120 textAlign='Left'>
-                    <ng-template #template let-item>
-                        <div class="text-start" [ngClass]="{'status1': item.Type == 1,'status2': item.Type == 2,'status3': item.Type == 3}">
-                            <div *ngIf="item.Type == 1">Món ăn chính</div>
-                            <div *ngIf="item.Type == 2">Món ăn phụ</div>
-                            <div *ngIf="item.Type ==3">Tráng miệng</div>
-                        </div>
-                    </ng-template>
-                </e-column>
-                <e-column headerText="Đơn giá" textAlign='Left' width=100>
-                    <ng-template #template let-item>
-                        <div class="text-common-primary fs-14">{{item.Price}}</div>
-                    </ng-template>
-                </e-column>
-                <e-column headerText="Mô tả món ăn" textAlign='Left' width=280>
-                    <ng-template #template let-item>
-                        <ejs-tooltip id='tooltip' [content]='item.Subject' target="#target">
-                            <div id="target" style="width: 280px;" class="text-start text-truncate-2">{{item.Mota}}</div>
-                        </ejs-tooltip>
-                    </ng-template>
-                </e-column>
-                <e-column headerText="Người chỉnh sửa" textAlign='Left' width=150>
-                    <ng-template #template let-item>
-                        <div class="d-flex align-items-center gap-2">
-                            <img [src]="getPhoto(item.CreatedBy)" alt="" class="img-table">
-                            <div class="d-flex flex-column">
-                                <div>Cao Minh Quân</div>
-                                <div class="d-flex gap-2">
-                                    <span class="fs-12">{{ item.CreatedOn | date : "dd/MM/yyyy" }}</span>
-                                    <span class="fs-12">{{ item.CreatedOn | date : "shortTime" }} </span>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                </e-column>
-                <e-column headerText="Người tạo" textAlign='Left' width=150>
-                    <ng-template #template let-item>
-                        <div class="d-flex align-items-center gap-2">
-                            <img [src]="getPhoto(item.CreatedBy)" alt="" class="img-table">
-                            <div class="d-flex flex-column">
-                                <div>Cao Minh Quân</div>
-                                <div class="d-flex gap-2">
-                                    <span class="fs-12">{{ item.CreatedOn | date : "dd/MM/yyyy" }}</span>
-                                    <span class="fs-12">{{ item.CreatedOn | date : "shortTime" }} </span>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                </e-column>
-            </e-columns>
-        </ejs-grid>
-        <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSize" (click)="ClickPagerIndex($event)">
-        </ejs-pager>
-    </div>
+  </div>
+  <div class="mx-2">
+    <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions'
+      [dataSource]='listFood' [allowSorting]="true" [pageSettings]="pageSettings">
+      <e-columns>
+        <e-column headerText="Tên món ăn" textAlign='Left' width=200>
+          <ng-template #template let-item>
+            <div class="d-flex gap-2 align-items-center">
+              <img src="{{item.img}}" alt="" srcset="" width="40" height="40">
+              <div style="width: 200px" class="text-common-black text-truncate fs-14">{{item.Name}}</div>
+            </div>
+          </ng-template>
+        </e-column>
+        <e-column headerText="Phân loại" width=120 textAlign='Left'>
+          <ng-template #template let-item>
+            <div class="text-start"
+              [ngClass]="{'status1': item.Type == 1,'status2': item.Type == 2,'status3': item.Type == 3}">
+              <div *ngIf="item.Type == 1">Món ăn chính</div>
+              <div *ngIf="item.Type == 2">Món ăn phụ</div>
+              <div *ngIf="item.Type ==3">Tráng miệng</div>
+            </div>
+          </ng-template>
+        </e-column>
+        <e-column headerText="Đơn giá" textAlign='Left' width=100>
+          <ng-template #template let-item>
+            <div class="text-common-primary fs-14">{{item.Price}}</div>
+          </ng-template>
+        </e-column>
+        <e-column headerText="Mô tả món ăn" textAlign='Left' width=280>
+          <ng-template #template let-item>
+            <ejs-tooltip id='tooltip' [content]='item.Subject' target="#target">
+              <div id="target" style="width: 280px;" class="text-start text-truncate-2">{{item.Mota}}</div>
+            </ejs-tooltip>
+          </ng-template>
+        </e-column>
+        <e-column headerText="Người chỉnh sửa" textAlign='Left' width=150>
+          <ng-template #template let-item>
+            <div class="d-flex align-items-center gap-2">
+              <img [src]="getPhoto(item.CreatedBy)" alt="" class="img-table">
+              <div class="d-flex flex-column">
+                <div>Cao Minh Quân</div>
+                <div class="d-flex gap-2">
+                  <span class="fs-12">{{ item.CreatedOn | date : "dd/MM/yyyy" }}</span>
+                  <span class="fs-12">{{ item.CreatedOn | date : "shortTime" }} </span>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </e-column>
+        <e-column headerText="Người tạo" textAlign='Left' width=150>
+          <ng-template #template let-item>
+            <div class="d-flex align-items-center gap-2">
+              <img [src]="getPhoto(item.CreatedBy)" alt="" class="img-table">
+              <div class="d-flex flex-column">
+                <div>Cao Minh Quân</div>
+                <div class="d-flex gap-2">
+                  <span class="fs-12">{{ item.CreatedOn | date : "dd/MM/yyyy" }}</span>
+                  <span class="fs-12">{{ item.CreatedOn | date : "shortTime" }} </span>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </e-column>
+      </e-columns>
+    </ejs-grid>
+    <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSize" (click)="ClickPagerIndex($event)">
+    </ejs-pager>
+  </div>
 </div>
 
 <!-- modal Thêm -->
 
 
 <div class="modal fade" id="modalHistory" tabindex="-1" aria-labelledby="modalHistoryLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-scrollable" style="max-width: 867px;">
-        <div class="modal-content " style="height: 714px;">
-            <div class="modal-header">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <div class="text-common-black fs-18 fw-500">Lịch sử giá</div>
-                    <div data-bs-dismiss="modal" class="pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 867px;">
+    <div class="modal-content " style="height: 714px;">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="text-common-black fs-18 fw-500">Lịch sử giá</div>
+          <div data-bs-dismiss="modal" class="pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="history-header d-flex gap-2 align-items-center">
+          <img width="95" height="95" src="./assets/images/avatar.png" alt="" srcset="">
+          <div class="align-items-start d-flex flex-column gap-2">
+            <div class="text-common-black fs-14 fw-600">Cơm tấm</div>
+            <div class="text-common-black fs-14 fw-400 text-truncate-2">Cơm với sườn cốt nết nướng, thêm trái trứng,
+              chút bì chả chan nước mắt</div>
+            <div class="status1">Món ăn chính</div>
+          </div>
+        </div>
+        <div class="mt-4">
+          <ejs-grid (recordClick)="selectedRowTable($event)" [height]="heightHistory" [sortSettings]='sortOptions'
+            [dataSource]='listHistory' [allowSorting]="true" [pageSettings]="pageSettings">
+            <e-columns>
+              <e-column headerText="Ngày cập nhật" textAlign='Left' width=100>
+                <ng-template #template let-item>
+                  <div class="d-flex gap-2">
+                    <span class="fs-12">{{ item.CreatedOn | date : "dd/MM/yyyy" }}</span>
+                    <span class="fs-12">{{ item.CreatedOn | date : "shortTime" }} </span>
+                  </div>
+                </ng-template>
+              </e-column>
+              <e-column headerText="Người cập nhật" textAlign='Left' width=140>
+                <ng-template #template let-item>
+                  <div class="d-flex align-items-center gap-2">
+                    <img [src]="getPhoto(item.CreatedBy)" alt="" class="img-table">
+                    <div class="fs-14">Cao Minh Quân</div>
+                  </div>
+                </ng-template>
+              </e-column>
+              <e-column headerText="Ghi chú" textAlign='Left' width=220>
+                <ng-template #template let-item>
+                  <ejs-tooltip id='tooltipghichu' [content]='item.Note' target="#ghichutarget">
+                    <div style="width: 200px;" id="ghichutarget" class="text-start text-truncate-2 fs-14">{{item.Note}}
                     </div>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="history-header d-flex gap-2 align-items-center">
-                    <img width="95" height="95" src="./assets/images/avatar.png" alt="" srcset="">
-                    <div class="align-items-start d-flex flex-column gap-2">
-                        <div class="text-common-black fs-14 fw-600">Cơm tấm</div>
-                        <div class="text-common-black fs-14 fw-400 text-truncate-2">Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt</div>
-                        <div class="status1">Món ăn chính</div>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <ejs-grid (recordClick)="selectedRowTable($event)" [height]="heightHistory" [sortSettings]='sortOptions' [dataSource]='listHistory' [allowSorting]="true" [pageSettings]="pageSettings">
-                        <e-columns>
-                            <e-column headerText="Ngày cập nhật" textAlign='Left' width=100>
-                                <ng-template #template let-item>
-                                    <div class="d-flex gap-2">
-                                        <span class="fs-12">{{ item.CreatedOn | date : "dd/MM/yyyy" }}</span>
-                                        <span class="fs-12">{{ item.CreatedOn | date : "shortTime" }} </span>
-                                    </div>
-                                </ng-template>
-                            </e-column>
-                            <e-column headerText="Người cập nhật" textAlign='Left' width=140>
-                                <ng-template #template let-item>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <img [src]="getPhoto(item.CreatedBy)" alt="" class="img-table">
-                                        <div class="fs-14">Cao Minh Quân</div>
-                                    </div>
-                                </ng-template>
-                            </e-column>
-                            <e-column headerText="Ghi chú" textAlign='Left' width=220>
-                                <ng-template #template let-item>
-                                    <ejs-tooltip id='tooltipghichu' [content]='item.Note' target="#ghichutarget">
-                                        <div style="width: 200px;" id="ghichutarget" class="text-start text-truncate-2 fs-14">{{item.Note}}</div>
-                                    </ejs-tooltip>
-                                </ng-template>
-                            </e-column>
-                            <e-column headerText="Đơn giá" textAlign='Left' width=100>
-                                <ng-template #template let-item>
-                                    <div class="fs-14">{{item.Price}} VND</div>
-                                </ng-template>
-                            </e-column>
-                        </e-columns>
-                    </ejs-grid>
-                </div>
-            </div>
-            <!-- <div class="p-4 toolbar-modal d-flex justify-content-end align-items-center position-sticky bottom-0 bg-white z-1 pb-3">
+                  </ejs-tooltip>
+                </ng-template>
+              </e-column>
+              <e-column headerText="Đơn giá" textAlign='Left' width=100>
+                <ng-template #template let-item>
+                  <div class="fs-14">{{item.Price}} VND</div>
+                </ng-template>
+              </e-column>
+            </e-columns>
+          </ejs-grid>
+        </div>
+      </div>
+      <!-- <div class="p-4 toolbar-modal d-flex justify-content-end align-items-center position-sticky bottom-0 bg-white z-1 pb-3">
         <div class="d-flex gap-2 justify-content-end">
           <div class="modal-submit">
             {{'Payment.Dang' | translate}}
           </div>
         </div>
       </div> -->
-        </div>
     </div>
-    <div data-bs-dismiss="modal" id="hideModalAdd" style="display:none"></div>
+  </div>
+  <div data-bs-dismiss="modal" id="hideModalAdd" style="display:none"></div>
 </div>
 
 <!-- modal lịch sử -->
 <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="modalAddLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-scrollable" style="max-width: 585px;">
-        <div class="modal-content " style="height: 714px;">
-            <div class="modal-header">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <div class="text-common-black fs-18 fw-500">Thêm món ăn</div>
-                    <div data-bs-dismiss="modal" class="pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 585px;">
+    <div class="modal-content " style="height: 714px;">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="text-common-black fs-18 fw-500">Thêm món ăn</div>
+          <div data-bs-dismiss="modal" class="pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="text-common-black fw-500 fs-14 pb-1">{{'Rules.TieuDe' | translate}}</div>
-                <div>
-                    <input [(ngModel)]="tenMonAn" />
-                </div>
-                <div class="align-items-baseline d-flex justify-content-between gap-4 pt-4">
-                    <div class="flex-shrink-1 w-100">
-                        <div class="text-common-black fw-500 fs-14 pb-1">{{'Rules.PhanLoai' | translate}}</div>
-                        <div>
-                            <div class="dropdown">
-                                <div class="input-dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div>{{selectPhanLoai?.Name}}</div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                                </div>
-                                <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton1">
-                                    <li *ngFor="let item of ListPhanLoai" (click)="selectPhanLoai = item">{{item.Name}}</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex-shrink-1 w-100">
-                        <div class="text-common-black fw-500 fs-14 pb-1">Đơn giá</div>
-                        <div>
-                            <input [(ngModel)]="donGia" type="number" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="text-common-black fw-500 fs-14 pt-4 pb-1">{{'Rules.MoTaNganGon' | translate}}</div>
-                <div>
-                    <textarea name="" id="" rows="5" [(ngModel)]="moTa"></textarea>
-                </div>
-                <div class="d-flex align-items-center gap-5 mt-4">
-                    <div class="image-picker rounded border d-flex justify-content-center align-items-center">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40.2968 52.0646H17.5737C16.0885 52.0646 15.3459 52.0646 15.002 51.7709C14.7037 51.516 14.5453 51.1338 14.5761 50.7426C14.6116 50.2918 15.1367 49.7667 16.1869 48.7164L37.0328 27.8705C38.0037 26.8997 38.4892 26.4142 39.0489 26.2323C39.5413 26.0723 40.0717 26.0723 40.5641 26.2323C41.1239 26.4142 41.6093 26.8996 42.5802 27.8705L52.0646 37.3549V40.2968M40.2968 52.0646C44.4159 52.0646 46.4755 52.0646 48.0488 51.2629C49.4327 50.5578 50.5578 49.4327 51.2629 48.0488C52.0646 46.4755 52.0646 44.4159 52.0646 40.2968M40.2968 52.0646H19.7033C15.5842 52.0646 13.5246 52.0646 11.9514 51.2629C10.5675 50.5578 9.44231 49.4327 8.73718 48.0488C7.93555 46.4755 7.93555 44.4159 7.93555 40.2968V19.7033C7.93555 15.5842 7.93555 13.5246 8.73718 11.9514C9.44231 10.5675 10.5675 9.44231 11.9514 8.73718C13.5246 7.93555 15.5842 7.93555 19.7033 7.93555H40.2968C44.4159 7.93555 46.4755 7.93555 48.0488 8.73718C49.4327 9.44231 50.5578 10.5675 51.2629 11.9514C52.0646 13.5246 52.0646 15.5842 52.0646 19.7033V40.2968M26.3226 21.4194C26.3226 24.1274 24.1274 26.3226 21.4194 26.3226C18.7114 26.3226 16.5162 24.1274 16.5162 21.4194C16.5162 18.7114 18.7114 16.5162 21.4194 16.5162C24.1274 16.5162 26.3226 18.7114 26.3226 21.4194Z" stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-                    </div>
-                    <div class="d-flex flex-column gap-4">
-                        <div class="d-flex gap-2 align-items-center">
-                            <div class="fs-14">Màu chữ:</div>
-                            <div class="item-color rounded" style="background-color: black;"></div>
-                        </div>
-                        <div class="d-flex gap-2 align-items-center">
-                            <div class="fs-14">Màu nền:</div>
-                            <div class="item-color rounded" style="background-color: green;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="p-4 toolbar-modal d-flex justify-content-end align-items-center position-sticky bottom-0 bg-white z-1 pb-3">
-                <div class="d-flex gap-2 justify-content-end">
-                    <div class="modal-submit">
-                        {{'Payment.Dang' | translate}}
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="modal-body">
+        <div class="text-common-black fw-500 fs-14 pb-1">{{'Rules.TieuDe' | translate}}</div>
+        <div>
+          <input [(ngModel)]="tenMonAn" />
+        </div>
+        <div class="align-items-baseline d-flex justify-content-between gap-4 pt-4">
+          <div class="flex-shrink-1 w-100">
+            <div class="text-common-black fw-500 fs-14 pb-1">{{'Rules.PhanLoai' | translate}}</div>
+            <div>
+              <div class="dropdown">
+                <div class="input-dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <div>{{selectPhanLoai?.Name}}</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton1">
+                  <li *ngFor="let item of ListPhanLoai" (click)="selectPhanLoai = item">{{item.Name}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="flex-shrink-1 w-100">
+            <div class="text-common-black fw-500 fs-14 pb-1">Đơn giá</div>
+            <div>
+              <input [(ngModel)]="donGia" type="number" />
+            </div>
+          </div>
+        </div>
+
+        <div class="text-common-black fw-500 fs-14 pt-4 pb-1">{{'Rules.MoTaNganGon' | translate}}</div>
+        <div>
+          <textarea name="" id="" rows="5" [(ngModel)]="moTa"></textarea>
+        </div>
+        <div class="d-flex align-items-center gap-5 mt-4">
+          <div class="image-picker rounded border d-flex justify-content-center align-items-center">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M40.2968 52.0646H17.5737C16.0885 52.0646 15.3459 52.0646 15.002 51.7709C14.7037 51.516 14.5453 51.1338 14.5761 50.7426C14.6116 50.2918 15.1367 49.7667 16.1869 48.7164L37.0328 27.8705C38.0037 26.8997 38.4892 26.4142 39.0489 26.2323C39.5413 26.0723 40.0717 26.0723 40.5641 26.2323C41.1239 26.4142 41.6093 26.8996 42.5802 27.8705L52.0646 37.3549V40.2968M40.2968 52.0646C44.4159 52.0646 46.4755 52.0646 48.0488 51.2629C49.4327 50.5578 50.5578 49.4327 51.2629 48.0488C52.0646 46.4755 52.0646 44.4159 52.0646 40.2968M40.2968 52.0646H19.7033C15.5842 52.0646 13.5246 52.0646 11.9514 51.2629C10.5675 50.5578 9.44231 49.4327 8.73718 48.0488C7.93555 46.4755 7.93555 44.4159 7.93555 40.2968V19.7033C7.93555 15.5842 7.93555 13.5246 8.73718 11.9514C9.44231 10.5675 10.5675 9.44231 11.9514 8.73718C13.5246 7.93555 15.5842 7.93555 19.7033 7.93555H40.2968C44.4159 7.93555 46.4755 7.93555 48.0488 8.73718C49.4327 9.44231 50.5578 10.5675 51.2629 11.9514C52.0646 13.5246 52.0646 15.5842 52.0646 19.7033V40.2968M26.3226 21.4194C26.3226 24.1274 24.1274 26.3226 21.4194 26.3226C18.7114 26.3226 16.5162 24.1274 16.5162 21.4194C16.5162 18.7114 18.7114 16.5162 21.4194 16.5162C24.1274 16.5162 26.3226 18.7114 26.3226 21.4194Z"
+                stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="d-flex flex-column gap-4">
+            <div class="d-flex gap-2 align-items-center">
+              <div class="fs-14">Màu chữ:</div>
+              <div class="item-color rounded" style="background-color: black;"></div>
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+              <div class="fs-14">Màu nền:</div>
+              <div class="item-color rounded" style="background-color: green;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="p-4 toolbar-modal d-flex justify-content-end align-items-center position-sticky bottom-0 bg-white z-1 pb-3">
+        <div class="d-flex gap-2 justify-content-end">
+          <div class="modal-submit">
+            {{'Payment.Dang' | translate}}
+          </div>
+        </div>
+      </div>
     </div>
-    <div data-bs-dismiss="modal" id="hideModalAdd" style="display:none"></div>
+  </div>
+  <div data-bs-dismiss="modal" id="hideModalAdd" style="display:none"></div>
 </div>
