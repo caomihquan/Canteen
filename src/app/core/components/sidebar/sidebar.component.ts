@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
+import { SidebarModel } from 'src/app/shares/models/SidebarModel';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
@@ -13,64 +14,123 @@ import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service'
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  ListSideBar:Array<any> = [];
-  ListBarNhanVien = [
+  ListSideBar:Array<SidebarModel> = [];
+  height = window.innerHeight;
+  // ListBarNhanVien = [
+  //   {
+  //     MenuID: 'M001',
+  //     Label: 'Đặt món',
+  //     Icon:'basket',
+  //     route:'order',
+  //   },
+  //   {
+  //     MenuID: 'M002',
+  //     Label: 'Đặt món theo ngày',
+  //     Icon:'file-text',
+  //     route:'menu-employee',
+  //   },
+  // ]
+  ListSideBarCheck:Array<SidebarModel> = [
     {
-      MenuID: 'M001',
-      Label: 'Đặt món',
-      Icon:'basket',
-      route:'order',
+      FunctionID: 'M001',
+      DefaultName: 'Cơ cấu tổ chức',
+      Icon:'icon-Development-29',
+      Url:'co-cau-to-chuc',
+      Active:false,
+      Children:[],
+      ParentID:null
     },
     {
-      MenuID: 'M002',
-      Label: 'Đặt món theo ngày',
-      Icon:'file-text',
-      route:'menu-employee',
-    },
-  ]
-  ListSideBarCheck = [
-    {
-      MenuID: 'M001',
-      Label: 'Trang Chủ',
-      Icon:'house-door',
-      route:'home',
+      FunctionID: 'M002',
+      DefaultName: 'Danh mục',
+      Icon:'icon-Development-11',
+      Url:'menu',
+      Active:false,
+      Children:[],
+      ParentID:null
     },
     {
-      MenuID: 'M002',
-      Label: 'Thực đơn',
-      Icon:'file-text',
-      route:'menu',
+      FunctionID: 'M003',
+      DefaultName: 'Quản lý thẻ nhân viên',
+      Icon:'icon-Users-37',
+      Url: 'food',
+      Active:false,
+      Children:[],
+      ParentID:null
     },
     {
-      MenuID: 'M003',
-      Label: 'Món ăn',
-       Icon:'ticket-perforated',
-      route: 'food',
+      FunctionID: 'M004',
+      DefaultName: 'Quản lý thẻ khách',
+      Icon:'icon-MapTravel-42',
+      Url: 'member',
+      Active:false,
+      Children:[],
+      ParentID:null
     },
     {
-      MenuID: 'M004',
-      Label: 'Nhân viên',
-      Icon:'people-fill',
-      route: 'member',
+      FunctionID: 'M005',
+      DefaultName: 'Báo cáo',
+      Icon:'icon-Files-55',
+      Url:'guess',
+      Active:false,
+      Children:[],
+      ParentID:null
     },
     {
-      MenuID: 'M005',
-      Label: 'Thẻ khách',
-      Icon:'person-badge-fill',
-      route:'guess',
+      FunctionID: 'M006',
+      DefaultName: 'Danh sách nhân viên',
+      Icon:'icon-Files-55',
+      Url:'/account/danh-sach-nhan-vien',
+      Active:false,
+      Children:[],
+      ParentID:'M003'
     },
     {
-      MenuID: 'M006',
-      Label: 'Đặt theo món',
-      Icon:'person-lines-fill',
-      route: 'book-group',
+      FunctionID: 'M007',
+      DefaultName: 'Cấp phát định mức sử dụng',
+      Icon:'icon-Files-55',
+      Url:'/account/cap-phat-dinh-muc',
+      Active:false,
+      Children:[],
+      ParentID:'M003'
     },
     {
-      MenuID: 'M007',
-      Label: 'Quản trị',
-      Icon:'gear',
-      route:'setting',
+      FunctionID: 'M008',
+      DefaultName: 'Theo dõi lịch sử thanh toán',
+      Icon:'icon-Files-55',
+      Url:'/account/theo-doi-lich-su-thanh-toan',
+      Active:false,
+      Children:[],
+      ParentID:'M003'
+    }
+    ,
+    {
+      FunctionID: 'M009',
+      DefaultName: 'Danh sách thẻ khách',
+      Icon:'icon-Files-55',
+      Url:'/guess/danh-sach-the-khach',
+      Active:false,
+      Children:[],
+      ParentID:'M004'
     },
+    {
+      FunctionID: 'M010',
+      DefaultName: 'Cấp phát thẻ khách',
+      Icon:'icon-Files-55',
+      Url:'/guess/cap-phat-the-khach',
+      Active:false,
+      Children:[],
+      ParentID:'M004'
+    },
+    {
+      FunctionID: 'M011',
+      DefaultName: 'Theo dõi lịch sử thanh toán',
+      Icon:'icon-Files-55',
+      Url:'/guess/theo-doi-lich-su-thanh-toan',
+      Active:false,
+      Children:[],
+      ParentID:'M004'
+    }
   ];
 
   tabSelected:any = 1;
@@ -95,103 +155,67 @@ export class SidebarComponent implements OnInit {
   }
 
   fnClickTab(item:any){
-
-    this.tabSelected = item.MenuID
-    this._router.navigate([item.route])
-    return
-    this._apiHttp.post(AppAPIConst.SYSTEM.CheckPermission,'',{
-      MenuID:item.MenuID
-    }).subscribe(res=>{
-      debugger
-      if(!res.Error && res.Data.OutputParams.IsView){
-        item.Icon = item.Icon.replaceAll('stroke="white"','stroke="#0174BE"')
-        this.ListSideBar.filter(x=>x.MenuID != item.MenuID).forEach(y=>{
-          y.Icon = y.Icon.replaceAll('stroke="#0174BE"','stroke="white"');
-        })
-        this.tabSelected = item.MenuID
-        this._router.navigate([item.route])
-      }
-      else{
-        this._router.navigate([AppRoutes.notAuthor])
-      }
-    })
+    this.tabSelected = item.FunctionID
+    this._router.navigate([item.Url])
   }
 
-  // fnCheckPermission(MenuID:string){
-  //   this._apiHttp.post(AppAPIConst.SYSTEM.CheckPermission,'',{
-  //     MenuID:MenuID
-  //   }).subscribe(res=>{
-  //     console.log(res);
-  //   })
-  // }
+  buildNested(tabs: SidebarModel[], ParentID: string | null): SidebarModel[] {
+    const nestedTabs: SidebarModel[] = [];
+    const Empty: SidebarModel[] = [];
+    for (const tab of tabs) {
+      if (tab.ParentID === ParentID) {
+        const nestedTab = { ...tab, Children:Empty};
+        nestedTab.Children = this.buildNested(tabs, tab.FunctionID);
+        nestedTabs.push(nestedTab);
+      }
+    }
+    return nestedTabs;
+  }
+
 
   getMenu(){
-    if(!this._auth.getUser()?.Administrator){
-      this.ListSideBar = this.ListBarNhanVien;
-      //this.fnClickTab(this.ListSideBar[0])
-    }
-    else{
-      this.ListSideBar = this.ListSideBarCheck;
-    }
+    this.ListSideBar = this.buildNested(this.ListSideBarCheck,null)
+    console.log( this.ListSideBar,1111);
+
     this._activeRoute.params.subscribe(_x=>{
-      if(this.ListSideBar.length > 0){
+      if(this.ListSideBarCheck.length > 0){
         let url = this._router.url;
         if(url == "/"){
           url = "/home"
         }
-        let item = this.ListSideBar.find(y => y.route == url.split('?')[0].split('/').reverse()[0]);
+        let item = this.ListSideBarCheck.find(y => y.Url == window.location.pathname);
         if(!item){
-          item = this.ListSideBar[0];
+          item = this.ListSideBarCheck[0];
         }
-        this.tabSelected = item.MenuID
+        this.tabSelected = item.FunctionID
       }
     })
     return;
-    this._apiHttp.post(AppAPIConst.SIDEBAR.SideBar,'',null,true).subscribe(res=>{
-      if(!res.Error){
-        this.ListSideBar = res.Data.Data;
-        this._ordinal.finishSideBar.next(true);
-        this._activeRoute.params.subscribe(_x=>{
-          console.log(this._router.url);
-          if(this.ListSideBar.length > 0){
-            let url = this._router.url;
-            if(url == "/"){
-              url = "/home"
-            }
-            let itemCheck = this.ListSideBarCheck.find(y => url.startsWith('/'+y.route));
-            if(itemCheck){
-              this._apiHttp.post(AppAPIConst.SYSTEM.CheckPermission,'',{
-                MenuID:itemCheck.MenuID
-              }).subscribe(res=>{
-                if(!res.Data.OutputParams.IsView || res.Error){
-                  this._router.navigate([AppRoutes.notAuthor])
-                }
-                else{
-                  let item = this.ListSideBar.find(y => url.startsWith('/'+y.route));
-                  if(item){
-                    item.Icon = item.Icon.replaceAll('stroke="white"','stroke="#0174BE"')
-                    this.ListSideBar.filter(x=>x.MenuID != item.MenuID).forEach(y=>{
-                      y.Icon = y.Icon.replaceAll('stroke="#0174BE"','stroke="white"');
-                    })
-                    this.tabSelected = item.MenuID
-                  }
-                  else{
-                    item = this.ListSideBar[0];
-                    item.Icon = item.Icon.replaceAll('stroke="white"','stroke="#0174BE"')
-                    this.ListSideBar.filter(x=>x.MenuID != item.MenuID).forEach(y=>{
-                      y.Icon = y.Icon.replaceAll('stroke="#0174BE"','stroke="white"');
-                    })
-                    this.tabSelected = item.MenuID;
-                  }
-                }
-              })
-            }
-            else{
-              this._router.navigate([AppRoutes.notAuthor])
-            }
-          }
-        })
+  }
+
+  ToogleTabs(item:any){
+    const index = this.ListSideBar.findIndex(x =>x.FunctionID == item.FunctionID)
+    this.ListSideBar[index].Active = !this.ListSideBar[index].Active
+    if(item.Children.length == 0){
+      this.tabSelected = item.MenuID;
+      this.ListSideBar.forEach((x)=>{
+        if(item.FunctionID != x.FunctionID){
+          x.Active = false
+        }
+      })
+      this._router.navigate([item.Url])
+    }
+  }
+
+
+  checkActicSidebar(item:any,tab:any){
+    if(item.FunctionID == this.tabSelected) return true
+    if(item.Children.length == 0) return false;
+    for (const x of item.Children) {
+      if(x.FunctionID == tab){
+        return true
       }
-    })
+    }
+    return false;
   }
 }

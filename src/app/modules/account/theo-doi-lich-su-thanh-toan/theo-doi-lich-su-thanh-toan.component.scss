@@ -1,0 +1,63 @@
+.Staff{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 3px;
+  border-radius: 5px;
+  background: #FFEFE0;
+  color:#FF8A00
+}
+.DL{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 3px;
+  border-radius: 5px;
+  background: #EFFFD4;
+  color:#54BF61
+}
+.IDL{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 3px;
+  border-radius: 5px;
+  background: #FFFFE6;
+  color:#FFB100
+}
+
+.status0{
+  color: #0174BE;
+}
+
+.status1{
+  color: #1BA85C;
+}
+
+.type-food-1{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  background: #FFF5E1;
+  color: #FFB100;
+}
+.type-food-2{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  background: #E6F7FF;
+  color: #1D24CA;
+}
+.type-food-3{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  background: #EFFFD4;
+  color: #54BF61;
+}

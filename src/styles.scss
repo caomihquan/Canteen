@@ -34,7 +34,7 @@
   --AppColor14: #FFFFFF;
   --primaryApp:#D3222A;
   --Color1:#007455;
-  --Color-Primary:#007455
+  --Color-Primary:#007455;
   --Color2:#FFC436;
   --Color3:#0C356A;
   --Color4:#FFF0CE;
@@ -90,6 +90,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  overflow: hidden;
 }
 ol, ul {
 	list-style: none;

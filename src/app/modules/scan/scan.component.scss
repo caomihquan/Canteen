@@ -1,0 +1,97 @@
+.price{
+  color: var(--Color1, #007455);
+  font-family: Inter;
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.unit{
+  color: var(--Color1, #007455);
+  font-family: Inter;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.card-emp{
+  max-width: 461px;
+  margin:auto;
+  height: 269px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 0.5px solid var(--Text3, #C1C1C1);
+  background: var(--Text5, #F3F3F3);
+}
+.container-card{
+  max-width: 1024px;
+  margin: auto;
+  height: 768px;
+}
+.price-current{
+  color: #FFB100;
+  text-align: right;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.32px;
+}
+.unit-footer{
+  color: var(--Text2, #626262);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.2px;
+}
+.btn-history{
+  display: flex;
+  width: 222px;
+  height: 74px;
+  padding: 10px 15px 10px 10px;
+  align-items: center;
+  gap: 17px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--Color1, #007455);
+  color: #fff;
+}
+.scan-sucess{
+  border-radius: 10px;
+  background: #DBFFF4;
+}
+.scan-error{
+  border-radius: 10px;
+  background: #FFE2DB;
+}
+
+.type-food-1{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  background: #FFF5E1;
+  color: #FFB100;
+}
+.type-food-2{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  background: #E6F7FF;
+  color: #1D24CA;
+}
+.type-food-3{
+  display: flex;
+  padding: 1px 5px;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  background: #EFFFD4;
+  color: #54BF61;
+}

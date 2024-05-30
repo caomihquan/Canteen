@@ -1,9 +1,8 @@
 .container-sidebar{
-  width: 84px;
-  position: fixed;
-  height: 100%;
+  width: 245px;
+  //height: 100%;
   overflow: auto;
-  background-color: var(--Color1);
+  background-color: #f4f4f4;
 }
 .label-sidebar{
   color: var(--AppColor14);
@@ -30,8 +29,8 @@
   border-radius: 10px;
   margin-left: 1.5px;
 }
-.active-tab div,.active-tab i{
-  color: var(--Color1) !important;
+.active-tab div{
+  color: var(--Color1);
 }
 .icon-sidebar{
   color: var(--AppColor14);
@@ -48,9 +47,7 @@
   gap: 5px;
 
 }
-img{
-  filter: grayscale(100%) brightness(200%);
-}
+
 
 ::-webkit-scrollbar {
   width: 2px;
@@ -75,4 +72,52 @@ img{
 
 .scroll{
   overflow-y: scroll;
+}
+
+
+// ----------------------
+
+
+li, #myUL {
+}
+
+
+
+.nested {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  margin-left: 18px;
+  li{
+    cursor: pointer;
+  }
+}
+
+.active-tab {
+  background: var(--Color-Primary);
+  color: #fff;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+    pointer-events: none;
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.child-tab:hover{
+  background: var(--Color-Secondary);
+}
+
+.child-tab.active-child{
+  background: var(--Color-Secondary);
+}
+.tabs{
+  padding: 12px 5px 12px 10px;
+}
+.child-tab{
+  padding: 0.2rem 0;
 }

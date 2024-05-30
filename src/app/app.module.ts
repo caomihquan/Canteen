@@ -17,6 +17,7 @@ import { AuthService } from './shares/services/authentication/authentication.ser
 import { AppConfigService } from './shares/services/app-config/app-config.service';
 import { FoodshiftAddnewDialogComponent } from './modules/category/emp-subgroup/dialog/foodshift-addnew-dialog/foodshift-addnew-dialog.component';
 
+import { LayoutComponent } from './core/components/layout/layout.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http,'./assets/i18n/', '.json');
@@ -33,7 +34,7 @@ function appInitializer(authService: AuthService, config: AppConfigService) {
 }
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,LayoutComponent
   ],
   imports: [
     BrowserModule,

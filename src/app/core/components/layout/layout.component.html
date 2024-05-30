@@ -1,0 +1,9 @@
+<div class="d-flex">
+    <app-sidebar></app-sidebar>
+    <div class="flex-1" [ngStyle]="{height: height + 'px'}">
+      <app-header></app-header>
+      <div style="overflow-y: auto;overflow-x: unset;" [ngStyle]="{height: height - 56 + 'px'}">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+</div>

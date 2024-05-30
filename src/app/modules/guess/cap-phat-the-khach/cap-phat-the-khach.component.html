@@ -1,0 +1,111 @@
+<div class="bg-white width-screen">
+  <div class="container-toolbar">
+    <div class="left-toolbar d-flex gap-2 align-items-center">
+      <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
+      <span class="text-common-black fw-600 fs-16">Quản lý tài khoản</span>
+      <span class="text-common-black fw-500 fs-16">></span>
+      <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
+    </div>
+    <div class="right-toolbar">
+      <div class="button-toolbar">
+        <span class="icon-General-113"></span>
+        <span>Thêm</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-84"></span>
+        <span>Sửa</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-163"></span>
+        <span>Xoá</span>
+      </div>
+      <div class="button-toolbar">
+        <span class="icon-General-3"></span>
+        <span>Trả thẻ</span>
+      </div>
+    </div>
+  </div>
+  <div class="mx-2">
+    <grid-view [template]="templategrid"></grid-view>
+  </div>
+</div>
+
+<ng-template #templategrid>
+  <ejs-grid
+  [dataSource]="listCapPhat"
+  [height]="heightGrid"
+  [allowTextWrap]="true"
+  [textWrapSettings]='wrapSettings'>
+    <e-columns>
+
+
+    <e-column headerText="ID Thẻ" textAlign='Left' width=130>
+      <ng-template #template let-item>
+          <div class="text-start">{{item.V3ID}}</div>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Họ và tên (VN)" width=160 textAlign='Left'>
+        <ng-template #template let-item>
+            <div class="d-flex align-items-center gap-2">
+                <img width="40" height="40" src="./assets/images/avatar.png" alt="" srcset="">
+                <span class="text-start">{{item.FullName}}</span>
+            </div>
+        </ng-template>
+    </e-column>
+
+    <e-column headerText="Hạn mức/Ngày" textAlign='Left' width=140>
+      <ng-template #template let-item>
+          <div class="text-start">50.000</div>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Thời gian sử dụng" textAlign='Left' width=160>
+      <ng-template #template let-item>
+          <div class="text-start">{{item.dateA | date: 'dd/MM/yyyy'}}</div>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Người cấp thẻ" width=220 textAlign='Left'>
+      <ng-template #template let-item>
+          <div class="d-flex align-items-center gap-2">
+              <img width="40" height="40" src="./assets/images/avatar.png" alt="" srcset="">
+              <div class="d-flex gap-2 flex-column">
+                <div class="text-start">{{item.FullName}}adsfaf</div>
+                <div class="d-flex gap-2">
+                  <div class="fs-12 text-common-gray fw-400">{{item.dateA | date: 'dd/MM/yyyy'}}</div>
+                  <div class="fs-12 text-common-gray fw-400">{{item.dateA | date: 'shortTime'}}</div>
+                </div>
+              </div>
+          </div>
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Ghi chú" textAlign='Left' width=170>
+      <ng-template #template let-item>
+          <ejs-tooltip id='tooltip' [content]='item.Note' target="#targetCard">
+              <div id="targetCard" style="width: 160px;" class="text-start text-truncate-2">{{item.Note}}</div>
+          </ejs-tooltip>
+      </ng-template>
+    </e-column>
+
+    <e-column  headerText="Có trả thẻ" width="140" textAlign='Center'>
+      <ng-template #template let-item>
+          <input class="point-none fs-20 form-check-input" type="checkbox" [checked]="item.IsAdministrator">
+      </ng-template>
+    </e-column>
+
+    <e-column headerText="Xem lịch sử" textAlign='Center' width=130>
+      <ng-template #template let-item>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                <path d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+          </div>
+      </ng-template>
+    </e-column>
+    </e-columns>
+  </ejs-grid>
+</ng-template>
