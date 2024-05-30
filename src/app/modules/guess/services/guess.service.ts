@@ -10,11 +10,14 @@ export class GuessService {
   constructor(private _apiHttp:ApiHttpService) { }
 
   TheKhach_Get(pageIndex:number,searchText:string,pageSize:number):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.TheKhach.TheKhach_get,'',{SearchText:searchText, PageIndex:pageIndex,PageSize:pageSize},true)
+    return this._apiHttp.post(AppAPIConst.TheKhach.TheKhach_get,{SearchText:searchText, PageIndex:pageIndex,PageSize:pageSize},true)
   }
 
   TheKhach_GetHistoryTK(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.TheKhach.TheKhach_get,'',{...data},true)
+    return this._apiHttp.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{...data},true)
   }
 
+  TheKhach_ThemXu(data:any):Observable<ResponseModel>{
+    return this._apiHttp.post(AppAPIConst.TheKhach.TheKhach_napxu,{...data},true)
+  }
 }

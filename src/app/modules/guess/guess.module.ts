@@ -12,6 +12,8 @@ import { GuessComponent } from './danh-sach-the-khach/guess.component';
 import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view';
 import { CapPhatTheKhachComponent } from './cap-phat-the-khach/cap-phat-the-khach.component';
 import { TheoDoiLichSuThanhToanComponent } from './theo-doi-lich-su-thanh-toan/theo-doi-lich-su-thanh-toan.component';
+import { CapPhatDinhMucDialogComponent } from './danh-sach-the-khach/CapPhatDinhMuc-dialog/CapPhatDinhMuc-dialog.component';
+import { DialogModule } from '@syncfusion/ej2-angular-popups';
 
 
 const routes: Routes = [
@@ -27,10 +29,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [GuessComponent, CapPhatTheKhachComponent, TheoDoiLichSuThanhToanComponent],
+  declarations: [GuessComponent, CapPhatTheKhachComponent, TheoDoiLichSuThanhToanComponent, CapPhatDinhMucDialogComponent],
   imports: [
     CommonModule,
     SharesModule,
+    DialogModule,
     FormsModule,
     FlatpickrModule.forRoot(),
     RouterModule.forChild(routes),

@@ -461,7 +461,7 @@
         </div>
     </div>
 </div> -->
-
+    <app-CapPhatDinhMuc-dialog #capphatdinhmuc></app-CapPhatDinhMuc-dialog>
 
 <div class="bg-white width-screen">
   <div class="container-toolbar">
@@ -484,7 +484,7 @@
         <span class="icon-General-163"></span>
         <span>Xoá</span>
       </div>
-      <div class="button-toolbar">
+      <div class="button-toolbar" >
         <span class="icon-General-3"></span>
         <span>Cấp phát định mức</span>
       </div>
@@ -497,8 +497,7 @@
 
 
 <ng-template #templategrid>
-
-  <ejs-grid class="border-0" [height]="height" [dataSource]='listCard' [pageSettings]="pageSettings">
+  <ejs-grid class="border-0" [height]="height" (recordClick)="onOpenCapPhatDinhMuc($event)" [dataSource]='listCard' [pageSettings]="pageSettings">
     <e-columns>
       <e-column headerText="Mã thẻ" textAlign='Left' width=110>
         <ng-template #template let-item>

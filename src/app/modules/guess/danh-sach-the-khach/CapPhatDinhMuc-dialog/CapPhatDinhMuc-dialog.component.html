@@ -1,0 +1,28 @@
+<ng-container *ngIf="isShow">
+  <ejs-dialog isModal="true" showCloseIcon="true" #ejDialog2 content='This is a Dialog with content' width="20%"
+    height="40%" (beforeOpen)="onBeforeOpen($event)">
+    <ng-template #footerTemplate>
+      <div class="dialog-footer">
+        <div class="dialog-footer">
+          <!-- <div>
+            <ejs-checkbox cssClass="custom" label="Ngưng sử dụng"></ejs-checkbox>
+          </div> -->
+          <button class="cancel-btn" data-ripple="true" (click)="onSave()">Lưu</button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #content>
+      <div class="dialogContent">
+
+        <div class="text-common-black fw-500 fs-14 pt-4  pb-1">Định mức cộng thêm</div>
+        <div>
+          <input type="number" [(ngModel)]="DinhMucCongThem" />
+        </div>
+
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <span class="header-dialog">Cấp phát định mức</span>
+    </ng-template>
+  </ejs-dialog>
+</ng-container>

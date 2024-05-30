@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, signal } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, signal } from '@angular/core';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
@@ -8,6 +8,7 @@ import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { TranslateService } from '@ngx-translate/core';
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { GuessService } from '../services/guess.service';
+import { CapPhatDinhMucDialogComponent } from './CapPhatDinhMuc-dialog/CapPhatDinhMuc-dialog.component';
 
 @Component({
   selector: 'app-guess',
@@ -27,7 +28,7 @@ export class GuessComponent implements OnInit {
   modalRef: BsModalRef
   I18nLang:any
   defaultColor = AppCommon.defaultColor
-
+  @ViewChild('capphatdinhmuc') capphatdinhmuc: CapPhatDinhMucDialogComponent
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
 
@@ -144,6 +145,7 @@ export class GuessComponent implements OnInit {
     this.initTheKhachData();
   }
   onOpenCPHistory(theID:string){
+          this.listHistory =[];
           var data = {
             Option: 8,
             SearchText: '',
@@ -182,7 +184,10 @@ export class GuessComponent implements OnInit {
     this.selectedFood = item;
   }
 
-
+  onOpenCapPhatDinhMuc(event:any){
+    let thekhach = event.rowData;
+    this.capphatdinhmuc.onOpenDialog(thekhach['MaTheKhach']);
+  }
 
   GetMenu(){
 
