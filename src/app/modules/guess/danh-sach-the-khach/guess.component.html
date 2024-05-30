@@ -500,201 +500,220 @@
 
   <ejs-grid class="border-0" [height]="height" [dataSource]='listCard' [pageSettings]="pageSettings">
     <e-columns>
-        <e-column headerText="Mã thẻ" textAlign='Left' width=110>
-            <ng-template #template let-item>
-                <div>{{item.MaThe}}</div>
-            </ng-template>
-        </e-column>
-        <e-column headerText="Ghi chú" textAlign='Left' width=250>
-            <ng-template #template let-item>
-                <ejs-tooltip id='tooltip' [content]='item.Note' target="#targetCard">
-                    <div id="targetCard" style="width: 230px;" class="text-start text-truncate-2">{{item.Note}}</div>
-                </ejs-tooltip>
-            </ng-template>
-        </e-column>
-        <e-column headerText="Tình trạng" width=130 textAlign='Left'>
-            <ng-template #template let-item>
-                <div class="text-start" [ngClass]="{'statusCard0':!item.Status,'statusCard1':item.Status}">
-                    <div class="fs-12 fw-600" *ngIf="!item.Status">Đang sử dụng</div>
-                    <div class="fs-12 fw-600" *ngIf="item.Status">Chưa sử dụng</div>
-                </div>
-            </ng-template>
-        </e-column>
-        <e-column headerText="Định mức sử dụng" textAlign='Left' width=160>
-            <ng-template #template let-item>
-                <div class="text-center text-common-primary fs-12 fw-600">100 xu</div>
-            </ng-template>
-        </e-column>
-        <e-column headerText="Hạn mức sử dụng" textAlign='Left' width=160>
-          <ng-template #template let-item>
-              <div class="text-center text-common-primary fs-12 fw-600">100 xu</div>
-          </ng-template>
+      <e-column headerText="Mã thẻ" textAlign='Left' width=110>
+        <ng-template #template let-item>
+          <div>{{item.MaTheKhach}}</div>
+        </ng-template>
       </e-column>
-        <e-column headerText="Lần nạp gần nhất" textAlign='Left' width=150>
-            <ng-template #template let-item>
-                <div class="d-flex gap-2">
-                    <div class="fs-12">{{item.LanNapGanNhat | date:'dd/MM/yyyy'}}</div>
-                </div>
-            </ng-template>
-        </e-column>
-        <e-column headerText="Lịch sử cấp phát" textAlign='Center' width=140>
-            <ng-template #template let-item>
-                <div data-bs-target="#modalHistoryCapPhat" data-bs-toggle="modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-      <path d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-                </div>
-            </ng-template>
-        </e-column>
-        <e-column headerText="Lịch sử xu" textAlign='Center' width=140>
-            <ng-template #template let-item>
-                <div data-bs-target="#modalHistoryXu" data-bs-toggle="modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-      <path d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-                </div>
-            </ng-template>
-        </e-column>
+      <e-column headerText="Ghi chú" textAlign='Left' width=250>
+        <ng-template #template let-item>
+          <ejs-tooltip id='tooltip' [content]='item.GhiChu' target="#targetCard">
+            <div id="targetCard" style="width: 230px;" class="text-start text-truncate-2">{{item.GhiChu}}</div>
+          </ejs-tooltip>
+        </ng-template>
+      </e-column>
+      <e-column headerText="Tình trạng" width=130 textAlign='Left'>
+        <ng-template #template let-item>
+          <div class="text-start"
+            [ngClass]="{'statusCard0':!(item.TinhTrang == 1?true: false),'statusCard1':(item.TinhTrang == 1?true: false)}">
+            <div class="fs-12 fw-600" *ngIf="!(item.TinhTrang == 1?true: false)">Đang sử dụng</div>
+            <div class="fs-12 fw-600" *ngIf="(item.TinhTrang == 1?true: false)">Chưa sử dụng</div>
+          </div>
+        </ng-template>
+      </e-column>
+      <e-column headerText="Định mức sử dụng" textAlign='Left' width=160>
+        <ng-template #template let-item>
+          <div class="text-center text-common-primary fs-12 fw-600">{{item.TongXu}}</div>
+        </ng-template>
+      </e-column>
+      <e-column headerText="Hạn mức sử dụng" textAlign='Left' width=160>
+        <ng-template #template let-item>
+          <div class="text-center text-common-primary fs-12 fw-600">{{item.TongXu}}</div>
+        </ng-template>
+      </e-column>
+      <e-column headerText="Lần nạp gần nhất" textAlign='Left' width=150>
+        <ng-template #template let-item>
+          <div class="d-flex gap-2">
+            <div class="fs-12">{{item.NgayNapXuGanNhat | date:'dd/MM/yyyy'}}</div>
+          </div>
+        </ng-template>
+      </e-column>
+      <e-column headerText="Lịch sử cấp phát" textAlign='Center' width=140>
+        <ng-template #template let-item>
+          <div data-bs-target="#modalHistoryCapPhat" data-bs-toggle="modal" (click)="onOpenCPHistory(item.MaTheKhach)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+              <path
+                d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z"
+                stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z"
+                stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z"
+                stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </ng-template>
+      </e-column>
+      <e-column headerText="Lịch sử xu" textAlign='Center' width=140>
+        <ng-template #template let-item>
+          <div data-bs-target="#modalHistoryXu" data-bs-toggle="modal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+              <path
+                d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z"
+                stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z"
+                stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z"
+                stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </ng-template>
+      </e-column>
     </e-columns>
   </ejs-grid>
 </ng-template>
 
 <!-- modal Thêm -->
 <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="modalAddLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-scrollable" style="max-width: 585px;">
-        <div class="modal-content " style="height: 714px;">
-            <div class="modal-header">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <div class="text-common-black fs-18 fw-500">Cấp phát thẻ</div>
-                    <div data-bs-dismiss="modal" class="pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 585px;">
+    <div class="modal-content " style="height: 714px;">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="text-common-black fs-18 fw-500">Cấp phát thẻ</div>
+          <div data-bs-dismiss="modal" class="pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
             </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="text-common-black fs-14 fw-500 py-2">Chọn thẻ cấp</div>
-                <div class="dropdown">
-                    <div class="input-dropdown" type="button" id="dropdownCard" data-bs-toggle="dropdown" aria-expanded="false">
-                        <!-- <div>{{selectUnionStatus?.Caption}}</div> -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-                    </div>
-                    <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownCard">
-                        <!-- <li *ngFor="let item of DataUnionStatus" (click)="selectUnionStatus = item">{{item.Caption}}</li> -->
-                    </ul>
-                </div>
-                <div class="text-common-black fs-14 fw-500 py-2">Người nhận thẻ</div>
-                <div class="dropdown">
-                    <div class="input-dropdown" type="button" id="dropdownCard1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <!-- <div>{{selectUnionStatus?.Caption}}</div> -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-                    </div>
-                    <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownCard1">
-                        <!-- <li *ngFor="let item of DataUnionStatus" (click)="selectUnionStatus = item">{{item.Caption}}</li> -->
-                    </ul>
-                </div>
-
-                <div class="d-flex gap-5">
-                    <div style="width: 254px;">
-                        <div class="text-common-black fs-14 fw-500 py-2">Ngày sinh</div>
-                        <div class="position-relative date">
-                            <input id="datepicker" type="text" name="holidayDate" mwlFlatpickr [altInput]="false" [convertModelValue]="false" [enableTime]="false" defaultDate="2016-10-20" dateFormat="d-m-Y" altFormat="F j, Y" placeholder="Ngày sinh">
-                            <div class="icon-date">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M21 10H3M16 2V6M8 2V6M7.8 22H16.2C17.8802 22 18.7202 22 19.362 21.673C19.9265 21.3854 20.3854 20.9265 20.673 20.362C21 19.7202 21 18.8802 21 17.2V8.8C21 7.11984 21 6.27976 20.673 5.63803C20.3854 5.07354 19.9265 4.6146 19.362 4.32698C18.7202 4 17.8802 4 16.2 4H7.8C6.11984 4 5.27976 4 4.63803 4.32698C4.07354 4.6146 3.6146 5.07354 3.32698 5.63803C3 6.27976 3 7.11984 3 8.8V17.2C3 18.8802 3 19.7202 3.32698 20.362C3.6146 20.9265 4.07354 21.3854 4.63803 21.673C5.27976 22 6.11984 22 7.8 22Z"
-                    stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="width: 254px;">
-                        <div class="text-common-black fs-14 fw-500 py-2">Ngày sinh</div>
-                        <div class="position-relative date">
-                            <input id="datepicker" type="text" name="holidayDate" mwlFlatpickr [altInput]="false" [convertModelValue]="false" [enableTime]="false" defaultDate="2016-10-20" dateFormat="d-m-Y" altFormat="F j, Y" placeholder="Ngày sinh">
-                            <div class="icon-date">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M21 10H3M16 2V6M8 2V6M7.8 22H16.2C17.8802 22 18.7202 22 19.362 21.673C19.9265 21.3854 20.3854 20.9265 20.673 20.362C21 19.7202 21 18.8802 21 17.2V8.8C21 7.11984 21 6.27976 20.673 5.63803C20.3854 5.07354 19.9265 4.6146 19.362 4.32698C18.7202 4 17.8802 4 16.2 4H7.8C6.11984 4 5.27976 4 4.63803 4.32698C4.07354 4.6146 3.6146 5.07354 3.32698 5.63803C3 6.27976 3 7.11984 3 8.8V17.2C3 18.8802 3 19.7202 3.32698 20.362C3.6146 20.9265 4.07354 21.3854 4.63803 21.673C5.27976 22 6.11984 22 7.8 22Z"
-                    stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-common-black fw-500 fs-14 pt-2 pb-1">Ghi chú</div>
-                <div>
-                    <textarea name="sadas" id="" rows="4"></textarea>
-                </div>
-            </div>
-            <div class="p-4 toolbar-modal d-flex justify-content-between align-items-center position-sticky bottom-0 bg-white z-1 pb-3">
-                <div></div>
-                <div class="modal-submit">Lưu</div>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="modal-body">
+        <div class="text-common-black fs-14 fw-500 py-2">Chọn thẻ cấp</div>
+        <div class="dropdown">
+          <div class="input-dropdown" type="button" id="dropdownCard" data-bs-toggle="dropdown" aria-expanded="false">
+            <!-- <div>{{selectUnionStatus?.Caption}}</div> -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownCard">
+            <!-- <li *ngFor="let item of DataUnionStatus" (click)="selectUnionStatus = item">{{item.Caption}}</li> -->
+          </ul>
+        </div>
+        <div class="text-common-black fs-14 fw-500 py-2">Người nhận thẻ</div>
+        <div class="dropdown">
+          <div class="input-dropdown" type="button" id="dropdownCard1" data-bs-toggle="dropdown" aria-expanded="false">
+            <!-- <div>{{selectUnionStatus?.Caption}}</div> -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownCard1">
+            <!-- <li *ngFor="let item of DataUnionStatus" (click)="selectUnionStatus = item">{{item.Caption}}</li> -->
+          </ul>
+        </div>
+
+        <div class="d-flex gap-5">
+          <div style="width: 254px;">
+            <div class="text-common-black fs-14 fw-500 py-2">Ngày sinh</div>
+            <div class="position-relative date">
+              <input id="datepicker" type="text" name="holidayDate" mwlFlatpickr [altInput]="false"
+                [convertModelValue]="false" [enableTime]="false" defaultDate="2016-10-20" dateFormat="d-m-Y"
+                altFormat="F j, Y" placeholder="Ngày sinh">
+              <div class="icon-date">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M21 10H3M16 2V6M8 2V6M7.8 22H16.2C17.8802 22 18.7202 22 19.362 21.673C19.9265 21.3854 20.3854 20.9265 20.673 20.362C21 19.7202 21 18.8802 21 17.2V8.8C21 7.11984 21 6.27976 20.673 5.63803C20.3854 5.07354 19.9265 4.6146 19.362 4.32698C18.7202 4 17.8802 4 16.2 4H7.8C6.11984 4 5.27976 4 4.63803 4.32698C4.07354 4.6146 3.6146 5.07354 3.32698 5.63803C3 6.27976 3 7.11984 3 8.8V17.2C3 18.8802 3 19.7202 3.32698 20.362C3.6146 20.9265 4.07354 21.3854 4.63803 21.673C5.27976 22 6.11984 22 7.8 22Z"
+                    stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div style="width: 254px;">
+            <div class="text-common-black fs-14 fw-500 py-2">Ngày sinh</div>
+            <div class="position-relative date">
+              <input id="datepicker" type="text" name="holidayDate" mwlFlatpickr [altInput]="false"
+                [convertModelValue]="false" [enableTime]="false" defaultDate="2016-10-20" dateFormat="d-m-Y"
+                altFormat="F j, Y" placeholder="Ngày sinh">
+              <div class="icon-date">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M21 10H3M16 2V6M8 2V6M7.8 22H16.2C17.8802 22 18.7202 22 19.362 21.673C19.9265 21.3854 20.3854 20.9265 20.673 20.362C21 19.7202 21 18.8802 21 17.2V8.8C21 7.11984 21 6.27976 20.673 5.63803C20.3854 5.07354 19.9265 4.6146 19.362 4.32698C18.7202 4 17.8802 4 16.2 4H7.8C6.11984 4 5.27976 4 4.63803 4.32698C4.07354 4.6146 3.6146 5.07354 3.32698 5.63803C3 6.27976 3 7.11984 3 8.8V17.2C3 18.8802 3 19.7202 3.32698 20.362C3.6146 20.9265 4.07354 21.3854 4.63803 21.673C5.27976 22 6.11984 22 7.8 22Z"
+                    stroke="#626262" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-common-black fw-500 fs-14 pt-2 pb-1">Ghi chú</div>
+        <div>
+          <textarea name="sadas" id="" rows="4"></textarea>
+        </div>
+      </div>
+      <div
+        class="p-4 toolbar-modal d-flex justify-content-between align-items-center position-sticky bottom-0 bg-white z-1 pb-3">
+        <div></div>
+        <div class="modal-submit">Lưu</div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- modal Trả thẻ -->
 <div class="modal fade" id="modalBackCard" tabindex="-1" aria-labelledby="modalBackCardLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-scrollable" style="max-width: 585px;">
-        <div class="modal-content " style="height: 714px;">
-            <div class="modal-header">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <div class="text-common-black fs-18 fw-500">Trả thẻ</div>
-                    <div data-bs-dismiss="modal" class="pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 585px;">
+    <div class="modal-content " style="height: 714px;">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="text-common-black fs-18 fw-500">Trả thẻ</div>
+          <div data-bs-dismiss="modal" class="pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
             </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="text-common-black fs-14 fw-500 py-2">Thẻ được trả</div>
-                <div class="dropdown">
-                    <div class="input-dropdown" type="button" id="dropdownCard3" data-bs-toggle="dropdown" aria-expanded="false">
-                        <!-- <div>{{selectUnionStatus?.Caption}}</div> -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-                    </div>
-                    <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownCard3">
-                        <!-- <li *ngFor="let item of DataUnionStatus" (click)="selectUnionStatus = item">{{item.Caption}}</li> -->
-                    </ul>
-                </div>
-                <div class="text-common-black fs-14 fw-500 py-2">Người trả thẻ</div>
-                <div class="dropdown">
-                    <div class="input-dropdown" type="button" id="dropdownCard2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <!-- <div>{{selectUnionStatus?.Caption}}</div> -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-                    </div>
-                    <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownCard2">
-                        <!-- <li *ngFor="let item of DataUnionStatus" (click)="selectUnionStatus = item">{{item.Caption}}</li> -->
-                    </ul>
-                </div>
-            </div>
-            <div class="p-4 toolbar-modal d-flex justify-content-between align-items-center position-sticky bottom-0 bg-white z-1 pb-3">
-                <div></div>
-                <div class="modal-submit">Lưu</div>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="modal-body">
+        <div class="text-common-black fs-14 fw-500 py-2">Thẻ được trả</div>
+        <div class="dropdown">
+          <div class="input-dropdown" type="button" id="dropdownCard3" data-bs-toggle="dropdown" aria-expanded="false">
+            <!-- <div>{{selectUnionStatus?.Caption}}</div> -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownCard3">
+            <!-- <li *ngFor="let item of DataUnionStatus" (click)="selectUnionStatus = item">{{item.Caption}}</li> -->
+          </ul>
+        </div>
+        <div class="text-common-black fs-14 fw-500 py-2">Người trả thẻ</div>
+        <div class="dropdown">
+          <div class="input-dropdown" type="button" id="dropdownCard2" data-bs-toggle="dropdown" aria-expanded="false">
+            <!-- <div>{{selectUnionStatus?.Caption}}</div> -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownCard2">
+            <!-- <li *ngFor="let item of DataUnionStatus" (click)="selectUnionStatus = item">{{item.Caption}}</li> -->
+          </ul>
+        </div>
+      </div>
+      <div
+        class="p-4 toolbar-modal d-flex justify-content-between align-items-center position-sticky bottom-0 bg-white z-1 pb-3">
+        <div></div>
+        <div class="modal-submit">Lưu</div>
+      </div>
     </div>
+  </div>
 </div>
 
 
@@ -702,196 +721,204 @@
 
 
 
-<div class="modal fade" id="modalHistoryCapPhat" tabindex="-1" aria-labelledby="modalHistoryCapPhatLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-scrollable" style="max-width: 1157px;">
-        <div class="modal-content " style="height: 800px;">
-            <div class="modal-header">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <div class="text-common-black fs-18 fw-500">Lịch sử cấp phát thẻ</div>
-                    <div data-bs-dismiss="modal" class="pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+<div class="modal fade" id="modalHistoryCapPhat" tabindex="-1" aria-labelledby="modalHistoryCapPhatLabel"
+  aria-hidden="false">
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 1157px;">
+    <div class="modal-content " style="height: 800px;">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="text-common-black fs-18 fw-500">Lịch sử cấp phát thẻ</div>
+          <div data-bs-dismiss="modal" class="pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
             </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-body">
-                <ejs-grid class="border-0" [height]="500" [dataSource]='listHistory' [pageSettings]="pageSettings">
-                    <e-columns>
-                        <e-column headerText="Ngày cấp phát" textAlign='Left' width=120>
-                            <ng-template #template let-item>
-                                <div>{{item.NgayCapPhat}}</div>
-                            </ng-template>
-                        </e-column>
-                        <e-column headerText="Ghi chú" textAlign='Left' width=275>
-                            <ng-template #template let-item>
-                                <ejs-tooltip id='tooltip' [content]='item.Note' target="#targetmodalHistory">
-                                    <div id="targetmodalHistory" style="width: 275px;" class="text-start text-truncate-2">{{item.Note}}</div>
-                                </ejs-tooltip>
-                            </ng-template>
-                        </e-column>
-                        <e-column headerText="Tình trạng" width=120 textAlign='Left'>
-                            <ng-template #template let-item>
-                                <div class="text-start" [ngClass]="{'status0':!item.Status,'status1':item.Status}">
-                                    <div class="fs-12 fw-600" *ngIf="!item.Status">Đã trả thẻ</div>
-                                    <div class="fs-12 fw-600" *ngIf="item.Status">Đã cấp thẻ</div>
-                                </div>
-                            </ng-template>
-                        </e-column>
-                        <e-column headerText="Thời hạn" textAlign='Left' width=220>
-                            <ng-template #template let-item>
-                                <div class="d-flex gap-2">
-                                    <div class="fs-12">{{item.BeginDate | date:'dd/MM/yyyy'}}</div>
-                                    <div class="fs-12"> - </div>
-                                    <div class="fs-12">{{item.EndDate | date:'dd/MM/yyyy'}}</div>
-                                </div>
-                            </ng-template>
-                        </e-column>
-
-                        <e-column headerText="Người cấp thẻ" textAlign='Left' width=200>
-                            <ng-template #template let-item>
-                                <div class="d-flex align-items-center gap-2">
-                                    <img [src]="getPhoto(item.CreatedBy)" alt="" class="img-table">
-                                    <div class="d-flex flex-column">
-                                        <div>Cao Minh Quân</div>
-                                        <div class="d-flex gap-2">
-                                            <span class="fs-12">{{ item.BeginDate | date : "dd/MM/yyyy" }}</span>
-                                            <span class="fs-12">{{ item.BeginDate | date : "shortTime" }} </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-template>
-                        </e-column>
-                        <e-column headerText="Người nhận thẻ" textAlign='Left' width=200>
-                            <ng-template #template let-item>
-                                <div class="d-flex align-items-center gap-2">
-                                    <img [src]="getPhoto(item.NguoiNhan)" alt="" class="img-table">
-                                    <div class="d-flex flex-column">
-                                        <div>Cao Minh Quân</div>
-                                        <div class="d-flex gap-2">
-                                            <span class="fs-12">{{ item.BeginDate | date : "dd/MM/yyyy" }}</span>
-                                            <span class="fs-12">{{ item.BeginDate | date : "shortTime" }} </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-template>
-                        </e-column>
-                        <e-column headerText="Người trả thẻ" textAlign='Left' width=200>
-                            <ng-template #template let-item>
-                                <div class="d-flex align-items-center gap-2">
-                                    <img [src]="getPhoto(item.NguoiTra)" alt="" class="img-table">
-                                    <div class="d-flex flex-column">
-                                        <div>Cao Minh Quân</div>
-                                        <div class="d-flex gap-2">
-                                            <span class="fs-12">{{ item.BeginDate | date : "dd/MM/yyyy" }}</span>
-                                            <span class="fs-12">{{ item.BeginDate | date : "shortTime" }} </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-template>
-                        </e-column>
-                        <e-column headerText="Món ăn đã đặt" textAlign='Left' width=340>
-                            <ng-template #template let-item>
-                                <div class="d-flex gap-2 flex-wrap">
-                                    <div [ngStyle]="{'background':defaultColor[i % 10]}" class="p-1 rounded" *ngFor="let food of listFood;let i = index">
-                                        {{food.Name}}
-                                    </div>
-                                </div>
-                            </ng-template>
-                        </e-column>
-                        <e-column headerText="Tổng xu" textAlign='Left' width=120>
-                            <ng-template #template let-item>
-                                <div class="text-start text-common-black fs-14">100 xu</div>
-                            </ng-template>
-                        </e-column>
-                    </e-columns>
-                </ejs-grid>
-                <ejs-pager class="border-0" [totalRecordsCount]='totalItems' [pageSize]="PageSize" (click)="ClickPagerIndex($event)">
-                </ejs-pager>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="modal-body">
+        <ejs-grid class="border-0" [height]="500" [dataSource]='listHistory' [pageSettings]="pageSettings">
+          <e-columns>
+            <e-column headerText="Ngày cấp phát" textAlign='Left' width=150>
+              <ng-template #template let-item>
+                <div>{{item.CreatedOn | date:'dd/MM/yyyy hh:mm'}}</div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Ghi chú" textAlign='Left' width=250>
+              <ng-template #template let-item>
+                <ejs-tooltip id='tooltip' [content]='item.Note' target="#targetmodalHistory">
+                  <div id="targetmodalHistory" style="width: 275px;" class="text-start text-truncate-2">{{item.Note}}
+                  </div>
+                </ejs-tooltip>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Tình trạng" width=120 textAlign='Left'>
+              <ng-template #template let-item>
+                <div class="text-start" [ngClass]="{'status0':!item.Status,'status1':item.Status}">
+                  <div class="fs-12 fw-600" *ngIf="!item.Status">Đã trả thẻ</div>
+                  <div class="fs-12 fw-600" *ngIf="item.Status">Đã cấp thẻ</div>
+                </div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Thời hạn" textAlign='Left' width=220>
+              <ng-template #template let-item>
+                <div class="d-flex gap-2">
+                  <div class="fs-12">{{item.BeginDate | date:'dd/MM/yyyy'}}</div>
+                  <div class="fs-12"> - </div>
+                  <div class="fs-12">{{item.EndDate | date:'dd/MM/yyyy'}}</div>
+                </div>
+              </ng-template>
+            </e-column>
+
+            <e-column headerText="Người cấp thẻ" textAlign='Left' width=200>
+              <ng-template #template let-item>
+                <div class="d-flex align-items-center gap-2">
+                  <img [src]="getPhoto(item.CreatedBy)" alt="" class="img-table">
+                  <div class="d-flex flex-column">
+                    <div>Cao Minh Quân</div>
+                    <div class="d-flex gap-2">
+                      <span class="fs-12">{{ item.BeginDate | date : "dd/MM/yyyy" }}</span>
+                      <span class="fs-12">{{ item.BeginDate | date : "shortTime" }} </span>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Người nhận thẻ" textAlign='Left' width=200>
+              <ng-template #template let-item>
+                <div class="d-flex align-items-center gap-2">
+                  <img [src]="getPhoto(item.NguoiNhan)" alt="" class="img-table">
+                  <div class="d-flex flex-column">
+                    <div>Cao Minh Quân</div>
+                    <div class="d-flex gap-2">
+                      <span class="fs-12">{{ item.BeginDate | date : "dd/MM/yyyy" }}</span>
+                      <span class="fs-12">{{ item.BeginDate | date : "shortTime" }} </span>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Người trả thẻ" textAlign='Left' width=200>
+              <ng-template #template let-item>
+                <div class="d-flex align-items-center gap-2">
+                  <img [src]="getPhoto(item.NguoiTra)" alt="" class="img-table">
+                  <div class="d-flex flex-column">
+                    <div>Cao Minh Quân</div>
+                    <div class="d-flex gap-2">
+                      <span class="fs-12">{{ item.BeginDate | date : "dd/MM/yyyy" }}</span>
+                      <span class="fs-12">{{ item.BeginDate | date : "shortTime" }} </span>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Món ăn đã đặt" textAlign='Left' width=340>
+              <ng-template #template let-item>
+                <div class="d-flex gap-2 flex-wrap">
+                  <div [ngStyle]="{'background':defaultColor[i % 10]}" class="p-1 rounded"
+                    *ngFor="let food of listFood;let i = index">
+                    {{food.Name}}
+                  </div>
+                </div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Tổng xu" textAlign='Left' width=120>
+              <ng-template #template let-item>
+                <div class="text-start text-common-black fs-14">100 xu</div>
+              </ng-template>
+            </e-column>
+          </e-columns>
+        </ejs-grid>
+        <ejs-pager class="border-0" [totalRecordsCount]='totalItems' [pageSize]="PageSize"
+          (click)="ClickPagerIndex($event)">
+        </ejs-pager>
+      </div>
     </div>
+  </div>
 </div>
 
 
 <div class="modal fade" id="modalHistoryXu" tabindex="-1" aria-labelledby="modalHistoryXuLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-scrollable" style="max-width: 1157px;">
-        <div class="modal-content " style="height: 800px;">
-            <div class="modal-header">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <div class="text-common-black fs-18 fw-500">Lịch sử xu</div>
-                    <div data-bs-dismiss="modal" class="pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <div class="modal-dialog modal-dialog-scrollable" style="max-width: 1157px;">
+    <div class="modal-content " style="height: 800px;">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="text-common-black fs-18 fw-500">Lịch sử xu</div>
+          <div data-bs-dismiss="modal" class="pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M17 7L7 17M7 7L17 17" stroke="black" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
             </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-body">
-                <ejs-grid class="border-0" [height]="500" [dataSource]='listHistoryXu' [pageSettings]="pageSettings">
-                    <e-columns>
-                        <e-column headerText="Ngày phát sinh" textAlign='Left' width=150>
-                            <ng-template #template let-item>
-                                <div>{{item.NgayPhatSinh | date:'dd/MM/yyyy'}}</div>
-                            </ng-template>
-                        </e-column>
-                        <e-column headerText="Tình trạng" width=150 textAlign='Left'>
-                            <ng-template #template let-item>
-                                <div class="text-start" [ngClass]="{'statusXu0':item.Type == 0,'statusXu1':item.Type == 1}">
-                                    <div class="fs-12 fw-600" *ngIf="item.Type == 0">Đặt món</div>
-                                    <div class="fs-12 fw-600" *ngIf="item.Type == 1">Nạp thẻ</div>
-                                </div>
-                            </ng-template>
-                        </e-column>
-                        <e-column headerText="Thời hạn" textAlign='Left' width=390>
-                            <ng-template #template let-item>
-                                <div class="d-flex gap-2" *ngIf="item.Type == 0">
-                                    <div [ngStyle]="{'background':defaultColor[i % 10]}" class="p-1 rounded" *ngFor="let food of listFood;let i = index">
-                                        {{food.Name}}
-                                    </div>
-                                </div>
-                                <div *ngIf="item.Type == 1">Công ty nạp định kỳ</div>
-                            </ng-template>
-                        </e-column>
-
-                        <e-column headerText="Người thực hiện" textAlign='Left' width=200>
-                            <ng-template #template let-item>
-                                <div class="d-flex align-items-center gap-2" *ngIf="item.Type == 0">
-                                    <img src="./assets/images/credit-card-payment.png" alt="" class="img-table">
-                                    <div>{{item.CreatedBy}}</div>
-                                </div>
-                                <div class="d-flex align-items-center gap-2" *ngIf="item.Type == 1">
-                                    <img [src]="getPhoto(item.NguoiNhan)" alt="" class="img-table">
-                                    <div class="d-flex flex-column">
-                                        <div>Cao Minh Quân</div>
-                                    </div>
-                                </div>
-                            </ng-template>
-                        </e-column>
-                        <e-column headerText="Tổng xu" textAlign='Left' width=120>
-                            <ng-template #template let-item>
-                                <div class="d-flex align-items-center gap-2 justify-content-center">
-                                    <div *ngIf="item.Total > 0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M7.99998 3.33337V12.6667M3.33331 8.00004H12.6666" stroke="#54BF61" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                                    </div>
-                                    <div *ngIf="item.Total < 0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3.33331 8H12.6666" stroke="#C13535" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                                    </div>
-                                    <div class="text-common-black">{{item.Total}} xu</div>
-                                </div>
-                            </ng-template>
-                        </e-column>
-                    </e-columns>
-                </ejs-grid>
-                <ejs-pager class="border-0" [totalRecordsCount]='totalItems' [pageSize]="PageSize" (click)="ClickPagerIndex($event)">
-                </ejs-pager>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="modal-body">
+        <ejs-grid class="border-0" [height]="500" [dataSource]='listHistoryXu' [pageSettings]="pageSettings">
+          <e-columns>
+            <e-column headerText="Ngày phát sinh" textAlign='Left' width=150>
+              <ng-template #template let-item>
+                <div>{{item.NgayPhatSinh | date:'dd/MM/yyyy'}}</div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Tình trạng" width=150 textAlign='Left'>
+              <ng-template #template let-item>
+                <div class="text-start" [ngClass]="{'statusXu0':item.Type == 0,'statusXu1':item.Type == 1}">
+                  <div class="fs-12 fw-600" *ngIf="item.Type == 0">Đặt món</div>
+                  <div class="fs-12 fw-600" *ngIf="item.Type == 1">Nạp thẻ</div>
+                </div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Thời hạn" textAlign='Left' width=390>
+              <ng-template #template let-item>
+                <div class="d-flex gap-2" *ngIf="item.Type == 0">
+                  <div [ngStyle]="{'background':defaultColor[i % 10]}" class="p-1 rounded"
+                    *ngFor="let food of listFood;let i = index">
+                    {{food.Name}}
+                  </div>
+                </div>
+                <div *ngIf="item.Type == 1">Công ty nạp định kỳ</div>
+              </ng-template>
+            </e-column>
+
+            <e-column headerText="Người thực hiện" textAlign='Left' width=200>
+              <ng-template #template let-item>
+                <div class="d-flex align-items-center gap-2" *ngIf="item.Type == 0">
+                  <img src="./assets/images/credit-card-payment.png" alt="" class="img-table">
+                  <div>{{item.CreatedBy}}</div>
+                </div>
+                <div class="d-flex align-items-center gap-2" *ngIf="item.Type == 1">
+                  <img [src]="getPhoto(item.NguoiNhan)" alt="" class="img-table">
+                  <div class="d-flex flex-column">
+                    <div>Cao Minh Quân</div>
+                  </div>
+                </div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Tổng xu" textAlign='Left' width=120>
+              <ng-template #template let-item>
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <div *ngIf="item.Total > 0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M7.99998 3.33337V12.6667M3.33331 8.00004H12.6666" stroke="#54BF61" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div *ngIf="item.Total < 0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M3.33331 8H12.6666" stroke="#C13535" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div class="text-common-black">{{item.Total}} xu</div>
+                </div>
+              </ng-template>
+            </e-column>
+          </e-columns>
+        </ejs-grid>
+        <ejs-pager class="border-0" [totalRecordsCount]='totalItems' [pageSize]="PageSize"
+          (click)="ClickPagerIndex($event)">
+        </ejs-pager>
+      </div>
     </div>
+  </div>
 </div>

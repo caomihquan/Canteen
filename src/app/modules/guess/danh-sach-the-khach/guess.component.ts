@@ -7,6 +7,7 @@ import { LanguageService } from 'src/app/shares/services/language/language.servi
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { TranslateService } from '@ngx-translate/core';
 import { fnCommon } from 'src/app/shares/helpers/common';
+import { GuessService } from '../services/guess.service';
 
 @Component({
   selector: 'app-guess',
@@ -90,30 +91,22 @@ export class GuessComponent implements OnInit {
     Name:'Mực một nắng'
   }]
 
-  listCard = [
-    {
-      MaThe:"CARD001",
-      Note:"Thẻ cho khách bên ngoài công ty sử dụng",
-      Status:0,
-      SoXu:100,
-      LanNapGanNhat:new Date().toISOString()
-    }
-  ]
+  listCard = []
 
-  listHistory = [
-    {
-      NgayCapPhat:new Date().toISOString(),
-      Note:"Khách hàng đến công ty công tác",
-      Status:false,
-      BeginDate:new Date().toISOString(),
-      EndDate:new Date().toISOString(),
-      UserName:'cmquan',
-      CreatedBy:'cmquan',
-      NguoiNhan:'cmquan',
-      NguoiTra:'cmquan',
-      TongXu:300
+  listHistory:any[] = [
+    // {
+    //   NgayCapPhat:new Date().toISOString(),
+    //   Note:"Khách hàng đến công ty công tác",
+    //   Status:false,
+    //   BeginDate:new Date().toISOString(),
+    //   EndDate:new Date().toISOString(),
+    //   UserName:'cmquan',
+    //   CreatedBy:'cmquan',
+    //   NguoiNhan:'cmquan',
+    //   NguoiTra:'cmquan',
+    //   TongXu:300
 
-    }
+    // }
   ]
 
   listHistoryXu = [
@@ -137,6 +130,7 @@ export class GuessComponent implements OnInit {
     private _modalService: BsModalService,
     private _languageService:LanguageService,
     private _translate:TranslateService,
+    private guessService:GuessService
     ){
       _translate.use('vn');
   }
@@ -147,7 +141,33 @@ export class GuessComponent implements OnInit {
           this.GetMenu();
       }
     })
+    this.initTheKhachData();
   }
+  onOpenCPHistory(theID:string){
+          var data = {
+            Option: 8,
+            SearchText: '',
+            PageIndex: this.PageIndex,
+            PageSize: this.PageSize
+          }
+        this.guessService.TheKhach_GetHistoryTK(data).subscribe((res) => {
+              var data = res.Data.Data;
+              if(data.length > 0){
+                this.listHistory = (data as any[]).filter(x => x['MaTheKhach'] == theID)
+              }
+              else{
+                this.listHistory =[];
+              }
+
+        });
+  }
+  initTheKhachData(){
+      this.guessService.TheKhach_Get(this.PageIndex,'',this.PageSize).subscribe((res) =>{
+        debugger;
+          this.listCard = res.Data.Data;
+      });
+  }
+
   getLanguage = async()=>{
     this.I18nLang = await this._languageService.getLanguage();
   }
