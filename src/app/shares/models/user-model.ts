@@ -28,5 +28,5 @@ export class UserModel {
   TokenID: string;
   UserID: string;
   UserName: string;
-  UserType:string
+  UserType:string;
 }

@@ -1,0 +1,70 @@
+<ng-container *ngIf="isShow">
+  <ejs-dialog isModal="true" showCloseIcon="true" cssClass="custom-dialog" #ejDialog2 content='This is a Dialog with content' width="40%"
+    height="80%" (beforeOpen)="onBeforeOpen($event)">
+    <ng-template #footerTemplate>
+      <div class="dialog-footer">
+        <div>
+          <ejs-checkbox cssClass="custom" label="Ngưng sử dụng"></ejs-checkbox>
+        </div>
+        <button class="cancel-btn" data-ripple="true">Lưu</button>
+
+      </div>
+    </ng-template>
+    <ng-template #content>
+      <div class="dialogContent">
+        <!-- <div class="text-common-black fw-500 fs-14 pb-1">Loại nhóm</div>
+        <div class="dropdown">
+          <div class="input-dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <div>{{selectPhanLoai?.Name}}</div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#626262" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton1">
+            <li *ngFor="let item of ListPhanLoai" (click)="selectPhanLoai = item">{{item.Name}}</li>
+          </ul>
+        </div> -->
+        <div class="text-common-black fw-500 fs-14 pt-4  pb-1">Tên nhóm</div>
+        <div>
+          <input [(ngModel)]="tennhom" placeholder="Nhập tên nhóm" />
+        </div>
+        <div class="text-common-black fw-500 fs-14 pt-4 pb-1">Ghi chú</div>
+        <div>
+          <textarea name="" id="" rows="5" placeholder="Nhập ghi chú" [(ngModel)]="moTa"></textarea>
+        </div>
+        <div class="text-common-black fw-500 fs-14 pt-4  pb-1">Hạn mức sử dụng/ngày (VND)</div>
+        <div>
+          <input [(ngModel)]="donGia" type="number" />
+        </div>
+        <div class="row pt-4">
+            <div class="col-6">
+              <div class="text-common-black fw-500 fs-14 pb-1">Thời gian bắt đầu</div>
+              <!-- <div>
+                <input [(ngModel)]="tennhom" placeholder="Nhập giờ" />
+                <div class="clock-icon">
+                  <i class="icon-Time-20"></i>
+                </div>
+              </div> -->
+              <ejs-timepicker placeholder='Chọn giờ' ></ejs-timepicker>
+            </div>
+            <div class="col-6">
+              <div class="text-common-black fw-500 fs-14 pb-1">Thời gian kết thúc</div>
+              <ejs-timepicker placeholder='Chọn giờ' ></ejs-timepicker>
+            </div>
+        </div>
+        <!-- <div class="d-flex flex-row align-items-center pt-2 pb-1 gap-2">
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+          <span class="text-common-black fw-500 fs-14">Không xác định hạn mức</span>
+        </div> -->
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <span class="header-dialog">Thêm ca làm việc</span>
+    </ng-template>
+  </ejs-dialog>
+</ng-container>

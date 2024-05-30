@@ -1,0 +1,47 @@
+<ng-container *ngIf="isShow">
+  <ejs-dialog  isModal="true" showCloseIcon="true" #ejDialog content='This is a Dialog with content' width='70%' height="100vh" (beforeOpen)="onBeforeOpen($event)">
+    <ng-template #footerTemplate>
+        <div class="dialog-footer">
+          <button  class="cancel-btn" data-ripple="true">Đóng</button>
+        </div>
+    </ng-template>
+    <ng-template #content>
+      <div class="dialogContent">
+        <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions'
+          [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
+          <e-columns>
+            <e-column headerText="Ngày Cập nhật" textAlign='Left' width=30>
+              <ng-template #template let-item>
+                <div>{{item.UpdatedDate | date:'dd/MM/yyyy HH:mm'}}</div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Người cập nhật" width=40 textAlign='Center'>
+              <ng-template #template let-item>
+                <div class="updated-person">
+                  <div class="img-user">
+                      <img src="/assets/images/avatar.png" alt="">
+                  </div>
+                  <div class="info-user">
+                      <span class="name">{{item.Name}}</span>
+                      <span class="code">Mã nhân viên: {{item.EmployeeCode}}</span>
+                  </div>
+                </div>
+              </ng-template>
+            </e-column>
+            <e-column headerText="Nội dung cập nhật" width=100 textAlign='Center'>
+              <ng-template #template let-item>
+                <div  class="content fw-600 fs-14">{{item.Content}}</div>
+              </ng-template>
+            </e-column>
+
+          </e-columns>
+        </ejs-grid>
+        <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSize" (click)="LoadWithIndex($event)">
+        </ejs-pager>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <span class="header-dialog">Lịch sử cập nhật</span>
+    </ng-template>
+  </ejs-dialog>
+</ng-container>

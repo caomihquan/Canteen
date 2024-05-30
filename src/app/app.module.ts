@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { AuthService } from './shares/services/authentication/authentication.service';
 import { AppConfigService } from './shares/services/app-config/app-config.service';
+import { FoodshiftAddnewDialogComponent } from './modules/category/emp-subgroup/dialog/foodshift-addnew-dialog/foodshift-addnew-dialog.component';
+
 import { LayoutComponent } from './core/components/layout/layout.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
