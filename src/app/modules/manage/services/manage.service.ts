@@ -9,25 +9,25 @@ import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.servic
 export class UserService{
 
   constructor(private _apiHttp:ApiHttpService) { }
- 
+
   InitUnion(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get,'',{...data},false)
+    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get {...data},false)
   };
   GetUnion(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get,'',{...data},false)
+    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get {...data},false)
   };
   PostUnion(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get,'',{...data},true)
+    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get {...data},true)
   };
   PutUnion(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get,'',{...data},true)
+    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get {...data},true)
   };
   DelUnion(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get,'',{...data},true)
+    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get {...data},true)
   };
 
   GetDetailUnion(data:any){
-    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get,'',{...data},false)
+    return this._apiHttp.post(AppAPIConst.Feedback.Feedback_get {...data},false)
   };
 
 }

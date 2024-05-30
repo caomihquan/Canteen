@@ -18,12 +18,12 @@ export class ApiHttpService {
     private route:Router
   ) {}
 
-  post(url:string, funcID?:string, datas?:any,loading:boolean = false) {
+  post(url:string, datas?:any,loading:boolean = false) {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
     const _headers:{ [key: string]: any } = {
       "HRM-Api-Url": url,
-      "HRM-Function-ID": funcID,
+      "HRM-Function-ID": null,
       "HRM-Request-Url": "HrmMobileApp",
       "HRM-Api-Type": "HrmMobileApp",
       "HRM-Application-ID": "HrmMobileApp",

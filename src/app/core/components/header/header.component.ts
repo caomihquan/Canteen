@@ -44,7 +44,7 @@ export class HeaderComponent {
   listNotification:Array<any> = [];
   TotalItems:number = 0
   TotalPages:number = 0
-  
+
 
   listFood = [
     {
@@ -155,7 +155,7 @@ export class HeaderComponent {
   }
 
   getNotification(){
-    this._apiHttp.post(AppAPIConst.SIDEBAR.Notification,'',{
+    this._apiHttp.post(AppAPIConst.SIDEBAR.Notification,{
       PageSize:this.PageSize,
       PageIndex:this.PageIndex
     },false).subscribe(res=>{

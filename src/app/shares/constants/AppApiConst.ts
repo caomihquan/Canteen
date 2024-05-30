@@ -57,4 +57,14 @@ export const AppAPIConst = {
     Feedback_delete:'HrmMobileApp/CnB/Feedback/Feedback_delete',
     Feedback_getdetail:'HrmMobileApp/CnB/Feedback/Feedback_getdetail'
   },
+  CoCauToChuc:{
+    Departments_get:"HrmMobileApp/CnB/Danhmuc/Departments_get",
+    // Employees_get:"HrmMobileApp/CnB/Danhmuc/Employees_get"
+  },
+  QuanLyNhanVien:{
+    Employees_get:'HrmMobileApp/CnB/Danhmuc/Employees_get',
+    Employees_napxu:'HrmMobileApp/CnB/Danhmuc/Employees_napxu',
+    Danhmuc_get:'HrmMobileApp/CnB/Danhmuc/Danhmuc_get'
+  }
+
 }

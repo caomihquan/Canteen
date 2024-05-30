@@ -12,6 +12,6 @@ export class LoginService {
 
 
   login(loginInfo:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.LOGIN.Login,'',{...loginInfo},true)
+    return this._apiHttp.post(AppAPIConst.LOGIN.Login,{...loginInfo},true)
   }
 }

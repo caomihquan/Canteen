@@ -17,6 +17,6 @@ export class ChangePasswordService {
       NewPassword:btoa(loginInfo.NewPassword),
       ConfirmPassword:btoa(loginInfo.ConfirmPassword)
     }
-    return this._apiHttp.post(AppAPIConst.CHANGEPASSWORD.ChangePassword,'',{...data})
+    return this._apiHttp.post(AppAPIConst.CHANGEPASSWORD.ChangePassword,{...data})
   }
 }

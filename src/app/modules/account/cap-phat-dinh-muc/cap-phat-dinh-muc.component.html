@@ -49,7 +49,7 @@
     </div>
   </div>
   <div class="mx-2">
-    <grid-view [template]="templategrid"></grid-view>
+    <grid-view [totalItems]="totalItems" [template]="templategrid"></grid-view>
   </div>
 </div>
 <ng-template #templategrid>
@@ -68,13 +68,13 @@
       </e-column>
       <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
         <ng-template #template let-item>
-            <div class="text-start">{{item.Ma}}</div>
+            <div class="text-start">{{item.EmployeeCode}}</div>
         </ng-template>
     </e-column>
 
     <e-column headerText="V3ID" textAlign='Left' width=140>
       <ng-template #template let-item>
-          <div class="text-start">{{item.V3ID}}</div>
+          <div class="text-start">{{item.BarCode}}</div>
       </ng-template>
     </e-column>
 
@@ -88,7 +88,7 @@
         <ng-template #template let-item>
             <div class="d-flex align-items-center gap-2">
                 <img width="40" height="40" src="./assets/images/avatar.png" alt="" srcset="">
-                <span class="text-start">{{item.FullName}}</span>
+                <span class="text-start">{{item.EmployeeName}}</span>
             </div>
         </ng-template>
     </e-column>
@@ -99,47 +99,50 @@
     </e-column>
     <e-column headerText="Ngày nhận việc" textAlign='Left' width=180>
       <ng-template #template let-item>
-          <span class="text-start">{{item.NgayNhanViec  | date:'dd/MM/yyyy'}}</span>
+          <span class="text-start">{{item.JoinDate  | date:'dd/MM/yyyy'}}</span>
       </ng-template>
     </e-column>
     <e-column headerText="Nhóm phụ nhân viên" width=200 textAlign='Left'>
       <ng-template #template let-item>
+        <div class="d-flex justify-content-center">
           <div class="d-flex gap-2 align-items-center" [ngClass]="{
             'Staff': item.Status == 0 || true,
             'DL': item.Status == 1,
             'IDL': item.Status == 2,
             }">
               <span class="icon-Users-11"></span>
-              <div>{{item.V3ID}}</div>
+              <div>{{item.NhomPhu}}</div>
           </div>
+        </div>
       </ng-template>
     </e-column>
+
     <e-column headerText="Tháng cấp phát" textAlign='Left' width=180>
       <ng-template #template let-item>
-          <span class="text-start">04/2024</span>
+          <span class="text-start">{{item.Thang}}</span>
       </ng-template>
     </e-column>
     <e-column headerText="Tiền định mức lần 1" textAlign='Left' width=200>
       <ng-template #template let-item>
-          <span class="text-start">500.000</span>
+          <span class="text-start">{{item.DinhMuc1}}</span>
       </ng-template>
     </e-column>
     <e-column headerText="Tiền định mức lần 2" textAlign='Left' width=200>
       <ng-template #template let-item>
-          <span class="text-start">500.000</span>
+          <span class="text-start">{{item.DinhMuc2}}</span>
       </ng-template>
     </e-column>
 
     <e-column headerText="Tổng định mức" textAlign='Left' width=200>
       <ng-template #template let-item>
-          <span class="text-start">500.000</span>
+          <span class="text-start">{{item.DinhMuc1}}</span>
       </ng-template>
     </e-column>
 
 
     <e-column headerText="Tổng tiền đã thanh toán" textAlign='Left' width=150>
       <ng-template #template let-item>
-          <span class="text-start">500.000</span>
+          <span class="text-start">{{item.DinhMuc2}}</span>
       </ng-template>
     </e-column>
     <e-column headerText="Định mức còn lại" textAlign='Left' width=180>
@@ -155,7 +158,7 @@
               <path d="M3.33331 8H12.6666" stroke="#C13535" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div [ngClass]="{'Cong': item.Total > 0,'True': item.Total < 0}">{{item.Total}}</div>
+          <div [ngClass]="{'Cong': item.Total > 0,'True': item.Total < 0}">0{{item.Total}}</div>
         </div>
       </ng-template>
     </e-column>

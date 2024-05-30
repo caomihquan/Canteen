@@ -11,23 +11,23 @@ export class MenuService {
 
 
   GetRules(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.News.tintucGetData,'',{...data},true)
+    return this._apiHttp.post(AppAPIConst.News.tintucGetData {...data},true)
   }
   PostRules(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.News.tintucPost,'',{...data},true)
+    return this._apiHttp.post(AppAPIConst.News.tintucPost {...data},true)
   }
   DelRules(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.News.tintucDel,'',{...data},true)
+    return this._apiHttp.post(AppAPIConst.News.tintucDel {...data},true)
   }
 
   getDetailRules(data:any){
-    return this._apiHttp.post(AppAPIConst.News.tintucDetail,'',{...data},false)
+    return this._apiHttp.post(AppAPIConst.News.tintucDetail {...data},false)
   }
   getAttachment(data: any){
-    return this._apiHttp.post('HrmMobileApp/CnB/QuestionAndAnswer/tintucGetDataWithID','',{...data},false)
+    return this._apiHttp.post('HrmMobileApp/CnB/QuestionAndAnswer/tintucGetDataWithID' {...data},false)
   }
 
   CheckUploadExtensions(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.SYSTEM.CheckUploadFile,'',{...data},false)
+    return this._apiHttp.post(AppAPIConst.SYSTEM.CheckUploadFile {...data},false)
   }
 }
