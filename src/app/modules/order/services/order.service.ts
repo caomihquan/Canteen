@@ -11,7 +11,7 @@ export class HomeService {
 
 
   GetNewsFeed(data:any):Observable<ResponseModel>{
-    return this._apiHttp.post(AppAPIConst.HOME.GetNewsFeeds {...data},false)
+    return this._apiHttp.post(AppAPIConst.HOME.GetNewsFeeds , {...data},false)
   }
 
   PostRating(data:any){

@@ -19,6 +19,7 @@ export class CapPhatDinhMucComponent implements OnInit {
   height:number = (window.innerHeight - 202)
   totalPages:number;
   totalItems:number;
+
   constructor(private _api:ApiHttpService){}
   ngOnInit(): void {
     this.LoadListMember();
@@ -46,5 +47,9 @@ export class CapPhatDinhMucComponent implements OnInit {
         this.totalItems = res.Data.OutputParams.TotalItems
       }
     })
+  }
+
+  CapPhatDinhMuc(){
+
   }
 }
