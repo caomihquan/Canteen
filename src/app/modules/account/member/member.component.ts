@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
+import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 
 @Component({
   selector: 'app-member',
@@ -21,91 +22,29 @@ import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
   styleUrls: ['./member.component.scss']
 })
 export class MemberComponent implements OnInit {
+  @ViewChild('dialogHistory') dialogHistory:DialogComponent
   selectedDate:any;
-
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
+  PageIndexHistory:number = AppCommon.PageIndex;
+  PageSizeHistory:number = AppCommon.PageSize;
   height:number = (window.innerHeight - 202)
   totalPages:number;
   totalItems:number;
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
-
   I18nLang:any
   SearchText: string = '';
   modalRef:BsModalRef;
-
   isActive: number  = -1;
-
-
   wrapSettings = { wrapMode: 'Content' };
   mount = false;
-
+  totalItemsHistory = 0;
   //new
   listEmployee:Array<any> = []
 
-  listHistory:Array<any>= [
-    {
-      NgayPhatSinh:new Date().toISOString(),
-      Type:2,
-      Description:'',
-      CreatedBy:'cmquan',
-      UserName:'cmquan',
-      Total:100,
-    }
-  ]
-  listFood = [
-    {
-      Name:"Cơm tấm",
-      SL:54,
-      GroupID:1,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-    {
-      Name:"Bánh canh cá lóc",
-      SL:48,
-      GroupID:1,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-    {
-      Name:"Bún riêu cua",
-      SL:40,
-      GroupID:2,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-    {
-      Name:"Bánh canh cá lóc",
-      SL:48,
-      GroupID:1,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-    {
-      Name:"Bún riêu cua",
-      SL:40,
-      GroupID:3,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-  ]
+  listHistory:Array<any>= []
+  EmployeeSelected:any;
   defaultColor = AppCommon.defaultColor
   user:UserModel | null
   @ViewChild('grid') public grid?: GridComponent;
@@ -145,7 +84,11 @@ export class MemberComponent implements OnInit {
   }
   GetPhoto(photoid: string){
      return fnCommon.ConvertPhotoEmp(photoid);
-   };
+  };
+
+  GetPhotoByUserID(userID:string){
+    return fnCommon.ConvertPhotoEmpByUserID(userID)
+  }
 
   // LoadConfig(){
   //   this._MemberService.InitUnion1({
@@ -177,8 +120,31 @@ export class MemberComponent implements OnInit {
   }
 
 
+  LoadListHistory(){
+    this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
+      PageIndex:this.PageIndexHistory,
+      PageSize:this.PageSizeHistory,
+      SearchText:this.EmployeeSelected.EmployeeCode,
+      Option:7
+    }).subscribe(res=>{
+      if(res && res.Data){
+        this.listHistory = res.Data.Data
+        this.totalItemsHistory = res.Data.OutputParams.TotalItems
+      }
+    })
+  }
 
+  ClickHistoryEmp(item:any){
+    this.EmployeeSelected = item;
+    if(this.EmployeeSelected && this.EmployeeSelected?.EmployeeCode){
+      this.LoadListHistory();
+      this.dialogHistory.show()
+    }
+  }
 
+  ClickPagerHistory(page:any){
+    console.log(page);
+  }
 
 
 

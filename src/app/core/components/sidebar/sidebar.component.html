@@ -12,7 +12,7 @@
   <img src="./assets/images/logo-login.png" alt="">
   <span class="fw-700 fs-18">Canteen</span>
 </div>
-<div class="container-sidebar p-4 px-3 pt-2 " [ngStyle]="{height: height + 'px'}">
+<div class="container-sidebar p-4 px-3 pt-2 position-relative" [ngStyle]="{height: height + 'px'}">
   <ul class="pb-5">
     <li  *ngFor="let item of ListSideBar" class="mb-2">
       <div (click)="ToogleTabs(item)" class="tabs d-flex gap-2 align-items-center rounded w-100 pointer" [ngClass]="{'active-tab':checkActicSidebar(item,tabSelected)}">
@@ -30,4 +30,8 @@
       </ul>
     </li>
   </ul>
+  <div class="logout border-top d-flex gap-2 align-items-center pointer" (click)="Logout()">
+    <span class="icon-General-132"></span>
+    <div>Đăng xuất</div>
+  </div>
 </div>

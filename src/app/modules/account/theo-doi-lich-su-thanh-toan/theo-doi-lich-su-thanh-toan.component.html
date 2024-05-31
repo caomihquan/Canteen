@@ -2,7 +2,7 @@
   <div class="container-toolbar pb-0">
     <div class="left-toolbar d-flex gap-2 align-items-center">
       <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
-      <span class="text-common-black fw-600 fs-16">Quản lý tài khoản</span>
+      <span class="text-common-black fw-600 fs-16">Quản lý thẻ nhân viên</span>
       <span class="text-common-black fw-500 fs-16">></span>
       <span class="text-common-black fw-500 fs-16">Theo dõi lịch sử thanh toán</span>
     </div>
@@ -48,15 +48,15 @@
       </div>
     </div>
   </div>
-  <div class="mx-2">
-    <grid-view [template]="templategrid"></grid-view>
+  <div class="mx-2 pt-2">
+    <grid-view [totalItems]="totalItems" [template]="templategrid"></grid-view>
   </div>
 </div>
 
 <ng-template #templategrid>
   <ejs-grid
   [dataSource]="listHistory"
-  [height]="heightGrid - 30"
+  [height]="heightGrid - 50"
   [allowTextWrap]="true"
   [textWrapSettings]='wrapSettings'>
     <e-columns>

@@ -6,6 +6,7 @@ import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
 import { SidebarModel } from 'src/app/shares/models/SidebarModel';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
+import { NotificationService } from 'src/app/shares/services/notification/notification.service';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 
 @Component({
@@ -193,9 +194,7 @@ export class SidebarComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private _router:Router,
     private _activeRoute:ActivatedRoute,
-    private _apiHttp:ApiHttpService,
-    private _ordinal:OrdinalService,
-    private _auth:AuthService
+    private _noti:NotificationService
     ){
 
 
@@ -236,7 +235,7 @@ export class SidebarComponent implements OnInit {
       if(this.ListSideBarCheck.length > 0){
         let url = this._router.url;
         if(url == "/"){
-          url = "/home"
+          url = "/co-cau-to-chuc"
         }
         let item = this.ListSideBarCheck.find(y => y.Url == window.location.pathname);
         if(!item){
@@ -272,5 +271,17 @@ export class SidebarComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  Logout(){
+    this._noti.Confirm({
+      title:"Thông báo",
+      content:"Bạn có muốn đăng xuất?",
+      OkFunction:() =>{
+        localStorage.clear();
+        this._router.navigate([AppRoutes.login]);
+      }
+    })
+
   }
 }
