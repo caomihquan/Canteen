@@ -16,6 +16,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { FoodlineComponent } from './foodline.component';
 import { FoodlineAddnewDialogComponent } from '../emp-subgroup/dialog/foodline-addnew-dialog/foodline-addnew-dialog.component';
+import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view';
 
 
 
@@ -42,6 +43,7 @@ const routes: Routes = [
     DialogModule,
     SwitchModule,
     CheckBoxModule,
+    GridViewComponent,
     TimePickerModule ,
     HistoryModule,
     RouterModule.forChild(routes),

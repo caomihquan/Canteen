@@ -43,57 +43,9 @@ export class FoodShiftComponent implements OnInit {
   modalRef: BsModalRef
   I18nLang:any
   defaultColor = AppCommon.defaultColor
-
-
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
-  listSubgroup = [
-    {
-      ShiftCode: 'CA001',
-      ShiftName: 'Ca sáng',
-      Note: 'Nhân viên Công ty: Chính thức và thuê theo dự án (Staff)',
-      StartTime: new Date(),
-      EndTime: new Date(),
-
-    },
-    {
-      ShiftCode: 'CA001',
-      ShiftName: 'Ca sáng',
-      Note: 'Nhân viên Công ty: Chính thức và thuê theo dự án (Staff)',
-      StartTime: new Date(),
-      EndTime: new Date(),
-    },
-    {
-      ShiftCode: 'CA001',
-      ShiftName: 'Ca sáng',
-      Note: 'Nhân viên Công ty: Chính thức và thuê theo dự án (Staff)',
-      StartTime: new Date(),
-      EndTime: new Date(),
-    },
-    {
-      ShiftCode: 'CA001',
-      ShiftName: 'Ca sáng',
-      Note: 'Nhân viên Công ty: Chính thức và thuê theo dự án (Staff)',
-      StartTime: new Date(),
-      EndTime: new Date(),
-    },
-    {
-      ShiftCode: 'CA001',
-      ShiftName: 'Ca sáng',
-      Note: 'Nhân viên Công ty: Chính thức và thuê theo dự án (Staff)',
-      StartTime: new Date(),
-      EndTime: new Date(),
-    },
-    {
-      ShiftCode: 'CA001',
-      ShiftName: 'Ca sáng',
-      Note: 'Nhân viên Công ty: Chính thức và thuê theo dự án (Staff)',
-      StartTime: new Date(),
-      EndTime: new Date(),
-    }
-  ]
-
-
+  listSubgroup = []
 
   selectedTab = 1
   constructor(

@@ -43,62 +43,7 @@ export class FoodlineComponent implements OnInit {
 
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
-  listSubgroup = [
-    {
-      LineCode: 'CA001',
-      LineName: 'Ca sáng',
-      LineType: 'Mặn',
-      Price: 23000,
-      EffectedDate: new Date(),
-      Name:'Văn Tuấn Kiệt',
-      ModifiedDate: new Date()
-    },
-    {
-      LineCode: 'CA001',
-      LineName: 'Ca sáng',
-      LineType: 'Mặn',
-      Price: 23000,
-      EffectedDate: new Date(),
-      Name:'Văn Tuấn Kiệt',
-      ModifiedDate: new Date()
-    },
-    {
-      LineCode: 'CA001',
-      LineName: 'Ca sáng',
-      LineType: 'Mặn',
-      Price: 23000,
-      EffectedDate: new Date(),
-      Name:'Văn Tuấn Kiệt',
-      ModifiedDate: new Date()
-    },
-    {
-      LineCode: 'CA001',
-      LineName: 'Ca sáng',
-      LineType: 'Mặn',
-      Price: 23000,
-      EffectedDate: new Date(),
-      Name:'Văn Tuấn Kiệt',
-      ModifiedDate: new Date()
-    },
-    {
-      LineCode: 'CA001',
-      LineName: 'Ca sáng',
-      LineType: 'Mặn',
-      Price: 23000,
-      EffectedDate: new Date(),
-      Name:'Văn Tuấn Kiệt',
-      ModifiedDate: new Date()
-    },
-    {
-      LineCode: 'CA001',
-      LineName: 'Ca sáng',
-      LineType: 'Mặn',
-      Price: 23000,
-      EffectedDate: new Date(),
-      Name:'Văn Tuấn Kiệt',
-      ModifiedDate: new Date()
-    }
-  ]
+  listSubgroup = []
 
 
 

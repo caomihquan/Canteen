@@ -15,6 +15,7 @@ import { FoodshiftAddnewDialogComponent } from '../emp-subgroup/dialog/foodshift
 import { HistoryModule } from '../emp-subgroup/dialog/history-dialog/history-dialog.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
     DialogModule,
     SwitchModule,
     CheckBoxModule,
+    GridViewComponent,
     TimePickerModule ,
     HistoryModule,
     RouterModule.forChild(routes),

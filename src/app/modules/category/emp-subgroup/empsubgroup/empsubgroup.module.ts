@@ -17,6 +17,7 @@ import { FoodshiftAddnewDialogComponent } from '../dialog/foodshift-addnew-dialo
 import { FoodlineAddnewDialogComponent } from '../dialog/foodline-addnew-dialog/foodline-addnew-dialog.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { HistoryModule } from '../dialog/history-dialog/history-dialog.module';
+import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view';
 
 const routes: Routes = [
   {
@@ -42,6 +43,7 @@ const routes: Routes = [
     SwitchModule,
     CheckBoxModule,
     HistoryModule,
+    GridViewComponent,
     RouterModule.forChild(routes),
     TranslateModule.forRoot({
       loader: {
