@@ -36,38 +36,38 @@
         <e-columns>
             <e-column headerText="STT" textAlign='Left' width=50>
                 <ng-template #template let-item>
-                    <div>{{item.STT}}</div>
+                    <div>{{item.NhomPhuCode}}</div>
                 </ng-template>
             </e-column>
             <e-column headerText="Loại nhóm" width=40 textAlign='Left'>
                 <ng-template #template let-item>
-                    <div class="type-subgroup" [ngStyle]="{'background-color': item.GroupColor}">
+                    <!-- <div class="type-subgroup" [ngStyle]="{'background-color': item.GroupColor}">
                         <i class="icon-Users-3" [ngStyle]="{'color': item.TextColor}"></i>
                         <div class="type-font" [ngStyle]="{'color': item.TextColor}">
-                            {{item.TypeGroupName}}
+                            {{item.NhomPhuName}}
                         </div>
-                    </div>
+                    </div> -->
                 </ng-template>
             </e-column>
             <e-column headerText="Tên nhóm" width=100 textAlign='Center'>
                 <ng-template #template let-item>
-                    <span class="fw-600 fs-14">{{item.GroupName}}</span>
+                    <span class="fw-600 fs-14">{{item.NhomPhuName}}</span>
                 </ng-template>
             </e-column>
             <e-column headerText="Đối tượng/User" width=70 textAlign='Center'>
                 <ng-template #template let-item>
-                    <div class="objects fw-600 fs-14">{{item.Objects}}</div>
+                    <div class="objects fw-600 fs-14">{{item.DoiTuong}}</div>
                 </ng-template>
             </e-column>
             <e-column headerText="Hạn mức sử dụng ngày" width=70 textAlign='Center'>
                 <ng-template #template let-item>
-                    <span class="fw-600 fs-14">{{item.limit}}</span>
+                    <span class="fw-600 fs-14">{{item.HanMucNgay}}</span>
                 </ng-template>
             </e-column>
             <e-column headerText="Xem lịch sử" width=70 textAlign='Center'>
                 <ng-template #template let-item>
                     <div class="d-flex justify-content-center">
-                        <button class="history-btn" (click)="onClickViewHistory(item.STT)">
+                        <button class="history-btn" (click)="onClickViewHistory(item.NhomPhuCode)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
               <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
             </svg>

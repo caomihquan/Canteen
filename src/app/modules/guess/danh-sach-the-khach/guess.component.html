@@ -461,7 +461,7 @@
         </div>
     </div>
 </div> -->
-    <app-CapPhatDinhMuc-dialog #capphatdinhmuc></app-CapPhatDinhMuc-dialog>
+    <app-CapPhatDinhMuc-dialog #capphatdinhmuc (reloadDataMasterEvent)="initTheKhachData()"></app-CapPhatDinhMuc-dialog>
 
 <div class="bg-white width-screen">
   <div class="container-toolbar">
@@ -497,7 +497,7 @@
 
 
 <ng-template #templategrid>
-  <ejs-grid class="border-0" [height]="height" (recordClick)="onOpenCapPhatDinhMuc($event)" [dataSource]='listCard' [pageSettings]="pageSettings">
+  <ejs-grid class="border-0" [height]="height" (recordDoubleClick)="onOpenCapPhatDinhMuc($event)" [dataSource]='listCard' [pageSettings]="pageSettings">
     <e-columns>
       <e-column headerText="Mã thẻ" textAlign='Left' width=110>
         <ng-template #template let-item>
@@ -522,18 +522,18 @@
       </e-column>
       <e-column headerText="Định mức sử dụng" textAlign='Left' width=160>
         <ng-template #template let-item>
-          <div class="text-center text-common-primary fs-12 fw-600">{{item.TongXu}}</div>
+          <div class="text-center text-common-primary fs-12 fw-600">{{item.DinhMucConLai  }}</div>
         </ng-template>
       </e-column>
       <e-column headerText="Hạn mức sử dụng" textAlign='Left' width=160>
         <ng-template #template let-item>
-          <div class="text-center text-common-primary fs-12 fw-600">{{item.TongXu}}</div>
+          <div class="text-center text-common-primary fs-12 fw-600">{{item.HanMucSuDung }}</div>
         </ng-template>
       </e-column>
       <e-column headerText="Lần nạp gần nhất" textAlign='Left' width=150>
         <ng-template #template let-item>
           <div class="d-flex gap-2">
-            <div class="fs-12">{{item.NgayNapXuGanNhat | date:'dd/MM/yyyy'}}</div>
+            <div class="fs-12">{{item.LanNapGanNhat | date:'dd/MM/yyyy'}}</div>
           </div>
         </ng-template>
       </e-column>
@@ -556,7 +556,7 @@
       </e-column>
       <e-column headerText="Lịch sử xu" textAlign='Center' width=140>
         <ng-template #template let-item>
-          <div data-bs-target="#modalHistoryXu" data-bs-toggle="modal">
+          <div data-bs-target="#modalHistoryXu" data-bs-toggle="modal" (click)="onOpenXuHistory(item.MaTheKhach)">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
               <path
                 d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z"
@@ -573,6 +573,8 @@
       </e-column>
     </e-columns>
   </ejs-grid>
+  <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSize" (click)="ClickPagerIndex($event)">
+  </ejs-pager>
 </ng-template>
 
 <!-- modal Thêm -->
@@ -762,9 +764,9 @@
             <e-column headerText="Thời hạn" textAlign='Left' width=220>
               <ng-template #template let-item>
                 <div class="d-flex gap-2">
-                  <div class="fs-12">{{item.BeginDate | date:'dd/MM/yyyy'}}</div>
+                  <div class="fs-12">{{item.CreatedOn | date:'dd/MM/yyyy'}}</div>
                   <div class="fs-12"> - </div>
-                  <div class="fs-12">{{item.EndDate | date:'dd/MM/yyyy'}}</div>
+                  <div class="fs-12">{{item.ThoiHanSuDung | date:'dd/MM/yyyy'}}</div>
                 </div>
               </ng-template>
             </e-column>
@@ -914,9 +916,9 @@
             </e-column>
           </e-columns>
         </ejs-grid>
-        <ejs-pager class="border-0" [totalRecordsCount]='totalItems' [pageSize]="PageSize"
+        <!-- <ejs-pager class="border-0" [totalRecordsCount]='totalItems' [pageSize]="PageSize"
           (click)="ClickPagerIndex($event)">
-        </ejs-pager>
+        </ejs-pager> -->
       </div>
     </div>
   </div>

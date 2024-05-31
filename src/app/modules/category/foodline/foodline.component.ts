@@ -88,8 +88,8 @@ export class FoodlineComponent implements OnInit {
     this.selectedMenu = item;
   }
 
-  onClickViewHistory(id:number){
-        this.historydialog.onOpenDialog();
+  onClickViewHistory(id:string){
+        this.historydialog.onOpenDialog(id);
   }
 
   GetMenu(){

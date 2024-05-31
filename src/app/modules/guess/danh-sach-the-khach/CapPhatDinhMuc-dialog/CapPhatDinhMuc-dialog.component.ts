@@ -1,7 +1,10 @@
 import { GuessService } from './../../services/guess.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
+import { LanguageService } from 'src/app/shares/services/language/language.service';
 
 @Component({
   selector: 'app-CapPhatDinhMuc-dialog',
@@ -22,45 +25,31 @@ export class CapPhatDinhMucDialogComponent implements OnInit {
   tennhom:string;
   moTa:string;
   donGia:number = 0;
+  modalRef: BsModalRef
+  I18nLang:any
+  @Output() reloadDataMasterEvent: EventEmitter<any> = new EventEmitter();
   protected DinhMucCongThem:number = 0;
   protected TheKhachCode:string;
 
-  constructor(private guessService: GuessService){
+  constructor(private guessService: GuessService
+              ,private _languageService: LanguageService
+              ,  private _modalService: BsModalService,
+
+  ){
 
   }
 
-  listSubgroup = [
-    {
-      UpdatedDate: new Date(),
-      Name: 'Lê Phạm Hoài Thương',
-      EmployeeCode: 'TW0001',
-      Content:'Thay đổi Hạn mức sử dụng/ngày từ 100.000VND thành 125.000VND'
-    },
-    {
-      UpdatedDate: new Date(),
-      Name: 'Lê Phạm Hoài Thương',
-      EmployeeCode: 'TW0001',
-      Content:'Thay đổi Hạn mức sử dụng/ngày từ 100.000VND thành 125.000VND'
-    },
-    {
-      UpdatedDate: new Date(),
-      Name: 'Lê Phạm Hoài Thương',
-      EmployeeCode: 'TW0001',
-      Content:'Thay đổi Hạn mức sử dụng/ngày từ 100.000VND thành 125.000VND'
-    },
-    {
-      UpdatedDate: new Date(),
-      Name: 'Lê Phạm Hoài Thương',
-      EmployeeCode: 'TW0001',
-      Content:'Thay đổi Hạn mức sử dụng/ngày từ 100.000VND thành 125.000VND'
-    },
-  ]
+
 
   ngOnInit(): void {
-    this.totalItems = this.listSubgroup.length;
+    // this.totalItems = this.listSubgroup.length;
+    this.getLanguage();
   }
-
+  getLanguage = async()=>{
+    this.I18nLang = await this._languageService.getLanguage();
+  }
   protected onBeforeOpen(event:any){
+    debugger;
   }
   protected onSave(){
     debugger;
@@ -72,17 +61,24 @@ export class CapPhatDinhMucDialogComponent implements OnInit {
     }
         this.guessService.TheKhach_ThemXu(data).subscribe(res =>{
           debugger;
-          if(!res.Data.Data.OutputParams.Err && !res.Data.Data.Error ){
-            // const initialState = {
-            //   title: this.I18nLang.Common.Alert,
-            //   content:this.I18nLang.Error.NoRowSelected,
-            // }
-            // this.modalRef = this._modalService.show(ModalComponent,{initialState});
+          if(!res.Data.OutputParams.Err && !res.Data.Error ){
+            const initialState = {
+              title: this.I18nLang.Common.Alert,
+              content: 'Cấp phát định mức thành công',
+            }
+            this.modalRef = this._modalService.show(ModalComponent,{initialState});
+            this.DinhMucCongThem = 0;
+            this.ejDialog.hide();
+            this.reloadDataMasterEvent.emit(true);
+            this.isShow = false;
           }
-              console.log(res);
+          else{
+            this.reloadDataMasterEvent.emit(false);
+          }
+              // console.log(res);
+
         });
-        this.ejDialog.hide();
-        this.isShow = false;
+
   }
   LoadWithIndex(evt:any){
     debugger
@@ -95,7 +91,7 @@ export class CapPhatDinhMucDialogComponent implements OnInit {
       this.isShow = true;
       this.TheKhachCode = thekhachCode;
       if(this.isShow){
-        this.ejDialog.show();
+        this.ejDialog?.show();
       }
   }
   ListPhanLoai = [

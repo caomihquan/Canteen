@@ -20,6 +20,7 @@ export class GuessComponent implements OnInit {
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
   totalItems:number;
+  totalHistoryCPItems: number;
   height:number = (window.innerHeight - 202)
   heightHistory:number = (window.innerHeight - 300)
   searchText:string;
@@ -137,17 +138,17 @@ export class GuessComponent implements OnInit {
   }
   ngOnInit() {
     this.getLanguage()
-    this._ordinal.finishSideBar.subscribe(res=>{
-      if(res){
-          this.GetMenu();
-      }
-    })
+    // this._ordinal.finishSideBar.subscribe(res=>{
+    //   if(res){
+    //       this.GetMenu();
+    //   }
+    // })
     this.initTheKhachData();
   }
   onOpenCPHistory(theID:string){
           this.listHistory =[];
           var data = {
-            Option: 8,
+            Option: 10,
             SearchText: '',
             PageIndex: this.PageIndex,
             PageSize: this.PageSize
@@ -155,18 +156,42 @@ export class GuessComponent implements OnInit {
         this.guessService.TheKhach_GetHistoryTK(data).subscribe((res) => {
               var data = res.Data.Data;
               if(data.length > 0){
-                this.listHistory = (data as any[]).filter(x => x['MaTheKhach'] == theID)
+                this.listHistory = (data as any[]).filter(x => x['MaTheKhach'] == theID);
+                this. totalHistoryCPItems = res.Data.OutputParams.TotalItems;
               }
               else{
                 this.listHistory =[];
+                this.ResetModel()
               }
 
         });
   }
-  initTheKhachData(){
+  onOpenXuHistory(theID:string){
+    this.listHistory =[];
+    var data = {
+      Option: 10,
+      SearchText: '',
+      PageIndex: this.PageIndex,
+      PageSize: this.PageSize
+    }
+  this.guessService.TheKhach_GetHistoryTK(data).subscribe((res) => {
+        var data = res.Data.Data;
+        if(data.length > 0){
+          this.listHistory = (data as any[]).filter(x => x['MaTheKhach'] == theID);
+          this. totalHistoryCPItems = res.Data.OutputParams.TotalItems;
+        }
+        else{
+          this.listHistory =[];
+          this.ResetModel()
+        }
+
+  });
+}
+  initTheKhachData(condition?:boolean){
       this.guessService.TheKhach_Get(this.PageIndex,'',this.PageSize).subscribe((res) =>{
         debugger;
           this.listCard = res.Data.Data;
+          this.totalItems = res.Data.OutputParams.TotalItems;
       });
   }
 

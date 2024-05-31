@@ -57,7 +57,7 @@ export class EmpsubgroupComponent implements OnInit {
       this.loginInfo = this._userService.getUser();
   }
   ngOnInit() {
-   
+      this.getListFoodLine();
   }
 
 
@@ -68,6 +68,7 @@ export class EmpsubgroupComponent implements OnInit {
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
     }).subscribe(res=>{
+      debugger;
       console.log(res);
       this.listSubgroup = res.Data.Data
       this.totalItems = res.Data.OutputParams.totalItems
@@ -89,11 +90,11 @@ export class EmpsubgroupComponent implements OnInit {
     this.selectedMenu = item;
   }
 
-  onClickViewHistory(id:number){
-    this.historydialog.onOpenDialog();
+  onClickViewHistory(id:string){
+    this.historydialog.onOpenDialog(id);
   }
 
-  
+
   ClickPagerIndex(evt:any){
     if(evt?.currentPage){
       this.PageIndex = evt?.currentPage - 1
@@ -110,5 +111,5 @@ export class EmpsubgroupComponent implements OnInit {
     return fnCommon.ConvertPhotoEmpByUserID(userid)
   }
 
- 
+
 }

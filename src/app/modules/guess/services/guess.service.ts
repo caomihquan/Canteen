@@ -20,4 +20,7 @@ export class GuessService {
   TheKhach_ThemXu(data:any):Observable<ResponseModel>{
     return this._apiHttp.post(AppAPIConst.TheKhach.TheKhach_napxu,{...data},true)
   }
+  TheKhach_TheoDoiLSTT(data:any):Observable<ResponseModel>{
+    return this._apiHttp.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{...data},true)
+  }
 }

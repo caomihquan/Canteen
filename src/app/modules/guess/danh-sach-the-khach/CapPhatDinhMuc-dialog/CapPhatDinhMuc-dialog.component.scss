@@ -176,3 +176,9 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+
+
+.e-popup.e-popup-open.e-dialog{
+  min-width: 314px;
+}
