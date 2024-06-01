@@ -11,6 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
+    canActivate:[AuthGuard],
     component: LayoutComponent,
     children: [
       // {
@@ -71,11 +72,12 @@ const routes: Routes = [
   },
   {
     path: 'history-emp',
+    canActivate:[AuthGuard],
     loadChildren: () => import('./../../modules/history-emp/history-emp.module').then(m => m.HistoryEmpModule)
   },
   {
     path: 'scan',
-    // canActivate:[AuthGuard],
+    canActivate:[AuthGuard],
     loadChildren: () => import('./../../modules/scan/scan.module').then(m => m.ScanModule)
   },
   {

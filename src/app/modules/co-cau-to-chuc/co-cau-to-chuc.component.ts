@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
+import { SidebarModel } from 'src/app/shares/models/SidebarModel';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class CoCauToChucComponent implements OnInit {
   height:number = window.innerHeight
   tabSelected:any
   listDepartment:Array<any> = []
+  listDepartmentOrigin:Array<any> = []
   getPhoto = fnCommon.ConvertPhotoEmpByUserID;
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
@@ -42,6 +44,7 @@ export class CoCauToChucComponent implements OnInit {
 
   getCoCauToChuc(){
     this._api.post(AppAPIConst.CoCauToChuc.Departments_get).subscribe(res=>{
+      this.listDepartmentOrigin = res.Data.Data;
       this.listDepartment = this.InitNested(res.Data.Data,null);
       this.tabSelected = this.listDepartment.length > 0 ? this.listDepartment[0] : null;
       if(this.tabSelected){
@@ -63,18 +66,33 @@ export class CoCauToChucComponent implements OnInit {
     return nestedTabs;
   }
 
-  LoadEmployee(){
-    this._api.post(AppAPIConst.CoCauToChuc.Employees_get,{
-      PageIndex:this.PageIndex,
-      PageSize:this.PageSize,
-      DepartmentCode:this.tabSelected.DepartmentCode,
-    }).subscribe(res=>{
-      if(res.Data){
-        this.listEmployee = res.Data.Data;
-        this.TotalItems = res.Data.OutputParams.TotalItems
-        console.log(res,'emps');
+  GetAllChilrend(arr:SidebarModel){
+    if(arr.Children.length > 0){
+      for (const tab of arr.Children) {
+        this.listEmployee.push(tab)
+        if(tab.Children.length > 0){
+          this.GetAllChilrend(tab);
+        }
       }
-    })
+    }
+  }
+
+  LoadEmployee(){
+    var item = this.listDepartmentOrigin.find(x => x.DepartmentCode == this.tabSelected.DepartmentCode);
+    var lst = this.InitNested(this.listDepartmentOrigin,item.DepartmentCode);
+    this.listEmployee = [item,...lst]
+    console.log(this.listEmployee);
+    // this._api.post(AppAPIConst.CoCauToChuc.Employees_get,{
+    //   PageIndex:this.PageIndex,
+    //   PageSize:this.PageSize,
+    //   DepartmentCode:this.tabSelected.DepartmentCode,
+    // }).subscribe(res=>{
+    //   if(res.Data){
+    //     this.listEmployee = res.Data.Data;
+    //     this.TotalItems = res.Data.OutputParams.TotalItems
+    //     console.log(res,'emps');
+    //   }
+    // })
   }
 
   ClickPageEmp(page:any){

@@ -263,14 +263,13 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (this._auth.getUser()?.Administrator) {
-    //   this.getMenu();
-    // }
-    // else {
-    //   this._router.navigate(['history-emp'])
-    // }
-    this.getMenu();
-
+    if (this._auth.getUser()?.Administrator) {
+      this.getMenu();
+    }
+    else {
+      this._router.navigate(['history-emp'])
+    }
+    //this.getMenu();
   }
 
   fnSanitizer(html: string) {
@@ -320,7 +319,7 @@ export class SidebarComponent implements OnInit {
     const index = this.ListSideBar.findIndex(x => x.FunctionID == item.FunctionID)
     this.ListSideBar[index].Active = !this.ListSideBar[index].Active
     if (item.Children.length == 0) {
-      this.tabSelected = item.MenuID;
+      this.tabSelected = item.FunctionID;
       this.ListSideBar.forEach((x) => {
         if (item.FunctionID != x.FunctionID) {
           x.Active = false
