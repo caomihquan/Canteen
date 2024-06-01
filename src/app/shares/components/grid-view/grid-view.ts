@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
-import { FilterService, FilterSettingsModel, Grid, GridModule, GroupService, PageService, PageSettingsModel, PagerModule, SortService } from '@syncfusion/ej2-angular-grids';
+import { ExcelExportService, FilterService, FilterSettingsModel, Grid, GridModule, GroupService, PageService, PageSettingsModel, PagerModule, SortService, ToolbarService } from '@syncfusion/ej2-angular-grids';
 
 @Component({
   selector: 'grid-view',
   templateUrl: './grid-view.html',
   styleUrls: ['./grid-view.scss'],
   imports: [GridModule,CommonModule,PagerModule],
-  providers: [PageService,SortService,FilterService,GroupService],
+  providers: [PageService,SortService,FilterService,GroupService, ExcelExportService, ToolbarService],
   standalone: true,
 })
 export class GridViewComponent{

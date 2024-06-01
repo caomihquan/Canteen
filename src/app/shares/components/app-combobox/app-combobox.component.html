@@ -25,7 +25,7 @@
         <input [(ngModel)]="textSearch" (input)="ChangeSearch()" class="rounded border p-2 rounded w-100 " type="text">
       </div>
       <div *ngFor="let item of dataSource">
-        <div class="item-combobox border-bottom d-flex flex-column" (click)="dialogCombobox.hide();clickItem.emit(item)">
+        <div class="item-combobox border-bottom d-flex flex-column" (click)="onClickItem(item);dialogCombobox.hide();clickItem.emit(item)">
           <div>{{item[fieldName]}}</div>
           <div *ngIf="fieldName2">{{item[fieldName2]}}</div>
         </div>

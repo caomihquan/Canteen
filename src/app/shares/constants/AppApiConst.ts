@@ -74,5 +74,9 @@ export const AppAPIConst = {
     TheKhach_get: 'HrmMobileApp/CnB/Danhmuc/TheKhach_get',
     TheKhach_napxu: 'HrmMobileApp/CnB/Danhmuc/TheKhach_napxu'
   },
-  Report:'HrmMobileApp/CnB/Danhmuc/reportsudungthe_get'
+  Report:{
+    reportsudungthe_get: 'HrmMobileApp/CnB/Danhmuc/reportsudungthe_get',
+    ReportTongHop:'HrmMobileApp/CnB/Danhmuc/ReportTongHop',
+    reportsudungthe_getCombo: 'HrmMobileApp/CnB/Danhmuc/reportsudungthe_getCombo'
+  }
 }

@@ -28,15 +28,11 @@ export class AppComboboxComponent  {
   dataOrigin:any[] = []
 
   constructor(){
-      this.dataSource = [
-          {month:'1'}, 
-          {month:'1'},
-          {month:'1'},
-          {month:'1'},
-          {month:'1'}
-      ]
+    
   }
-  
+  onClickItem(item:any){
+    this.selectedItem = item;
+  }
   onBeforeOpen = function(args: any): void {
     debugger;
     args.maxHeight = `${window.innerHeight}px`;

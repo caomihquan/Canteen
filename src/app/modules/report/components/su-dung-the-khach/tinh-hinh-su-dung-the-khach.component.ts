@@ -96,12 +96,13 @@ export class TinhHinhSuDungTheKhachComponent implements OnInit {
   // }
 
   Export(){
+    debugger
     var a = document.querySelector('.e-excelexport') as HTMLElement
     a?.click()
   }
 
   LoadEmployee() {
-    this._api.post(AppAPIConst.Report, {
+    this._api.post(AppAPIConst.Report.reportsudungthe_get, {
       PageIndex: this.PageIndex,
       PageSize:1000000,
       tungay:this.FromDate,
