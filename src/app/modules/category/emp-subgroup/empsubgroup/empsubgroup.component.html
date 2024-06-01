@@ -1,10 +1,10 @@
 <div class="bg-white width-screen">
     <div class="container-toolbar">
         <div class="left-toolbar d-flex gap-2 align-items-center">
-            <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
-            <span class="text-common-black fw-600 fs-16">Quản lý tài khoản</span>
-            <span class="text-common-black fw-500 fs-16">></span>
-            <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
+          <span class="icon-Development-11 fs-24 text-common-black fw-600"></span>
+          <span class="text-common-black fw-600 fs-16">Danh mục</span>
+          <span class="text-common-black fw-500 fs-16">></span>
+          <span class="text-common-black fw-500 fs-16">Nhóm nhân viên phụ</span>
         </div>
         <div class="right-toolbar">
             <div class="button-toolbar">
@@ -51,17 +51,17 @@
             </e-column>
             <e-column headerText="Tên nhóm" width=100 textAlign='Center'>
                 <ng-template #template let-item>
-                    <span class="fw-600 fs-14">{{item.NhomPhuName}}</span>
+                    <span class="fs-14">{{item.NhomPhuName}}</span>
                 </ng-template>
             </e-column>
             <e-column headerText="Đối tượng/User" width=70 textAlign='Center'>
                 <ng-template #template let-item>
-                    <div class="objects fw-600 fs-14">{{item.DoiTuong}}</div>
+                    <div class="objects fs-14">{{item.DoiTuong}}</div>
                 </ng-template>
             </e-column>
             <e-column headerText="Hạn mức sử dụng ngày" width=70 textAlign='Center'>
                 <ng-template #template let-item>
-                    <span class="fw-600 fs-14">{{item.HanMucNgay}}</span>
+                    <span class="fs-14">{{item.HanMucNgay}}</span>
                 </ng-template>
             </e-column>
             <e-column headerText="Xem lịch sử" width=70 textAlign='Center'>

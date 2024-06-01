@@ -17,20 +17,17 @@ import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service'
 export class SidebarComponent implements OnInit {
   ListSideBar:Array<SidebarModel> = [];
   height = window.innerHeight;
-  // ListBarNhanVien = [
-  //   {
-  //     MenuID: 'M001',
-  //     Label: 'Đặt món',
-  //     Icon:'basket',
-  //     route:'order',
-  //   },
-  //   {
-  //     MenuID: 'M002',
-  //     Label: 'Đặt món theo ngày',
-  //     Icon:'file-text',
-  //     route:'menu-employee',
-  //   },
-  // ]
+  ListBarNhanVien = [
+    {
+      FunctionID: 'M099',
+      DefaultName: 'Lịch sử nhân viên',
+      Icon:'icon-Files-22',
+      Url:'history-emp',
+      Active:false,
+      Children:[],
+      ParentID:null
+    },
+  ]
   ListSideBarCheck:Array<SidebarModel> = [
     {
       FunctionID: 'M001',
@@ -189,10 +186,12 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
+
   tabSelected:any = 1;
   constructor(
     private sanitizer: DomSanitizer,
     private _router:Router,
+    private _auth:AuthService,
     private _activeRoute:ActivatedRoute,
     private _noti:NotificationService
     ){
@@ -201,7 +200,12 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMenu()
+    if(this._auth.getUser()?.Administrator){
+      this.getMenu();
+    }
+    else{
+      this._router.navigate(['history-emp'])
+    }
   }
 
   fnSanitizer(html:string){

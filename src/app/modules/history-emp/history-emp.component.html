@@ -1,0 +1,83 @@
+<!-- <div></div>
+<div>
+    <grid-view (clickPage)="ClickPage($event)" [template]="tempate" [totalItems]="TotalItems"></grid-view>
+</div> -->
+<app-header></app-header>
+<div class="bg-white width-100">
+  <div class="container-toolbar pb-0">
+    <div class="left-toolbar d-flex gap-2 align-items-center">
+      <span class="icon-Files-22 fs-24 text-common-black fw-600"></span>
+      <span class="text-common-black fw-600 fs-16">Lịch sử thanh toán</span>
+      <!-- <span class="text-common-black fw-500 fs-16">></span> -->
+      <!-- <span class="text-common-black fw-500 fs-16">Theo dõi lịch sử thanh toán</span> -->
+    </div>
+    <div class="right-toolbar">
+
+    </div>
+  </div>
+  <div class="mx-2 pt-2">
+    <grid-view  (clickPage)="ClickPage($event)" [totalItems]="TotalItems" [template]="tempate"></grid-view>
+  </div>
+</div>
+
+
+<ng-template #tempate>
+
+  <ejs-grid
+      [dataSource]="listHistory"
+      [height]="heightGrid + 20">
+      <e-columns>
+        <e-column headerText="Giờ quét thẻ" textAlign='Left' width=120>
+          <ng-template #template let-item>
+              <div class="text-start">{{item.ScanTime | date:'hh:mm'}}</div>
+          </ng-template>
+        </e-column>
+
+        <e-column headerText="Thứ" textAlign='Center' width=110>
+          <ng-template #template let-item>
+              <div class="text-center fw-600">{{item.ScanTime | weekdayVn}}</div>
+          </ng-template>
+        </e-column>
+
+        <e-column headerText="Ngày quét thẻ" textAlign='Left' width=140>
+          <ng-template #template let-item>
+              <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy'}}</div>
+          </ng-template>
+        </e-column>
+
+
+        <e-column headerText="Line" textAlign='Left' width=140>
+          <ng-template #template let-item>
+              <div class="text-start">{{item.TenLine}}</div>
+          </ng-template>
+        </e-column>
+
+        <e-column headerText="Loại món" textAlign='Left' width=140>
+          <ng-template #template let-item>
+              <div class="d-flex gap-2 align-items-center" [ngClass]="{
+                'type-food-1': item.LoaiMon == 1 || true,
+                'type-food-2': item.LoaiMon == 2,
+                'type-food-3': item.LoaiMon == 3,
+                }">
+                <span class="icon-FinanceCommerce-68"></span>
+                <div
+                class="text-start">{{item.LoaiMon}}</div>
+              </div>
+          </ng-template>
+        </e-column>
+
+        <e-column headerText="Ca làm việc" textAlign='Left' width=180>
+          <ng-template #template let-item>
+              <span class="text-start">{{item.MaCa}}</span>
+          </ng-template>
+        </e-column>
+
+        <e-column headerText="Thành tiền" textAlign='Left' width=180>
+          <ng-template #template let-item>
+              <span class="text-start">{{item.ThanhTien}}</span>
+          </ng-template>
+        </e-column>
+
+        </e-columns>
+    </ejs-grid>
+</ng-template>

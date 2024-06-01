@@ -1,5 +1,5 @@
 {
-    "strUrl": "http://localhost/CanteenWS/",
+    "strUrl": "http://192.168.1.227/CanteenWS/",
     "IdleTime": 99999999999,
     "ContentPolicy": [
         { "http-equiv": "Content-Security-Policy", "content": "default-src 'self'  localhost 'unsafe-inline'; img-src https://* 'self' data:;" }

@@ -49,6 +49,7 @@ const routes: Routes = [
         path: 'co-cau-to-chuc',
         loadChildren: () => import('./../../modules/co-cau-to-chuc/co-cau-to-chuc.module').then(m => m.CoCauToChucModule)
       },
+
       {
         path: '',
         loadChildren: () => import('./../../modules/co-cau-to-chuc/co-cau-to-chuc.module').then(m => m.CoCauToChucModule)
@@ -63,6 +64,10 @@ const routes: Routes = [
         redirectTo:'home'
       }
     ]
+  },
+  {
+    path: 'history-emp',
+    loadChildren: () => import('./../../modules/history-emp/history-emp.module').then(m => m.HistoryEmpModule)
   },
   {
     path:'scan',

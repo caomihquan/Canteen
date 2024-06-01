@@ -59,7 +59,7 @@ export const AppAPIConst = {
   },
   CoCauToChuc:{
     Departments_get:"HrmMobileApp/CnB/Danhmuc/Departments_get",
-    // Employees_get:"HrmMobileApp/CnB/Danhmuc/Employees_get"
+    Employees_get:"HrmMobileApp/CnB/Danhmuc/Employees_get"
   },
   QuanLyNhanVien:{
     Employees_get:'HrmMobileApp/CnB/Danhmuc/Employees_get',

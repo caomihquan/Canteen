@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
+import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 
@@ -14,7 +15,11 @@ export class CoCauToChucComponent implements OnInit {
   tabSelected:any
   listDepartment:Array<any> = []
   getPhoto = fnCommon.ConvertPhotoEmpByUserID;
-
+  PageIndex:number = AppCommon.PageIndex;
+  PageSize:number = AppCommon.PageSize;
+  TotalItems = 0
+  listEmployee:Array<any> = []
+  width:number = window.innerWidth - 254 - 300
   constructor(private _api:ApiHttpService){}
 
   ngOnInit(): void {
@@ -26,14 +31,22 @@ export class CoCauToChucComponent implements OnInit {
 
     // }
     this.tabSelected = item
-
+    console.log(this.tabSelected);
+    if(this.tabSelected){
+      this.PageIndex = 0;
+      this.TotalItems = 0
+      this.LoadEmployee();
+    }
   }
 
 
   getCoCauToChuc(){
     this._api.post(AppAPIConst.CoCauToChuc.Departments_get).subscribe(res=>{
       this.listDepartment = this.InitNested(res.Data.Data,null);
-      console.log(this.listDepartment);
+      this.tabSelected = this.listDepartment.length > 0 ? this.listDepartment[0] : null;
+      if(this.tabSelected){
+        this.LoadEmployee();
+      }
     })
   }
 
@@ -48,5 +61,24 @@ export class CoCauToChucComponent implements OnInit {
       }
     }
     return nestedTabs;
+  }
+
+  LoadEmployee(){
+    this._api.post(AppAPIConst.CoCauToChuc.Employees_get,{
+      PageIndex:this.PageIndex,
+      PageSize:this.PageSize,
+      DepartmentCode:this.tabSelected.DepartmentCode,
+    }).subscribe(res=>{
+      if(res.Data){
+        this.listEmployee = res.Data.Data;
+        this.TotalItems = res.Data.OutputParams.TotalItems
+        console.log(res,'emps');
+      }
+    })
+  }
+
+  ClickPageEmp(page:any){
+    this.PageIndex = page
+    this.LoadEmployee();
   }
 }
