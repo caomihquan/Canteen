@@ -54,10 +54,10 @@
                   </ng-template>
                 </e-column>
 
-                <e-column headerText="Họ và tên (VN)" width=180 textAlign='Left'>
+                <e-column headerText="Họ và tên (VN)" width=250 textAlign='Left'>
                     <ng-template #template let-item>
                         <div class="d-flex align-items-center gap-2">
-                            <img width="40" height="40" src="./assets/images/avatar.png" alt="" srcset="">
+                            <img class="rounded-circle" width="40" height="40" [src]="GetPhotoByUserID('aaaa')" alt="" srcset="">
                             <span class="text-start">{{item.EmployeeName}}</span>
                         </div>
                     </ng-template>

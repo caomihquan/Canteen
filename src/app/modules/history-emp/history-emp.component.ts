@@ -16,8 +16,13 @@ export class HistoryEmpComponent {
   PageIndex = AppCommon.PageIndex;
   TotalItems = 0;
   heightGrid = fnCommon.getGridHeight();
+  SoTienThanhToan:any;
+  SoTienConLai:any;
+  ListDowCode:Array<any> = []
+  selectedMonth:any
   constructor(private _api :ApiHttpService,private _auth:AuthService){
     this.LoadListHistory();
+    this.GetValueList();
   }
 
    LoadListHistory(){
@@ -25,18 +30,50 @@ export class HistoryEmpComponent {
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
       SearchText:this._auth.getUser()?.UserID,
-      Option:12
+      Option:12,
+      DowCode:this.selectedMonth?.DowCode ?? null
     }).subscribe(res=>{
       if(res && res.Data){
         console.log(res);
         this.listHistory = res.Data.Data
         this.TotalItems = res.Data.OutputParams.TotalItems
+        this.SoTienThanhToan = res.Data.OutputParams.TongTienThanhToan
+        this.SoTienConLai = res.Data.OutputParams.TongTienConLai
+      }
+    })
+  }
+
+  GetValueList(){
+    this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
+      PageIndex:this.PageIndex,
+      PageSize:this.PageSize,
+      Option:13
+    }).subscribe(res=>{
+      if(res && res.Data){
+        console.log(res);
+        this.ListDowCode = res.Data.Data;
+        if(this.ListDowCode.length > 0){
+          var data = this.ListDowCode.find(x => x.DowCode.split('/')[1] == (new Date().getMonth() + 1))
+          this.selectedMonth =  data
+        }
+        // this.listHistory = res.Data.Data
+        // this.TotalItems = res.Data.OutputParams.TotalItems
+        // this.SoTienThanhToan = res.Data.OutputParams.TongTienThanhToan
+        // this.SoTienConLai = res.Data.OutputParams.TongTienConLai
       }
     })
   }
 
   ClickPage(page:any){
     this.PageIndex = page;
+    this.LoadListHistory();
+  }
+
+  ClickDowCode(item:any){
+    if(item == this.selectedMonth) return;
+    this.selectedMonth = item;
+    this.PageIndex = 0;
+    this.TotalItems = 0
     this.LoadListHistory();
   }
 }

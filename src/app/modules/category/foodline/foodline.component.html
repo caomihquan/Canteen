@@ -46,10 +46,10 @@
             <e-column headerText="Phân loại" width=50 textAlign='Center'>
                 <ng-template #template let-item>
                     <div class="w-100 d-flex justify-content-center">
-                        <div class="type-subgroup" style="background-color: #FFF5E1;">
-                            <i class="icon-Users-3"></i>
-                            <div class="type-font">
-                                {{item.PhanLoaiLine}}
+                        <div class="type-subgroup d-flex align-items-center gap-2">
+                            <i class="icon-FinanceCommerce-68"></i>
+                            <div>
+                                {{item.PhanLoaiLineName}}
                             </div>
                         </div>
                     </div>
@@ -67,9 +67,9 @@
             </e-column>
             <e-column headerText="Người chỉnh sửa" width=70 textAlign='Center'>
                 <ng-template #template let-item>
-                    <div class="user-container">
+                    <div class="user-container" *ngIf="item.ModifiedBy">
                         <div class="user-img">
-                            <img src="assets/images/avatar.png" alt="">
+                            <img [src]="getPhoto(item.ModifiedBy)" alt="">
                         </div>
                         <div class="user-info">
                             <span class="name"> {{item.ModifiedBy}}</span>

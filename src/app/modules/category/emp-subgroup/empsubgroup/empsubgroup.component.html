@@ -34,11 +34,11 @@
 <ng-template #templategrid>
     <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
         <e-columns>
-            <e-column headerText="STT" textAlign='Left' width=50>
+            <!-- <e-column headerText="STT" textAlign='Left' width=50>
                 <ng-template #template let-item>
                     <div>{{item.NhomPhuCode}}</div>
                 </ng-template>
-            </e-column>
+            </e-column> -->
             <e-column headerText="Loại nhóm" width=40 textAlign='Left'>
                 <ng-template #template let-item>
                     <!-- <div class="type-subgroup" [ngStyle]="{'background-color': item.GroupColor}">
@@ -47,6 +47,7 @@
                             {{item.NhomPhuName}}
                         </div>
                     </div> -->
+                    <div>{{item.NhomPhuCode}}</div>
                 </ng-template>
             </e-column>
             <e-column headerText="Tên nhóm" width=100 textAlign='Center'>

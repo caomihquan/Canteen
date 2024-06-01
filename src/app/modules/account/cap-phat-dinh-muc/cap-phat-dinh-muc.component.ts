@@ -20,6 +20,8 @@ export class CapPhatDinhMucComponent implements OnInit {
   totalPages:number;
   totalItems:number;
 
+  getPhoto = fnCommon.ConvertPhotoEmpByUserID;
+
   constructor(private _api:ApiHttpService){}
   ngOnInit(): void {
     this.LoadListMember();
@@ -40,7 +42,7 @@ export class CapPhatDinhMucComponent implements OnInit {
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
       Option:6
-    }).subscribe(res=>{
+    },true).subscribe(res=>{
       if(res && res.Data){
         console.log(res);
         this.listCapPhat = res.Data.Data

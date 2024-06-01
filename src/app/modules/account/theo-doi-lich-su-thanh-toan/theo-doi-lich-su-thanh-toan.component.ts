@@ -29,13 +29,17 @@ export class TheoDoiLichSuThanhToanComponent implements OnInit {
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
       Option:7
-    }).subscribe(res=>{
+    },true).subscribe(res=>{
       if(res && res.Data){
         console.log(res);
         this.listHistory = res.Data.Data
         this.totalItems = res.Data.OutputParams.TotalItems
       }
     })
+  }
+
+  ClickPage(page:any){
+    this.PageIndex = page;
   }
 
 

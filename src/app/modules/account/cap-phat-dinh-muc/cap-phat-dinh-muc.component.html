@@ -1,8 +1,8 @@
 <div class="bg-white width-screen">
   <div class="container-toolbar pb-0">
     <div class="left-toolbar d-flex gap-2 align-items-center">
-      <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
-      <span class="text-common-black fw-600 fs-16">Quản lý thẻ nhân viên</span>
+      <span class="icon-MapTravel-42 fs-24 text-common-black fw-600"></span>
+      <span class="text-common-black fw-600 fs-16">Quản lý thẻ khách</span>
       <span class="text-common-black fw-500 fs-16">></span>
       <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
     </div>
@@ -84,11 +84,11 @@
       </ng-template>
     </e-column>
 
-    <e-column headerText="Họ và tên (VN)" width=180 textAlign='Left'>
+    <e-column headerText="Họ và tên (VN)" width=250 textAlign='Left'>
         <ng-template #template let-item>
             <div class="d-flex align-items-center gap-2">
-                <img width="40" height="40" src="./assets/images/avatar.png" alt="" srcset="">
-                <span class="text-start">{{item.EmployeeName}}</span>
+                <img class="rounded-circle" width="40" height="40" [src]="getPhoto(item.EmployeeCode)" alt="" srcset="">
+                <span class="text-start d-flex flex-wrap">{{item.EmployeeName}}</span>
             </div>
         </ng-template>
     </e-column>
@@ -106,12 +106,12 @@
       <ng-template #template let-item>
         <div class="d-flex justify-content-center">
           <div class="d-flex gap-2 align-items-center" [ngClass]="{
-            'Staff': item.Status == 0 || true,
-            'DL': item.Status == 1,
-            'IDL': item.Status == 2,
+            'Staff': item.NhomPhuCode == 'Staff' ,
+            'DL': item.NhomPhuCode == 'DL',
+            'IDL': item.NhomPhuCode == 'IDL',
             }">
               <span class="icon-Users-11"></span>
-              <div>{{item.NhomPhu}}</div>
+              <div>{{item.NhomPhuCode}}</div>
           </div>
         </div>
       </ng-template>
@@ -139,7 +139,7 @@
       </ng-template>
     </e-column>
 
-
+<!--
     <e-column headerText="Tổng tiền đã thanh toán" textAlign='Left' width=150>
       <ng-template #template let-item>
           <span class="text-start">{{item.TongTienDaThanhToan}}</span>
@@ -161,7 +161,7 @@
           <div [ngClass]="{'Cong': item.DinhMucConLai > 0,'True': item.DinhMucConLai < 0}">{{item.DinhMucConLai}}</div>
         </div>
       </ng-template>
-    </e-column>
+    </e-column> -->
 
     </e-columns>
   </ejs-grid>

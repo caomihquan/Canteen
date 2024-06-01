@@ -9,9 +9,5 @@ import { fnCommon } from 'src/app/shares/helpers/common';
 export class CapPhatTheKhachComponent {
   wrapSettings = { wrapMode: 'Content' };
   heightGrid = fnCommon.getGridHeight();
-  listCapPhat:Array<any> = [
-    {
-      dateA:new Date().toISOString()
-    }
-  ]
+  listCapPhat:Array<any> = []
 }

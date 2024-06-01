@@ -49,7 +49,7 @@
     </div>
   </div>
   <div class="mx-2 pt-2">
-    <grid-view [totalItems]="totalItems" [template]="templategrid"></grid-view>
+    <grid-view (clickPage)="ClickPage($event)" [totalItems]="totalItems" [template]="templategrid"></grid-view>
   </div>
 </div>
 
@@ -118,12 +118,12 @@
       <ng-template #template let-item>
         <div class="d-flex justify-content-center">
           <div class="d-flex gap-2 align-items-center" [ngClass]="{
-            'Staff': item.Status == 0 || true,
-            'DL': item.Status == 1,
-            'IDL': item.Status == 2,
+            'Staff': item.NhomPhuCode == 0 || true,
+            'DL': item.NhomPhuCode == 1,
+            'IDL': item.NhomPhuCode == 2,
             }">
               <span class="icon-Users-11"></span>
-              <div>{{item.NhomPhu}}</div>
+              <div>{{item.NhomPhuCode}}</div>
           </div>
         </div>
       </ng-template>
@@ -132,7 +132,7 @@
     <e-column headerText="Loại nhân viên" width=150 textAlign='Left'>
       <ng-template #template let-item>
           <div [ngClass]="{'status0': item.Status == 0,'status1': item.Status == 1}">
-              <ng-container>{{item.StatusName}}</ng-container>
+              <ng-container>{{item.EmployeeType}}</ng-container>
           </div>
       </ng-template>
     </e-column>

@@ -110,7 +110,7 @@ export class MemberComponent implements OnInit {
     this._api.post(AppAPIConst.QuanLyNhanVien.Employees_get,{
       PageIndex:this.PageIndex,
       PageSize:this.PageSize
-    }).subscribe(res=>{
+    },true).subscribe(res=>{
       if(res && res.Data){
         console.log(res);
         this.listEmployee = res.Data.Data

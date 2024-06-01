@@ -4,15 +4,35 @@
 </div> -->
 <app-header></app-header>
 <div class="bg-white width-100">
-  <div class="container-toolbar pb-0">
+  <div class="container-toolbar pb-2">
     <div class="left-toolbar d-flex gap-2 align-items-center">
       <span class="icon-Files-22 fs-24 text-common-black fw-600"></span>
       <span class="text-common-black fw-600 fs-16">Lịch sử thanh toán</span>
       <!-- <span class="text-common-black fw-500 fs-16">></span> -->
       <!-- <span class="text-common-black fw-500 fs-16">Theo dõi lịch sử thanh toán</span> -->
+      <div class="d-flex align-items-center">
+        <div class="gap-2 d-flex align-items-center">
+          <!-- <div class="fs-14 fw-600">Tháng</div> -->
+          <div style="width: 100px;">
+            <app-dropdown [dataSource]="ListDowCode" fieldName="DowCode" [selectedItem]="selectedMonth" (clickItem)="ClickDowCode($event)" ></app-dropdown>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="right-toolbar">
 
+      <div class="d-flex align-items-center">
+        <div class="gap-2 d-flex align-items-center" *ngIf="SoTienThanhToan">
+          <div class="fs-14 fw-600" >Số tiền thanh toán : </div>
+          <div class="color-primary">{{SoTienThanhToan  | number: '.2'}}</div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="gap-2 d-flex align-items-center" *ngIf="SoTienConLai">
+          <div class="fs-14 fw-600" >Số tiền còn lại : </div>
+          <div class="color-primary">{{SoTienConLai  | number: '.2'}}</div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="mx-2 pt-2">
@@ -25,7 +45,7 @@
 
   <ejs-grid
       [dataSource]="listHistory"
-      [height]="heightGrid + 20">
+      [height]="heightGrid">
       <e-columns>
         <e-column headerText="Giờ quét thẻ" textAlign='Left' width=120>
           <ng-template #template let-item>
@@ -77,6 +97,8 @@
               <span class="text-start">{{item.ThanhTien}}</span>
           </ng-template>
         </e-column>
+
+
 
         </e-columns>
     </ejs-grid>

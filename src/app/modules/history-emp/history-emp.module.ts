@@ -6,6 +6,7 @@ import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view
 import { RouterModule, Routes } from '@angular/router';
 import { WeekdayVnPipe } from 'src/app/shares/pipes/weekday.pipe';
 import { CoreModule } from 'src/app/core/components/core.module';
+import { AppDropdownComponent } from 'src/app/shares/components/app-dropdown/app-dropdown.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     WeekdayVnPipe,
     GridViewComponent,
     CoreModule,
+    AppDropdownComponent,
     RouterModule.forChild(routes)
   ]
 })
