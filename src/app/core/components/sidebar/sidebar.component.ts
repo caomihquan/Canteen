@@ -228,6 +228,24 @@ export class SidebarComponent implements OnInit {
       Active: false,
       Children: [],
       ParentID: 'M005'
+    },
+    {
+      FunctionID: 'M020',
+      DefaultName: 'Thống kê định mức',
+      Icon: 'icon-Files-55',
+      Url: '/report/theo-doi-nhan-vien',
+      Active: false,
+      Children: [],
+      ParentID: 'M005'
+    },
+    {
+      FunctionID: 'M021',
+      DefaultName: 'Thống kê thanh toán theo line',
+      Icon: 'icon-Files-55',
+      Url: '/report/theo-doi-line',
+      Active: false,
+      Children: [],
+      ParentID: 'M005'
     }
   ];
 

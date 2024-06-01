@@ -27,9 +27,18 @@ export class AppComboboxComponent  {
   height = window.innerHeight - 300
   dataOrigin:any[] = []
 
-  constructor(){}
-
+  constructor(){
+      this.dataSource = [
+          {month:'1'}, 
+          {month:'1'},
+          {month:'1'},
+          {month:'1'},
+          {month:'1'}
+      ]
+  }
+  
   onBeforeOpen = function(args: any): void {
+    debugger;
     args.maxHeight = `${window.innerHeight}px`;
     args.top = `0`;
   }

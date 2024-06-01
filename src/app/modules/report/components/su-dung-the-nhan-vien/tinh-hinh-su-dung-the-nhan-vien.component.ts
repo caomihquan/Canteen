@@ -23,7 +23,21 @@ export class TinhHinhSuDungTheNhanVienComponent implements OnInit {
   tennhom:string;
   Birthday:Date = new Date();
   isShow:boolean = true;
-
+  monthdata:any[] = [
+  {
+    month:'1'
+  },
+  {
+    month:'2'
+  },
+  {
+    month:'3'
+  }, {
+    month:'4'
+  }, {
+    month:'5'
+  }
+  ]
   constructor(private _api: ApiHttpService) { }
 
   ngOnInit(): void {

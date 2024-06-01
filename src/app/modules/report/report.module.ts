@@ -12,6 +12,8 @@ import { TinhHinhSuDungTheKhachComponent } from './components/su-dung-the-khach/
 import { AppComboboxComponent } from 'src/app/shares/components/app-combobox/app-combobox.component';
 import { ExcelExportService, ToolbarService } from '@syncfusion/ej2-angular-grids';
 import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app-datetime.component';
+import { TheoDoiLineComponent } from './components/theo-doi-line/theo-doi-line.component';
+import { TheoDoiNhanVienComponent } from './components/thong-ke-dinh-muc/theo-doi-nhan-vien.component';
 
 const routes: Routes = [
   {
@@ -20,6 +22,8 @@ const routes: Routes = [
     children: [
       { path: 'tinh-hinh-su-dung-the-nhanvien', component: TinhHinhSuDungTheNhanVienComponent },
       { path: 'tinh-hinh-su-dung-the-khach', component: TinhHinhSuDungTheKhachComponent },
+      { path: 'theo-doi-line', component: TheoDoiLineComponent },
+      { path: 'theo-doi-nhan-vien', component: TheoDoiNhanVienComponent },
     ]
   },
 ];
@@ -28,6 +32,8 @@ const routes: Routes = [
   declarations: [
     TinhHinhSuDungTheNhanVienComponent,
     TinhHinhSuDungTheKhachComponent,
+    TheoDoiLineComponent,
+    TheoDoiNhanVienComponent
   ],
   imports: [
     CommonModule,
