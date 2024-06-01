@@ -10,6 +10,8 @@ import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view
 import { TinhHinhSuDungTheNhanVienComponent } from './components/su-dung-the-nhan-vien/tinh-hinh-su-dung-the-nhan-vien.component';
 import { TinhHinhSuDungTheKhachComponent } from './components/su-dung-the-khach/tinh-hinh-su-dung-the-khach.component';
 import { AppComboboxComponent } from 'src/app/shares/components/app-combobox/app-combobox.component';
+import { ExcelExportService, ToolbarService } from '@syncfusion/ej2-angular-grids';
+import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app-datetime.component';
 
 const routes: Routes = [
   {
@@ -36,7 +38,9 @@ const routes: Routes = [
     FlatpickrModule.forRoot(),
     RouterModule.forChild(routes),
     GridViewComponent,
+    AppDateTimeComponent,
     FlatpickrModule.forRoot()
-  ]
+  ],
+  providers:[ExcelExportService, ToolbarService]
 })
 export class ReportModule { }

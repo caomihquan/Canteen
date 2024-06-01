@@ -4,7 +4,7 @@
     <div class="input-dropdown w-100">
       <div class="d-flex">
         <div >{{value | date:'dd/MM/yyyy'}}</div>
-        <ejs-datetimepicker [(ngModel)]='value' style="width:0;height: 0;" #date></ejs-datetimepicker>
+        <ejs-datetimepicker (change)="ChangeDate($event)" [(ngModel)]='value' style="width:0;height: 0;" #date></ejs-datetimepicker>
       </div>
       <span class="icon-Time-2 fs-24"></span>
   </div>

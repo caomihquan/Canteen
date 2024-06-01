@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ClickEventArgs } from '@syncfusion/ej2-angular-buttons';
+import { GridComponent, ToolbarItems } from '@syncfusion/ej2-angular-grids';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
@@ -24,10 +26,29 @@ export class TinhHinhSuDungTheKhachComponent implements OnInit {
   Birthday:Date = new Date();
   isShow:boolean = true;
 
-  constructor(private _api: ApiHttpService) { }
+  FromDate:string = new Date().toISOString();
+  ToDate:string = new Date().toISOString();
 
+  constructor(private _api: ApiHttpService) { }
+  public toolbarOptions?: ToolbarItems[];
+  @ViewChild('grid')  public grid?: GridComponent;
   ngOnInit(): void {
-    this.getCoCauToChuc();
+    //this.getCoCauToChuc();
+    this.LoadEmployee();
+    this.toolbarOptions = ['ExcelExport'];
+  }
+
+  toolbarClick(args: any): void {
+    console.log(args);
+
+    if (args.item.id.includes('excelexport')) {
+        (this.grid as GridComponent).showSpinner();
+        (this.grid as GridComponent).excelExport();
+    }
+  }
+
+  excelExportComplete(): void {
+      (this.grid as GridComponent).hideSpinner();
   }
 
   ToggleTabs(item: any) {
@@ -71,13 +92,21 @@ export class TinhHinhSuDungTheKhachComponent implements OnInit {
   }
   // @HostListener('window:click', ['$event.target'])
   // windowScrollEvent(event: MouseEvent) {
-        
+
   // }
+
+  Export(){
+    var a = document.querySelector('.e-excelexport') as HTMLElement
+    a?.click()
+  }
+
   LoadEmployee() {
-    this._api.post(AppAPIConst.CoCauToChuc.Employees_get, {
+    this._api.post(AppAPIConst.Report, {
       PageIndex: this.PageIndex,
-      PageSize: this.PageSize,
-      DepartmentCode: this.tabSelected.DepartmentCode,
+      PageSize:1000000,
+      tungay:this.FromDate,
+      denngay:this.ToDate,
+      Option:8
     }).subscribe(res => {
       if (res.Data) {
         this.listEmployee = res.Data.Data;

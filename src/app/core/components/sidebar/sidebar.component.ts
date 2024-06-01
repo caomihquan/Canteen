@@ -245,12 +245,14 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this._auth.getUser()?.Administrator) {
-      this.getMenu();
-    }
-    else {
-      this._router.navigate(['history-emp'])
-    }
+    // if (this._auth.getUser()?.Administrator) {
+    //   this.getMenu();
+    // }
+    // else {
+    //   this._router.navigate(['history-emp'])
+    // }
+    this.getMenu();
+
   }
 
   fnSanitizer(html: string) {

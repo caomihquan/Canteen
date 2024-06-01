@@ -664,3 +664,25 @@ div.input-dropdown{
 .e-group-intent,.e-indentcell,.e-recordplusexpand,.e-columnheader .e-grouptopleftcell.e-lastgrouptopleftcell{
   display: none;
 }
+.e-toolbar:has(.e-excelexport){
+  display: none;
+}
+.e-date-icon,.e-time-icon,.e-clear-icon{
+  display: none !important;
+
+}
+.e-datetime-wrapper{
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.e-calendar .e-content td.e-focused-date.e-today span.e-day{
+  border-color: var(--Color-Primary) !important;
+  color: var(--Color-Primary) !important;
+
+}
+.e-calendar .e-content td.e-selected.e-focused-date span.e-day,.e-calendar .e-content td.e-today.e-selected span.e-day, .e-bigger.e-small .e-calendar .e-content td.e-today.e-selected span.e-day{
+  border-color: var(--Color-Primary);
+  background-color: var(--Color-Primary);
+  color: #fff !important;
+}
