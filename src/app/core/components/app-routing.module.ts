@@ -10,9 +10,9 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path:'',
-    component:LayoutComponent,
-    children:[
+    path: '',
+    component: LayoutComponent,
+    children: [
       // {
       //   path: 'food',
       //   loadChildren: () => import('./../../modules/food/food.module').then(m => m.FoodModule)
@@ -28,6 +28,10 @@ const routes: Routes = [
       {
         path: 'guess',
         loadChildren: () => import('./../../modules/guess/guess.module').then(m => m.GuessModule)
+      },
+      {
+        path: 'report',
+        loadChildren: () => import('./../../modules/report/report.module').then(m => m.ReportModule)
       },
       {
         path: 'setting',
@@ -59,9 +63,9 @@ const routes: Routes = [
       //   loadChildren: () => import('./../../modules/book-group/book-group.module').then(m => m.BookGroupModule)
       // },
       {
-        path:'',
-        pathMatch:'full',
-        redirectTo:'home'
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home'
       }
     ]
   },
@@ -70,22 +74,22 @@ const routes: Routes = [
     loadChildren: () => import('./../../modules/history-emp/history-emp.module').then(m => m.HistoryEmpModule)
   },
   {
-    path:'scan',
+    path: 'scan',
     // canActivate:[AuthGuard],
     loadChildren: () => import('./../../modules/scan/scan.module').then(m => m.ScanModule)
   },
   {
     path: 'notAuthor',
-    component:NotAuthorComponent
+    component: NotAuthorComponent
   },
   {
-    path:'**',
-    component:ErrorComponent
+    path: '**',
+    component: ErrorComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

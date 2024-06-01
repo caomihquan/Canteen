@@ -14,7 +14,7 @@ import { PagerModule } from '@syncfusion/ej2-angular-grids';
 import { GridModule, PageService, SortService } from '@syncfusion/ej2-angular-grids';
 import { TooltipModule } from '@syncfusion/ej2-angular-popups';
 const COMPONENT: Type<any>[] = [
-  TabelComponent,ModalComponent,DateAgoPipe,ScrollInfiniteDirective, ListMasterComponent
+  TabelComponent,ModalComponent,DateAgoPipe,ScrollInfiniteDirective, ListMasterComponent,
 ];
 const MODULES: Type<any>[] = [
   CommonModule,FormsModule,GridModule,PagerModule,TooltipModule
