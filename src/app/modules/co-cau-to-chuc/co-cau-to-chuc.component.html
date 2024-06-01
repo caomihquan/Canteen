@@ -45,14 +45,13 @@
             </div>
             <div class="p-2" [ngStyle]="{'width': width + 'px'}">
                 <div class="d-flex align-items-center justify-content-between mx-2">
-                    <div class="d-flex flex-column gap-2">
+                    <!-- <div class="d-flex flex-column gap-2">
                         <div class="text-common-black fs-22 fw-600">{{tabSelected?.DepartmentName}}</div>
-                        <!-- <div class="text-common-gray fs-14 fw-400">Phòng kế toán</div> -->
                     </div>
                     <div class="d-flex flex-column gap-2 align-items-center justify-content-center">
                         <div class="NumMember">{{TotalItems}}</div>
                         <div>Nhân Viên</div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="mt-2">
                     <grid-view [totalItems]="TotalItems" (clickPage)="ClickPageEmp($event)" [template]="templateGrid"></grid-view>
@@ -63,21 +62,27 @@
 </div>
 
 <ng-template #templateGrid >
-  <ejs-grid #grid allowTextWrap='true' [height]="height - 280" [dataSource]='listEmployee' [allowSorting]="true">
+  <ejs-grid #grid allowTextWrap='true' [height]="height - 240" [dataSource]='listEmployee' [allowSorting]="true">
       <e-columns>
-          <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
+          <e-column headerText="Mã Đơn vị" textAlign='Left' width=150>
               <ng-template #template let-item>
-                  <div class="text-start">{{item.EmployeeCode}}</div>
+                  <div class="text-start">{{item.DepartmentCode}}</div>
               </ng-template>
           </e-column>
 
-          <e-column headerText="V3ID" textAlign='Left' width=140>
+          <e-column headerText="Tên Đơn vị" textAlign='Left' width=140>
             <ng-template #template let-item>
-                <div class="text-start">{{item.BarCode}}</div>
+                <div class="text-start">{{item.DepartmentName}}</div>
             </ng-template>
           </e-column>
 
-          <e-column headerText="BU" textAlign='Left' width=140>
+          <!-- <e-column headerText="Phòn ban cha" textAlign='Left' width=140>
+            <ng-template #template let-item>
+                <div class="text-start">{{item.BarCode}}</div>
+            </ng-template>
+          </e-column> -->
+
+          <!-- <e-column headerText="BU" textAlign='Left' width=140>
             <ng-template #template let-item>
                 <span class="text-start">{{item.BU}}</span>
             </ng-template>
@@ -146,7 +151,7 @@
             <ng-template #template let-item>
                 <span class="text-start">{{item.EmployeeCategory}}</span>
             </ng-template>
-          </e-column>
+          </e-column> -->
       </e-columns>
   </ejs-grid>
 </ng-template>

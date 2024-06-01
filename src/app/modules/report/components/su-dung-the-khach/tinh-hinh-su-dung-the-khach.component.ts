@@ -28,13 +28,15 @@ export class TinhHinhSuDungTheKhachComponent implements OnInit {
 
   FromDate:string = new Date().toISOString();
   ToDate:string = new Date().toISOString();
-
+  selectedCard:any;
+  listCombo:Array<any> = []
   constructor(private _api: ApiHttpService) { }
   public toolbarOptions?: ToolbarItems[];
   @ViewChild('grid')  public grid?: GridComponent;
   ngOnInit(): void {
     //this.getCoCauToChuc();
-    this.LoadEmployee();
+    this.getCombo();
+    //this.LoadEmployee();
     this.toolbarOptions = ['ExcelExport'];
   }
 
@@ -101,15 +103,24 @@ export class TinhHinhSuDungTheKhachComponent implements OnInit {
   }
 
   LoadEmployee() {
-    this._api.post(AppAPIConst.Report, {
+    this._api.post(AppAPIConst.Report.reportsudungthe_get, {
       PageIndex: this.PageIndex,
       PageSize:1000000,
       tungay:this.FromDate,
       denngay:this.ToDate,
-      Option:8
+      Option:8,
+      MaThe:this.selectedCard?.MaTheKhach ?? null
     }).subscribe(res => {
       if (res.Data) {
-        this.listEmployee = res.Data.Data;
+        // this.listEmployee = res.Data.Data;
+
+        this.listEmployee = res.Data.Data.map((x:any)=>{
+          return {
+            WeekDay:fnCommon.getWeekdayVn(x.ScanTime),
+            Date:fnCommon.getDateVN(x.ScanTime),
+            Hour:fnCommon.getHour(x.ScanTime),
+            ...x}
+        });
         this.TotalItems = res.Data.OutputParams.TotalItems
         console.log(res, 'emps');
       }
@@ -118,6 +129,28 @@ export class TinhHinhSuDungTheKhachComponent implements OnInit {
 
   ClickPageEmp(page: any) {
     this.PageIndex = page
+    this.LoadEmployee();
+  }
+
+  getCombo(){
+     this._api.post(AppAPIConst.Report.reportsudungthe_getCombo, {
+
+    }).subscribe(res => {
+      if (res.Data) {
+
+        this.listCombo = [{
+          MaTheKhach:''
+        },...res.Data.tblThe]
+        console.log(res);
+
+      }
+    })
+  }
+
+  ViewReport(){
+    this.listEmployee = [];
+    this.PageIndex = 0;
+    this.TotalItems = 0;
     this.LoadEmployee();
   }
 

@@ -28,7 +28,6 @@ export const fnCommon = {
     );
   },
   convertDateSQL(dateString:string){
-    debugger
     if(!dateString) return;
     try {
       let date = dateString.split('-');
@@ -142,5 +141,41 @@ export const fnCommon = {
   validatePhoneNumber(phone:string){
     const regexPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
     return phone.match(regexPhoneNumber) ? true : false;
+  },
+  getWeekdayVn(date:any):string {
+    if (!date) {
+      return '';
+    }
+    const weekdays:any = {
+      'monday': '2',
+      'tuesday': '3',
+      ' wednesday': '4',
+      'thursday': '5',
+      'friday': '6',
+      'saturday': '7',
+      'sunday': 'CN'
+    };
+    try {
+      date = new Date(date);
+      const weekday = date.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+      return weekdays[weekday] || '';
+    } catch (error) {
+      return ''
+    }
+  },
+  getDateVN(date:string):string{
+    const today = new Date(date);
+    const dd = today.getDate().toString().padStart(2, '0');
+    const MM = (today.getMonth() + 1).toString().padStart(2, '0');
+    const yyyy = today.getFullYear();
+    const formattedDate = `${dd}/${MM}/${yyyy}`;
+    return formattedDate
+  },
+  getHour(date:string):string{
+    const now = new Date(date);
+    const hh = now.getHours().toString().padStart(2, '0');
+    const mm = now.getMinutes().toString().padStart(2, '0');
+    const formattedTime = `${hh}:${mm}`;
+    return formattedTime;
   }
 }
