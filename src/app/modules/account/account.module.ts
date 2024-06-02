@@ -12,6 +12,8 @@ import { AppDropdownComponent } from 'src/app/shares/components/app-dropdown/app
 import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app-datetime.component';
 import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
 import { TheoDoiLichSuThanhToanComponent } from './theo-doi-lich-su-thanh-toan/theo-doi-lich-su-thanh-toan.component';
+import { AddNewEmpDialogComponent } from './member/components/add-new-emp-dialog/add-new-emp-dialog.component';
+import { AppComboboxComponent } from 'src/app/shares/components/app-combobox/app-combobox.component';
 
 const routes: Routes = [
   {
@@ -35,7 +37,8 @@ const routes: Routes = [
   declarations: [
     MemberComponent,
     CapPhatDinhMucComponent,
-    TheoDoiLichSuThanhToanComponent
+    TheoDoiLichSuThanhToanComponent,
+    AddNewEmpDialogComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     GridViewComponent,
+    AppComboboxComponent,
     AppDropdownComponent,
     AppDateTimeComponent,
     DialogAllModule,

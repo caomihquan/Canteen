@@ -7,7 +7,7 @@
       <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
     </div>
     <div class="right-toolbar">
-      <div class="button-toolbar">
+      <div class="button-toolbar" (click)="onAddNewEmp()">
         <span class="icon-General-113"></span>
         <span>Thêm</span>
       </div>
@@ -133,6 +133,8 @@
         </ejs-grid>
 </ng-template>
 
+<app-add-new-emp-dialog #empaddnewdialog></app-add-new-emp-dialog>
+ <!-- <div class="text-common-black fs-14 fw-400">Kế toán trưởng</div> -->
 <ejs-dialog [isModal]="true"  [position]="{ X: 'center', Y: 'center' }" #dialogHistory showCloseIcon='true' [height]='800' width='1157px' [visible]='false'>
   <ng-template #header>
     <div class="text-common-black fs-18 fw-600">Lịch sử</div>
@@ -143,7 +145,7 @@
         <img class="rounded-circle" width="60" height="60" [src]="GetPhotoByUserID(EmployeeSelected?.EmployeeCode)" alt="" srcset="">
         <div>
           <div class="text-common-black fs-18 fw-600">{{EmployeeSelected?.EmployeeName}}</div>
-          <!-- <div class="text-common-black fs-14 fw-400">Kế toán trưởng</div> -->
+
           <div class="text-common-black fs-14 fw-400">{{EmployeeSelected?.DepartmentCode}}</div>
         </div>
       </div>

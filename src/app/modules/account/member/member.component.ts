@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/shares/services/authentication/authenticati
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
+import { AddNewEmpDialogComponent } from './components/add-new-emp-dialog/add-new-emp-dialog.component';
 
 @Component({
   selector: 'app-member',
@@ -23,6 +24,7 @@ import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 })
 export class MemberComponent implements OnInit {
   @ViewChild('dialogHistory') dialogHistory:DialogComponent
+  @ViewChild('empaddnewdialog') empaddnewdialog:AddNewEmpDialogComponent
   selectedDate:any;
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
@@ -77,7 +79,9 @@ export class MemberComponent implements OnInit {
       }
     }
   }
-
+  protected onAddNewEmp(){
+      this.empaddnewdialog.onOpenDialog();
+  }
 
   ngOnInit() {
     this.LoadListMember();
@@ -150,5 +154,6 @@ export class MemberComponent implements OnInit {
 
 
   selectedRow(item:any){
+        this.empaddnewdialog.onOpenDialog(item.EmployeeCode);
   }
 }
