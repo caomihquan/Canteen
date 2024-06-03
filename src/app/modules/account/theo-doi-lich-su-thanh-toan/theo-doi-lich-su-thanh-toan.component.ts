@@ -40,6 +40,7 @@ export class TheoDoiLichSuThanhToanComponent implements OnInit {
 
   ClickPage(page:any){
     this.PageIndex = page;
+    this.LoadListHistory();
   }
 
 

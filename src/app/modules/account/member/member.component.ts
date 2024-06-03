@@ -108,7 +108,10 @@ export class MemberComponent implements OnInit {
   //   })
   // }
 
-
+  ClickPageMember(page:any){
+    this.PageIndex = page;
+    this.LoadListMember();
+  }
 
   LoadListMember(){
     this._api.post(AppAPIConst.QuanLyNhanVien.Employees_get,{

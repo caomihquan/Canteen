@@ -54,4 +54,9 @@ export class CapPhatDinhMucComponent implements OnInit {
   CapPhatDinhMuc(){
 
   }
+
+
+  ClickPage(page:any){
+    this.PageIndex = page;
+  }
 }
