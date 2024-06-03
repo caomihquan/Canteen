@@ -1,252 +1,247 @@
 <div class="bg-white width-screen">
-  <div class="container-toolbar">
-    <div class="left-toolbar d-flex gap-2 align-items-center">
-      <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
-      <span class="text-common-black fw-600 fs-16">Quản lý thẻ nhân viên</span>
-      <span class="text-common-black fw-500 fs-16">></span>
-      <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
+    <div class="container-toolbar">
+        <div class="left-toolbar d-flex gap-2 align-items-center">
+            <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
+            <span class="text-common-black fw-600 fs-16">Quản lý thẻ nhân viên</span>
+            <span class="text-common-black fw-500 fs-16">></span>
+            <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
+        </div>
+        <div class="right-toolbar">
+            <div class="button-toolbar" (click)="onAddNewEmp()">
+                <span class="icon-General-113"></span>
+                <span>Thêm</span>
+            </div>
+            <div class="button-toolbar">
+                <span class="icon-General-84"></span>
+                <span>Sửa</span>
+            </div>
+            <div class="button-toolbar">
+                <span class="icon-General-163"></span>
+                <span>Xoá</span>
+            </div>
+            <div class="button-toolbar">
+                <span class="icon-General-3"></span>
+                <span>Xuất khẩu</span>
+            </div>
+            <div class="button-toolbar">
+                <span class="icon-General-101"></span>
+                <span>Nhập khẩu</span>
+            </div>
+        </div>
     </div>
-    <div class="right-toolbar">
-      <div class="button-toolbar" (click)="onAddNewEmp()">
-        <span class="icon-General-113"></span>
-        <span>Thêm</span>
-      </div>
-      <div class="button-toolbar">
-        <span class="icon-General-84"></span>
-        <span>Sửa</span>
-      </div>
-      <div class="button-toolbar">
-        <span class="icon-General-163"></span>
-        <span>Xoá</span>
-      </div>
-      <div class="button-toolbar">
-        <span class="icon-General-3"></span>
-        <span>Xuất khẩu</span>
-      </div>
-      <div class="button-toolbar">
-        <span class="icon-General-101"></span>
-        <span>Nhập khẩu</span>
-      </div>
+    <div class="mx-2">
+        <grid-view (clickPage)="ClickPageMember($event)" [totalItems]="totalItems" [template]="templategrid"></grid-view>
     </div>
-  </div>
-  <div class="mx-2">
-    <grid-view (clickPage)="ClickPageMember($event)" [totalItems]="totalItems" [template]="templategrid"></grid-view>
-  </div>
 </div>
-<ng-template #templategrid >
-        <ejs-grid #grid allowTextWrap='true' [textWrapSettings]='wrapSettings' (recordClick)="selectedRow($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listEmployee' [allowSorting]="true" [pageSettings]="pageSettings">
-            <e-columns>
-                <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
-                    <ng-template #template let-item>
-                        <div class="text-start">{{item.EmployeeCode}}</div>
-                    </ng-template>
-                </e-column>
+<ng-template #templategrid>
+    <ejs-grid #grid allowTextWrap='true' [textWrapSettings]='wrapSettings' (recordClick)="selectedRow($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listEmployee' [allowSorting]="true" [pageSettings]="pageSettings">
+        <e-columns>
+            <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
+                <ng-template #template let-item>
+                    <div class="text-start">{{item.EmployeeCode}}</div>
+                </ng-template>
+            </e-column>
 
-                <e-column headerText="V3ID" textAlign='Left' width=140>
-                  <ng-template #template let-item>
-                      <div class="text-start">{{item.BarCode}}</div>
-                  </ng-template>
-                </e-column>
+            <e-column headerText="V3ID" textAlign='Left' width=140>
+                <ng-template #template let-item>
+                    <div class="text-start">{{item.BarCode}}</div>
+                </ng-template>
+            </e-column>
 
-                <e-column headerText="BU" textAlign='Left' width=140>
-                  <ng-template #template let-item>
-                      <span class="text-start">{{item.BU}}</span>
-                  </ng-template>
-                </e-column>
+            <e-column headerText="BU" textAlign='Left' width=140>
+                <ng-template #template let-item>
+                    <span class="text-start">{{item.BU}}</span>
+                </ng-template>
+            </e-column>
 
-                <e-column headerText="Họ và tên (VN)" width=250 textAlign='Left'>
-                    <ng-template #template let-item>
-                        <div class="d-flex align-items-center gap-2">
-                            <img class="rounded-circle" width="40" height="40" [src]="GetPhotoByUserID('aaaa')" alt="" srcset="">
-                            <span class="text-start">{{item.EmployeeName}}</span>
-                        </div>
-                    </ng-template>
-                </e-column>
-                <e-column headerText="Phòng ban" textAlign='Left' width=180>
-                    <ng-template #template let-item>
-                        <span class="text-start">{{item.DepartmentCode}}</span>
-                    </ng-template>
-                </e-column>
-                <e-column headerText="Ngày nhận việc" textAlign='Left' width=180>
-                  <ng-template #template let-item>
-                      <span class="text-start">{{item.JoinDate  | date:'dd/MM/yyyy'}}</span>
-                  </ng-template>
-                </e-column>
-                <e-column headerText="Nhóm phụ nhân viên" width=200 textAlign='Left'>
-                  <ng-template #template let-item>
+            <e-column headerText="Họ và tên (VN)" width=250 textAlign='Left'>
+                <ng-template #template let-item>
+                    <div class="d-flex align-items-center gap-2">
+                        <img class="rounded-circle" width="40" height="40" [src]="GetPhotoByUserID('aaaa')" alt="" srcset="">
+                        <span class="text-start">{{item.EmployeeName}}</span>
+                    </div>
+                </ng-template>
+            </e-column>
+            <e-column headerText="Phòng ban" textAlign='Left' width=180>
+                <ng-template #template let-item>
+                    <span class="text-start">{{item.DepartmentCode}}</span>
+                </ng-template>
+            </e-column>
+            <e-column headerText="Ngày nhận việc" textAlign='Left' width=180>
+                <ng-template #template let-item>
+                    <span class="text-start">{{item.JoinDate  | date:'dd/MM/yyyy'}}</span>
+                </ng-template>
+            </e-column>
+            <e-column headerText="Nhóm phụ nhân viên" width=200 textAlign='Left'>
+                <ng-template #template let-item>
                     <div class="d-flex justify-content-center">
-                      <div class="d-flex gap-2 align-items-center" [ngClass]="{
+                        <div class="d-flex gap-2 align-items-center" [ngClass]="{
                         'Staff': item.Status == 0 || true,
                         'DL': item.Status == 1,
                         'IDL': item.Status == 2,
                         }">
-                          <span class="icon-Users-11"></span>
-                          <div>{{item.NhomPhu}}</div>
-                      </div>
-                    </div>
-                  </ng-template>
-                </e-column>
-                <e-column headerText="Tình trạng" width=120 textAlign='Left'>
-                    <ng-template #template let-item>
-                        <div [ngClass]="{'status0': item.Status == 0,'status1': item.Status == 1}">
-                            <ng-container>{{item.TinhTrang}}</ng-container>
+                            <span class="icon-Users-11"></span>
+                            <div>{{item.NhomPhu}}</div>
                         </div>
-                    </ng-template>
-                </e-column>
-                <e-column headerText="CostCenter" textAlign='Left' width=150>
-                  <ng-template #template let-item>
-                      <span class="text-start">{{item.CostCenter}}</span>
-                  </ng-template>
-                </e-column>
-                <e-column headerText="Transaction Entry" textAlign='Left' width=180>
-                  <ng-template #template let-item>
-                      <span class="text-start">{{item.TranSactionEntry}}</span>
-                  </ng-template>
-                </e-column>
-                <e-column headerText="Location" textAlign='Left' width=150>
-                  <ng-template #template let-item>
-                      <span class="text-start">{{item.Location}}</span>
-                  </ng-template>
-                </e-column>
-                <e-column headerText="EmployeeType" textAlign='Left' width=150>
-                  <ng-template #template let-item>
-                      <span class="text-start">{{item.EmployeeType}}</span>
-                  </ng-template>
-                </e-column>
-                <e-column headerText="EmployeeCategory" textAlign='Left' width=180>
-                  <ng-template #template let-item>
-                      <span class="text-start">{{item.EmployeeCategory}}</span>
-                  </ng-template>
-                </e-column>
-                <e-column headerText="Xem lịch sử" textAlign='Center' width=150>
-                    <ng-template #template let-item>
-                        <div (click)="ClickHistoryEmp(item)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                    </div>
+                </ng-template>
+            </e-column>
+            <e-column headerText="Tình trạng" width=120 textAlign='Left'>
+                <ng-template #template let-item>
+                    <div [ngClass]="{'status0': item.Status == 0,'status1': item.Status == 1}">
+                        <ng-container>{{item.TinhTrang}}</ng-container>
+                    </div>
+                </ng-template>
+            </e-column>
+            <e-column headerText="CostCenter" textAlign='Left' width=150>
+                <ng-template #template let-item>
+                    <span class="text-start">{{item.CostCenter}}</span>
+                </ng-template>
+            </e-column>
+            <e-column headerText="Transaction Entry" textAlign='Left' width=180>
+                <ng-template #template let-item>
+                    <span class="text-start">{{item.TranSactionEntry}}</span>
+                </ng-template>
+            </e-column>
+            <e-column headerText="Location" textAlign='Left' width=150>
+                <ng-template #template let-item>
+                    <span class="text-start">{{item.Location}}</span>
+                </ng-template>
+            </e-column>
+            <e-column headerText="EmployeeType" textAlign='Left' width=150>
+                <ng-template #template let-item>
+                    <span class="text-start">{{item.EmployeeType}}</span>
+                </ng-template>
+            </e-column>
+            <e-column headerText="EmployeeCategory" textAlign='Left' width=180>
+                <ng-template #template let-item>
+                    <span class="text-start">{{item.EmployeeCategory}}</span>
+                </ng-template>
+            </e-column>
+            <e-column headerText="Xem lịch sử" textAlign='Center' width=150>
+                <ng-template #template let-item>
+                    <div (click)="ClickHistoryEmp(item)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                               <path d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                               <path d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                               <path d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z" stroke="#C1C1C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                        </div>
-                    </ng-template>
-                </e-column>
-            </e-columns>
-        </ejs-grid>
+                    </div>
+                </ng-template>
+            </e-column>
+        </e-columns>
+    </ejs-grid>
 </ng-template>
 
-<app-add-new-emp-dialog #empaddnewdialog></app-add-new-emp-dialog>
- <!-- <div class="text-common-black fs-14 fw-400">Kế toán trưởng</div> -->
-<ejs-dialog [isModal]="true"  [position]="{ X: 'center', Y: 'center' }" #dialogHistory showCloseIcon='true' [height]='800' width='1157px' [visible]='false'>
-  <ng-template #header>
-    <div class="text-common-black fs-18 fw-600">Lịch sử</div>
-  </ng-template>
-  <ng-template #content>
-    <div class="align-items-center d-flex header-history justify-content-between ng-star-inserted p-4 pt-2 px-2">
-      <div class="d-flex gap-3">
-        <img class="rounded-circle" width="60" height="60" [src]="GetPhotoByUserID(EmployeeSelected?.EmployeeCode)" alt="" srcset="">
-        <div>
-          <div class="text-common-black fs-18 fw-600">{{EmployeeSelected?.EmployeeName}}</div>
+<app-add-new-emp-dialog #empaddnewdialog (SaveDialog)="SaveEmployee($event)"></app-add-new-emp-dialog>
+<!-- <div class="text-common-black fs-14 fw-400">Kế toán trưởng</div> -->
+<ejs-dialog [isModal]="true" [position]="{ X: 'center', Y: 'center' }" #dialogHistory showCloseIcon='true' [height]='800' width='1157px' [visible]='false'>
+    <ng-template #header>
+        <div class="text-common-black fs-18 fw-600">Lịch sử</div>
+    </ng-template>
+    <ng-template #content>
+        <div class="align-items-center d-flex header-history justify-content-between ng-star-inserted p-4 pt-2 px-2">
+            <div class="d-flex gap-3">
+                <img class="rounded-circle" width="60" height="60" [src]="GetPhotoByUserID(EmployeeSelected?.EmployeeCode)" alt="" srcset="">
+                <div>
+                    <div class="text-common-black fs-18 fw-600">{{EmployeeSelected?.EmployeeName}}</div>
 
-          <div class="text-common-black fs-14 fw-400">{{EmployeeSelected?.DepartmentCode}}</div>
+                    <div class="text-common-black fs-14 fw-400">{{EmployeeSelected?.DepartmentCode}}</div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div>
-      <ejs-grid
-      [dataSource]="listHistory"
-      [height]="430"
-      [allowTextWrap]="true"
-      [textWrapSettings]='wrapSettings'>
-        <e-columns>
-          <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
-            <ng-template #template let-item>
-                <div class="text-start">{{item.EmployeeName}}</div>
-            </ng-template>
-          </e-column>
+        <div>
+            <ejs-grid [dataSource]="listHistory" [height]="430" [allowTextWrap]="true" [textWrapSettings]='wrapSettings'>
+                <e-columns>
+                    <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
+                        <ng-template #template let-item>
+                            <div class="text-start">{{item.EmployeeName}}</div>
+                        </ng-template>
+                    </e-column>
 
-        <e-column headerText="V3ID" textAlign='Left' width=110>
-          <ng-template #template let-item>
-              <div class="text-start">{{item.BarCode}}</div>
-          </ng-template>
-        </e-column>
+                    <e-column headerText="V3ID" textAlign='Left' width=110>
+                        <ng-template #template let-item>
+                            <div class="text-start">{{item.BarCode}}</div>
+                        </ng-template>
+                    </e-column>
 
-        <e-column headerText="Giờ quét thẻ" textAlign='Left' width=150>
-          <ng-template #template let-item>
-              <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy hh:mm'}}</div>
-          </ng-template>
-        </e-column>
+                    <e-column headerText="Giờ quét thẻ" textAlign='Left' width=150>
+                        <ng-template #template let-item>
+                            <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy hh:mm'}}</div>
+                        </ng-template>
+                    </e-column>
 
-        <e-column headerText="Thứ" textAlign='Left' width=110>
-          <ng-template #template let-item>
-              <div class="text-start">{{item.ScanTime | date :'EEEE'}}</div>
-          </ng-template>
-        </e-column>
+                    <e-column headerText="Thứ" textAlign='Left' width=110>
+                        <ng-template #template let-item>
+                            <div class="text-start">{{item.ScanTime | date :'EEEE'}}</div>
+                        </ng-template>
+                    </e-column>
 
-        <e-column headerText="Ngày quét thẻ" textAlign='Left' width=140>
-          <ng-template #template let-item>
-              <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy' }}</div>
-          </ng-template>
-        </e-column>
+                    <e-column headerText="Ngày quét thẻ" textAlign='Left' width=140>
+                        <ng-template #template let-item>
+                            <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy' }}</div>
+                        </ng-template>
+                    </e-column>
 
 
 
-        <e-column headerText="Line" textAlign='Left' width=140>
-          <ng-template #template let-item>
-              <div class="text-start">{{item.TenLine}}</div>
-          </ng-template>
-        </e-column>
+                    <e-column headerText="Line" textAlign='Left' width=140>
+                        <ng-template #template let-item>
+                            <div class="text-start">{{item.TenLine}}</div>
+                        </ng-template>
+                    </e-column>
 
-        <e-column headerText="Loại món" textAlign='Left' width=140>
-          <ng-template #template let-item>
-              <div class="d-flex justify-content-between">
-                <div class="d-flex gap-2 align-items-center" [ngClass]="{
+                    <e-column headerText="Loại món" textAlign='Left' width=140>
+                        <ng-template #template let-item>
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex gap-2 align-items-center" [ngClass]="{
                   'type-food-1': item.LoaiMon == 1 || true,
                   'type-food-2': item.LoaiMon == 2,
                   'type-food-3': item.LoaiMon == 3,
                   }">
-                  <span class="icon-FinanceCommerce-68"></span>
-                  <div
-                  class="text-start">{{item.LoaiMon}}</div>
-                </div>
-              </div>
-          </ng-template>
-        </e-column>
+                                    <span class="icon-FinanceCommerce-68"></span>
+                                    <div class="text-start">{{item.LoaiMon}}</div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </e-column>
 
 
-        <e-column headerText="Ca làm việc" textAlign='Left' width=180>
-          <ng-template #template let-item>
-              <span class="text-start">{{item.MaCa}}</span>
-          </ng-template>
-        </e-column>
+                    <e-column headerText="Ca làm việc" textAlign='Left' width=180>
+                        <ng-template #template let-item>
+                            <span class="text-start">{{item.MaCa}}</span>
+                        </ng-template>
+                    </e-column>
 
-        <e-column headerText="Phòng ban" textAlign='Left' width=180>
-          <ng-template #template let-item>
-              <span class="text-start">{{item.DepartmentName}}</span>
-          </ng-template>
-        </e-column>
+                    <e-column headerText="Phòng ban" textAlign='Left' width=180>
+                        <ng-template #template let-item>
+                            <span class="text-start">{{item.DepartmentName}}</span>
+                        </ng-template>
+                    </e-column>
 
-        <e-column headerText="Số lượng" textAlign='Left' width=150>
-          <ng-template #template let-item>
-              <span class="text-start">{{item.SoLuong}}</span>
-          </ng-template>
-        </e-column>
+                    <e-column headerText="Số lượng" textAlign='Left' width=150>
+                        <ng-template #template let-item>
+                            <span class="text-start">{{item.SoLuong}}</span>
+                        </ng-template>
+                    </e-column>
 
-        <e-column headerText="Đơn giá" textAlign='Left' width=200>
-          <ng-template #template let-item>
-              <span class="text-start">{{item.DonGia}}</span>
-          </ng-template>
-        </e-column>
+                    <e-column headerText="Đơn giá" textAlign='Left' width=200>
+                        <ng-template #template let-item>
+                            <span class="text-start">{{item.DonGia}}</span>
+                        </ng-template>
+                    </e-column>
 
-        <e-column headerText="Thành tiền" textAlign='Left' width=200>
-          <ng-template #template let-item>
-              <span class="text-start">{{item.ThanhTien}}</span>
-          </ng-template>
-        </e-column>
+                    <e-column headerText="Thành tiền" textAlign='Left' width=200>
+                        <ng-template #template let-item>
+                            <span class="text-start">{{item.ThanhTien}}</span>
+                        </ng-template>
+                    </e-column>
 
-      </e-columns>
-    </ejs-grid>
-    <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSizeHistory" (click)="ClickPagerHistory($event)">
-    </ejs-pager>
-    </div>
-  </ng-template>
+                </e-columns>
+            </ejs-grid>
+            <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSizeHistory" (click)="ClickPagerHistory($event)">
+            </ejs-pager>
+        </div>
+    </ng-template>
 
 </ejs-dialog>
