@@ -32,18 +32,18 @@
 <ng-template #templategrid>
     <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
         <e-columns>
-            <e-column headerText="Mã ca" textAlign='Left' width=50>
+            <e-column headerText="Mã ca" textAlign='Left' width=110>
                 <ng-template #template let-item>
                     <div>{{item.MaLine}}</div>
                 </ng-template>
             </e-column>
-            <e-column headerText="Tên ca" width=40 textAlign='Left'>
+            <e-column headerText="Tên ca" width=110 textAlign='Left'>
                 <ng-template #template let-item>
                     <span> {{item.TenLine}}</span>
 
                 </ng-template>
             </e-column>
-            <e-column headerText="Phân loại" width=50 textAlign='Center'>
+            <e-column headerText="Phân loại" width=110 textAlign='Center'>
                 <ng-template #template let-item>
                     <div class="w-100 d-flex justify-content-center">
                         <div class="type-subgroup d-flex align-items-center gap-2">
@@ -55,17 +55,22 @@
                     </div>
                 </ng-template>
             </e-column>
+            <e-column headerText="Nhà thầu" width=110 textAlign='Left'>
+              <ng-template #template let-item>
+                  <span> {{item.NhaThau}}</span>
+              </ng-template>
+          </e-column>
             <e-column headerText="Đơn giá" width=100 textAlign='Center'>
                 <ng-template #template let-item>
                     <span class="fw-600 fs-14">{{item.DonGia}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="Ngày hiệu lực" width=70 textAlign='Center'>
+            <e-column headerText="Ngày hiệu lực" width=120 textAlign='Center'>
                 <ng-template #template let-item>
                     <span class="fw-600 fs-14">{{item.NgayHieuLuc | date:'dd/MM/yyyy'}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="Người chỉnh sửa" width=70 textAlign='Center'>
+            <e-column headerText="Người chỉnh sửa" width=120 textAlign='Center'>
                 <ng-template #template let-item>
                     <div class="user-container" *ngIf="item.ModifiedBy">
                         <div class="user-img">
@@ -78,7 +83,7 @@
                     </div>
                 </ng-template>
             </e-column>
-            <e-column headerText="Xem lịch sử" width=70 textAlign='Center'>
+            <e-column headerText="Xem lịch sử" width=120 textAlign='Center'>
                 <ng-template #template let-item>
                     <div class="d-flex justify-content-center">
                         <button class="history-btn" (click)="onClickViewHistory(item.LineCode)">

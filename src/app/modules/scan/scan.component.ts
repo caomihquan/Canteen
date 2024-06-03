@@ -18,6 +18,7 @@ export class ScanComponent {
   IsError:boolean = false;
   IsInit = false;
   textError = '';
+  textSucess = '';
   Line:any;
 
   ResponseCard:any
@@ -30,7 +31,6 @@ export class ScanComponent {
     })
   }
   ScanCard(){
-
     this.IsInit = true;
     this._api.post(AppAPIConst.Scan.Line_GetInfo,{
       BarCode:this.BarCode,
@@ -39,13 +39,18 @@ export class ScanComponent {
     .subscribe(res=>{
       if(res.Data){
         this.ResponseCard = res.Data.tblInfo[0];
-        console.log(res.Data)
         this.BarCode = '';
+        if(res.Data.tblInfo[0].Error == "msg001"){
+          this.textSucess = "Tài khoản của bạn hiện còn dưới 50.000VND, vui lòng cân nhắc chi tiêu hợp lý"
+          this.IsError = false;
+          return
+        }
         if(res.Data.tblInfo[0].Error){
           this.textError = res.Data.tblInfo[0].Error
           this.IsError = true;
           return
         }
+        this.textSucess = "Đến quầy để nhận món / Go to the counter to receive your order"
         this.IsError = false;
       }
     })
