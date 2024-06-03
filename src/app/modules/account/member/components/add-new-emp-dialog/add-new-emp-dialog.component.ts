@@ -1,12 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
-
-interface EmployeeModel{
-
-}
-
-
 
 @Component({
   selector: 'app-add-new-emp-dialog',
@@ -16,6 +10,7 @@ interface EmployeeModel{
 
 export class AddNewEmpDialogComponent implements OnInit {
 
+  @Output() SaveDialog = new EventEmitter<any>()
   @ViewChild('ejDialog2') ejDialog: DialogComponent;
   protected isShow:boolean = false;
   height:number = 714 - 300;
@@ -28,13 +23,13 @@ export class AddNewEmpDialogComponent implements OnInit {
   tennhom:string;
   moTa:string;
   stringImage:any;
-  currentEmp:any = {
-
-  };
+  
   donGia:number = 0;
   employeeModel = {
-        EmployeeCode: '',
-        JoinedDate: new Date()
+    EmployeeCode: '',
+    EmployeeName:'',
+    BarCode:'',
+    JoinDate: new Date().toISOString()
   }
 
   constructor(){
@@ -78,15 +73,23 @@ export class AddNewEmpDialogComponent implements OnInit {
       // event.maxHeight = '100vh'
   }
 
-  public onOpenDialog(employee?:string){
-      if(employee){
-        this.currentEmp = employee;         // call api
-      }
-      this.isShow = true;
-      if(this.isShow){
-        this.ejDialog?.show();
-      }
+  public onOpenDialog(employee?:any){
+    this.employeeModel = employee;
+    this.isShow = true;
+    if(this.isShow){
+      this.ejDialog?.show();
+    }
+  }
 
+  Save(){
+    this.SaveDialog.emit(this.employeeModel);
+    this.ejDialog.hide();
+    this.employeeModel = {
+      EmployeeCode: '',
+      EmployeeName:'',
+      BarCode:'',
+      JoinDate: new Date().toISOString()
+    }
   }
 
 

@@ -16,6 +16,7 @@ import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.servic
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { AddNewEmpDialogComponent } from './components/add-new-emp-dialog/add-new-emp-dialog.component';
+import { NotificationService } from 'src/app/shares/services/notification/notification.service';
 
 @Component({
   selector: 'app-member',
@@ -56,6 +57,7 @@ export class MemberComponent implements OnInit {
     private _ordinal:OrdinalService,
     private _sanitized: DomSanitizer,
     private _modalService: BsModalService,
+    private _noti:NotificationService,
     private _userService: AuthService,){
       this.user = this._userService.getUser();
   }
@@ -157,6 +159,22 @@ export class MemberComponent implements OnInit {
 
 
   selectedRow(item:any){
-        this.empaddnewdialog.onOpenDialog(item.EmployeeCode);
+    this.empaddnewdialog.onOpenDialog(item.rowData);
+  }
+
+  SaveEmployee(item:any){
+    this._api.post(AppAPIConst.QuanLyNhanVien.employee_post,{
+      dataEmp:item
+    }).subscribe(res=>{
+      if(res && res.Data){
+        if(res.Data.Error){
+          this._noti.ShowToastError(res.Data.Error)
+          return;
+        }
+        this.PageIndex = 0;
+        this.LoadListMember();
+        this._noti.ShowToastSuccess('Thành công')
+      }
+    })
   }
 }

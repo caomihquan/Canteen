@@ -64,7 +64,8 @@ export const AppAPIConst = {
   QuanLyNhanVien:{
     Employees_get:'HrmMobileApp/CnB/Danhmuc/Employees_get',
     Employees_napxu:'HrmMobileApp/CnB/Danhmuc/Employees_napxu',
-    Danhmuc_get:'HrmMobileApp/CnB/Danhmuc/Danhmuc_get'
+    Danhmuc_get:'HrmMobileApp/CnB/Danhmuc/Danhmuc_get',
+    employee_post:'HrmMobileApp/CnB/Danhmuc/employee_post',
   },
   Scan:{
     Line_GetInfo:"HrmMobileApp/CnB/Danhmuc/Line_GetInfo"
