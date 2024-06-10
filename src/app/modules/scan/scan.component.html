@@ -1,4 +1,4 @@
-<div class="height: 100vh;">
+<div class="height: 100vh;" *ngIf="!EditInput">
   <input type="text" (keyup.enter)="ScanCard()" [(ngModel)]="BarCode" autofocus onblur="this.focus()" style="position: fixed;opacity: 0;"/>
   <div class="border container-card">
     <div class="align-items-center border-bottom d-flex header-card justify-content-between p-4 pt-3">
@@ -92,75 +92,104 @@
     </div>
   </div>
 </div>
-<!-- <ejs-dialog [isModal]="true"  [position]="{ X: 'center', Y: 'center' }" #dialogCapPhat showCloseIcon='true' [height]='500' width='350px' [visible]='false'> -->
-  <!-- <ng-template #header>
-    <div class="text-common-black fs-18 fw-600">Chỉnh sửa</div>
-  </ng-template>
-  <ng-template #content>
-    <ejs-grid
-    [dataSource]="listHistory"
-    [height]="heightGrid - 30"
-    [allowTextWrap]="true"
-    [textWrapSettings]='wrapSettings'>
-    <e-columns>
-      <e-column headerText="Thứ" textAlign='Left' width=110>
-        <ng-template #template let-item>
-            <div class="text-start">{{item.V3ID}}</div>
-        </ng-template>
-      </e-column>
-
-      <e-column headerText="Giờ quét thẻ" textAlign='Left' width=150>
-        <ng-template #template let-item>
-            <div class="text-start">{{item.V3ID}}</div>
-        </ng-template>
-      </e-column>
-
-      <e-column headerText="Thứ" textAlign='Left' width=110>
-        <ng-template #template let-item>
-            <div class="text-start">{{item.V3ID}}</div>
-        </ng-template>
-      </e-column>
-
-      <e-column headerText="Ngày quét thẻ" textAlign='Left' width=140>
-        <ng-template #template let-item>
-            <div class="text-start">{{item.V3ID}}</div>
-        </ng-template>
-      </e-column>
 
 
-      <e-column headerText="Line" textAlign='Left' width=140>
-        <ng-template #template let-item>
-            <div class="text-start">{{item.V3ID}}</div>
-        </ng-template>
-      </e-column>
-
-      <e-column headerText="Loại món" textAlign='Left' width=140>
-        <ng-template #template let-item>
-            <div class="d-flex gap-2 align-items-center" [ngClass]="{
-              'type-food-1': item.LoaiMon == 1 || true,
-              'type-food-2': item.LoaiMon == 2,
-              'type-food-3': item.LoaiMon == 3,
-              }">
-              <span class="icon-FinanceCommerce-68"></span>
-              <div
-              class="text-start">{{item.V3ID}}</div>
-            </div>
-        </ng-template>
-      </e-column>
-
-      <e-column headerText="Ca làm việc" textAlign='Left' width=180>
-        <ng-template #template let-item>
-            <span class="text-start">04/2024</span>
-        </ng-template>
-      </e-column>
-
-
-      </e-columns>
-    </ejs-grid>
-  </ng-template>
-  <ng-template #footerTemplate>
-    <div class="w-100 px-4">
-      <button class="btn button-app w-100">Lưu</button>
+<div class="height: 100vh;" *ngIf="EditInput">
+  <input id="inputscan" type="text" (keyup.enter)="ScanCard()" [(ngModel)]="BarCode" autofocus (blur)="BlurInput($event)" style="position: fixed;opacity: 0;"/>
+  <div class="border container-card">
+    <div class="align-items-center border-bottom d-flex header-card justify-content-between p-4 pt-3">
+      <div class="d-flex flex-column gap-3">
+          <div class="text-common-gray fw-500" style="font-size: 26px;">{{ResponseCard?.TenLine}} <span *ngIf="ResponseCard?.TenLine && ResponseCard?.NhaThau">/</span> {{ResponseCard?.NhaThau}}</div>
+          <div class="text-common-black fw-500" style="font-size: 40px;" *ngIf="ResponseCard?.Mon">Món {{ResponseCard?.Mon}}</div>
+      </div>
+      <div class="d-flex gap-2 align-items-center">
+        <input  (click)="this.IsAmount = true" (blur)="BlurAmount($event)"  class="price2" type="text" onlyNumber>
+        <!-- <span (blur)="BlurAmount($event)"  class="price" contenteditable="true">{{Amount}}</span> -->
+        <span class="unit"> VND</span>
+      </div>
     </div>
-  </ng-template> -->
-<!-- </ejs-dialog> -->
+    <div class="body-card">
+      <div class="card-emp rounded my-4">
+        <div class="d-flex gap-4 p-3 align-items-center">
+          <img width="100" height="100" class="rounded" src="../../../assets//images/avatar.png" alt="" srcset="">
+          <div class="d-flex flex-column gap-3">
+            <div class="text-common-black" style="font-size: 30px;line-height: 30px;">{{ResponseCard?.EmployeeName}}</div>
+            <div class="text-common-gray fs-18 fw-400">{{ResponseCard?.DepartmentName}}</div>
+          </div>
+        </div>
+        <div class="p-2 border-top d-flex flex-column gap-3 align-content-center justify-content-center">
+          <div class="d-flex gap-4 mt-2 mx-3">
+            <div class="text-common-black fs-18 fw-400">Mã nhân viên / EmployeeCode: </div>
+            <div class="text-common-black fs-18 fw-500">{{ResponseCard?.EmployeeCode}}</div>
+          </div>
+          <div class="d-flex gap-4 mx-3">
+            <div class="text-common-black fs-18 fw-400">ID Thẻ / Card ID: </div>
+            <div class="text-common-black fs-18 fw-500">{{ResponseCard?.BarCode}}</div>
+          </div>
+          <div class="d-flex gap-4 mx-3">
+            <div class="text-common-black fs-18 fw-400">Ngày Nhận việc / Joined Date: </div>
+            <div class="text-common-black fs-18 fw-500">{{ResponseCard?.JoinDate | date:'dd/MM/yyyy'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 mt-2">
+        <div class="d-flex p-4 py-2 align-items-center justify-content-between border">
+          <div class="text-common-black fs-24 fw-500">Số dư hiện tại / Current balance</div>
+          <div class="d-flex align-items-center gap-2">
+            <div class="price-current">{{ResponseCard?.DinhMucBanDau}}</div>
+            <div class="unit-footer" *ngIf="ResponseCard?.DinhMucBanDau"> VND</div>
+          </div>
+        </div>
+        <div class="d-flex p-4 py-2 align-items-center justify-content-between border">
+          <div class="text-common-black fs-24 fw-500">Số dư còn lại / Remaining balance</div>
+          <div class="d-flex align-items-center gap-2">
+            <div class="price-current">{{ResponseCard?.ConLai}}</div>
+            <div class="unit-footer" *ngIf="ResponseCard?.ConLai"> VND</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4 px-4 w-100 d-flex justify-content-between gap-2">
+      <div class="flex-1">
+        <div class="scan-sucess d-flex p-2" *ngIf="IsInit && !IsError">
+          <div class="d-flex gap-4 align-items-center">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="65" viewBox="0 0 50 65" fill="none">
+                <path d="M47.9531 32.5C47.9531 41.1817 45.3138 48.9837 41.1185 54.5814C36.9235 60.1786 31.243 63.5 25.0952 63.5C18.9474 63.5 13.2669 60.1786 9.07187 54.5814C4.87656 48.9837 2.2373 41.1817 2.2373 32.5C2.2373 23.8183 4.87656 16.0163 9.07187 10.4186C13.2669 4.82137 18.9474 1.5 25.0952 1.5C31.243 1.5 36.9235 4.82137 41.1185 10.4186C45.3138 16.0163 47.9531 23.8183 47.9531 32.5Z" fill="#13C39C" stroke="#25FFAE" stroke-width="3"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M37.3587 22.1921L23.3966 45.4851L12.4287 33.2885L14.4981 29.9751L22.931 39.3501L34.8366 19.5L37.3587 22.1921Z" fill="white"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-common-black fs-18 fw-500">Thanh toán thành công / Sucess</div>
+              <div class="text-common-black">{{textSucess}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="scan-error d-flex p-2" *ngIf="IsInit && IsError">
+          <div class="d-flex gap-4 align-items-center">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 0 65 65" fill="none">
+                <circle cx="32.5" cy="32.5" r="31" fill="#FB4B4B" stroke="#F6BDBD" stroke-width="3"/>
+                <path d="M43.5502 43.5492L21.4502 21.4492M43.5502 21.4492L21.4502 43.5492" stroke="white" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-common-black fs-18 fw-500">Thanh toán thất bại / Failed</div>
+              <div class="text-common-black">{{this.textError}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="btn-history d-flex justify-content-center align-items-center pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <path d="M32.1583 16.2917L29.3258 19.125L26.4916 16.2917M29.6722 18.4167C29.7236 17.9515 29.75 17.4788 29.75 17C29.75 9.95837 24.0416 4.25 17 4.25C9.95837 4.25 4.25 9.95837 4.25 17C4.25 24.0416 9.95837 29.75 17 29.75C21.0053 29.75 24.5792 27.9031 26.9167 25.0146M17 9.91667V17L21.25 19.8333" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>Xem lịch sử</div>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+
+

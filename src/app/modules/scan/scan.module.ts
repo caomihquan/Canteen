@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
 import { FormsModule } from '@angular/forms';
+import { OnlyNumberDirective } from 'src/app/shares/directive/only-number.directive';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     GridModule,
+    OnlyNumberDirective,
     RouterModule.forChild(routes),
   ]
 })
