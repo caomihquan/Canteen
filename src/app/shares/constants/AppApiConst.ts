@@ -68,7 +68,8 @@ export const AppAPIConst = {
     employee_post:'HrmMobileApp/CnB/Danhmuc/employee_post',
   },
   Scan:{
-    Line_GetInfo:"HrmMobileApp/CnB/Danhmuc/Line_GetInfo"
+    Line_GetInfo:"HrmMobileApp/CnB/Danhmuc/Line_GetInfo",
+    Line_GetInfo2:"HrmMobileApp/CnB/Danhmuc/Line_GetInfo2",
   }
 ,
   TheKhach:{
