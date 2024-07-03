@@ -8,7 +8,6 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
-import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 
 @Component({
@@ -58,7 +57,7 @@ export class LoginComponent implements OnInit {
             title: this.I18nLang.Common.Alert,
             content:res.Error,
           };
-          this.modalRef = this._modalService.show(ModalComponent,{initialState});
+          //this.modalRef = this._modalService.show(ModalComponent,{initialState});
           return;
         }
         const data = res?.Data;

@@ -7,7 +7,7 @@
           <span class="text-common-black fw-500 fs-16">Nhóm nhân viên phụ</span>
         </div>
         <div class="right-toolbar">
-            <div class="button-toolbar">
+            <div class="button-toolbar" (click)="onAdd()">
                 <span class="icon-General-113"></span>
                 <span>Thêm</span>
             </div>
@@ -34,19 +34,8 @@
 <ng-template #templategrid>
     <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
         <e-columns>
-            <!-- <e-column headerText="STT" textAlign='Left' width=50>
-                <ng-template #template let-item>
-                    <div>{{item.NhomPhuCode}}</div>
-                </ng-template>
-            </e-column> -->
             <e-column headerText="Loại nhóm" width=40 textAlign='Left'>
                 <ng-template #template let-item>
-                    <!-- <div class="type-subgroup" [ngStyle]="{'background-color': item.GroupColor}">
-                        <i class="icon-Users-3" [ngStyle]="{'color': item.TextColor}"></i>
-                        <div class="type-font" [ngStyle]="{'color': item.TextColor}">
-                            {{item.NhomPhuName}}
-                        </div>
-                    </div> -->
                     <div>{{item.NhomPhuCode}}</div>
                 </ng-template>
             </e-column>

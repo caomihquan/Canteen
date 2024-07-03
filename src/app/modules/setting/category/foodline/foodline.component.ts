@@ -1,31 +1,24 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
-import { LanguageService } from 'src/app/shares/services/language/language.service';
-import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
-import { MenuService } from '../../menu/services/menu.service';
-import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
-import { AddnewDialogComponent } from '../emp-subgroup/dialog/addnew-dialog/addnew-dialog.component';
-import { FoodshiftAddnewDialogComponent } from '../emp-subgroup/dialog/foodshift-addnew-dialog/foodshift-addnew-dialog.component';
-import { FoodlineAddnewDialogComponent } from '../emp-subgroup/dialog/foodline-addnew-dialog/foodline-addnew-dialog.component';
 import { HistoryDialogComponent } from '../emp-subgroup/dialog/history-dialog/history-dialog.component';
+import { FoodshiftAddnewDialogComponent } from '../emp-subgroup/dialog/foodshift-addnew-dialog/foodshift-addnew-dialog.component';
+import { AddnewDialogComponent } from '../emp-subgroup/dialog/addnew-dialog/addnew-dialog.component';
+import { FoodlineAddnewDialogComponent } from '../emp-subgroup/dialog/foodline-addnew-dialog/foodline-addnew-dialog.component';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
+import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
+import { LanguageService } from 'src/app/shares/services/language/language.service';
+import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { fnCommon } from 'src/app/shares/helpers/common';
-import { enableRipple } from '@syncfusion/ej2-base';
-import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
-
-
-enableRipple(true);
+import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 
 @Component({
-  selector: 'app-food-shift',
-  templateUrl: './food-shift.component.html',
-  styleUrls: ['./food-shift.component.scss']
+  selector: 'app-foodline',
+  templateUrl: './foodline.component.html',
+  styleUrls: ['./foodline.component.scss']
 })
-export class FoodShiftComponent implements OnInit {
+export class FoodlineComponent implements OnInit {
 
   @ViewChild('historydialog') historydialog: HistoryDialogComponent
   @ViewChild('addnewdialog') addnewdialog: AddnewDialogComponent
@@ -38,22 +31,22 @@ export class FoodShiftComponent implements OnInit {
   height:number = (window.innerHeight - 202)
   width:number = (window.innerWidth - 250)
   searchText:string;
-  selectedMenu:any;
+  selectedItem:any;
   loginInfo: any = {};
-  modalRef: BsModalRef
   I18nLang:any
-  defaultColor = AppCommon.defaultColor
+
+
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
   listSubgroup = []
 
+
+
   selectedTab = 1
   constructor(
     private _ordinal:OrdinalService,
-    private _modalService: BsModalService,
     private _languageService:LanguageService,
     private _translate:TranslateService,
-    private _menuService:MenuService,
     private _userService:AuthService,
     private _api:ApiHttpService
     ){
@@ -63,123 +56,58 @@ export class FoodShiftComponent implements OnInit {
   ngOnInit() {
     this.getListFoodLine();
   }
-
-
-  getListFoodLine(){
-    this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
-      Option:3,
-      PageIndex:this.PageIndex,
-      PageSize:this.PageSize,
-    }).subscribe(res=>{
-      console.log(res);
-      this.listSubgroup = res.Data.Data
-      this.totalItems = res.Data.OutputParams.TotalItems
-
-    })
-  }
-
   getLanguage = async()=>{
     this.I18nLang = await this._languageService.getLanguage();
   }
 
 
-  fnSelectedRule(){
-    const initialState = {
-      title:this.I18nLang.Common.Alert,
-      content:this.I18nLang.Error.NoRowSelected,
-    }
-    this.modalRef = this._modalService.show(ModalComponent,{initialState});
-  }
 
 
   AddMenu(){
-      //  this.addnewdialog.onOpenDialog();
-        this.addnewfoodshiftdialog.onOpenDialog();
-       // this.addnewfoodlinedialog.onOpenDialog();
+        this.addnewfoodlinedialog.onOpenDialog();
   }
 
   selectedRowTable(evt:any){
     const item = evt.rowData
-    this.selectedMenu = item;
+    this.selectedItem = item;
   }
 
   onClickViewHistory(id:string){
         this.historydialog.onOpenDialog(id);
   }
 
-  GetMenu(){
-    this._menuService.GetRules({
-      Status:2,
+
+  getListFoodLine(){
+    this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
+      Option:4,
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
-      SearchVal:this.searchText
     }).subscribe(res=>{
-      if(!res.Error){
-        console.log(res);
+      console.log(res);
+      this.listSubgroup = res.Data.Data
+      this.totalItems = res.Data.OutputParams.totalItems
 
-        this.totalItems = res.Data.Output[0].TotalItems
-      }
     })
   }
 
   onSearch(event:KeyboardEvent){
     if(event.key == 'Enter'){
       this.ResetModel();
-      this.GetMenu();
     }
   }
 
-  DeleteMenu(){
-    if(!this.selectedMenu){
-      const initialState = {
-        title: this.I18nLang.Common.Alert,
-        content:this.I18nLang.Error.NoRowSelected,
-      }
-      this.modalRef = this._modalService.show(ModalComponent,{initialState});
-      return;
-    }
-    const initialState = {
-      title: this.I18nLang.Common.Notification,
-      content:this.I18nLang.Common.WantToDelete,
-      fnYes:()=>{
-
-      },
-      fnNo:()=>{
-        this.modalRef.hide()
-      }
-    }
-    this.modalRef = this._modalService.show(ModalComponent,{initialState});
-
-  }
-
-  EditMenu(){
-    if(!this.selectedMenu){
-      const initialState = {
-        title: this.I18nLang.Common.Alert,
-        content:this.I18nLang.Error.NoRowSelected,
-      }
-      this.modalRef = this._modalService.show(ModalComponent,{initialState});
-      return;
-    }
-  }
 
   ClickPagerIndex(evt:any){
     if(evt?.currentPage){
       this.PageIndex = evt?.currentPage - 1
-      this.GetMenu();
     }
   }
 
   ResetModel(){
-
     this.PageIndex = AppCommon.PageIndex;
     this.PageSize = AppCommon.PageSize;
     this.totalItems = 0;
   }
-
-
-
-
   PostMenu(){
 
 
@@ -228,5 +156,6 @@ export class FoodShiftComponent implements OnInit {
     if(this.selectedTab == index) return;
     this.selectedTab = index;
   }
+
 
 }

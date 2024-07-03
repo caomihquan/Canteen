@@ -1,7 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, signal } from '@angular/core';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
@@ -26,7 +24,6 @@ export class GuessComponent implements OnInit {
   searchText:string;
   selectedFood:any;
   widthRight = window.innerWidth - 350;
-  modalRef: BsModalRef
   I18nLang:any
   defaultColor = AppCommon.defaultColor
   @ViewChild('capphatdinhmuc') capphatdinhmuc: CapPhatDinhMucDialogComponent
@@ -129,7 +126,6 @@ export class GuessComponent implements OnInit {
 
   constructor(
     private _ordinal:OrdinalService,
-    private _modalService: BsModalService,
     private _languageService:LanguageService,
     private _translate:TranslateService,
     private guessService:GuessService
@@ -214,59 +210,19 @@ export class GuessComponent implements OnInit {
     this.capphatdinhmuc.onOpenDialog(thekhach['MaTheKhach']);
   }
 
-  GetMenu(){
 
-  }
 
   onSearch(event:KeyboardEvent){
     if(event.key == 'Enter'){
       this.ResetModel();
-      this.GetMenu();
     }
   }
 
-  DeleteCardForCustomer(){
-    if(!this.selectedFood){
-      const initialState = {
-        title: this.I18nLang.Common.Alert,
-        content:this.I18nLang.Error.NoRowSelected,
-      }
-      this.modalRef = this._modalService.show(ModalComponent,{initialState});
-      return;
-    }
-    const initialState = {
-      title: this.I18nLang.Common.Notification,
-      content:this.I18nLang.Common.WantToDelete,
-      fnYes:()=>{
-
-      },
-      fnNo:()=>{
-        this.modalRef.hide()
-      }
-    }
-    this.modalRef = this._modalService.show(ModalComponent,{initialState});
-
-  }
-
-  EditResigerCardForCustomer(){
-    if(!this.selectedFood){
-      const initialState = {
-        title: this.I18nLang.Common.Alert,
-        content:this.I18nLang.Error.NoRowSelected,
-      }
-      this.modalRef = this._modalService.show(ModalComponent,{initialState});
-      return;
-    }
-  }
-
-  TakeBackCard(){
-
-  }
+ 
 
   ClickPagerIndex(evt:any){
     if(evt?.currentPage){
       this.PageIndex = evt?.currentPage - 1
-      this.GetMenu();
     }
   }
 

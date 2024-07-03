@@ -3,7 +3,6 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 
 @Component({
@@ -52,7 +51,6 @@ export class CapPhatDinhMucDialogComponent implements OnInit {
     debugger;
   }
   protected onSave(){
-    debugger;
     var data = {
         DataRequest:{
           SoXuNapThem: this.DinhMucCongThem,
@@ -60,22 +58,20 @@ export class CapPhatDinhMucDialogComponent implements OnInit {
         }
     }
         this.guessService.TheKhach_ThemXu(data).subscribe(res =>{
-          debugger;
-          if(!res.Data.OutputParams.Err && !res.Data.Error ){
-            const initialState = {
-              title: this.I18nLang.Common.Alert,
-              content: 'Cấp phát định mức thành công',
-            }
-            this.modalRef = this._modalService.show(ModalComponent,{initialState});
-            this.DinhMucCongThem = 0;
-            this.ejDialog.hide();
-            this.reloadDataMasterEvent.emit(true);
-            this.isShow = false;
-          }
-          else{
-            this.reloadDataMasterEvent.emit(false);
-          }
-              // console.log(res);
+          // if(!res.Data.OutputParams.Err && !res.Data.Error ){
+          //   const initialState = {
+          //     title: this.I18nLang.Common.Alert,
+          //     content: 'Cấp phát định mức thành công',
+          //   }
+          //   this.modalRef = this._modalService.show(ModalComponent,{initialState});
+          //   this.DinhMucCongThem = 0;
+          //   this.ejDialog.hide();
+          //   this.reloadDataMasterEvent.emit(true);
+          //   this.isShow = false;
+          // }
+          // else{
+          //   this.reloadDataMasterEvent.emit(false);
+          // }
 
         });
 

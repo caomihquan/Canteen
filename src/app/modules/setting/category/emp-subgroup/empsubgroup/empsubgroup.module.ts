@@ -7,27 +7,39 @@ import { FormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { EmpsubgroupComponent } from './empsubgroup.component';
+import { DialogModule } from '@syncfusion/ej2-angular-popups';
+import { AddnewDialogComponent } from '../dialog/addnew-dialog/addnew-dialog.component';
+import { CheckBoxModule, SwitchModule } from '@syncfusion/ej2-angular-buttons';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { FoodComponent } from './food.component';
-
+import { HistoryModule } from '../dialog/history-dialog/history-dialog.module';
+import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view';
 
 const routes: Routes = [
   {
     path:'',
     canActivate: [AuthGuard],
     children:[
-      {path: '', component: FoodComponent},
+      {path: '', component: EmpsubgroupComponent},
     ]
   },
 ];
 
 @NgModule({
-  declarations: [FoodComponent],
+  declarations: [
+    EmpsubgroupComponent,
+    AddnewDialogComponent,
+  ],
   imports: [
     CommonModule,
     SharesModule,
     FormsModule,
-    FlatpickrModule.forRoot(),
+    DialogModule,
+    SwitchModule,
+    CheckBoxModule,
+    HistoryModule,
+    GridViewComponent,
     RouterModule.forChild(routes),
     TranslateModule.forRoot({
       loader: {
@@ -37,6 +49,8 @@ const routes: Routes = [
       },
       defaultLanguage: 'vn'
     }),
+    InfiniteScrollModule,
+    FlatpickrModule.forRoot()
   ],
 })
-export class FoodModule { }
+export class EmpsubgroupModule { }

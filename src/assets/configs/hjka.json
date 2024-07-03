@@ -1,5 +1,5 @@
 {
-    "strUrl": "https://api.smarttechco.vn/CanteenWS/",
+    "strUrl": "https://api.smarttechco.vn/canteenws/",
     "IdleTime": 99999999999,
     "ContentPolicy": [
         {

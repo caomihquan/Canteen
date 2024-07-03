@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ChangePasswordService } from 'src/app/modules/changepassword/services/change-password.service';
-import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
@@ -148,7 +147,7 @@ export class HeaderComponent {
           title: this.I18nLang.Common.Alert,
           content:this.I18nLang.ChangePassword[res.ErrorCode ?? 'Error'],
         };
-        this.modalRef = this._modalService.show(ModalComponent,{initialState});
+        //this.modalRef = this._modalService.show(ModalComponent,{initialState});
         return;
       }
     })

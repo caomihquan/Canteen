@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild, signal } from '@angular/core';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';

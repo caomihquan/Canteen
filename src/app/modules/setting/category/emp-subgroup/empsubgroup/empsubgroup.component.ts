@@ -1,17 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
-import { DialogComponent } from '@syncfusion/ej2-angular-popups';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { UserService } from 'src/app/modules/manage/services/manage.service';
-import { MenuService } from 'src/app/modules/menu/services/menu.service';
-import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
-import { UserModel } from 'src/app/shares/models/user-model';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
-import { LanguageService } from 'src/app/shares/services/language/language.service';
-import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 import { HistoryDialogComponent } from '../dialog/history-dialog/history-dialog.component';
 import { AddnewDialogComponent } from '../dialog/addnew-dialog/addnew-dialog.component';
 import { FoodshiftAddnewDialogComponent } from '../dialog/foodshift-addnew-dialog/foodshift-addnew-dialog.component';
@@ -34,14 +26,10 @@ export class EmpsubgroupComponent implements OnInit {
   PageSize:number = AppCommon.PageSize;
   totalItems:number;
   height:number = (window.innerHeight - 202)
-  width:number = (window.innerWidth - 250)
   searchText:string;
   selectedMenu:any;
   loginInfo: any = {};
-  modalRef: BsModalRef
   I18nLang:any
-  defaultColor = AppCommon.defaultColor
-
 
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
@@ -49,7 +37,6 @@ export class EmpsubgroupComponent implements OnInit {
 
 
 
-  selectedTab = 1
   constructor(
     private _userService:AuthService,
     private _api:ApiHttpService
@@ -57,9 +44,8 @@ export class EmpsubgroupComponent implements OnInit {
       this.loginInfo = this._userService.getUser();
   }
   ngOnInit() {
-      this.getListFoodLine();
+    this.getListFoodLine();
   }
-
 
 
   getListFoodLine(){
@@ -68,21 +54,16 @@ export class EmpsubgroupComponent implements OnInit {
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
     }).subscribe(res=>{
-      debugger;
-      console.log(res);
       this.listSubgroup = res.Data.Data
       this.totalItems = res.Data.OutputParams.totalItems
-
     })
   }
 
 
 
 
-  AddMenu(){
-      //  this.addnewdialog.onOpenDialog();
-       // this.addnewfoodshiftdialog.onOpenDialog();
-        this.addnewfoodlinedialog.onOpenDialog();
+  onAdd(){
+    this.addnewfoodlinedialog.onOpenDialog();
   }
 
   selectedRowTable(evt:any){

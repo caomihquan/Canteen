@@ -6,7 +6,6 @@ import { UserModel } from 'src/app/shares/models/user-model';
 import { MemberService } from './services/member.service';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { fnCommon } from 'src/app/shares/helpers/common';
