@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
@@ -11,7 +12,7 @@ import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.servic
   styleUrls: ['./co-cau-to-chuc.component.scss']
 })
 export class CoCauToChucComponent implements OnInit {
-
+  @ViewChild('dialogAdd') dialogAdd:DialogComponent
   height:number = window.innerHeight
   tabSelected:any
   listDepartment:Array<any> = []
@@ -22,6 +23,11 @@ export class CoCauToChucComponent implements OnInit {
   TotalItems = 0
   listEmployee:Array<any> = []
   width:number = window.innerWidth - 254 - 300
+
+  MaDonVi:string;
+  TenDonVi:string;
+  DonViCha:any;
+
   constructor(private _api:ApiHttpService){}
 
   ngOnInit(): void {
@@ -29,11 +35,7 @@ export class CoCauToChucComponent implements OnInit {
   }
 
   ToggleTabs(item:any){
-    // if(item.Children.length == 0){
-
-    // }
     this.tabSelected = item
-    console.log(this.tabSelected);
     if(this.tabSelected){
       this.PageIndex = 0;
       this.TotalItems = 0
@@ -77,11 +79,11 @@ export class CoCauToChucComponent implements OnInit {
     }
   }
 
+
   LoadEmployee(){
     var item = this.listDepartmentOrigin.find(x => x.DepartmentCode == this.tabSelected.DepartmentCode);
     var lst = this.InitNested(this.listDepartmentOrigin,item.DepartmentCode);
     this.listEmployee = [item,...lst]
-    console.log(this.listEmployee);
     // this._api.post(AppAPIConst.CoCauToChuc.Employees_get,{
     //   PageIndex:this.PageIndex,
     //   PageSize:this.PageSize,
@@ -98,5 +100,19 @@ export class CoCauToChucComponent implements OnInit {
   ClickPageEmp(page:any){
     this.PageIndex = page
     this.LoadEmployee();
+  }
+
+  onOpenAdd(){
+    this.dialogAdd.show();
+  }
+  onOpenEdit(){
+    this.dialogAdd.show();
+  }
+  onDelete(){
+
+  }
+  submitDialog(){
+
+
   }
 }

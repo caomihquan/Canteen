@@ -3,13 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
-import { AddnewDialogComponent } from '../emp-subgroup/dialog/addnew-dialog/addnew-dialog.component';
-import { FoodshiftAddnewDialogComponent } from '../emp-subgroup/dialog/foodshift-addnew-dialog/foodshift-addnew-dialog.component';
-import { FoodlineAddnewDialogComponent } from '../emp-subgroup/dialog/foodline-addnew-dialog/foodline-addnew-dialog.component';
-import { HistoryDialogComponent } from '../emp-subgroup/dialog/history-dialog/history-dialog.component';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
-import { fnCommon } from 'src/app/shares/helpers/common';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
@@ -23,11 +18,6 @@ enableRipple(true);
   styleUrls: ['./food-shift.component.scss']
 })
 export class FoodShiftComponent implements OnInit {
-
-  @ViewChild('historydialog') historydialog: HistoryDialogComponent
-  @ViewChild('addnewdialog') addnewdialog: AddnewDialogComponent
-  @ViewChild('addnewfoodshiftdialog') addnewfoodshiftdialog: FoodshiftAddnewDialogComponent
-  @ViewChild('addnewfoodlinedialog') addnewfoodlinedialog: FoodlineAddnewDialogComponent
   selectedDate = new Date().toISOString()
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
@@ -42,6 +32,10 @@ export class FoodShiftComponent implements OnInit {
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
   listSubgroup = []
+
+  tenNhom:string;
+  moTa:string;
+  donGia:string;
 
   constructor(
     private _ordinal:OrdinalService,
@@ -97,6 +91,6 @@ export class FoodShiftComponent implements OnInit {
 
 
 
- 
+
 
 }

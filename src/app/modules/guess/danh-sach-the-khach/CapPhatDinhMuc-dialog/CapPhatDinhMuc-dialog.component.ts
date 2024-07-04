@@ -2,7 +2,6 @@ import { GuessService } from './../../services/guess.service';
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 
 @Component({
@@ -24,7 +23,6 @@ export class CapPhatDinhMucDialogComponent implements OnInit {
   tennhom:string;
   moTa:string;
   donGia:number = 0;
-  modalRef: BsModalRef
   I18nLang:any
   @Output() reloadDataMasterEvent: EventEmitter<any> = new EventEmitter();
   protected DinhMucCongThem:number = 0;
@@ -32,7 +30,6 @@ export class CapPhatDinhMucDialogComponent implements OnInit {
 
   constructor(private guessService: GuessService
               ,private _languageService: LanguageService
-              ,  private _modalService: BsModalService,
 
   ){
 

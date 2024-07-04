@@ -1,0 +1,20 @@
+
+<ejs-dialog (open)="$event.preventFocus = true" [isModal]="true" [position]="position" #dialog showCloseIcon='true' [height]='height' [width]='width' [visible]='false'>
+  <ng-template #header>
+    <div class="text-common-black fs-18 fw-600">{{headerText}}</div>
+  </ng-template>
+  <ng-template #content>
+    <ng-container  *ngTemplateOutlet="templateBody"></ng-container>
+  </ng-template>
+  <ng-template #footerTemplate>
+    <div class="d-flex gap-2 align-items-center justify-content-between ms-4">
+      <div>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn button-app-second " (click)="dialog.hide()">Đóng</button>
+        <button class="btn button-app" (click)="submitDialog()">Lưu</button>
+      </div>
+    </div>
+  </ng-template>
+</ejs-dialog>
+

@@ -56,10 +56,6 @@
 }
 /* Importing Bootstrap SCSS file. */
 @import "./node_modules/bootstrap/scss/bootstrap";
-/* Importing Datepicker SCSS file. */
-@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
-
-
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -627,7 +623,7 @@ div.input-dropdown{
 
 .button-app-second{
   color: var(--Color-Primary);
-  background-color: #98ABEE;
+  background-color: #CFECD7;
   border-radius: 6px;
   width: 91px;
   font-size: 14px;

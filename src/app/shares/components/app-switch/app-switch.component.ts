@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild, forwardRef } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OnlyNumberDirective } from '../../directive/only-number.directive';
-import { fnCommon } from '../../helpers/common copy';
+import { fnCommon } from '../../helpers/common';
 
 @Component({
   selector: 'app-switch',
@@ -17,7 +17,7 @@ export class AppSwitchComponent {
   @Input() disabled = false;
   @Output() changeSwitch:EventEmitter<any> = new EventEmitter();
   @Input() value:boolean;
-
+  @Input() IsRequire = false;
   id = fnCommon.uuidv4();
   constructor(){
   }

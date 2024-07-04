@@ -1,16 +1,24 @@
 
 <div *ngIf="type=='text'">
-  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}}</label>
-  <input [disabled]="disabled" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text"/>
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}} <span *ngIf="IsRequire" style="color: red;"> *</span></label>
+  <input [disabled]="disabled" [placeholder]="placeholder" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text"/>
 </div>
 <div *ngIf="type=='number'">
-  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}}</label>
-  <input  [disabled]="disabled" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text" onlyNumber/>
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}} <span *ngIf="IsRequire" style="color: red;"> *</span></label>
+  <input  [disabled]="disabled" [placeholder]="placeholder" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text" onlyNumber/>
 </div>
 <div *ngIf="type=='text-area'">
-  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}}</label>
-  <textarea [rows]=""  [disabled]="disabled" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text"></textarea>
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}} <span *ngIf="IsRequire" style="color: red;"> *</span></label>
+  <textarea [rows]="rows" [placeholder]="placeholder"  [disabled]="disabled" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text"></textarea>
 </div>
+
+<div *ngIf="type=='checkbox'">
+  <label class="custom-checkbox  {{className}}">{{title}}
+    <input [(ngModel)]="value" type="checkbox" [checked]="value">
+    <span class="checkmark border"></span>
+  </label>
+</div>
+
 
 <!--
 <div *ngIf="type=='dropdown'">
@@ -34,7 +42,7 @@
 
 
 <div *ngIf="type=='switch'">
-  <div class="form-check form-switch d-flex gap-3 align-items-center">
+  <div class="form-check form-switch d-flex gap-3 align-items-center ps-0 pointer">
     <input [(ngModel)]="value" class="form-check-input input-switch" type="checkbox" role="switch" id="flexSwitchCheckDefault">
     <label class="py-1 text-common-black fs-14 fw-500" for="flexSwitchCheckDefault">{{title}}</label>
   </div>

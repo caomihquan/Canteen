@@ -10,11 +10,13 @@ import { HttpClient } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { EmpsubgroupComponent } from './empsubgroup.component';
 import { DialogModule } from '@syncfusion/ej2-angular-popups';
-import { AddnewDialogComponent } from '../dialog/addnew-dialog/addnew-dialog.component';
 import { CheckBoxModule, SwitchModule } from '@syncfusion/ej2-angular-buttons';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { HistoryModule } from '../dialog/history-dialog/history-dialog.module';
 import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view';
+import { AppInputComponent } from 'src/app/shares/components/app-input/app-input.component';
+import { AppComboboxComponent } from 'src/app/shares/components/app-combobox/app-combobox.component';
+import { AppSwitchComponent } from 'src/app/shares/components/app-switch/app-switch.component';
+import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
 
 const routes: Routes = [
   {
@@ -29,7 +31,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     EmpsubgroupComponent,
-    AddnewDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -37,9 +38,11 @@ const routes: Routes = [
     FormsModule,
     DialogModule,
     SwitchModule,
-    CheckBoxModule,
-    HistoryModule,
+    AppInputComponent,
+    AppComboboxComponent,
     GridViewComponent,
+    AppSwitchComponent,
+    AppDialogComponent,
     RouterModule.forChild(routes),
     TranslateModule.forRoot({
       loader: {
@@ -49,8 +52,6 @@ const routes: Routes = [
       },
       defaultLanguage: 'vn'
     }),
-    InfiniteScrollModule,
-    FlatpickrModule.forRoot()
   ],
 })
 export class EmpsubgroupModule { }

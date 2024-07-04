@@ -7,7 +7,7 @@
             <span class="text-common-black fw-500 fs-16">Phân loại line món ăn</span>
         </div>
         <div class="right-toolbar">
-            <div class="button-toolbar">
+            <div class="button-toolbar" (click)="dialogAdd.show()">
                 <span class="icon-General-113"></span>
                 <span>Thêm</span>
             </div>
@@ -97,5 +97,25 @@
         </e-columns>
     </ejs-grid>
 </ng-template>
-<app-history-dialog #historydialog></app-history-dialog>
-<app-foodline-addnew-dialog #addnewfoodlinedialog></app-foodline-addnew-dialog>
+<!-- <app-history-dialog #historydialog></app-history-dialog> -->
+
+<app-dialog #dialogAdd [templateBody]="content" headerText="Thêm ca làm việc"></app-dialog>
+
+<ng-template #content>
+  <div class="container mt-3">
+    <div class="row gy-3">
+      <div class="col-12">
+        <app-input [(ngModel)]="tenLine" title="Tên line"></app-input>
+      </div>
+      <div class="col-12">
+        <app-combobox [dataSource]="ListPhanLoai" [selectedItem]="selectPhanLoai" fieldName="TypeCode" (clickItem)="selectPhanLoai = $event"  title="Phân loại"></app-combobox>
+      </div>
+      <div class="col-12">
+        <app-input [(ngModel)]="donGia" title="Đơn giá" type="number"></app-input>
+      </div>
+      <div class="col-12">
+        <app-datetime title="Thời gian hiệu lực"></app-datetime>
+      </div>
+   </div>
+  </div>
+</ng-template>

@@ -5,22 +5,22 @@
             <span class="text-common-black fw-600 fs-16">Cơ cấu tổ chức</span>
         </div>
         <div class="right-toolbar">
-            <div class="button-toolbar">
+            <div class="button-toolbar" (click)="onOpenAdd()">
                 <span class="icon-General-113"></span>
-                <span>Thêm</span>
+                <span>{{'Common.Add' | translate}}</span>
             </div>
-            <div class="button-toolbar">
+            <div class="button-toolbar" (click)="onOpenEdit()">
                 <span class="icon-General-84"></span>
-                <span>Chỉnh Sửa</span>
+                <span>{{'Common.Edit' | translate}}</span>
             </div>
             <div class="button-toolbar">
                 <span class="icon-General-163"></span>
-                <span>Xoá</span>
+                <span>{{'Common.Delete' | translate}}</span>
             </div>
-            <div class="button-toolbar">
+            <!-- <div class="button-toolbar" (click)="onDelete()">
                 <span class="icon-General-101"></span>
                 <span>Nhập khẩu</span>
-            </div>
+            </div> -->
         </div>
     </div>
     <div>
@@ -45,13 +45,6 @@
             </div>
             <div class="p-2" [ngStyle]="{'width': width + 'px'}">
                 <div class="d-flex align-items-center justify-content-between mx-2">
-                    <!-- <div class="d-flex flex-column gap-2">
-                        <div class="text-common-black fs-22 fw-600">{{tabSelected?.DepartmentName}}</div>
-                    </div>
-                    <div class="d-flex flex-column gap-2 align-items-center justify-content-center">
-                        <div class="NumMember">{{TotalItems}}</div>
-                        <div>Nhân Viên</div>
-                    </div> -->
                 </div>
                 <div class="mt-2">
                     <grid-view [totalItems]="TotalItems" (clickPage)="ClickPageEmp($event)" [template]="templateGrid"></grid-view>
@@ -75,85 +68,40 @@
                 <div class="text-start">{{item.DepartmentName}}</div>
             </ng-template>
           </e-column>
-
-          <!-- <e-column headerText="Phòn ban cha" textAlign='Left' width=140>
-            <ng-template #template let-item>
-                <div class="text-start">{{item.BarCode}}</div>
-            </ng-template>
-          </e-column> -->
-
-          <!-- <e-column headerText="BU" textAlign='Left' width=140>
-            <ng-template #template let-item>
-                <span class="text-start">{{item.BU}}</span>
-            </ng-template>
-          </e-column>
-
-          <e-column headerText="Họ và tên (VN)" width=180 textAlign='Left'>
-              <ng-template #template let-item>
-                  <div class="d-flex align-items-center gap-2">
-                      <img width="40" height="40" [src]="getPhoto(item.EmployeeCode)" alt="" srcset="">
-                      <span class="text-start">{{item.EmployeeName}}</span>
-                  </div>
-              </ng-template>
-          </e-column>
-          <e-column headerText="Phòng ban" textAlign='Left' width=180>
-              <ng-template #template let-item>
-                  <span class="text-start">{{item.DepartmentCode}}</span>
-              </ng-template>
-          </e-column>
-          <e-column headerText="Ngày nhận việc" textAlign='Left' width=180>
-            <ng-template #template let-item>
-                <span class="text-start">{{item.JoinDate  | date:'dd/MM/yyyy'}}</span>
-            </ng-template>
-          </e-column>
-          <e-column headerText="Nhóm phụ nhân viên" width=200 textAlign='Left'>
-            <ng-template #template let-item>
-              <div class="d-flex justify-content-center">
-                <div class="d-flex gap-2 align-items-center" [ngClass]="{
-                  'Staff': item.Status == 0 || true,
-                  'DL': item.Status == 1,
-                  'IDL': item.Status == 2,
-                  }">
-                    <span class="icon-Users-11"></span>
-                    <div>{{item.NhomPhu}}</div>
-                </div>
-              </div>
-            </ng-template>
-          </e-column>
-          <e-column headerText="Tình trạng" width=120 textAlign='Left'>
-              <ng-template #template let-item>
-                  <div [ngClass]="{'status0': item.Status == 0,'status1': item.Status == 1}">
-                      <ng-container>{{item.TinhTrang}}</ng-container>
-                  </div>
-              </ng-template>
-          </e-column>
-          <e-column headerText="CostCenter" textAlign='Left' width=150>
-            <ng-template #template let-item>
-                <span class="text-start">{{item.CostCenter}}</span>
-            </ng-template>
-          </e-column>
-          <e-column headerText="Transaction Entry" textAlign='Left' width=180>
-            <ng-template #template let-item>
-                <span class="text-start">{{item.TranSactionEntry}}</span>
-            </ng-template>
-          </e-column>
-          <e-column headerText="Location" textAlign='Left' width=150>
-            <ng-template #template let-item>
-                <span class="text-start">{{item.Location}}</span>
-            </ng-template>
-          </e-column>
-          <e-column headerText="EmployeeType" textAlign='Left' width=150>
-            <ng-template #template let-item>
-                <span class="text-start">{{item.EmployeeType}}</span>
-            </ng-template>
-          </e-column>
-          <e-column headerText="EmployeeCategory" textAlign='Left' width=180>
-            <ng-template #template let-item>
-                <span class="text-start">{{item.EmployeeCategory}}</span>
-            </ng-template>
-          </e-column> -->
       </e-columns>
   </ejs-grid>
 </ng-template>
 
+
+
+<ejs-dialog (open)="$event.preventFocus = true" [isModal]="true" [position]="{ X: 'center', Y: 'center' }" #dialogAdd showCloseIcon='true' [height]='500' width='585px' [visible]='false'>
+  <ng-template #header>
+    <div class="text-common-black fs-18 fw-600">Cơ cấu tổ chức</div>
+  </ng-template>
+  <ng-template #content>
+    <div class="container mt-3">
+      <div class="row gy-3">
+        <div class="col-12">
+          <app-input [(ngModel)]="MaDonVi" title="Mã đơn vị"></app-input>
+        </div>
+        <div class="col-12">
+          <app-input [(ngModel)]="TenDonVi" title="Tên đơn vị"></app-input>
+        </div>
+        <div class="col-12">
+          <app-tree-view fieldName="DepartmentName" [selectedItem]="DonViCha" (clickItem)="DonViCha = $event" title="Thuộc đơn vị" type="dropdown" [dataSource]="listDepartment"></app-tree-view>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #footerTemplate>
+    <div class="d-flex gap-2 align-items-center justify-content-between ms-4">
+      <div>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn button-app-second " (click)="dialogAdd.hide()">Đóng</button>
+        <button class="btn button-app" (click)="submitDialog()">Lưu</button>
+      </div>
+    </div>
+  </ng-template>
+</ejs-dialog>
 

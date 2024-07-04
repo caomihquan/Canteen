@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild, signal } from '@angular/core';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
@@ -20,9 +19,7 @@ export class SettingComponent implements OnInit,AfterViewInit {
   totalItems:number;
   height:number = (window.innerHeight - 202)
   widthRight = window.innerWidth - 350;
-  modalRef: BsModalRef
   I18nLang:any
-  defaultColor = AppCommon.defaultColor
 
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
@@ -38,7 +35,6 @@ export class SettingComponent implements OnInit,AfterViewInit {
 
   constructor(
     private _ordinal:OrdinalService,
-    private _modalService: BsModalService,
     private _languageService:LanguageService,
     private _translate:TranslateService,
     private videoService: VideoService

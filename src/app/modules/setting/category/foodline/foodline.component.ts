@@ -1,8 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HistoryDialogComponent } from '../emp-subgroup/dialog/history-dialog/history-dialog.component';
-import { FoodshiftAddnewDialogComponent } from '../emp-subgroup/dialog/foodshift-addnew-dialog/foodshift-addnew-dialog.component';
-import { AddnewDialogComponent } from '../emp-subgroup/dialog/addnew-dialog/addnew-dialog.component';
-import { FoodlineAddnewDialogComponent } from '../emp-subgroup/dialog/foodline-addnew-dialog/foodline-addnew-dialog.component';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
@@ -19,11 +15,6 @@ import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
   styleUrls: ['./foodline.component.scss']
 })
 export class FoodlineComponent implements OnInit {
-
-  @ViewChild('historydialog') historydialog: HistoryDialogComponent
-  @ViewChild('addnewdialog') addnewdialog: AddnewDialogComponent
-  @ViewChild('addnewfoodshiftdialog') addnewfoodshiftdialog: FoodshiftAddnewDialogComponent
-  @ViewChild('addnewfoodlinedialog') addnewfoodlinedialog: FoodlineAddnewDialogComponent
   selectedDate = new Date().toISOString()
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
@@ -40,9 +31,10 @@ export class FoodlineComponent implements OnInit {
   public pageSettings?: PageSettingsModel;
   listSubgroup = []
 
-
-
-  selectedTab = 1
+  ListPhanLoai:Array<any> = []
+  selectPhanLoai:any;
+  tenLine:string;
+  donGia:string;
   constructor(
     private _ordinal:OrdinalService,
     private _languageService:LanguageService,
@@ -64,7 +56,6 @@ export class FoodlineComponent implements OnInit {
 
 
   AddMenu(){
-        this.addnewfoodlinedialog.onOpenDialog();
   }
 
   selectedRowTable(evt:any){
@@ -73,7 +64,7 @@ export class FoodlineComponent implements OnInit {
   }
 
   onClickViewHistory(id:string){
-        this.historydialog.onOpenDialog(id);
+        //this.historydialog.onOpenDialog(id);
   }
 
 
@@ -152,10 +143,7 @@ export class FoodlineComponent implements OnInit {
     return fnCommon.ConvertPhotoEmpByUserID(userid)
   }
 
-  ClickTabFood(index:number){
-    if(this.selectedTab == index) return;
-    this.selectedTab = index;
-  }
+
 
 
 }

@@ -7,8 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
-
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { ErrorComponent } from './error/error.component';
 import { NotAuthorComponent } from './notAuthorization/notAuthorization.component';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
@@ -33,7 +31,6 @@ import { GridModule } from '@syncfusion/ej2-angular-grids';
       },
       defaultLanguage: 'vn'
     }),
-    ModalModule.forRoot()
   ],
   exports:[
     HeaderComponent,

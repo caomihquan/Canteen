@@ -17,18 +17,18 @@ export class AppDateTimeComponent {
   @Input() title:string = '';
   @Input() value:any;
   @Input() disabled = false;
-
+  @Input() IsRequire = false;
   @Output() clickDate:EventEmitter<any> = new EventEmitter();
   constructor(){}
   ChangeDate(evt:any){
     const date = evt.value as Date
     let day:string | number = date.getDate();
-    if(day < 10){
-      day = "0" + day;
-    }
     let month:string | number = date.getMonth() + 1;
     if(month < 10){
       month = "0" + month
+    }
+    if(day < 10){
+      day = "0" + day
     }
     const year = date.getFullYear();
     this.clickDate.emit(fnCommon.convertDateSQL(`${day}-${month}-${year}`))

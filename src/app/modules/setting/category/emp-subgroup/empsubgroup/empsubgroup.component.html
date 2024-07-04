@@ -7,7 +7,7 @@
           <span class="text-common-black fw-500 fs-16">Nhóm nhân viên phụ</span>
         </div>
         <div class="right-toolbar">
-            <div class="button-toolbar" (click)="onAdd()">
+            <div class="button-toolbar" (click)="dialogAdd.show()">
                 <span class="icon-General-113"></span>
                 <span>Thêm</span>
             </div>
@@ -69,7 +69,29 @@
     </ejs-grid>
 </ng-template>
 
+<app-dialog #dialogAdd [templateBody]="content" headerText="Thêm nhóm phụ nhân viên"></app-dialog>
+
+<ng-template #content>
+  <div class="container mt-3">
+    <div class="row gy-3">
+      <div class="col-12">
+        <app-combobox [dataSource]="ListPhanLoai" [selectedItem]="selectPhanLoai" fieldName="TypeCode" (clickItem)="selectPhanLoai = $event"  title="Mã đơn vị"></app-combobox>
+      </div>
+      <div class="col-12">
+        <app-input [(ngModel)]="tennhom" title="Tên nhóm"></app-input>
+      </div>
+      <div class="col-12">
+        <app-input [(ngModel)]="moTa" title="Đối tượng/User"></app-input>
+      </div>
+      <div class="col-12">
+        <app-input type="number" [(ngModel)]="donGia" title="Hạn mức sử dụng/ngày (VND)"></app-input>
+      </div>
+
+      <div class="col-12">
+        <app-switch title="Không xác định hạn mức"></app-switch>
+      </div>
+    </div>
+  </div>
+</ng-template>
 
 
-<app-history-dialog #historydialog></app-history-dialog>
-<app-addnew-dialog #addnewdialog></app-addnew-dialog>

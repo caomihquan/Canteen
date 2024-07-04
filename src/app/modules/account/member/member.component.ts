@@ -3,13 +3,9 @@ import { PageSettingsModel, GridComponent } from '@syncfusion/ej2-angular-grids'
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserModel } from 'src/app/shares/models/user-model';
-import { MemberService } from './services/member.service';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
-import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { fnCommon } from 'src/app/shares/helpers/common';
-import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
@@ -37,7 +33,6 @@ export class MemberComponent implements OnInit {
   public pageSettings?: PageSettingsModel;
   I18nLang:any
   SearchText: string = '';
-  modalRef:BsModalRef;
   isActive: number  = -1;
   wrapSettings = { wrapMode: 'Content' };
   mount = false;
@@ -55,7 +50,6 @@ export class MemberComponent implements OnInit {
     private _router:Router,
     private _ordinal:OrdinalService,
     private _sanitized: DomSanitizer,
-    private _modalService: BsModalService,
     private _noti:NotificationService,
     private _userService: AuthService,){
       this.user = this._userService.getUser();

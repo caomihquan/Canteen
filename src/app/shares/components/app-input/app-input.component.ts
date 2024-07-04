@@ -20,9 +20,12 @@ import { OnlyNumberDirective } from '../../directive/only-number.directive';
 export class AppInputComponent {
 
   @Input() title:string = '';
-  @Input() type:string = 'text';
+  @Input() type:string | 'text' | 'number' | 'text-area' | 'checkbox' | 'switch' = 'text';
+  @Input() placeholder:string = '';
   @Input() disabled = false;
   @Input() rows:number = 3;
+  @Input() IsRequire = false;
+  @Input() className:string = ''
   @Output() clickItem:EventEmitter<any> = new EventEmitter();
   textSearch:string;
   constructor(){

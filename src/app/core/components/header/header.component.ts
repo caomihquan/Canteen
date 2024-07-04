@@ -1,8 +1,6 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GridModule } from '@syncfusion/ej2-angular-grids';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ChangePasswordService } from 'src/app/modules/changepassword/services/change-password.service';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
@@ -29,7 +27,6 @@ export class HeaderComponent {
   isShowPasswordOld = false;
   isShowPasswordNew = false;
   isShowPasswordConfirm = false;
-  modalRef: BsModalRef;
   titleModal:string;
   contentModal:string;
   I18nLang:any;
@@ -107,7 +104,7 @@ export class HeaderComponent {
     private _langService:LanguageService,
     private _apiHttp:ApiHttpService,
     protected _ordinal:OrdinalService,
-    private _modalService:BsModalService){
+  ){
     // this.renderer.listen('window', 'click',(e:Event) => {
     //  if(e.target !== this.toggleButton.nativeElement && e.target!==this.menu.nativeElement){
     //      if((this.toggleButton.nativeElement as HTMLElement).contains(e.target as HTMLElement) || (this.menu.nativeElement as HTMLElement).contains(e.target as HTMLElement)){

@@ -1,13 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
-import { HistoryDialogComponent } from '../dialog/history-dialog/history-dialog.component';
-import { AddnewDialogComponent } from '../dialog/addnew-dialog/addnew-dialog.component';
-import { FoodshiftAddnewDialogComponent } from '../dialog/foodshift-addnew-dialog/foodshift-addnew-dialog.component';
-import { FoodlineAddnewDialogComponent } from '../dialog/foodline-addnew-dialog/foodline-addnew-dialog.component';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 
@@ -17,10 +12,6 @@ import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
   styleUrls: ['./empsubgroup.component.scss']
 })
 export class EmpsubgroupComponent implements OnInit {
-  @ViewChild('historydialog') historydialog: HistoryDialogComponent
-  @ViewChild('addnewdialog') addnewdialog: AddnewDialogComponent
-  @ViewChild('addnewfoodshiftdialog') addnewfoodshiftdialog: FoodshiftAddnewDialogComponent
-  @ViewChild('addnewfoodlinedialog') addnewfoodlinedialog: FoodlineAddnewDialogComponent
   selectedDate = new Date().toISOString()
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
@@ -29,7 +20,13 @@ export class EmpsubgroupComponent implements OnInit {
   searchText:string;
   selectedMenu:any;
   loginInfo: any = {};
-  I18nLang:any
+  I18nLang:any;
+
+  ListPhanLoai:Array<any> = []
+  selectPhanLoai:any;
+  tennhom:string;
+  moTa:string;
+  donGia:string;
 
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
@@ -60,19 +57,13 @@ export class EmpsubgroupComponent implements OnInit {
   }
 
 
-
-
-  onAdd(){
-    this.addnewfoodlinedialog.onOpenDialog();
-  }
-
   selectedRowTable(evt:any){
     const item = evt.rowData
     this.selectedMenu = item;
   }
 
   onClickViewHistory(id:string){
-    this.historydialog.onOpenDialog(id);
+    //this.historydialog.onOpenDialog(id);
   }
 
 
@@ -90,6 +81,10 @@ export class EmpsubgroupComponent implements OnInit {
 
   getPhoto(userid:string){
     return fnCommon.ConvertPhotoEmpByUserID(userid)
+  }
+
+  submitDialog(){
+
   }
 
 

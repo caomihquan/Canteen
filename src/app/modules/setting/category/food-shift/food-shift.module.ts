@@ -5,17 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/core/guard/auth.guard';
 import { SharesModule } from 'src/app/shares/shares.module';
 import { FormsModule } from '@angular/forms';
-import { DialogModule } from '@syncfusion/ej2-angular-popups';
-import { CheckBoxModule, SwitchModule } from '@syncfusion/ej2-angular-buttons';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { FoodshiftAddnewDialogComponent } from '../emp-subgroup/dialog/foodshift-addnew-dialog/foodshift-addnew-dialog.component';
-import { HistoryModule } from '../emp-subgroup/dialog/history-dialog/history-dialog.module';
-import { FlatpickrModule } from 'angularx-flatpickr';
-import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view';
+import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
+import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app-datetime.component';
+import { AppInputComponent } from 'src/app/shares/components/app-input/app-input.component';
 
 
 
@@ -33,18 +29,15 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     FoodShiftComponent,
-    FoodshiftAddnewDialogComponent
   ],
   imports: [
     CommonModule,
     SharesModule,
     FormsModule,
-    DialogModule,
-    SwitchModule,
-    CheckBoxModule,
     GridViewComponent,
-    TimePickerModule ,
-    HistoryModule,
+    AppInputComponent,
+    AppDateTimeComponent,
+    AppDialogComponent,
     RouterModule.forChild(routes),
     TranslateModule.forRoot({
       loader: {
@@ -54,8 +47,6 @@ const routes: Routes = [
       },
       defaultLanguage: 'vn'
     }),
-    InfiniteScrollModule,
-    FlatpickrModule.forRoot()
   ],
 })
 export class FoodShiftModule { }

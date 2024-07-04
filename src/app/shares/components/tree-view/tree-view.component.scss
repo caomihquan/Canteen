@@ -1,0 +1,12 @@
+.bi-dot{
+  color:#EAEAEA
+}
+.nested li{
+  margin-left: 24px;
+}
+.child-tab.active-child,.tabs.active-child{
+  background: var(--Color-Secondary);
+  *{
+    color: var(--Color-Primary);
+  }
+}

@@ -4,11 +4,10 @@ import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
+import { NotificationService } from 'src/app/shares/services/notification/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +16,6 @@ import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service'
 })
 export class LoginComponent implements OnInit {
   isShowPassword = false;
-  modalRef: BsModalRef;
-  titleModal:string;
-  contentModal:string;
   I18nLang:any;
   @ViewChild('template') dialog:TemplateRef<any>
   @ViewChild('changePassword') dlgChangePassword:ElementRef
@@ -31,9 +27,8 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _loginService:LoginService,
     private _AuthService:AuthService,
-    private _modalService: BsModalService,
     private _translate:TranslateService,
-    private _ordinal:OrdinalService,
+    private _noti:NotificationService,
     private _languageService:LanguageService
     ){
       _translate.use('en')
@@ -53,11 +48,7 @@ export class LoginComponent implements OnInit {
         if(!res){return;}
         if(res.Error)
         {
-          const initialState = {
-            title: this.I18nLang.Common.Alert,
-            content:res.Error,
-          };
-          //this.modalRef = this._modalService.show(ModalComponent,{initialState});
+          this._noti.ShowToastError(res.Error)
           return;
         }
         const data = res?.Data;
@@ -72,18 +63,14 @@ export class LoginComponent implements OnInit {
 
   handleLogin(data:any) {
     const userData = data.Data || {};
-    if (data.IsMaintenance === 1 && userData.NeverExpire === false)
+    if (data.IsMaintenance === 1 && !userData.NeverExpire)
     {
-        this.titleModal = this.I18nLang.Common.Alert;
-        this.contentModal = this.I18nLang.LoginPage.IsMaintenance;
-        this.modalRef = this._modalService.show(this.dialog);
+        this._noti.ShowToastError(this.I18nLang.LoginPage.IsMaintenance)
         return;
     }else {
         if (userData.FirstChange) {
           this._router.navigate([AppRoutes.changepassword]);
         } else {
-          var xu = 330// Math.floor(Math.random() * (500 - 280 + 1) + 280)
-          this._ordinal.setCoin(xu);
           this._router.navigate([AppRoutes.home]);
         }
     }

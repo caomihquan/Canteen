@@ -7,7 +7,7 @@
             <span class="text-common-black fw-500 fs-16">Ca Ăn</span>
         </div>
         <div class="right-toolbar">
-            <div class="button-toolbar">
+            <div class="button-toolbar" (click)="dialogAdd.show()">
                 <span class="icon-General-113"></span>
                 <span>Thêm</span>
             </div>
@@ -62,4 +62,28 @@
         </e-columns>
     </ejs-grid>
 </ng-template>
-<app-foodshift-addnew-dialog #addnewfoodshiftdialog></app-foodshift-addnew-dialog>
+
+
+<app-dialog #dialogAdd [templateBody]="content" headerText="Thêm ca làm việc"></app-dialog>
+
+
+
+<ng-template #content>
+  <div class="container mt-3">
+    <div class="row gy-3">
+      <div class="col-12">
+        <app-input [(ngModel)]="tenNhom" title="Tên nhóm"></app-input>
+      </div>
+      <div class="col-12">
+        <app-input [(ngModel)]="moTa" title="Ghi chú"></app-input>
+      </div>
+      <div class="col-12">
+        <app-input type="number" [(ngModel)]="donGia" title="Hạn mức sử dụng/ngày (VND)"></app-input>
+      </div>
+      <div class="col-12">
+        <app-datetime title="Thời gian bắt đầu"></app-datetime>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

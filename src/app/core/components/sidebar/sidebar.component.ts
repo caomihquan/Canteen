@@ -1,13 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
 import { SidebarModel } from 'src/app/shares/models/SidebarModel';
-import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { NotificationService } from 'src/app/shares/services/notification/notification.service';
-import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
 
 @Component({
   selector: 'app-sidebar',
