@@ -5,6 +5,7 @@ import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
 import { SidebarModel } from 'src/app/shares/models/SidebarModel';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { NotificationService } from 'src/app/shares/services/notification/notification.service';
+import { SideBarService } from 'src/app/shares/services/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,17 +15,6 @@ import { NotificationService } from 'src/app/shares/services/notification/notifi
 export class SidebarComponent implements OnInit {
   ListSideBar: Array<SidebarModel> = [];
   height = window.innerHeight;
-  ListBarNhanVien = [
-    {
-      FunctionID: 'M099',
-      DefaultName: 'Lịch sử nhân viên',
-      Icon: 'icon-Files-22',
-      Url: 'history-emp',
-      Active: false,
-      Children: [],
-      ParentID: null
-    },
-  ]
   ListSideBarCheck: Array<SidebarModel> = [
     {
       FunctionID: 'M001',
@@ -145,60 +135,6 @@ export class SidebarComponent implements OnInit {
       Children: [],
       ParentID: 'M002'
     },
-    // {
-    //   FunctionID: 'M014',
-    //   DefaultName: 'Loại nhân viên',
-    //   Icon:'icon-Files-55',
-    //   Url:'/setting/food-shift',
-    //   Active:false,
-    //   Children:[],
-    //   ParentID:'M002'
-    // },
-    // {
-    //   FunctionID: 'M015',
-    //   DefaultName: 'Địa điểm làm việc',
-    //   Icon:'icon-Files-55',
-    //   Url:'/setting/food-shift',
-    //   Active:false,
-    //   Children:[],
-    //   ParentID:'M002'
-    // },
-    // {
-    //   FunctionID: 'M016',
-    //   DefaultName: 'Transaction Entity',
-    //   Icon:'icon-Files-55',
-    //   Url:'/setting/food-shift',
-    //   Active:false,
-    //   Children:[],
-    //   ParentID:'M002'
-    // },
-    // {
-    //   FunctionID: 'M014',
-    //   DefaultName: 'Loại nhân viên',
-    //   Icon: 'icon-Files-55',
-    //   Url: '/setting/food-shift',
-    //   Active: false,
-    //   Children: [],
-    //   ParentID: 'M002'
-    // },
-    // {
-    //   FunctionID: 'M015',
-    //   DefaultName: 'Địa điểm làm việc',
-    //   Icon: 'icon-Files-55',
-    //   Url: '/setting/food-shift',
-    //   Active: false,
-    //   Children: [],
-    //   ParentID: 'M002'
-    // },
-    // {
-    //   FunctionID: 'M016',
-    //   DefaultName: 'Transaction Entity',
-    //   Icon: 'icon-Files-55',
-    //   Url: '/setting/food-shift',
-    //   Active: false,
-    //   Children: [],
-    //   ParentID: 'M002'
-    // },
     {
       FunctionID: 'M017',
       DefaultName: 'Phân loại line món ăn',
@@ -253,7 +189,8 @@ export class SidebarComponent implements OnInit {
     private _router: Router,
     private _auth: AuthService,
     private _activeRoute: ActivatedRoute,
-    private _noti: NotificationService
+    private _noti: NotificationService,
+    private _sidebarService:SideBarService
   ) {
 
 
@@ -275,6 +212,9 @@ export class SidebarComponent implements OnInit {
 
   fnClickTab(item: any) {
     this.tabSelected = item.FunctionID
+    this._sidebarService.FunctionID = item.FunctionID;
+    console.log(this.tabSelected);
+    this._sidebarService.breadcrumb.next(item)
     this._router.navigate([item.Url])
   }
 
@@ -294,22 +234,55 @@ export class SidebarComponent implements OnInit {
 
   getMenu() {
     this.ListSideBar = this.buildNested(this.ListSideBarCheck, null)
-    console.log(this.ListSideBar, 1111);
-
-    this._activeRoute.params.subscribe(_x => {
-      if (this.ListSideBarCheck.length > 0) {
-        let url = this._router.url;
-        if (url == "/") {
-          url = "/co-cau-to-chuc"
-        }
-        let item = this.ListSideBarCheck.find(y => y.Url == window.location.pathname);
-        if (!item) {
-          item = this.ListSideBarCheck[0];
-        }
-        this.tabSelected = item.FunctionID
-      }
+    this._sidebarService.finishSideBar.next(true);
+    this._activeRoute.params.subscribe(x=>{
+     if(this.ListSideBarCheck.length > 0){
+       let url = this._router.url;
+       if(url == "/"){
+         url = "/co-cau-to-chuc"
+       }
+       let itemCheck = this.ListSideBarCheck.find(y => y.Url == this._router.url);
+       if(itemCheck){
+         let item = this.ListSideBarCheck.find(y => y.Url == this._router.url);
+         if(item){
+           this._sidebarService.FunctionID = item.FunctionID;
+           this.tabSelected = item.FunctionID;
+           this._sidebarService.breadcrumb.next(item)
+           let parentExist = this.ListSideBarCheck.find(y => y.FunctionID == item?.ParentID);
+           if(parentExist){
+             let parentIndex = this.ListSideBar.findIndex(y => y.FunctionID == parentExist?.FunctionID);
+             this.ListSideBar[parentIndex]['Active'] = true
+           }
+         }
+         else{
+           item = this.ListSideBarCheck.find(x => x.Url);
+           if(item){
+             this._sidebarService.FunctionID = item?.FunctionID;
+             this._sidebarService.breadcrumb.next(item)
+             this.tabSelected = item?.FunctionID;
+             this._router.navigateByUrl(item.Url ?? '')
+           }else{
+             this._router.navigate([AppRoutes.notAuthor])
+           }
+         }
+       }
+       else{
+         itemCheck = this.ListSideBarCheck.find(x => x.Url);
+         if(itemCheck){
+           this._sidebarService.FunctionID = itemCheck?.FunctionID;
+           this._sidebarService.breadcrumb.next(itemCheck)
+           this.tabSelected = itemCheck?.FunctionID;
+           console.log(itemCheck?.Url);
+           this._router.navigateByUrl(itemCheck.Url ?? '')
+         }else{
+           this._router.navigate([AppRoutes.notAuthor])
+         }
+       }
+     }
+     else{
+       this._router.navigate([AppRoutes.notAuthor])
+     }
     })
-    return;
   }
 
   ToogleTabs(item: any) {
@@ -317,6 +290,8 @@ export class SidebarComponent implements OnInit {
     this.ListSideBar[index].Active = !this.ListSideBar[index].Active
     if (item.Children.length == 0) {
       this.tabSelected = item.FunctionID;
+      this._sidebarService.FunctionID = item.FunctionID;
+      this._sidebarService.breadcrumb.next(item)
       this.ListSideBar.forEach((x) => {
         if (item.FunctionID != x.FunctionID) {
           x.Active = false

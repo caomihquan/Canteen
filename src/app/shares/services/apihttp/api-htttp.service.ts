@@ -7,6 +7,8 @@ import { AuthService } from '../authentication/authentication.service';
 import { ResponseModel } from '../../models/response';
 import { Router } from '@angular/router';
 import { AppRoutes } from '../../constants/AppRoutes';
+import { NotificationService } from '../notification/notification.service';
+import { SideBarService } from '../sidebar/sidebar.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +17,9 @@ export class ApiHttpService {
   constructor(
     private http: HttpClient,
     private auth:AuthService,
-    private route:Router
+    private route:Router,
+    private noti:NotificationService,
+    private sidebar:SideBarService
   ) {}
 
   post(url:string, datas?:any,loading:boolean = false) {
@@ -35,7 +39,7 @@ export class ApiHttpService {
       _headers["HRM-Token-ID"] = loginInfo.TokenID;
       _headers["HRM-JWT-ID"] = loginInfo.Jwt;
     }
-    let _payload = datas;
+    let _payload = {...datas,FunctionID:this.sidebar.FunctionID};
     let urlencoded = "headers=" + window.encodeURIComponent(JSON.stringify(_headers));
     if (_payload) {
       urlencoded += "&payload=" + window.encodeURIComponent(JSON.stringify(_payload));
@@ -49,39 +53,28 @@ export class ApiHttpService {
       }
       else{
         const error = res ? res.ErrorCode || res.ErrorLogin || res.Error : "Error";
-        //const objError = this.CommonHandler.GetErrorMessage(error);
-        this.HandleAuthorization(res)
+        this.HandleErroService(error)
         return res;
-        //res.Error = objError.message;
-        //this.InitValidateAlert(objError);
       }
-
     }),catchError(err => {
 
       return of();
     }));
   }
 
-  private HandleAuthorization(res:ResponseModel){
-    if(res.Error && res.Error.includes('Not Authorization')){
+  private HandleErroService(errorMsg:any){
+    if(errorMsg && errorMsg.includes('Not Authorization')){
       this.route.navigate([AppRoutes.notAuthor])
     }
-    if(res.Error && res.Error.includes('405')){
-      localStorage.clear();
-      this.route.navigate([AppRoutes.login])
+    else if(errorMsg?.toString().includes("405 (Method Not Allowed)") || errorMsg?.toString().includes('Session ID of user not logged in')){
+      this.noti.ShowToastError("Phiên đăng nhập đã hết hạn")
+      setTimeout(() => {
+        localStorage.clear();
+        this.route.navigate([AppRoutes.login]);
+      }, 2000);
+    }
+    else{
+      this.noti.ShowToastError(errorMsg)
     }
   }
-  // async InitValidateAlert(error){
-  //   const Lang = await this.languageService.getLanguage();
-  //   const { message, isTranslate } = error;
-  //   if (typeof message === 'string' && (message.includes("405 (Method Not Allowed)") || message.includes('Session ID of user not logged in'))){
-  //     this.authStore.remove();
-  //     localStorage.clear();
-  //     this.router.navigate(['']);
-  //     return;
-  //   }
-  //   if (isTranslate) {
-  //     this.notification.alert(Lang['COMMON'].Error,message);
-  //   }
-  // }
 }
