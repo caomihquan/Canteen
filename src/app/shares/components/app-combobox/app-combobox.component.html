@@ -1,10 +1,10 @@
 <div>
-  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}}</label>
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title && !hideTitle">{{title}} <span *ngIf="IsRequire" style="color: red;"> *</span></label>
   <div class="dropdown" (click)="dialogCombobox.show()">
     <div class="input-dropdown w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
       aria-expanded="false">
-      <div *ngIf="selectedItem">{{selectedItem[fieldName]}}</div>
-      <div *ngIf="!selectedItem"></div>
+      <div class="text-truncate" *ngIf="selectedItem">{{selectedItem[fieldName]}}</div>
+      <div *ngIf="!selectedItem" style="padding:8.5px 0;"></div>
       <span class="icon-Arrows-66"></span>
     <!-- <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton1">
       <div *ngIf="showSeachDropDown"  class="mx-2">
@@ -21,22 +21,30 @@
     <div class="text-common-black fs-18 fw-600">{{title}}</div>
   </ng-template>
   <ng-template #content>
-      <div *ngIf="showSeachDropDown"  class="m-2">
+      <div *ngIf="showSeachDropDown && !IsPaging"  class="m-2">
         <input [(ngModel)]="textSearch" (input)="ChangeSearch()" class="rounded border p-2 rounded w-100 " type="text">
       </div>
+      <div *ngIf="showSeachDropDown && IsPaging"  class="m-2">
+        <input [(ngModel)]="textSearch" (keyup.enter)="EnterSearch()" class="rounded border p-2 rounded w-100 " type="text">
+      </div>
       <div *ngFor="let item of dataSource">
-        <div class="item-combobox border-bottom d-flex flex-column" (click)="onClickItem(item);dialogCombobox.hide();clickItem.emit(item)">
+        <div class="item-combobox border-bottom d-flex flex-column" (click)="dialogCombobox.hide();clickItem.emit(item)">
           <div>{{item[fieldName]}}</div>
           <div *ngIf="fieldName2">{{item[fieldName2]}}</div>
         </div>
+      </div>
+      <div>
+
       </div>
   </ng-template>
   <ng-template #footerTemplate>
     <div class="d-flex gap-2 align-items-center justify-content-between ms-4">
       <div>
+        <ejs-pager class="cbb" *ngIf="IsPaging" [currentPage]="pageIndex" [totalRecordsCount]='totalItems' [pageSize]="pageSize" (currentPageChange)="ClickPager($event)">
+        </ejs-pager>
       </div>
       <div class="d-flex align-items-center gap-2">
-        <!-- <button class="btn button-app-second " (click)="closeDialogAddRole()">Đóng</button> -->
+        <button class="btn button-app-second " (click)="dialogCombobox.hide();clickItem.emit(null)">Xoá</button>
         <!-- <button class="btn button-app" (click)="SubmitToolbarLeft()">Lưu</button> -->
       </div>
     </div>

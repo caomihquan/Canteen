@@ -1,6 +1,7 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ChangePasswordService } from 'src/app/modules/changepassword/services/change-password.service';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
@@ -40,70 +41,16 @@ export class HeaderComponent {
   listNotification:Array<any> = [];
   TotalItems:number = 0
   TotalPages:number = 0
-
-
-  listFood = [
-    {
-      Name:"Cơm tấm",
-      SL:54,
-      GroupID:1,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-    {
-      Name:"Bánh canh cá lóc",
-      SL:48,
-      GroupID:1,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-    {
-      Name:"Bún riêu cua",
-      SL:40,
-      GroupID:2,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-    {
-      Name:"Bánh canh cá lóc",
-      SL:48,
-      GroupID:1,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-    {
-      Name:"Bún riêu cua",
-      SL:40,
-      GroupID:3,
-      Type:1,
-      Price:'45000VND',
-      Mota:'Cơm với sườn cốt nết nướng, thêm trái trứng, chút bì chả chan nước mắt',
-      CreatedOn:new Date().toISOString(),
-      CreatedBy:''
-    },
-  ]
   defaultColor = AppCommon.defaultColor
 
   constructor(
-    private renderer: Renderer2,
     private _router:Router,
     private _user:AuthService,
     private _serviceChangePassword:ChangePasswordService,
     private _langService:LanguageService,
     private _apiHttp:ApiHttpService,
     protected _ordinal:OrdinalService,
+    private _translate:TranslateService
   ){
     // this.renderer.listen('window', 'click',(e:Event) => {
     //  if(e.target !== this.toggleButton.nativeElement && e.target!==this.menu.nativeElement){
@@ -115,6 +62,7 @@ export class HeaderComponent {
     //  }
     // });
     this.user = this._user.getUser();
+    _translate.use(this._langService.getLocale())
     this.getLanguage();
   }
 

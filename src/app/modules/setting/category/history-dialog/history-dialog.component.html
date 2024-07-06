@@ -1,14 +1,20 @@
-<ng-container *ngIf="isShow">
-  <ejs-dialog  isModal="true" showCloseIcon="true" #ejDialog content='This is a Dialog with content' width='70%' height="100vh" (beforeOpen)="onBeforeOpen($event)">
-    <ng-template #footerTemplate>
-        <div class="dialog-footer">
-          <button  class="cancel-btn" data-ripple="true">Đóng</button>
-        </div>
+<ejs-dialog [visible]="false"  isModal="true" showCloseIcon="true" #ejDialog width='70%' height="100vh" (beforeOpen)="onBeforeOpen($event)">
+    <ng-template #header>
+      <span class="header-dialog">Lịch sử cập nhật</span>
     </ng-template>
     <ng-template #content>
-      <div class="dialogContent">
-        <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions'
-          [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
+      <div class="mt-3">
+        <grid-view (clickPage)="ClickPage($event)" [totalItems]="totalItems" [template]="templategrid"></grid-view>
+      </div>
+    </ng-template>
+    <ng-template #footerTemplate>
+    </ng-template>
+</ejs-dialog>
+
+
+<ng-template #templategrid>
+  <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions'
+          [dataSource]='lstHistory' [allowSorting]="true" [pageSettings]="pageSettings">
           <e-columns>
             <e-column headerText="Ngày Cập nhật" textAlign='Left' width=30>
               <ng-template #template let-item>
@@ -33,15 +39,6 @@
                 <div  class="content fw-600 fs-14">{{item.Content}}</div>
               </ng-template>
             </e-column>
-
           </e-columns>
-        </ejs-grid>
-        <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSize" (click)="LoadWithIndex($event)">
-        </ejs-pager>
-      </div>
-    </ng-template>
-    <ng-template #header>
-      <span class="header-dialog">Lịch sử cập nhật</span>
-    </ng-template>
-  </ejs-dialog>
-</ng-container>
+    </ejs-grid>
+</ng-template>

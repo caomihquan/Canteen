@@ -1,10 +1,7 @@
 <div class="bg-white width-screen">
   <div class="container-toolbar">
     <div class="left-toolbar d-flex gap-2 align-items-center">
-      <span class="icon-Files-55 fs-24 text-common-black fw-600"></span>
-      <span class="text-common-black fw-600 fs-16">Báo cáo</span>
-      <span class="text-common-black fw-500 fs-16">></span>
-      <span class="text-common-black fw-500 fs-16">Thống kê thanh toán theo line</span>
+      <app-breadcum></app-breadcum>
     </div>
     <div class="right-toolbar">
       <!-- <div class="button-toolbar">
@@ -28,9 +25,9 @@
                 <span>Lọc dữ liệu</span>
                 <i class='icon-Arrows-63' (click)="onHideFilter()"></i>
               </div>
-    
+
               <!-- <div class="text-common-black fw-500 pt-4 fs-14 pb-1">Từ ngày</div>
-    
+
               <div class="position-relative date">
                 <input id="datepicker" type="text" name="holidayDate" mwlFlatpickr [(ngModel)]="Birthday" [altInput]="false"
                   [convertModelValue]="false" [enableTime]="false" defaultDate="2016-10-20" dateFormat="d-m-Y"
@@ -43,8 +40,8 @@
                   </svg>
                 </div>
               </div> -->
-    
-    
+
+
               <!-- <div class="text-common-black fw-500 fs-14 pt-4 pb-1">Đến ngày</div>
               <div class="position-relative date">
                 <input id="datepicker" type="text" name="holidayDate" mwlFlatpickr [(ngModel)]="Birthday" [altInput]="false"
@@ -73,11 +70,11 @@
                 <span>Áp dụng</span>
               </div>
             </div>
-            
+
         </div>
       </div>
       <div class="p-2" [ngStyle]="{'width': width + 'px'}">
-        
+
         <div class="mt-2">
           <grid-view [totalItems]="TotalItems" (clickPage)="ClickPageEmp($event)" [template]="templateGrid"></grid-view>
         </div>
@@ -87,10 +84,10 @@
 </div>
 
 <ng-template #templateGrid>
-  <ejs-grid #grid allowTextWrap='true' 
-  [height]="height - 230" 
-  [dataSource]='dataLine' 
-  [allowExcelExport]='true' 
+  <ejs-grid #grid allowTextWrap='true'
+  [height]="height - 230"
+  [dataSource]='dataLine'
+  [allowExcelExport]='true'
   (toolbarClick)='toolbarClick($event)'
   [toolbar]='toolbarOptions'
   (excelExportComplete)='excelExportComplete()'
@@ -119,7 +116,7 @@
           <span class="text-start">{{item.TongSuDung}}</span>
         </ng-template>
       </e-column>
-     
+
     </e-columns>
   </ejs-grid>
 </ng-template>

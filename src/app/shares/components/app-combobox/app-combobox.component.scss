@@ -28,3 +28,8 @@
   background-color: #eaeaea;
   cursor: pointer;
 }
+:host::ng-deep {
+  .e-parentmsgbar{
+    display: none !important;
+  }
+}

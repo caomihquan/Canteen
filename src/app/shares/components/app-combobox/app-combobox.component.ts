@@ -1,14 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, forwardRef } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
+import { DialogAllModule, TooltipModule } from '@syncfusion/ej2-angular-popups';
+import { fnCommon } from '../../helpers/common';
+import { PagerModule } from '@syncfusion/ej2-angular-grids';
+import { AppCommon } from '../../constants/AppCommon';
 
 @Component({
   selector: 'app-combobox',
   templateUrl: './app-combobox.component.html',
   styleUrls: ['./app-combobox.component.scss'],
   standalone:true,
-  imports:[FormsModule,CommonModule,DialogAllModule],
+  imports:[FormsModule,CommonModule,DialogAllModule,TooltipModule,PagerModule],
 
 })
 export class AppComboboxComponent  {
@@ -20,23 +23,34 @@ export class AppComboboxComponent  {
   @Input() selectedItem:any;
   @Input() searchField:Array<string> = [];
   @Input() showSeachDropDown = false;
+  @Input() hideTitle = false;
   @Input() disabled = false;
+  @Input() IsRequire = false;
+  @Input() pageIndex:number = 1;
+  @Input() totalItems:number = 0;
+  @Input() pageSize:number = AppCommon.PageSize
+  @Input() IsPaging = false;
+
   @Output() clickItem:EventEmitter<any> = new EventEmitter();
+  @Output() clickPage:EventEmitter<any> = new EventEmitter();
+  @Output() searchEvent:EventEmitter<any> = new EventEmitter();
+
 
   textSearch:string;
   height = window.innerHeight - 300
   dataOrigin:any[] = []
+  id = fnCommon.uuidv4();
+  constructor(){}
 
-  constructor(){
-    
-  }
-  onClickItem(item:any){
-    this.selectedItem = item;
-  }
   onBeforeOpen = function(args: any): void {
-    debugger;
     args.maxHeight = `${window.innerHeight}px`;
     args.top = `0`;
+  }
+
+  ClickPager(page:any){
+    if (page && page != 0) {
+      this.clickPage.emit(page - 1);
+    }
   }
 
   ChangeSearch(){
@@ -59,6 +73,10 @@ export class AppComboboxComponent  {
       }
       this.dataSource = dataFilters
     }
+  }
+
+  EnterSearch(){
+    this.searchEvent.emit(this.textSearch)
   }
 
 

@@ -1,10 +1,7 @@
 <div class="bg-white width-screen">
   <div class="container-toolbar pb-0">
     <div class="left-toolbar d-flex gap-2 align-items-center">
-      <span class="icon-MapTravel-42 fs-24 text-common-black fw-600"></span>
-      <span class="text-common-black fw-600 fs-16">Quản lý thẻ khách</span>
-      <span class="text-common-black fw-500 fs-16">></span>
-      <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
+      <app-breadcum></app-breadcum>
     </div>
     <div class="right-toolbar">
       <div class="button-toolbar" (click)="dialogCapPhat.show()">
@@ -167,28 +164,17 @@
   </ejs-grid>
 </ng-template>
 
-
-<ejs-dialog [isModal]="true"  [position]="{ X: 'center', Y: 'center' }" #dialogCapPhat showCloseIcon='true' [height]='500' width='350px' [visible]='false'>
-  <ng-template #header>
-    <div class="text-common-black fs-18 fw-600">Chỉnh sửa</div>
-  </ng-template>
-  <ng-template #content>
-    <div class="container mt-3">
-      <div class="row g-3">
-        <div class="col-12">
-          <app-datetime title="Thời điểm bắt đầu theo kế hoạch"></app-datetime>
-        </div>
-        <div class="col-12">
-          <app-datetime title="Thời điểm kết thúc theo kế hoạch"></app-datetime>
-        </div>
+<app-dialog #dialogCapPhat headerText="Cấp phát định mức" [templateBody]="content"></app-dialog>
+<ng-template #content>
+  <div class="container mt-3">
+    <div class="row g-3">
+      <div class="col-12">
+        <app-input type="number" title="Thời điểm bắt đầu theo kế hoạch"></app-input>
+      </div>
+      <div class="col-12">
+        <app-input type="number" title="Thời điểm kết thúc theo kế hoạch"></app-input>
       </div>
     </div>
-  </ng-template>
-  <ng-template #footerTemplate>
-    <div class="w-100 px-4">
-      <button class="btn button-app w-100">Lưu</button>
-    </div>
-  </ng-template>
-</ejs-dialog>
-
+  </div>
+</ng-template>
 

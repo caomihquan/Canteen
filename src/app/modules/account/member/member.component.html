@@ -1,10 +1,7 @@
 <div class="bg-white width-screen">
     <div class="container-toolbar">
         <div class="left-toolbar d-flex gap-2 align-items-center">
-            <span class="icon-Users-37 fs-24 text-common-black fw-600"></span>
-            <span class="text-common-black fw-600 fs-16">Quản lý thẻ nhân viên</span>
-            <span class="text-common-black fw-500 fs-16">></span>
-            <span class="text-common-black fw-500 fs-16">Cấp phát định mức</span>
+          <app-breadcum></app-breadcum>
         </div>
         <div class="right-toolbar">
             <div class="button-toolbar" (click)="onAddNewEmp()">
@@ -133,8 +130,65 @@
     </ejs-grid>
 </ng-template>
 
-<app-add-new-emp-dialog #empaddnewdialog (SaveDialog)="SaveEmployee($event)"></app-add-new-emp-dialog>
-<!-- <div class="text-common-black fs-14 fw-400">Kế toán trưởng</div> -->
+<!-- <app-add-new-emp-dialog #empaddnewdialog (SaveDialog)="SaveEmployee($event)"></app-add-new-emp-dialog> -->
+
+
+<app-dialog #empaddnewdialog headerText="Nhân viên" [templateBody]="content" height="732px" width="585px">
+
+</app-dialog>
+<ng-template #content>
+  <div class="container mt-3">
+    <div class="row gy-3">
+      <div class="col-10">
+        <app-input  [(ngModel)]="FullName" title="Họ và tên(VN)"></app-input>
+      </div>
+      <div class="col-2 d-flex align-items-end justify-content-center">
+        <div class="image-picker pointer" (click)="file2.click()">
+          <span class="icon-Images-19" *ngIf="!stringImage && !stringImageBase64"></span>
+          <div *ngIf="stringImage"
+            [style]="'background-image:url(' + stringImage + ')'"
+              class="pointer rounded picker-child" alt=""></div>
+          <img class="rounded" width="80" height="80" *ngIf="stringImageBase64" [src]="getPhoto(stringImageBase64)" alt="" srcset="">
+          <input #file2 type="file" multiple (change)="selectImage($event)" style="display: none;" />
+        </div>
+      </div>
+      <div class="col-6">
+        <app-input title="Mã nhân viên"></app-input>
+      </div>
+      <div class="col-6">
+        <app-input title="Mã V3ID"></app-input>
+      </div>
+      <div class="col-6">
+        <app-combobox title="BU"></app-combobox>
+      </div>
+      <div class="col-6">
+        <app-tree-view title="Phòng ban"></app-tree-view>
+      </div>
+      <div class="col-6">
+        <app-datetime title="Ngày nhận việc"></app-datetime>
+      </div>
+      <div class="col-6">
+        <app-combobox title="Nhóm phụ nhân viên"></app-combobox>
+      </div>
+      <div class="col-6">
+        <app-combobox title="CostCenter"></app-combobox>
+      </div>
+      <div class="col-6">
+        <app-combobox title="Transaction Entity"></app-combobox>
+      </div>
+      <div class="col-12">
+        <app-input title="Location"></app-input>
+      </div>
+      <div class="col-6">
+        <app-combobox title="Employee Type"></app-combobox>
+      </div>
+      <div class="col-6">
+        <app-combobox title="Employee Category"></app-combobox>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
 <ejs-dialog [isModal]="true" [position]="{ X: 'center', Y: 'center' }" #dialogHistory showCloseIcon='true' [height]='800' width='1157px' [visible]='false'>
     <ng-template #header>
         <div class="text-common-black fs-18 fw-600">Lịch sử</div>

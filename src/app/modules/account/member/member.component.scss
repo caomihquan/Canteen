@@ -758,3 +758,31 @@ textarea{
   background: #FFFFE6;
   color:#FFB100
 }
+.image-picker {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 62px 62px;
+  // width: 50px;
+  // height: 50px;
+  background-position: center;
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 0.5px solid var(--Text3, #C1C1C1);
+  background-color: #F7F9FD;
+  span {
+      color: #626262;
+      font-size: 18px;
+  }
+  .picker-child {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50px 50px;
+      width: 50px;
+      height: 50px;
+      background-position: center;
+  }
+}

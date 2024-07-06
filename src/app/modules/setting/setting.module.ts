@@ -11,7 +11,7 @@ const routes: Routes = [
     path:'',
     children:[
       {path: '', component: SettingComponent},
-      {path: 'emp-subgroup', loadChildren: () => import('./category/emp-subgroup/empsubgroup/empsubgroup.module').then(m => m.EmpsubgroupModule)},
+      {path: 'emp-subgroup', loadChildren: () => import('./category/empsubgroup/empsubgroup.module').then(m => m.EmpsubgroupModule)},
       {path: 'food-shift', loadChildren: () => import('./category/food-shift/food-shift.module').then(m => m.FoodShiftModule)},
       {path: 'food-line', loadChildren: () => import('./category/foodline/foodline.module').then(m => m.FoodLineModule)},
     ]

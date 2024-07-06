@@ -4,7 +4,6 @@ import { AuthGuard } from 'src/app/core/guard/auth.guard';
 import { SharesModule } from 'src/app/shares/shares.module';
 import { DialogModule } from '@syncfusion/ej2-angular-popups';
 import { FormsModule } from '@angular/forms';
-import { FlatpickrModule } from 'angularx-flatpickr';
 import { RouterModule, Routes } from '@angular/router';
 import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view';
 import { TinhHinhSuDungTheNhanVienComponent } from './components/su-dung-the-nhan-vien/tinh-hinh-su-dung-the-nhan-vien.component';
@@ -15,6 +14,7 @@ import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app
 import { TheoDoiLineComponent } from './components/theo-doi-line/theo-doi-line.component';
 import { TheoDoiNhanVienComponent } from './components/thong-ke-dinh-muc/theo-doi-nhan-vien.component';
 import { WeekdayVnPipe } from 'src/app/shares/pipes/weekday.pipe';
+import { BreadcumComponent } from 'src/app/shares/components/breadcum/breadcum.component';
 
 const routes: Routes = [
   {
@@ -42,12 +42,11 @@ const routes: Routes = [
     DialogModule,
     FormsModule,
     AppComboboxComponent,
-    FlatpickrModule.forRoot(),
+    BreadcumComponent,
     RouterModule.forChild(routes),
     GridViewComponent,
     AppDateTimeComponent,
     WeekdayVnPipe,
-    FlatpickrModule.forRoot()
   ],
   providers:[ExcelExportService, ToolbarService]
 })

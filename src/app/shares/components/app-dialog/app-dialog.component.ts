@@ -15,8 +15,9 @@ export class AppDialogComponent {
   @Input() headerText:string = '';
   @Input() templateBody:TemplateRef<any>;
   @Input() position:any = { X: 'center', Y: 'center' };
-  @Input() height:number = 500
-  @Input() width:number | string = '585px'
+  @Input() height:number | string = 500
+  @Input() width:number | string = '585px';
+  @Input() isFooter:boolean = true;
   @ViewChild('dialog') dialog:DialogComponent;
 
 

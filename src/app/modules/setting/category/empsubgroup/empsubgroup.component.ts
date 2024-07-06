@@ -62,7 +62,7 @@ export class EmpsubgroupComponent implements OnInit {
     this.selectedMenu = item;
   }
 
-  onClickViewHistory(id:string){
+  onClickViewHistory(){
     //this.historydialog.onOpenDialog(id);
   }
 

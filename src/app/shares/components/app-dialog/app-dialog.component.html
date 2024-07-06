@@ -1,12 +1,12 @@
 
-<ejs-dialog (open)="$event.preventFocus = true" [isModal]="true" [position]="position" #dialog showCloseIcon='true' [height]='height' [width]='width' [visible]='false'>
+<ejs-dialog (beforeOpen)="$event.maxHeight = '100vh'" (open)="$event.preventFocus = true" [isModal]="true" [position]="position" #dialog showCloseIcon='true' [height]='height' [width]='width' [visible]='false'>
   <ng-template #header>
     <div class="text-common-black fs-18 fw-600">{{headerText}}</div>
   </ng-template>
   <ng-template #content>
     <ng-container  *ngTemplateOutlet="templateBody"></ng-container>
   </ng-template>
-  <ng-template #footerTemplate>
+  <ng-template #footerTemplate *ngIf="isFooter">
     <div class="d-flex gap-2 align-items-center justify-content-between ms-4">
       <div>
       </div>

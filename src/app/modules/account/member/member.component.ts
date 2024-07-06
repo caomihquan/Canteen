@@ -1,4 +1,4 @@
-import { Component, Renderer2,OnInit, ViewChild  } from '@angular/core';
+import { Component, Renderer2,OnInit, ViewChild, TemplateRef  } from '@angular/core';
 import { PageSettingsModel, GridComponent } from '@syncfusion/ej2-angular-grids';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/shares/services/authentication/authenticati
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
-import { AddNewEmpDialogComponent } from './components/add-new-emp-dialog/add-new-emp-dialog.component';
 import { NotificationService } from 'src/app/shares/services/notification/notification.service';
+import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
 
 @Component({
   selector: 'app-member',
@@ -20,7 +20,7 @@ import { NotificationService } from 'src/app/shares/services/notification/notifi
 })
 export class MemberComponent implements OnInit {
   @ViewChild('dialogHistory') dialogHistory:DialogComponent
-  @ViewChild('empaddnewdialog') empaddnewdialog:AddNewEmpDialogComponent
+  @ViewChild('empaddnewdialog') empaddnewdialog:AppDialogComponent
   selectedDate:any;
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
@@ -39,12 +39,19 @@ export class MemberComponent implements OnInit {
   totalItemsHistory = 0;
   //new
   listEmployee:Array<any> = []
-
+  getPhoto = fnCommon.ConvertPhotoEmp;
   listHistory:Array<any>= []
   EmployeeSelected:any;
   defaultColor = AppCommon.defaultColor
   user:UserModel | null
   @ViewChild('grid') public grid?: GridComponent;
+
+  //model
+  FullName:string;
+  stringImage:any;
+  stringImageBase64:any;
+
+
   constructor(
     private _api:ApiHttpService,
     private _router:Router,
@@ -74,8 +81,8 @@ export class MemberComponent implements OnInit {
       }
     }
   }
-  protected onAddNewEmp(){
-      this.empaddnewdialog.onOpenDialog();
+  onAddNewEmp(){
+      this.empaddnewdialog.show();
   }
 
   ngOnInit() {
@@ -152,7 +159,6 @@ export class MemberComponent implements OnInit {
 
 
   selectedRow(item:any){
-    this.empaddnewdialog.onOpenDialog(item.rowData);
   }
 
   SaveEmployee(item:any){

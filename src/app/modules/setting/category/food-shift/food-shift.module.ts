@@ -12,6 +12,7 @@ import { GridViewComponent } from 'src/app/shares/components/grid-view/grid-view
 import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
 import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app-datetime.component';
 import { AppInputComponent } from 'src/app/shares/components/app-input/app-input.component';
+import { BreadcumComponent } from 'src/app/shares/components/breadcum/breadcum.component';
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
     AppInputComponent,
     AppDateTimeComponent,
     AppDialogComponent,
+    BreadcumComponent,
     RouterModule.forChild(routes),
     TranslateModule.forRoot({
       loader: {

@@ -13,6 +13,8 @@ import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dia
 import { AppInputComponent } from 'src/app/shares/components/app-input/app-input.component';
 import { AppComboboxComponent } from 'src/app/shares/components/app-combobox/app-combobox.component';
 import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app-datetime.component';
+import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
+import { BreadcumComponent } from 'src/app/shares/components/breadcum/breadcum.component';
 
 
 
@@ -40,6 +42,8 @@ const routes: Routes = [
     AppInputComponent,
     AppComboboxComponent,
     AppDateTimeComponent,
+    HistoryDialogComponent,
+    BreadcumComponent,
     RouterModule.forChild(routes),
     TranslateModule.forRoot({
       loader: {

@@ -20,7 +20,7 @@ export class GuessComponent implements OnInit {
   totalItems:number;
   totalHistoryCPItems: number;
   height:number = (window.innerHeight - 202)
-  heightHistory:number = (window.innerHeight - 300)
+  heightHistory:number = (window.innerHeight - 170)
   searchText:string;
   selectedFood:any;
   widthRight = window.innerWidth - 350;
@@ -185,7 +185,6 @@ export class GuessComponent implements OnInit {
 }
   initTheKhachData(condition?:boolean){
       this.guessService.TheKhach_Get(this.PageIndex,'',this.PageSize).subscribe((res) =>{
-        debugger;
           this.listCard = res.Data.Data;
           this.totalItems = res.Data.OutputParams.TotalItems;
       });
@@ -218,7 +217,7 @@ export class GuessComponent implements OnInit {
     }
   }
 
- 
+
 
   ClickPagerIndex(evt:any){
     if(evt?.currentPage){

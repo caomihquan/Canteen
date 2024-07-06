@@ -1,10 +1,7 @@
 <div class="bg-white width-screen">
     <div class="container-toolbar">
         <div class="left-toolbar d-flex gap-2 align-items-center">
-            <span class="icon-Development-11 fs-24 text-common-black fw-600"></span>
-            <span class="text-common-black fw-600 fs-16">Danh mục</span>
-            <span class="text-common-black fw-500 fs-16">></span>
-            <span class="text-common-black fw-500 fs-16">Phân loại line món ăn</span>
+          <app-breadcum></app-breadcum>
         </div>
         <div class="right-toolbar">
             <div class="button-toolbar" (click)="dialogAdd.show()">
@@ -86,7 +83,7 @@
             <e-column headerText="Xem lịch sử" width=120 textAlign='Center'>
                 <ng-template #template let-item>
                     <div class="d-flex justify-content-center">
-                        <button class="history-btn" (click)="onClickViewHistory(item.LineCode)">
+                        <button class="history-btn" (click)="historydialog.show()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
                   <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
                 </svg>
@@ -97,8 +94,7 @@
         </e-columns>
     </ejs-grid>
 </ng-template>
-<!-- <app-history-dialog #historydialog></app-history-dialog> -->
-
+<app-history-dialog #historydialog></app-history-dialog>
 <app-dialog #dialogAdd [templateBody]="content" headerText="Thêm ca làm việc"></app-dialog>
 
 <ng-template #content>

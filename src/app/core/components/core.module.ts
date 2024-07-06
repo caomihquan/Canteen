@@ -17,7 +17,7 @@ import { GridModule } from '@syncfusion/ej2-angular-grids';
     HeaderComponent,
     SidebarComponent,
     ErrorComponent,
-    NotAuthorComponent
+    NotAuthorComponent,
   ],
   imports: [
     CommonModule,

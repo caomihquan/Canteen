@@ -1,0 +1,6 @@
+<div class="d-flex gap-2 align-items-center ms-2">
+  <span class="{{headerParent?.Icon}} fs-24 text-common-black fw-600"></span>
+  <span class="text-common-black fw-600 fs-16">{{headerParent?.DefaultName}}</span>
+  <span class="text-common-black fw-500 fs-16" *ngIf="header">></span>
+  <span class="text-common-black fw-500 fs-16" *ngIf="header">{{header?.DefaultName}}</span>
+</div>
