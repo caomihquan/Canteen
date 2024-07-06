@@ -59,13 +59,19 @@ export const AppAPIConst = {
   },
   CoCauToChuc:{
     Departments_get:"HrmMobileApp/CnB/Danhmuc/Departments_get",
-    Employees_get:"HrmMobileApp/CnB/Danhmuc/Employees_get"
+    Employees_get:"HrmMobileApp/CnB/Danhmuc/Employees_get",
+    Departments_spPostData:'HrmMobileApp/CnB/Danhmuc/Departments_spPostData',
+    Departments_spdeleteData:"HrmMobileApp/CnB/Danhmuc/Departments_spdeleteData"
   },
   QuanLyNhanVien:{
     Employees_get:'HrmMobileApp/CnB/Danhmuc/Employees_get',
     Employees_napxu:'HrmMobileApp/CnB/Danhmuc/Employees_napxu',
     Danhmuc_get:'HrmMobileApp/CnB/Danhmuc/Danhmuc_get',
     employee_post:'HrmMobileApp/CnB/Danhmuc/employee_post',
+    employees_spGetDefault:"HrmMobileApp/CnB/Danhmuc/employees_spGetDefault",
+    employees_spPostData:"HrmMobileApp/CnB/Danhmuc/employees_spPostData",
+    employees_spDeleteData:"HrmMobileApp/CnB/Danhmuc/employees_spDeleteData",
+    employees_spLichSuThanhToan:"HrmMobileApp/CnB/Danhmuc/employees_spLichSuThanhToan"
   },
   Scan:{
     Line_GetInfo:"HrmMobileApp/CnB/Danhmuc/Line_GetInfo",
@@ -80,5 +86,14 @@ export const AppAPIConst = {
     reportsudungthe_get: 'HrmMobileApp/CnB/Danhmuc/reportsudungthe_get',
     ReportTongHop:'HrmMobileApp/CnB/Danhmuc/ReportTongHop',
     reportsudungthe_getCombo: 'HrmMobileApp/CnB/Danhmuc/reportsudungthe_getCombo'
+  },
+  Cateogry:{
+    NhomPhu_spPostData:"HrmMobileApp/CnB/Danhmuc/NhomPhu_spPostData",
+    NhomPhu_spdeleteData:"HrmMobileApp/CnB/Danhmuc/NhomPhu_spdeleteData",
+    Ca_spPostData:"HrmMobileApp/CnB/Danhmuc/Ca_spPostData",
+    Ca_spdeleteData:"HrmMobileApp/CnB/Danhmuc/Ca_spdeleteData",
+    Line_spPostData:"HrmMobileApp/CnB/Danhmuc/Line_spPostData",
+    Line_spdeleteData:"HrmMobileApp/CnB/Danhmuc/Line_spdeleteData",
+    Line_spGetDefault:"HrmMobileApp/CnB/Danhmuc/Line_spGetDefault"
   }
 }

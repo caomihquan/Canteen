@@ -8,6 +8,8 @@ import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
+import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
+import { NotificationService } from 'src/app/shares/services/notification/notification.service';
 
 
 enableRipple(true);
@@ -18,6 +20,7 @@ enableRipple(true);
   styleUrls: ['./food-shift.component.scss']
 })
 export class FoodShiftComponent implements OnInit {
+  @ViewChild('dialogAdd') dialogAdd:AppDialogComponent
   selectedDate = new Date().toISOString()
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
@@ -25,7 +28,7 @@ export class FoodShiftComponent implements OnInit {
   height:number = (window.innerHeight - 202)
   width:number = (window.innerWidth - 250)
   searchText:string;
-  selectedItems:any;
+  selectedGrid:any;
   loginInfo: any = {};
   I18nLang:any
   defaultColor = AppCommon.defaultColor
@@ -33,26 +36,32 @@ export class FoodShiftComponent implements OnInit {
   public pageSettings?: PageSettingsModel;
   listSubgroup = []
 
-  tenNhom:string;
-  moTa:string;
-  donGia:string;
+
+  I18Lang:any
+
+  MaCa:string;
+  TenCa:string;
+  GhiChu:string;
+  BatDau:string;
+  KetThuc:string;
 
   constructor(
     private _ordinal:OrdinalService,
     private _languageService:LanguageService,
-    private _translate:TranslateService,
     private _userService:AuthService,
-    private _api:ApiHttpService
+    private _api:ApiHttpService,
+    protected _langS:LanguageService,
+    private _noti:NotificationService
     ){
-      _translate.use('vn');
       this.loginInfo = this._userService.getUser();
+      this.I18Lang = this._langS.I18LangService;
   }
   ngOnInit() {
-    this.getListFoodLine();
+    this.getListFoodShift();
   }
 
 
-  getListFoodLine(){
+  getListFoodShift(){
     this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
       Option:3,
       PageIndex:this.PageIndex,
@@ -73,20 +82,78 @@ export class FoodShiftComponent implements OnInit {
 
   selectedRowTable(evt:any){
     const item = evt.rowData
-    this.selectedItems = item;
+    this.selectedGrid = item;
+    this.MaCa = item.MaCa
+    this.TenCa = item.TenCa
+    this.GhiChu = item.GhiChu
+    this.BatDau = item.ThoiGianBatDau
+    this.KetThuc = item.ThoiGianKetThuc
   }
 
 
   ClickPagerIndex(evt:any){
-    if(evt?.currentPage){
-      this.PageIndex = evt?.currentPage - 1
-    }
+    this.PageIndex = evt;
+    this.getListFoodShift();
   }
 
   ResetModel(){
-    this.PageIndex = AppCommon.PageIndex;
-    this.PageSize = AppCommon.PageSize;
-    this.totalItems = 0;
+    this.MaCa = ''
+    this.TenCa = ''
+    this.GhiChu = ''
+    this.BatDau = ''
+    this.KetThuc = ''
+  }
+
+  onAdd(){
+    this.ResetModel();
+    this.dialogAdd.show();
+  }
+  onSubmit(){
+    this._api.post(AppAPIConst.Cateogry.Ca_spPostData,{
+      NhomPhuCode:this.MaCa,
+      NhomPhuName:this.TenCa,
+      DoiTuong:this.GhiChu,
+      HanMucNgay:this.BatDau,
+    }).subscribe(res=>{
+      if(res && res.Data){
+        if(res?.Data?.Error){
+          this._noti.ShowToastError(res?.Data?.Error)
+          return;
+        }
+        this.dialogAdd.hide();
+        this.ResetModel();
+        this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
+        this.getListFoodShift()
+      }
+    })
+  }
+
+  onEdit(){
+    if(!this.selectedGrid){
+      this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
+      return;
+    }
+    this.dialogAdd.show();
+  }
+
+  onDelete(){
+    if(!this.selectedGrid){
+      this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
+      return;
+    }
+    this._api.post(AppAPIConst.Cateogry.Ca_spdeleteData,{
+      strCode:this.selectedGrid?.MaCa,
+    }).subscribe(res=>{
+      if(res && res.Data){
+        if(res?.Data?.Error){
+          this._noti.ShowToastError(res?.Data?.Error)
+          return;
+        }
+        this.ResetModel();
+        this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
+        this.getListFoodShift()
+      }
+    })
   }
 
 

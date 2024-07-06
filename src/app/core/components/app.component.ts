@@ -5,6 +5,7 @@ import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
 import { WebConfig } from '../config/WebConfig';
+import { LanguageService } from 'src/app/shares/services/language/language.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,6 +17,7 @@ export class AppComponent {
     private _user:AuthService,
     private idle: Idle,
     private keepalive: Keepalive,
+    private _langSevice:LanguageService
     ){
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
@@ -63,7 +65,11 @@ export class AppComponent {
         idle.stop();
       }
     })
+    this.getLanguage();
   }
 
+  getLanguage = async() =>{
+    this._langSevice.I18LangService = await this._langSevice.getLanguage();
+  }
 
 }

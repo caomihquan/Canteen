@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/shares/services/authentication/authenticati
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
+import { NotificationService } from 'src/app/shares/services/notification/notification.service';
+import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
 
 @Component({
   selector: 'app-foodline',
@@ -15,6 +17,7 @@ import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
   styleUrls: ['./foodline.component.scss']
 })
 export class FoodlineComponent implements OnInit {
+  @ViewChild('dialogAdd') dialogAdd:AppDialogComponent
   selectedDate = new Date().toISOString()
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
@@ -22,10 +25,9 @@ export class FoodlineComponent implements OnInit {
   height:number = (window.innerHeight - 202)
   width:number = (window.innerWidth - 250)
   searchText:string;
-  selectedItem:any;
+  selectedGrid:any;
   loginInfo: any = {};
-  I18nLang:any
-
+  getPhoto = fnCommon.ConvertPhotoEmpByUserID
 
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
@@ -33,34 +35,53 @@ export class FoodlineComponent implements OnInit {
 
   ListPhanLoai:Array<any> = []
   selectPhanLoai:any;
-  tenLine:string;
-  donGia:string;
+  ListLineType:Array<any> = []
+  selectLineType:any;
+
+  MaLine:string
+  TenLine:string
+  DonGia:string
+  NgayHieuLuc = new Date().toISOString();
+  NhaThau:string
+
+
+  I18Lang:any;
   constructor(
-    private _ordinal:OrdinalService,
+    private _noti:NotificationService,
     private _languageService:LanguageService,
-    private _translate:TranslateService,
     private _userService:AuthService,
     private _api:ApiHttpService
     ){
-      _translate.use('vn');
       this.loginInfo = this._userService.getUser();
+      this.I18Lang = this._languageService.I18LangService
   }
   ngOnInit() {
     this.getListFoodLine();
-  }
-  getLanguage = async()=>{
-    this.I18nLang = await this._languageService.getLanguage();
+    this.getListPhanLoai();
   }
 
+  getListPhanLoai(){
+    this._api.post(AppAPIConst.Cateogry.Line_spGetDefault)
+    .subscribe(res=>{
+      if(res && res.Data){
+        console.log(res);
 
-
-
-  AddMenu(){
+        this.ListPhanLoai = res.Data.tblPhanLoaiLine;
+        this.ListLineType = res.Data.tblLineType;
+      }
+    })
   }
 
   selectedRowTable(evt:any){
     const item = evt.rowData
-    this.selectedItem = item;
+    this.selectedGrid = item;
+    this.MaLine = item.MaLine,
+    this.TenLine = item.TenLine
+    this.selectPhanLoai = this.ListPhanLoai.find(x => x.Value == item.PhanLoaiLine)
+    this.DonGia = item.DonGia
+    this.NgayHieuLuc = item.NgayHieuLuc
+    this.selectLineType =  this.ListLineType.find(x => x.Value == item.LineType)
+    this.NhaThau = item.NhaThau
   }
 
   onClickViewHistory(id:string){
@@ -89,60 +110,77 @@ export class FoodlineComponent implements OnInit {
 
 
   ClickPagerIndex(evt:any){
-    if(evt?.currentPage){
-      this.PageIndex = evt?.currentPage - 1
-    }
+      this.PageIndex = evt
+      this.getListFoodLine();
   }
 
   ResetModel(){
-    this.PageIndex = AppCommon.PageIndex;
-    this.PageSize = AppCommon.PageSize;
-    this.totalItems = 0;
+    this.selectedGrid = null;
+    this.MaLine = ''
+    this.TenLine = ''
+    this.selectPhanLoai = null
+    this.DonGia = ''
+    this.NgayHieuLuc = ''
+    this.selectLineType = null
+    this.NhaThau = ''
   }
-  PostMenu(){
 
-
-  }
-
-  selectFileImport(event:any){
-    event.preventDefault();
-    let files = event.target.files;
-    if (files.length > 0) {
-      let file = files[0]
-      let reader = new FileReader();
-      reader.onload = () => {
-      if(reader.result){
-        var array = new Uint8Array(reader.result  as ArrayBuffer);
-
-        var _arrayBufferToBase64 = function (buffer: any) {
-            var binary = '';
-            var bytes = new Uint8Array(buffer);
-            var len = bytes.byteLength;
-            for (var i = 0; i < len; i++) {
-                binary += String.fromCharCode(bytes[i]);
-            }
-            return window.btoa(binary);
+  submitDialog(evt:any){
+    this._api.post(AppAPIConst.Cateogry.NhomPhu_spPostData,{
+      MaLine:this.MaLine,
+      TenLine:this.TenLine,
+      PhanLoaiLine:this.selectPhanLoai?.Value,
+      DonGia:this.DonGia,
+      NgayHieuLuc:this.NgayHieuLuc,
+      LineType:this.selectLineType?.Value,
+      NhaThau:this.NhaThau
+    }).subscribe(res=>{
+      if(res && res.Data){
+        if(res?.Data?.Error){
+          this._noti.ShowToastError(res?.Data?.Error)
+          return;
         }
-        var _binaryData = _arrayBufferToBase64(array);
-        var randomKey = "import_" + this.loginInfo['SessionID'] + "_" + Math.random().toString(36).replace(/[^a-z]+/g, '');
-        // this.ImportFile({
-        //       ImportKey: randomKey,
-        //       FileName: file.name,
-        //       FileSize: file.size,
-        //       FileType: file.type,
-        //       FileContent: _binaryData,
-        //       TypeCode: "unionmembers"
-        // })
+        this.dialogAdd.hide();
+        this.ResetModel();
+        this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
+        this.getListFoodLine()
       }
-    }
-    reader.readAsArrayBuffer(file);
-    }
+    })
   }
 
-  getPhoto(userid:string){
-    return fnCommon.ConvertPhotoEmpByUserID(userid)
+
+  onAdd(){
+    this.ResetModel();
+    this.dialogAdd.show();
   }
 
+  onEdit(){
+    if(!this.selectedGrid){
+      this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
+      return;
+    }
+    this.dialogAdd.show();
+  }
+
+  onDelete(){
+    if(!this.selectedGrid){
+      this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
+      return;
+    }
+    this._api.post(AppAPIConst.Cateogry.Line_spdeleteData,{
+      strCode:this.selectedGrid?.MaLine,
+    }).subscribe(res=>{
+      if(res && res.Data){
+        if(res?.Data?.Error){
+          this._noti.ShowToastError(res?.Data?.Error)
+          return;
+        }
+        this.ResetModel();
+        this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
+        this.getListFoodLine()
+      }
+    })
+  }
 
 
 

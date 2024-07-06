@@ -6,8 +6,10 @@ import { Subject } from 'rxjs';
 })
 export class LanguageService {
   Lang = new Subject<any>();
+  I18LangService:any;
   constructor(
-    private translate: TranslateService) {
+    private translate: TranslateService,
+  ) {
   }
   getLocale(){
     return localStorage.getItem('Language') ?? 'vn';

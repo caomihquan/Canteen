@@ -36,14 +36,6 @@ const routes: Routes = [
     TreeViewComponent,
     BreadcumComponent,
     RouterModule.forChild(routes),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      defaultLanguage: 'vn'
-    }),
   ]
 })
 export class CoCauToChucModule { }

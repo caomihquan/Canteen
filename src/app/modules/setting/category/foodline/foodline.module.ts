@@ -45,14 +45,6 @@ const routes: Routes = [
     HistoryDialogComponent,
     BreadcumComponent,
     RouterModule.forChild(routes),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      defaultLanguage: 'vn'
-    }),
   ],
 })
 export class FoodLineModule { }

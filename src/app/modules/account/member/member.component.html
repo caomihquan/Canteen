@@ -6,24 +6,24 @@
         <div class="right-toolbar">
             <div class="button-toolbar" (click)="onAddNewEmp()">
                 <span class="icon-General-113"></span>
-                <span>Thêm</span>
+                <span>{{I18Lang.Common.Add}}</span>
             </div>
             <div class="button-toolbar">
                 <span class="icon-General-84"></span>
-                <span>Sửa</span>
+                <span>{{I18Lang.Common.Edit}}</span>
             </div>
             <div class="button-toolbar">
                 <span class="icon-General-163"></span>
-                <span>Xoá</span>
+                <span>{{I18Lang.Common.Delete}}</span>
             </div>
-            <div class="button-toolbar">
+            <!-- <div class="button-toolbar">
                 <span class="icon-General-3"></span>
                 <span>Xuất khẩu</span>
             </div>
             <div class="button-toolbar">
                 <span class="icon-General-101"></span>
                 <span>Nhập khẩu</span>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="mx-2">
@@ -33,25 +33,25 @@
 <ng-template #templategrid>
     <ejs-grid #grid allowTextWrap='true' [textWrapSettings]='wrapSettings' (recordClick)="selectedRow($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listEmployee' [allowSorting]="true" [pageSettings]="pageSettings">
         <e-columns>
-            <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
+            <e-column [headerText]="I18Lang.Account.MaNhanVien" textAlign='Left' width=150>
                 <ng-template #template let-item>
                     <div class="text-start">{{item.EmployeeCode}}</div>
                 </ng-template>
             </e-column>
 
-            <e-column headerText="V3ID" textAlign='Left' width=140>
+            <e-column [headerText]="I18Lang.Account.V3ID" textAlign='Left' width=140>
                 <ng-template #template let-item>
                     <div class="text-start">{{item.BarCode}}</div>
                 </ng-template>
             </e-column>
 
-            <e-column headerText="BU" textAlign='Left' width=140>
+            <e-column [headerText]="I18Lang.Account.BU" textAlign='Left' width=140>
                 <ng-template #template let-item>
                     <span class="text-start">{{item.BU}}</span>
                 </ng-template>
             </e-column>
 
-            <e-column headerText="Họ và tên (VN)" width=250 textAlign='Left'>
+            <e-column [headerText]="I18Lang.Account.TenNhanVien" width=250 textAlign='Left'>
                 <ng-template #template let-item>
                     <div class="d-flex align-items-center gap-2">
                         <img class="rounded-circle" width="40" height="40" [src]="GetPhotoByUserID('aaaa')" alt="" srcset="">
@@ -59,17 +59,17 @@
                     </div>
                 </ng-template>
             </e-column>
-            <e-column headerText="Phòng ban" textAlign='Left' width=180>
+            <e-column [headerText]="I18Lang.Account.PhongBan" textAlign='Left' width=180>
                 <ng-template #template let-item>
                     <span class="text-start">{{item.DepartmentCode}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="Ngày nhận việc" textAlign='Left' width=180>
+            <e-column [headerText]="I18Lang.Account.NgayNhanViec" textAlign='Left' width=180>
                 <ng-template #template let-item>
                     <span class="text-start">{{item.JoinDate  | date:'dd/MM/yyyy'}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="Nhóm phụ nhân viên" width=200 textAlign='Left'>
+            <e-column [headerText]="I18Lang.Account.NhomPhuNV" width=200 textAlign='Left'>
                 <ng-template #template let-item>
                     <div class="d-flex justify-content-center">
                         <div class="d-flex gap-2 align-items-center" [ngClass]="{
@@ -83,39 +83,39 @@
                     </div>
                 </ng-template>
             </e-column>
-            <e-column headerText="Tình trạng" width=120 textAlign='Left'>
+            <e-column [headerText]="I18Lang.Account.TinhTrang" width=120 textAlign='Left'>
                 <ng-template #template let-item>
                     <div [ngClass]="{'status0': item.Status == 0,'status1': item.Status == 1}">
                         <ng-container>{{item.TinhTrang}}</ng-container>
                     </div>
                 </ng-template>
             </e-column>
-            <e-column headerText="CostCenter" textAlign='Left' width=150>
+            <e-column [headerText]="I18Lang.Account.CostCenter" textAlign='Left' width=150>
                 <ng-template #template let-item>
                     <span class="text-start">{{item.CostCenter}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="Transaction Entry" textAlign='Left' width=180>
+            <e-column [headerText]="I18Lang.Account.TransactionEntry" textAlign='Left' width=200>
                 <ng-template #template let-item>
                     <span class="text-start">{{item.TranSactionEntry}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="Location" textAlign='Left' width=150>
+            <e-column [headerText]="I18Lang.Account.Location" textAlign='Left' width=220>
                 <ng-template #template let-item>
                     <span class="text-start">{{item.Location}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="EmployeeType" textAlign='Left' width=150>
+            <e-column [headerText]="I18Lang.Account.EmployeeType" textAlign='Left' width=180>
                 <ng-template #template let-item>
                     <span class="text-start">{{item.EmployeeType}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="EmployeeCategory" textAlign='Left' width=180>
+            <e-column [headerText]="I18Lang.Account.EmployeeCategory" textAlign='Left' width=180>
                 <ng-template #template let-item>
                     <span class="text-start">{{item.EmployeeCategory}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="Xem lịch sử" textAlign='Center' width=150>
+            <e-column [headerText]="I18Lang.Account.XemLichSu" textAlign='Center' width=150>
                 <ng-template #template let-item>
                     <div (click)="ClickHistoryEmp(item)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -133,14 +133,14 @@
 <!-- <app-add-new-emp-dialog #empaddnewdialog (SaveDialog)="SaveEmployee($event)"></app-add-new-emp-dialog> -->
 
 
-<app-dialog #empaddnewdialog headerText="Nhân viên" [templateBody]="content" height="732px" width="585px">
+<app-dialog #empaddnewdialog [headerText]="I18Lang.Account.NhanVien" [templateBody]="content" height="732px" width="585px">
 
 </app-dialog>
 <ng-template #content>
   <div class="container mt-3">
     <div class="row gy-3">
       <div class="col-10">
-        <app-input  [(ngModel)]="FullName" title="Họ và tên(VN)"></app-input>
+        <app-input  [(ngModel)]="FullName" [title]="I18Lang.Account.TenNhanVien"></app-input>
       </div>
       <div class="col-2 d-flex align-items-end justify-content-center">
         <div class="image-picker pointer" (click)="file2.click()">
@@ -153,149 +153,132 @@
         </div>
       </div>
       <div class="col-6">
-        <app-input title="Mã nhân viên"></app-input>
+        <app-input [(ngModel)]="MaNhanVien" [title]="I18Lang.Account.MaNhanVien"></app-input>
       </div>
       <div class="col-6">
-        <app-input title="Mã V3ID"></app-input>
+        <app-input [(ngModel)]="V3ID" [title]="I18Lang.Account.V3ID"></app-input>
       </div>
       <div class="col-6">
-        <app-combobox title="BU"></app-combobox>
+        <app-input [(ngModel)]="BU" [title]="I18Lang.Account.BU"></app-input>
       </div>
       <div class="col-6">
-        <app-tree-view title="Phòng ban"></app-tree-view>
+        <app-tree-view fieldName="DepartmentName" [selectedItem]="selectedPhongBan" (clickItem)="selectedPhongBan = $event" type="dropdown" [dataSource]="tblBoPhan" [title]="I18Lang.Account.PhongBan"></app-tree-view>
       </div>
       <div class="col-6">
-        <app-datetime title="Ngày nhận việc"></app-datetime>
+        <app-datetime [value]="NgayNhanViec" (clickDate)="NgayNhanViec = $event"  [title]="I18Lang.Account.NgayNhanViec"></app-datetime>
       </div>
       <div class="col-6">
-        <app-combobox title="Nhóm phụ nhân viên"></app-combobox>
+        <app-combobox fieldName="NhomPhucName" [dataSource]="tblNhomPhu" (clickItem)="selectedNhomPhu = $event" [selectedItem]="selectedNhomPhu" [title]="I18Lang.Account.NhomPhuNV"></app-combobox>
       </div>
       <div class="col-6">
-        <app-combobox title="CostCenter"></app-combobox>
+        <app-combobox [title]="I18Lang.Account.CostCenter"></app-combobox>
       </div>
       <div class="col-6">
-        <app-combobox title="Transaction Entity"></app-combobox>
+        <app-combobox [title]="I18Lang.Account.TransactionEntry"></app-combobox>
       </div>
       <div class="col-12">
-        <app-input title="Location"></app-input>
+        <app-input [title]="I18Lang.Account.Location"></app-input>
       </div>
       <div class="col-6">
-        <app-combobox title="Employee Type"></app-combobox>
+        <app-combobox fieldName="NhomPhucName" [dataSource]="tblEmployeeType" (clickItem)="selectedEmployeeType = $event" [selectedItem]="selectedNhomPhu"  [title]="I18Lang.Account.EmployeeType"></app-combobox>
       </div>
       <div class="col-6">
-        <app-combobox title="Employee Category"></app-combobox>
+        <app-combobox [title]="I18Lang.Account.EmployeeCategory"></app-combobox>
       </div>
     </div>
   </div>
 </ng-template>
 
-<ejs-dialog [isModal]="true" [position]="{ X: 'center', Y: 'center' }" #dialogHistory showCloseIcon='true' [height]='800' width='1157px' [visible]='false'>
-    <ng-template #header>
-        <div class="text-common-black fs-18 fw-600">Lịch sử</div>
-    </ng-template>
-    <ng-template #content>
-        <div class="align-items-center d-flex header-history justify-content-between ng-star-inserted p-4 pt-2 px-2">
-            <div class="d-flex gap-3">
-                <img class="rounded-circle" width="60" height="60" [src]="GetPhotoByUserID(EmployeeSelected?.EmployeeCode)" alt="" srcset="">
-                <div>
-                    <div class="text-common-black fs-18 fw-600">{{EmployeeSelected?.EmployeeName}}</div>
 
-                    <div class="text-common-black fs-14 fw-400">{{EmployeeSelected?.DepartmentCode}}</div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <ejs-grid [dataSource]="listHistory" [height]="430" [allowTextWrap]="true" [textWrapSettings]='wrapSettings'>
-                <e-columns>
-                    <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
-                        <ng-template #template let-item>
-                            <div class="text-start">{{item.EmployeeName}}</div>
-                        </ng-template>
-                    </e-column>
+<app-dialog #dialogHistory [isFooter]="false" height="100vh" width="70%" [headerText]="I18Lang.Account.XemLichSu" [templateBody]="tempHistory"></app-dialog>
+<ng-template #tempHistory>
+  <div class="align-items-center d-flex header-history justify-content-between ng-star-inserted p-4 pt-2 px-2">
+      <div class="d-flex gap-3">
+          <img class="rounded-circle" width="60" height="60" [src]="GetPhotoByUserID(EmployeeSelected?.EmployeeCode)" alt="" srcset="">
+          <div>
+              <div class="text-common-black fs-18 fw-600">{{EmployeeSelected?.EmployeeName}}</div>
 
-                    <e-column headerText="V3ID" textAlign='Left' width=110>
-                        <ng-template #template let-item>
-                            <div class="text-start">{{item.BarCode}}</div>
-                        </ng-template>
-                    </e-column>
-
-                    <e-column headerText="Giờ quét thẻ" textAlign='Left' width=150>
-                        <ng-template #template let-item>
-                            <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy hh:mm'}}</div>
-                        </ng-template>
-                    </e-column>
-
-                    <e-column headerText="Thứ" textAlign='Left' width=110>
-                        <ng-template #template let-item>
-                            <div class="text-start">{{item.ScanTime | date :'EEEE'}}</div>
-                        </ng-template>
-                    </e-column>
-
-                    <e-column headerText="Ngày quét thẻ" textAlign='Left' width=140>
-                        <ng-template #template let-item>
-                            <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy' }}</div>
-                        </ng-template>
-                    </e-column>
-
-
-
-                    <e-column headerText="Line" textAlign='Left' width=140>
-                        <ng-template #template let-item>
-                            <div class="text-start">{{item.TenLine}}</div>
-                        </ng-template>
-                    </e-column>
-
-                    <e-column headerText="Loại món" textAlign='Left' width=140>
-                        <ng-template #template let-item>
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex gap-2 align-items-center" [ngClass]="{
-                  'type-food-1': item.LoaiMon == 1 || true,
-                  'type-food-2': item.LoaiMon == 2,
-                  'type-food-3': item.LoaiMon == 3,
-                  }">
-                                    <span class="icon-FinanceCommerce-68"></span>
-                                    <div class="text-start">{{item.LoaiMon}}</div>
-                                </div>
+              <div class="text-common-black fs-14 fw-400">{{EmployeeSelected?.DepartmentCode}}</div>
+          </div>
+      </div>
+  </div>
+  <div>
+      <div class="mt-3">
+        <ejs-grid [dataSource]="listHistory" [height]="430" [allowTextWrap]="true" [textWrapSettings]='wrapSettings'>
+            <e-columns>
+                <e-column [headerText]="I18Lang.Account.TenNhanVien" textAlign='Left' width=150>
+                    <ng-template #template let-item>
+                        <div class="text-start">{{item.EmployeeName}}</div>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.V3ID" textAlign='Left' width=110>
+                    <ng-template #template let-item>
+                        <div class="text-start">{{item.BarCode}}</div>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.GioQuetThe" textAlign='Left' width=150>
+                    <ng-template #template let-item>
+                        <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy hh:mm'}}</div>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.Thu" textAlign='Left' width=110>
+                    <ng-template #template let-item>
+                        <div class="text-start">{{item.ScanTime | date :'EEEE'}}</div>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.NgayQuetThe" textAlign='Left' width=140>
+                    <ng-template #template let-item>
+                        <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy' }}</div>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.Line" textAlign='Left' width=140>
+                    <ng-template #template let-item>
+                        <div class="text-start">{{item.TenLine}}</div>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.LoaiMon" textAlign='Left' width=140>
+                    <ng-template #template let-item>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex gap-2 align-items-center" [ngClass]="{
+              'type-food-1': item.LoaiMon == 1 || true,
+              'type-food-2': item.LoaiMon == 2,
+              'type-food-3': item.LoaiMon == 3,
+              }">
+                                <span class="icon-FinanceCommerce-68"></span>
+                                <div class="text-start">{{item.LoaiMon}}</div>
                             </div>
-                        </ng-template>
-                    </e-column>
-
-
-                    <e-column headerText="Ca làm việc" textAlign='Left' width=180>
-                        <ng-template #template let-item>
-                            <span class="text-start">{{item.MaCa}}</span>
-                        </ng-template>
-                    </e-column>
-
-                    <e-column headerText="Phòng ban" textAlign='Left' width=180>
-                        <ng-template #template let-item>
-                            <span class="text-start">{{item.DepartmentName}}</span>
-                        </ng-template>
-                    </e-column>
-
-                    <e-column headerText="Số lượng" textAlign='Left' width=150>
-                        <ng-template #template let-item>
-                            <span class="text-start">{{item.SoLuong}}</span>
-                        </ng-template>
-                    </e-column>
-
-                    <e-column headerText="Đơn giá" textAlign='Left' width=200>
-                        <ng-template #template let-item>
-                            <span class="text-start">{{item.DonGia}}</span>
-                        </ng-template>
-                    </e-column>
-
-                    <e-column headerText="Thành tiền" textAlign='Left' width=200>
-                        <ng-template #template let-item>
-                            <span class="text-start">{{item.ThanhTien}}</span>
-                        </ng-template>
-                    </e-column>
-
-                </e-columns>
-            </ejs-grid>
-            <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSizeHistory" (click)="ClickPagerHistory($event)">
-            </ejs-pager>
-        </div>
-    </ng-template>
-
-</ejs-dialog>
+                        </div>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.CaLamViec" textAlign='Left' width=180>
+                    <ng-template #template let-item>
+                        <span class="text-start">{{item.MaCa}}</span>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.PhongBan" textAlign='Left' width=180>
+                    <ng-template #template let-item>
+                        <span class="text-start">{{item.DepartmentName}}</span>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.SoLuong" textAlign='Left' width=150>
+                    <ng-template #template let-item>
+                        <span class="text-start">{{item.SoLuong}}</span>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.DonGia" textAlign='Left' width=200>
+                    <ng-template #template let-item>
+                        <span class="text-start">{{item.DonGia}}</span>
+                    </ng-template>
+                </e-column>
+                <e-column [headerText]="I18Lang.Account.ThanhTien" textAlign='Left' width=200>
+                    <ng-template #template let-item>
+                        <span class="text-start">{{item.ThanhTien}}</span>
+                    </ng-template>
+                </e-column>
+            </e-columns>
+        </ejs-grid>
+        <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSizeHistory" (click)="ClickPagerHistory($event)">
+        </ejs-pager>
+      </div>
+  </div>
+</ng-template>

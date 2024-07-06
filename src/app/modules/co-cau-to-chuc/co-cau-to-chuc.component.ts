@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { SidebarModel } from 'src/app/shares/models/SidebarModel';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
+import { LanguageService } from 'src/app/shares/services/language/language.service';
+import { NotificationService } from 'src/app/shares/services/notification/notification.service';
 
 @Component({
   selector: 'app-co-cau-to-chuc',
@@ -27,12 +30,21 @@ export class CoCauToChucComponent implements OnInit {
   MaDonVi:string;
   TenDonVi:string;
   DonViCha:any;
-
-  constructor(private _api:ApiHttpService){}
+  selectedGrid:any;
+  constructor(
+    private _api:ApiHttpService,
+    protected _languageService:LanguageService,
+    private _noti:NotificationService
+  ){
+  }
 
   ngOnInit(): void {
     this.getCoCauToChuc();
   }
+
+  // getLanguage = async() => {
+  //   this.I18Lang = await this._languageService.getLanguage();
+  // }
 
   ToggleTabs(item:any){
     this.tabSelected = item
@@ -103,16 +115,67 @@ export class CoCauToChucComponent implements OnInit {
   }
 
   onOpenAdd(){
+    this.ResetModel();
     this.dialogAdd.show();
   }
   onOpenEdit(){
+    if(!this.selectedGrid){
+      this._noti.ShowToastError(this._languageService.I18LangService.Error.NoRowSelected)
+      return;
+    }
     this.dialogAdd.show();
   }
-  onDelete(){
+  ClickItems(evt:any){
+    this.selectedGrid = evt.rowData;
+    this.DonViCha = this.listDepartmentOrigin.find(x => x.DepartmentCode == this.selectedGrid.ParentCode);
+    this.MaDonVi = this.selectedGrid.DepartmentCode;
+    this.TenDonVi = this.selectedGrid.DepartmentName;
+  }
 
+  ResetModel(){
+    this.selectedGrid = null;
+    this.DonViCha = null;
+    this.MaDonVi = ''
+    this.TenDonVi = '';
+    this.PageIndex = AppCommon.PageIndex;
+  }
+
+  onDelete(){
+    if(!this.selectedGrid && !this.tabSelected){
+      this._noti.ShowToastError(this._languageService.I18LangService.Error.NoRowSelected)
+      return;
+    }
+    var DepartmentCode = this.selectedGrid?.DepartmentCode || this.tabSelected?.DepartmentCode
+    this._api.post(AppAPIConst.CoCauToChuc.Departments_spdeleteData,{
+      strCode:DepartmentCode
+    }).subscribe(res=>{
+      if(res && res?.Data){
+        if(res?.Data?.Error){
+          this._noti.ShowToastError(res?.Data?.Error)
+          return;
+        }
+        this.ResetModel();
+        this.getCoCauToChuc();
+        this._noti.ShowToastSuccess(this._languageService.I18LangService.Common.Success)
+      }
+    })
   }
   submitDialog(){
-
-
+    this._api.post(AppAPIConst.CoCauToChuc.Departments_spPostData,{
+        NhomPhuCode:this.MaDonVi,
+        NhomPhuName:this.TenDonVi,
+        DoiTuong:this.DonViCha?.DepartmentCode
+    }).subscribe(res=>{
+      if(res && res?.Data){
+        if(res?.Data?.Error){
+          this._noti.ShowToastError(res?.Data?.Error.Message)
+          return;
+        }
+        this.dialogAdd.hide()
+        this.ResetModel();
+        this.getCoCauToChuc();
+        this._noti.ShowToastSuccess(this._languageService.I18LangService.Common.Success)
+      }
+    })
   }
 }

@@ -5,6 +5,9 @@ import { fnCommon } from 'src/app/shares/helpers/common';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
+import { LanguageService } from 'src/app/shares/services/language/language.service';
+import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
+import { NotificationService } from 'src/app/shares/services/notification/notification.service';
 
 @Component({
   selector: 'app-empsubgroup',
@@ -12,15 +15,15 @@ import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
   styleUrls: ['./empsubgroup.component.scss']
 })
 export class EmpsubgroupComponent implements OnInit {
+  @ViewChild('dialogAdd') dialogAdd:AppDialogComponent
   selectedDate = new Date().toISOString()
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
   totalItems:number;
   height:number = (window.innerHeight - 202)
   searchText:string;
-  selectedMenu:any;
+  selectedGrid:any;
   loginInfo: any = {};
-  I18nLang:any;
 
   ListPhanLoai:Array<any> = []
   selectPhanLoai:any;
@@ -32,20 +35,25 @@ export class EmpsubgroupComponent implements OnInit {
   public pageSettings?: PageSettingsModel;
   listSubgroup:Array<any> = []
 
-
+  I18Lang:any;
+  NhomPhuName:string
+  DoiTuong:string
+  HanMucNgay:string
 
   constructor(
     private _userService:AuthService,
-    private _api:ApiHttpService
+    private _api:ApiHttpService,
+    private _noti:NotificationService,
+    protected _langSevice:LanguageService
     ){
       this.loginInfo = this._userService.getUser();
   }
   ngOnInit() {
-    this.getListFoodLine();
+    this.getListEmpSub();
   }
 
 
-  getListFoodLine(){
+  getListEmpSub(){
     this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
       Option:1,
       PageIndex:this.PageIndex,
@@ -55,36 +63,102 @@ export class EmpsubgroupComponent implements OnInit {
       this.totalItems = res.Data.OutputParams.totalItems
     })
   }
+  getListPhanLoai(){
+    this._api.post(AppAPIConst.Cateogry.Line_spGetDefault)
+    .subscribe(res=>{
+      if(res && res.Data){
+        console.log(res);
 
+        this.ListPhanLoai = res.Data.tblLineType
+      }
+    })
+  }
 
   selectedRowTable(evt:any){
     const item = evt.rowData
-    this.selectedMenu = item;
+    this.selectedGrid = item;
+    console.log(item);
+    this.selectPhanLoai = this.ListPhanLoai.find(x=>x.Value == item.NhomPhuCode)
+    this.NhomPhuName = item.NhomPhuName
+    this.DoiTuong = item.DoiTuong
+    this.HanMucNgay = item.HanMucNgay
   }
 
   onClickViewHistory(){
-    //this.historydialog.onOpenDialog(id);
   }
 
 
   ClickPagerIndex(evt:any){
-    if(evt?.currentPage){
-      this.PageIndex = evt?.currentPage - 1
-    }
+    this.PageIndex = evt;
+    this.getListEmpSub();
   }
 
   ResetModel(){
     this.PageIndex = AppCommon.PageIndex;
     this.PageSize = AppCommon.PageSize;
     this.totalItems = 0;
+    this.selectPhanLoai = null;
+    this.NhomPhuName = ''
+    this.DoiTuong = ''
+    this.HanMucNgay = ''
   }
 
   getPhoto(userid:string){
     return fnCommon.ConvertPhotoEmpByUserID(userid)
   }
 
-  submitDialog(){
+  submitDialog(evt:any){
+    this._api.post(AppAPIConst.Cateogry.NhomPhu_spPostData,{
+      NhomPhuCode:this.selectPhanLoai?.Value,
+      NhomPhuName:this.NhomPhuName,
+      DoiTuong:this.DoiTuong,
+      HanMucNgay:this.HanMucNgay
+    }).subscribe(res=>{
+      if(res && res.Data){
+        if(res?.Data?.Error){
+          this._noti.ShowToastError(res?.Data?.Error)
+          return;
+        }
+        this.dialogAdd.hide();
+        this.ResetModel();
+        this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
+        this.getListEmpSub()
+      }
+    })
+  }
 
+
+  onAdd(){
+    this.ResetModel();
+    this.dialogAdd.show();
+  }
+
+  onEdit(){
+    if(!this.selectedGrid){
+      this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
+      return;
+    }
+    this.dialogAdd.show();
+  }
+
+  onDelete(){
+    if(!this.selectedGrid){
+      this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
+      return;
+    }
+    this._api.post(AppAPIConst.Cateogry.NhomPhu_spPostData,{
+      strCode:this.selectedGrid?.NhomPhuCode,
+    }).subscribe(res=>{
+      if(res && res.Data){
+        if(res?.Data?.Error){
+          this._noti.ShowToastError(res?.Data?.Error)
+          return;
+        }
+        this.ResetModel();
+        this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
+        this.getListEmpSub()
+      }
+    })
   }
 
 

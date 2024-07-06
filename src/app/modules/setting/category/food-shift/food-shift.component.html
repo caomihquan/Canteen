@@ -4,21 +4,21 @@
           <app-breadcum></app-breadcum>
         </div>
         <div class="right-toolbar">
-            <div class="button-toolbar" (click)="dialogAdd.show()">
+            <div class="button-toolbar" (click)="onAdd()">
                 <span class="icon-General-113"></span>
-                <span>Thêm</span>
+                <span>{{I18Lang.Common.Add}}</span>
             </div>
-            <div class="button-toolbar">
+            <div class="button-toolbar" (click)="onEdit()">
                 <span class="icon-General-84"></span>
-                <span>Sửa</span>
+                <span>{{I18Lang.Common.Edit}}</span>
             </div>
-            <div class="button-toolbar">
+            <div class="button-toolbar" (click)="onDelete()">
                 <span class="icon-General-163"></span>
-                <span>Xoá</span>
+                <span>{{I18Lang.Common.Delete}}</span>
             </div>
             <div class="button-toolbar">
                 <span class="icon-General-3"></span>
-                <span>Import</span>
+                <span>{{I18Lang.Common.Import}}</span>
             </div>
         </div>
     </div>
@@ -30,30 +30,31 @@
 <ng-template #templategrid>
     <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
         <e-columns>
-            <e-column headerText="Mã ca" textAlign='Left' width=50>
+            <e-column headerText="{{I18Lang.FoodShift.MaCa}}" textAlign='Left' width=50>
                 <ng-template #template let-item>
                     <div>{{item.MaCa}}</div>
                 </ng-template>
             </e-column>
-            <e-column headerText="Tên ca" width=40 textAlign='Left'>
+            <e-column headerText="{{I18Lang.FoodShift.TenCa}}" width=40 textAlign='Left'>
                 <ng-template #template let-item>
                     <span> {{item.TenCa}}</span>
-
                 </ng-template>
             </e-column>
-            <e-column headerText="Ghi chú" width=100 textAlign='Center'>
+            <e-column headerText="{{I18Lang.FoodShift.GhiChu}}" width=100 textAlign='Left'>
                 <ng-template #template let-item>
-                    <span class="fw-600 fs-14">{{item.GhiChu}}</span>
+                  <ejs-tooltip [content]='item?.GhiChu ?? ""' target="#GhiChu">
+                    <div id="GhiChu" class="text-start text-truncate-2">{{item.GhiChu}}</div>
+                 </ejs-tooltip>
                 </ng-template>
             </e-column>
-            <e-column headerText="Thời gian bắt đầu" width=70 textAlign='Center'>
+            <e-column headerText="{{I18Lang.FoodShift.BeginDate}}" width=70 textAlign='Left'>
                 <ng-template #template let-item>
-                    <span class="fw-600 fs-14">{{item.ThoiGianBatDau}}</span>
+                    <span>{{item.ThoiGianBatDau}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="Thời gian kết thúc" width=70 textAlign='Center'>
+            <e-column headerText="{{I18Lang.FoodShift.EndDate}}" width=70 textAlign='Left'>
                 <ng-template #template let-item>
-                    <span class="fw-600 fs-14">{{item.ThoiGianKetThuc}}</span>
+                    <span>{{item.ThoiGianKetThuc}}</span>
                 </ng-template>
             </e-column>
         </e-columns>
@@ -61,7 +62,9 @@
 </ng-template>
 
 
-<app-dialog #dialogAdd [templateBody]="content" headerText="Thêm ca làm việc"></app-dialog>
+<app-dialog height="714px" #dialogAdd
+[templateBody]="content"
+[headerText]="I18Lang.FoodShift.CaLamViec"></app-dialog>
 
 
 
@@ -69,16 +72,19 @@
   <div class="container mt-3">
     <div class="row gy-3">
       <div class="col-12">
-        <app-input [(ngModel)]="tenNhom" title="Tên nhóm"></app-input>
+        <app-input [(ngModel)]="MaCa" [title]="I18Lang.FoodShift.MaCa"></app-input>
       </div>
       <div class="col-12">
-        <app-input [(ngModel)]="moTa" title="Ghi chú"></app-input>
+        <app-input [(ngModel)]="TenCa" [title]="I18Lang.FoodShift.TenCa"></app-input>
       </div>
       <div class="col-12">
-        <app-input type="number" [(ngModel)]="donGia" title="Hạn mức sử dụng/ngày (VND)"></app-input>
+        <app-input [(ngModel)]="GhiChu" type="text-area" [title]="I18Lang.FoodShift.GhiChu"></app-input>
       </div>
-      <div class="col-12">
-        <app-datetime title="Thời gian bắt đầu"></app-datetime>
+      <div class="col-6">
+        <app-time [value]="BatDau" (clickTime)="BatDau = $event" [title]="I18Lang.FoodShift.BeginDate"></app-time>
+      </div>
+      <div class="col-6">
+        <app-time [value]="KetThuc" (clickTime)="KetThuc = $event" [title]="I18Lang.FoodShift.EndDate"></app-time>
       </div>
     </div>
   </div>

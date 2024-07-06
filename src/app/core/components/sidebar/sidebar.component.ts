@@ -234,6 +234,7 @@ export class SidebarComponent implements OnInit {
 
   getMenu() {
     this.ListSideBar = this.buildNested(this.ListSideBarCheck, null)
+    this._sidebarService.ListSideBar = this.ListSideBarCheck
     this._sidebarService.finishSideBar.next(true);
     this._activeRoute.params.subscribe(x=>{
      if(this.ListSideBarCheck.length > 0){

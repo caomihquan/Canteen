@@ -32,4 +32,8 @@ export class AppDialogComponent {
   show(){
     this.dialog.show();
   }
+
+  hide(){
+    this.dialog.hide();
+  }
 }

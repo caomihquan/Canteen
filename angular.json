@@ -35,8 +35,7 @@
                             "src/styles.scss",
                             "src/icon.scss",
                             "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
-                            "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-                            "node_modules/flatpickr/dist/flatpickr.css"
+                            "node_modules/bootstrap-icons/font/bootstrap-icons.css"
                         ],
                         "scripts": [
                             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"

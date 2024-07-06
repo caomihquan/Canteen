@@ -12,6 +12,7 @@ import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { NotificationService } from 'src/app/shares/services/notification/notification.service';
 import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
+import { LanguageService } from 'src/app/shares/services/language/language.service';
 
 @Component({
   selector: 'app-member',
@@ -19,7 +20,7 @@ import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dia
   styleUrls: ['./member.component.scss']
 })
 export class MemberComponent implements OnInit {
-  @ViewChild('dialogHistory') dialogHistory:DialogComponent
+  @ViewChild('dialogHistory') dialogHistory:AppDialogComponent
   @ViewChild('empaddnewdialog') empaddnewdialog:AppDialogComponent
   selectedDate:any;
   PageIndex:number = AppCommon.PageIndex;
@@ -41,6 +42,11 @@ export class MemberComponent implements OnInit {
   listEmployee:Array<any> = []
   getPhoto = fnCommon.ConvertPhotoEmp;
   listHistory:Array<any>= []
+  tblBoPhan:Array<any>= []
+  tblBoPhanOrigin:Array<any>= []
+  tblNhomPhu:Array<any>= []
+  tblTinhTrang:Array<any>= []
+  tblEmployeeType:Array<any>= []
   EmployeeSelected:any;
   defaultColor = AppCommon.defaultColor
   user:UserModel | null
@@ -50,7 +56,17 @@ export class MemberComponent implements OnInit {
   FullName:string;
   stringImage:any;
   stringImageBase64:any;
+  MaNhanVien:string;
+  V3ID:string;
+  BU:string;
+  selectedPhongBan:any;
+  NgayNhanViec = new Date().toISOString();
+  selectedNhomPhu:any;
+  selectedTinhTrang:any;
+  selectedEmployeeType:any;
 
+
+  I18Lang:any
 
   constructor(
     private _api:ApiHttpService,
@@ -58,8 +74,10 @@ export class MemberComponent implements OnInit {
     private _ordinal:OrdinalService,
     private _sanitized: DomSanitizer,
     private _noti:NotificationService,
+    private _langS:LanguageService,
     private _userService: AuthService,){
       this.user = this._userService.getUser();
+      this.I18Lang = this._langS.I18LangService;
   }
   selectImage(event:any){
     let files = event.target.files;
@@ -82,12 +100,41 @@ export class MemberComponent implements OnInit {
     }
   }
   onAddNewEmp(){
-      this.empaddnewdialog.show();
+    this.empaddnewdialog.show();
   }
 
   ngOnInit() {
     this.LoadListMember();
+    this.getConfig();
   }
+
+  getConfig(){
+    this._api.post(AppAPIConst.QuanLyNhanVien.employees_spGetDefault)
+    .subscribe(res=>{
+      if(res && res.Data){
+        console.log(res);
+        this.tblBoPhanOrigin = res.Data.tblBoPhan
+        this.tblBoPhan = this.InitNested(res.Data.tblBoPhan,null);
+        this.tblNhomPhu = res.Data.tblNhomPhu
+        this.tblTinhTrang = res.Data.tblTinhTrang
+        this.tblEmployeeType = res.Data.tblTinhTrang
+      }
+    })
+  }
+
+  InitNested(tabs: any[], ParentCode: string | null): any[] {
+    const nestedTabs: any[] = [];
+    const Empty: any[] = [];
+    for (const tab of tabs) {
+      if (tab.ParentCode === ParentCode) {
+        const nestedTab = { ...tab, Children:Empty};
+        nestedTab.Children = this.InitNested(tabs, tab.DepartmentCode);
+        nestedTabs.push(nestedTab);
+      }
+    }
+    return nestedTabs;
+  }
+
   GetPhoto(photoid: string){
      return fnCommon.ConvertPhotoEmp(photoid);
   };
@@ -96,19 +143,6 @@ export class MemberComponent implements OnInit {
     return fnCommon.ConvertPhotoEmpByUserID(userID)
   }
 
-  // LoadConfig(){
-  //   this._MemberService.InitUnion1({
-  //     option: 3
-  //   }).subscribe(res=>{
-  //     if(!res.Error){
-  //         if(res.Data)
-  //         {//debugger
-  //           this.DataUnionStatus = res.Data.DataUnion;
-  //           this.DataGender = res.Data.DataGender;
-  //         }
-  //     }
-  //   })
-  // }
 
   ClickPageMember(page:any){
     this.PageIndex = page;

@@ -13,6 +13,7 @@ import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dia
 import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app-datetime.component';
 import { AppInputComponent } from 'src/app/shares/components/app-input/app-input.component';
 import { BreadcumComponent } from 'src/app/shares/components/breadcum/breadcum.component';
+import { AppTimeComponent } from 'src/app/shares/components/app-time/app-time.component';
 
 
 
@@ -37,18 +38,10 @@ const routes: Routes = [
     FormsModule,
     GridViewComponent,
     AppInputComponent,
-    AppDateTimeComponent,
+    AppTimeComponent,
     AppDialogComponent,
     BreadcumComponent,
     RouterModule.forChild(routes),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      defaultLanguage: 'vn'
-    }),
   ],
 })
 export class FoodShiftModule { }

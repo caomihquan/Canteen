@@ -3,10 +3,10 @@
   <div class="dropdown">
     <div class="input-dropdown w-100 " style="padding:6px 9px">
       <div class="d-flex">
-        <div >{{value | date:'dd/MM/yyyy'}}</div>
-        <ejs-datetimepicker  (change)="ChangeDate($event)" [(ngModel)]='value' style="width:0;height: 0;" #date></ejs-datetimepicker>
+        <div>{{value}}</div>
+        <ejs-timepicker  [format]='formatString' [step]='interval' (change)="ChangeDate($event)" style="width:100%;height: 0;visibility: hidden;" #date></ejs-timepicker>
       </div>
-      <span class="icon-Time-2 fs-24"></span>
+      <span class="icon-Time-20 fs-24"></span>
   </div>
 </div>
 

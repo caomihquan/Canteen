@@ -8,15 +8,15 @@
         <div class="right-toolbar">
             <div class="button-toolbar" (click)="onOpenAdd()">
                 <span class="icon-General-113"></span>
-                <span>{{'Common.Add' | translate}}</span>
+                <span>{{this._languageService.I18LangService.Common.Add}}</span>
             </div>
             <div class="button-toolbar" (click)="onOpenEdit()">
                 <span class="icon-General-84"></span>
-                <span>{{'Common.Edit' | translate}}</span>
+                <span>{{this._languageService.I18LangService.Common.Edit}}</span>
             </div>
-            <div class="button-toolbar">
+            <div class="button-toolbar" (click)="onDelete()">
                 <span class="icon-General-163"></span>
-                <span>{{'Common.Delete' | translate}}</span>
+                <span>{{this._languageService.I18LangService.Common.Delete}}</span>
             </div>
             <!-- <div class="button-toolbar" (click)="onDelete()">
                 <span class="icon-General-101"></span>
@@ -56,15 +56,15 @@
 </div>
 
 <ng-template #templateGrid >
-  <ejs-grid #grid allowTextWrap='true' [height]="height - 240" [dataSource]='listEmployee' [allowSorting]="true">
+  <ejs-grid (recordClick)="ClickItems($event)" #grid allowTextWrap='true' [height]="height - 240" [dataSource]='listEmployee' [allowSorting]="true">
       <e-columns>
-          <e-column headerText="Mã Đơn vị" textAlign='Left' width=150>
+          <e-column [headerText]="this._languageService.I18LangService.Department.MaDonVi" textAlign='Left' width=150>
               <ng-template #template let-item>
                   <div class="text-start">{{item.DepartmentCode}}</div>
               </ng-template>
           </e-column>
 
-          <e-column headerText="Tên Đơn vị" textAlign='Left' width=140>
+          <e-column [headerText]="this._languageService.I18LangService.Department.TenDonVi" textAlign='Left' width=140>
             <ng-template #template let-item>
                 <div class="text-start">{{item.DepartmentName}}</div>
             </ng-template>
@@ -77,7 +77,7 @@
 
 <ejs-dialog (open)="$event.preventFocus = true" [isModal]="true" [position]="{ X: 'center', Y: 'center' }" #dialogAdd showCloseIcon='true' [height]='500' width='585px' [visible]='false'>
   <ng-template #header>
-    <div class="text-common-black fs-18 fw-600">Cơ cấu tổ chức</div>
+    <div class="text-common-black fs-18 fw-600">{{_languageService.I18LangService.Department.CoCauToChuc}}</div>
   </ng-template>
   <ng-template #content>
     <div class="container mt-3">
@@ -99,8 +99,8 @@
       <div>
       </div>
       <div class="d-flex align-items-center gap-2">
-        <button class="btn button-app-second " (click)="dialogAdd.hide()">Đóng</button>
-        <button class="btn button-app" (click)="submitDialog()">Lưu</button>
+        <button class="btn button-app-second " (click)="dialogAdd.hide()">{{this._languageService.I18LangService.Common.Close}}</button>
+        <button class="btn button-app" (click)="submitDialog()">{{this._languageService.I18LangService.Common.Save}}</button>
       </div>
     </div>
   </ng-template>
