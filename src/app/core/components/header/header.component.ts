@@ -63,7 +63,7 @@ export class HeaderComponent {
     // });
     this.user = this._user.getUser();
     _translate.use(this._langService.getLocale())
-    this.getLanguage();
+    this.I18nLang =  this._langService.I18LangService;
   }
 
   fnOnClickNoti(){
@@ -75,9 +75,7 @@ export class HeaderComponent {
     this._router.navigate([AppRoutes.login]);
   }
 
-  getLanguage = async () => {
-    this.I18nLang = await this._langService.getLanguage();
-  }
+
 
 
   onSubmit(){

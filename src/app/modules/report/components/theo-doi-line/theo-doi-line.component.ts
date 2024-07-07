@@ -27,9 +27,7 @@ export class TheoDoiLineComponent implements OnInit {
   isShow:boolean = true;
   public toolbarOptions?: ToolbarItems[];
   DowCode: string[] = [];
-  Filter: any = {
-    DowCode: ''
-  }
+  selectedDowCode:any
   LineReportModel:any = {
 
   }
@@ -61,7 +59,6 @@ export class TheoDoiLineComponent implements OnInit {
     //this.getCoCauToChuc();
    // this.TotalItems = this.dataLine.length;
       this.LoadDowCode();
-      this.LoadLineReport();
       this.toolbarOptions = ['ExcelExport'];
   }
   toolbarClick(args: any): void {
@@ -93,11 +90,11 @@ export class TheoDoiLineComponent implements OnInit {
   }
 
 
-  
+
   onHideFilter(){
       this.isShow = !this.isShow;
   }
- 
+
   LoadDowCode() {
     this._api.post(AppAPIConst.Report.reportsudungthe_getCombo, {
       // PageIndex: this.PageIndex,
@@ -110,22 +107,21 @@ export class TheoDoiLineComponent implements OnInit {
         debugger;
         this.DowCode = res.Data.tblDowCode;
         if(this.DowCode && this.DowCode.length > 0){
-          this.Filter.DowCode =  this.DowCode[0];
+          this.selectedDowCode =  this.DowCode[0];
         }
         console.log(res, 'emps');
       }
     })
   }
- LoadLineReport(Filter?:string) {
+ LoadLineReport() {
     this._api.post(AppAPIConst.Report.ReportTongHop, {
       PageIndex: this.PageIndex,
       PageSize: this.PageSize,
-      DowCode: this.Filter.DowCode.DowCode,
-      SearchText: Filter ? Filter : '',
+      DowCode: this.selectedDowCode?.DowCode,
+      SearchText: this.selectedDowCode?.DowCode,
       Option: 1
     }).subscribe(res => {
       if (res.Data) {
-        debugger;
         this.dataLine = res.Data.Data;
         this.TotalItems = res.Data.OutputParams.TotalItems
         console.log(res, 'emps');
@@ -137,9 +133,7 @@ export class TheoDoiLineComponent implements OnInit {
    // this.LoadEmployee();
   }
   onChangeDowCode(event:any ){
-      if(event){
-        this.Filter.DowCode = event;
-      }
+    this.selectedDowCode = event;
   }
   onApplyFilter(){
 

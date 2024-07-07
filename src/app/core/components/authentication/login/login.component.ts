@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     UserName: new FormControl('', Validators.required),
     Password: new FormControl('', Validators.required)
   });
+  I18Lang = this._languageService.I18LangService
   constructor(
     private _router: Router,
     private _loginService:LoginService,

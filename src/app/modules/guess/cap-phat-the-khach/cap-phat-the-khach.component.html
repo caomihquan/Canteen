@@ -106,3 +106,26 @@
     </e-columns>
   </ejs-grid>
 </ng-template>
+
+<app-dialog #dialogCapPhat [templateBody]="content"></app-dialog>
+<ng-template #content>
+  <div class="container mt-3">
+    <div class="row gy-3">
+      <div class="col-12">
+        <app-combobox [dataSource]="tblTheKhach" (clickItem)="selectedTheKhach = $event" [selectedItem]="selectedTheKhach" fieldName="MaTheKhach"></app-combobox>
+      </div>
+      <div class="col-12">
+        <app-input [(ngModel)]="NguoiNhanThe"></app-input>
+      </div>
+      <div class="col-12">
+        <app-input [(ngModel)]="GhiChu"></app-input>
+      </div>
+      <div class="col-6">
+        <app-input [(ngModel)]="HanMucNgay"></app-input>
+      </div>
+      <div class="col-6">
+        <app-datetime [value]="NguoiNhanThe" (clickDate)="NguoiNhanThe = $event"></app-datetime>
+      </div>
+    </div>
+  </div>
+</ng-template>

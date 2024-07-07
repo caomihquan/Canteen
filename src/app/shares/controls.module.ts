@@ -22,16 +22,7 @@ const MODULES: Type<any>[] = [
   declarations: [
     COMPONENT
   ],
-  imports: [...MODULES,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      defaultLanguage: 'vn'
-    }),
-  ],
+  imports: [...MODULES],
   exports:[
     ...MODULES,...COMPONENT
   ],

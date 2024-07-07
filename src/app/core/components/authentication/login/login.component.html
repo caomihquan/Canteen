@@ -9,23 +9,23 @@
   </div>
   <div class="right-login">
     <div class="login-form">
-      <div class="login-form-title">{{'LoginPage.Login' | translate}}</div>
+      <div class="login-form-title">{{I18Lang.LoginPage.Login}}</div>
       <div class="login-form-container">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="position-relative">
-          <input id="UserName" type="text" formControlName="UserName" [placeholder]="'LoginPage.UserID' | translate">
+          <input id="UserName" type="text" formControlName="UserName" [placeholder]="I18Lang.LoginPage.UserID">
         </div>
         <div class="position-relative" style="height:53.2px;">
-          <input  [placeholder]="'LoginPage.Password' | translate" id="Password" [type]="isShowPassword ? 'text' : 'password'" formControlName="Password" class="position-absolute">
+          <input  [placeholder]="I18Lang.LoginPage.Password" id="Password" [type]="isShowPassword ? 'text' : 'password'" formControlName="Password" class="position-absolute">
           <i class="bi bi-eye position-absolute" *ngIf="!isShowPassword" (click)="isShowPassword = !isShowPassword"></i>
           <i class="bi bi-eye-slash position-absolute" *ngIf="isShowPassword" (click)="isShowPassword = !isShowPassword"></i>
         </div>
         <div class="forgot-password">
-          {{'LoginPage.ForgetPassword' | translate}}
+          {{I18Lang.LoginPage.ForgetPassword}}
         </div>
         <div class="d-flex justify-content-center" style="margin-top: 77px;">
           <button type="submit" class="btn-submit">
-            {{'LoginPage.Login' | translate}}
+            {{I18Lang.LoginPage.Login}}
           </button>
          </div>
 

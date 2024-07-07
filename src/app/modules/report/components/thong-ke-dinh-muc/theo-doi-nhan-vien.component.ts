@@ -34,7 +34,7 @@ export class TheoDoiNhanVienComponent implements OnInit {
 
   }
   dataLine:Object[] = [
-   
+
   ]
 
 
@@ -44,7 +44,7 @@ export class TheoDoiNhanVienComponent implements OnInit {
     //this.getCoCauToChuc();
    // this.TotalItems = this.dataLine.length;
       this.LoadDowCode();
-      
+
       this.toolbarOptions = ['ExcelExport'];
   }
   toolbarClick(args: any): void {
@@ -76,11 +76,11 @@ export class TheoDoiNhanVienComponent implements OnInit {
   }
 
 
-  
+
   onHideFilter(){
       this.isShow = !this.isShow;
   }
- 
+
   LoadDowCode(callback?:any) {
     this._api.post(AppAPIConst.Report.reportsudungthe_getCombo, {
       // PageIndex: this.PageIndex,
@@ -94,7 +94,7 @@ export class TheoDoiNhanVienComponent implements OnInit {
         this.DowCode = res.Data.tblDowCode;
         if(this.DowCode && this.DowCode.length > 0){
           this.Filter.DowCode =  this.DowCode[0];
-          this.LoadLineReport()
+          //this.LoadLineReport()
         }
         console.log(res, 'emps');
       }

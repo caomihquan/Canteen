@@ -3,6 +3,7 @@ import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
+import { LanguageService } from 'src/app/shares/services/language/language.service';
 
 @Component({
   selector: 'app-theo-doi-lich-su-thanh-toan',
@@ -29,8 +30,10 @@ export class TheoDoiLichSuThanhToanComponent implements OnInit {
   selectetedEmployees:any;
   lstEmpSelected:Array<any> = []
   selectetedThang:any
-
-  constructor(private _api:ApiHttpService){}
+  I18nLang:any
+  constructor(private _api:ApiHttpService,private _langService:LanguageService){
+    this.I18nLang = this._langService.I18LangService
+  }
   ngOnInit(): void {
     this.getConfig();
   }
@@ -49,10 +52,13 @@ export class TheoDoiLichSuThanhToanComponent implements OnInit {
   }
 
   LoadListHistory(){
-    this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
+    this._api.post(AppAPIConst.QuanLyNhanVien.theodoilichnv_spGetData,{
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
-      Option:7
+      BU:this.selectetedBU?.BU,
+      BoPhan:this.selectetedBoPhan?.DepartmentCode,
+      EmployeeCode:this.selectetedEmployees,
+      Thang:this.selectetedThang?.Thang,
     },true).subscribe(res=>{
       if(res && res.Data){
         console.log(res);
@@ -81,5 +87,25 @@ export class TheoDoiLichSuThanhToanComponent implements OnInit {
     this.LoadListHistory();
   }
 
+  handleSelectEmp(emp:any){
+    if(emp == null){
+      this.lstEmpSelected = []
+      this.selectetedEmployees = ''
+      return;
+    }
+    if(emp?.IsChecked){
+      this.lstEmpSelected = this.lstEmpSelected.filter(x => x.EmployeeCode != emp.EmployeeCode)
+      this.lstEmpSelected.push(emp)
+    }
+    else{
+      this.lstEmpSelected = this.lstEmpSelected.filter(x => x.EmployeeCode != emp.EmployeeCode)
+    }
+    this.selectetedEmployees = this.lstEmpSelected.map(x => x?.EmployeeCode ?? '').join(';')
+  }
+
+  ViewData(){
+    this.PageIndex = 0;
+    this.LoadListHistory();
+  }
 
 }

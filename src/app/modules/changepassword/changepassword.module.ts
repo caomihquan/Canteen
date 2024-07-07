@@ -4,9 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/core/guard/auth.guard';
 import { ChangePasswordComponent } from './changepassword.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'src/app/app.module';
-import { HttpClient } from '@angular/common/http';
+
 
 
 const routes: Routes = [
@@ -26,14 +24,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     CommonModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      defaultLanguage: 'vn'
-    }),
+
   ]
 })
 export class ChangepasswordModule { }

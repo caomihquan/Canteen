@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ChangePasswordService } from './services/change-password.service';
-import { ModalComponent } from 'src/app/shares/components/modal/modal.component';
 import { Router } from '@angular/router';
 import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
@@ -16,7 +14,6 @@ export class ChangePasswordComponent implements OnInit {
   isShowPasswordOld = false;
   isShowPasswordNew = false;
   isShowPasswordConfirm = false;
-  modalRef: BsModalRef;
   titleModal:string;
   contentModal:string;
   I18nLang:any;
@@ -28,7 +25,7 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private _serviceChangePassword:ChangePasswordService,
     private _router:Router,
     private _langService:LanguageService,
-    private _modalService:BsModalService){}
+  ){}
   ngOnInit(): void {
     this.getLanguage();
   }
@@ -48,7 +45,7 @@ export class ChangePasswordComponent implements OnInit {
           title: this.I18nLang.Common.Alert,
           content:this.I18nLang.ChangePassword[res.ErrorCode ?? 'Error'],
         };
-        this.modalRef = this._modalService.show(ModalComponent,{initialState});
+        // this.modalRef = this._modalService.show(ModalComponent,{initialState});z
         return;
       }
     })

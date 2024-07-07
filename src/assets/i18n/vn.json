@@ -13,7 +13,8 @@
     "Close":"Đóng",
     "Save":"Lưu",
     "Import":"Nhập khẩu",
-    "Export":"Xuất khẩu"
+    "Export":"Xuất khẩu",
+    "CapPhatDinhMuc":"Cấp phát định mức"
   },
   "Error":{
     "Require":"Thiếu dữ liệu một số trường bắt buộc",
@@ -126,6 +127,43 @@
     "TongDinhMuc":"Tổng định mức",
     "ChonNhanVien":"Chọn nhân viên",
     "ChonThang":"Chọn tháng"
+  },
+  "TheoDoiLichSuNV":{
+    "NamThang":"Năm/Tháng",
+    "CapPhatDinhMuc":"Cấp phát định mức",
+    "BU":"BU",
+    "PhongBan":"Phòng ban",
+    "NhanVien":"Nhân viên",
+    "MaNhanVien":"Mã nhân viên",
+    "TenNhanVien":"Tên nhân viên",
+    "V3ID":"Mã V3ID",
+    "NgayNhanViec":"Ngày nhận việc",
+    "NhomPhuNV":"Nhóm phụ nhân viên",
+    "GioQuetThe":"Giờ quét thẻ",
+    "Thu":"Thứ",
+    "NgayQuetThe":"Ngày quét thẻ",
+    "Line":"Line",
+    "LoaiMon":"Loại món",
+    "CaLamViec":"Ca làm việc",
+    "SoLuong":"Số lượng",
+    "DonGia":"Đơn giá",
+    "ThanhTien":"Thành tiền",
+    "FullName":"Họ và tên (VN)",
+    "TinhTrang":"Tình trạng",
+    "LoaiNhanVien":"Loại nhân viên",
+    "CostCenter":"CostCenter"
+  },
+  "TheKhach":{
+    "MaThe":"Mã Thẻ",
+    "GhiChu":"Ghi chú",
+    "HanMucSuDung":"Hạn mức sử dụng",
+    "DinhMucConLai":"Định mức còn lại",
+    "TheKhach":"Thẻ khách",
+    "DinhMucCongThem":"Định mức cộng thêm",
+    "LichSuXu":"Lịch sử xu",
+    "LichSuCapPhat":"Lịch sử cấp phát",
+    "LanNapGapNhat":"Lần nạp gần nhất",
+    "TinhTrang":"Tình trạng"
   }
 
 

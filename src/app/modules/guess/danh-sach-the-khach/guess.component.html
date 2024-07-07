@@ -1,51 +1,49 @@
-<!-- <app-CapPhatDinhMuc-dialog #capphatdinhmuc (reloadDataMasterEvent)="initTheKhachData()"></app-CapPhatDinhMuc-dialog> -->
-
 <div class="bg-white width-screen">
   <div class="container-toolbar">
     <div class="left-toolbar d-flex gap-2 align-items-center">
       <app-breadcum></app-breadcum>
     </div>
     <div class="right-toolbar">
-      <div class="button-toolbar">
+      <div class="button-toolbar" (click)="AddCard()">
         <span class="icon-General-113"></span>
-        <span>Thêm</span>
+        <span>{{I18nLang.Common.Add}}</span>
       </div>
-      <div class="button-toolbar">
+      <div class="button-toolbar" (click)="EditCard()">
         <span class="icon-General-84"></span>
-        <span>Sửa</span>
+        <span>{{I18nLang.Common.Edit}}</span>
       </div>
-      <div class="button-toolbar">
+      <div class="button-toolbar" (click)="DeleteCard()">
         <span class="icon-General-163"></span>
-        <span>Xoá</span>
+        <span>{{I18nLang.Common.Delete}}</span>
       </div>
-      <div class="button-toolbar" >
+      <div class="button-toolbar" (click)="onOpenCapPhat()">
         <span class="icon-General-3"></span>
-        <span>Cấp phát định mức</span>
+        <span>{{I18nLang.Common.CapPhatDinhMuc}}</span>
       </div>
     </div>
   </div>
   <div class="mx-2">
-    <grid-view [template]="templategrid"></grid-view>
+    <grid-view [totalItems]="totalItems" [template]="templategrid" (clickPage)="ClickPagerIndex($event)"></grid-view>
   </div>
 </div>
 
 
 <ng-template #templategrid>
-  <ejs-grid class="border-0" [height]="height" (recordDoubleClick)="onOpenCapPhatDinhMuc($event)" [dataSource]='listCard' [pageSettings]="pageSettings">
+  <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [dataSource]='listCard' [pageSettings]="pageSettings">
     <e-columns>
-      <e-column headerText="Mã thẻ" textAlign='Left' width=110>
+      <e-column [headerText]="I18nLang.TheKhach.MaThe" textAlign='Left' width=110>
         <ng-template #template let-item>
           <div>{{item.MaTheKhach}}</div>
         </ng-template>
       </e-column>
-      <e-column headerText="Ghi chú" textAlign='Left' width=250>
+      <e-column [headerText]="I18nLang.TheKhach.GhiChu" textAlign='Left' width=250>
         <ng-template #template let-item>
-          <ejs-tooltip id='tooltip' [content]='item.GhiChu' target="#targetCard">
-            <div id="targetCard" style="width: 230px;" class="text-start text-truncate-2">{{item.GhiChu}}</div>
+          <ejs-tooltip id='tooltip' [content]='item?.Mota ?? ""' target="#targetCard">
+            <div id="targetCard" style="width: 230px;" class="text-start text-truncate-2">{{item.Mota}}</div>
           </ejs-tooltip>
         </ng-template>
       </e-column>
-      <e-column headerText="Tình trạng" width=130 textAlign='Left'>
+      <e-column [headerText]="I18nLang.TheKhach.TinhTrang" width=130 textAlign='Left'>
         <ng-template #template let-item>
           <div class="text-start"
             [ngClass]="{'statusCard0':!(item.TinhTrang == 1?true: false),'statusCard1':(item.TinhTrang == 1?true: false)}">
@@ -54,24 +52,24 @@
           </div>
         </ng-template>
       </e-column>
-      <e-column headerText="Định mức sử dụng" textAlign='Left' width=160>
+      <e-column [headerText]="I18nLang.TheKhach.DinhMucConLai" textAlign='Left' width=160>
         <ng-template #template let-item>
           <div class="text-center text-common-primary fs-12 fw-600">{{item.DinhMucConLai  }}</div>
         </ng-template>
       </e-column>
-      <e-column headerText="Hạn mức sử dụng" textAlign='Left' width=160>
+      <e-column [headerText]="I18nLang.TheKhach.HanMucSuDung" textAlign='Left' width=160>
         <ng-template #template let-item>
           <div class="text-center text-common-primary fs-12 fw-600">{{item.HanMucSuDung }}</div>
         </ng-template>
       </e-column>
-      <e-column headerText="Lần nạp gần nhất" textAlign='Left' width=150>
+      <e-column [headerText]="I18nLang.TheKhach.LanNapGapNhat" textAlign='Left' width=150>
         <ng-template #template let-item>
           <div class="d-flex gap-2">
             <div class="fs-12">{{item.LanNapGanNhat | date:'dd/MM/yyyy'}}</div>
           </div>
         </ng-template>
       </e-column>
-      <e-column headerText="Lịch sử cấp phát" textAlign='Center' width=140>
+      <e-column [headerText]="I18nLang.TheKhach.LichSuCapPhat" textAlign='Center' width=140>
         <ng-template #template let-item>
           <div (click)="onOpenCPHistory(item.MaTheKhach);historyProvide.show()">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -88,7 +86,7 @@
           </div>
         </ng-template>
       </e-column>
-      <e-column headerText="Lịch sử xu" textAlign='Center' width=140>
+      <e-column [headerText]="I18nLang.TheKhach.LichSuXu" textAlign='Center' width=140>
         <ng-template #template let-item>
           <div data-bs-target="#modalHistoryXu" data-bs-toggle="modal" (click)="onOpenXuHistory(item.MaTheKhach);historyCoin.show()">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -107,8 +105,52 @@
       </e-column>
     </e-columns>
   </ejs-grid>
-  <ejs-pager [totalRecordsCount]='totalItems' [pageSize]="PageSize" (click)="ClickPagerIndex($event)">
-  </ejs-pager>
+</ng-template>
+
+<!-- dialog Cấp Phát -->
+
+<app-dialog
+#dialogCapPhat
+width="319px"
+height="415px"
+(submit)="submitCapPhat()"
+[headerText]="I18nLang.Common.CapPhatDinhMuc" [templateBody]="contentCapPhat"></app-dialog>
+
+<ng-template #contentCapPhat>
+  <div class="container mt-3">
+    <div class="row gy-3">
+      <div class="col-12">
+        <app-input [title]="I18nLang.TheKhach.DinhMucCongThem" [(ngModel)]="DinhMucCongThem"></app-input>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<!-- dialog Add - Edit -->
+ <app-dialog
+ #dialogAdd
+ [headerText]="''"
+ [templateBody]="contentDialogAdd"
+ (submit)="submitDialog()"
+></app-dialog>
+<ng-template #contentDialogAdd>
+  <div class="container mt-3">
+    <div class="row gy-3">
+      <div class="col-12">
+        <app-input  [(ngModel)]="MaThe" [title]="I18nLang.TheKhach.MaThe"></app-input>
+      </div>
+      <div class="col-12">
+        <app-input type="text-area" [(ngModel)]="GhiChu" [title]="I18nLang.TheKhach.GhiChu"></app-input>
+      </div>
+      <div class="col-12">
+        <app-input [(ngModel)]="DinhMucConLai" type="number" [title]="I18nLang.TheKhach.DinhMucConLai"></app-input>
+      </div>
+      <div class="col-12">
+        <app-input [(ngModel)]="HanMucSuDung" type="number" [title]="I18nLang.TheKhach.HanMucSuDung"></app-input>
+      </div>
+    </div>
+  </div>
 </ng-template>
 
 
@@ -128,7 +170,7 @@
         </e-column>
         <e-column headerText="Ghi chú" textAlign='Left' width=250>
           <ng-template #template let-item>
-            <ejs-tooltip id='tooltip' [content]='item.Note' target="#targetmodalHistory">
+            <ejs-tooltip id='tooltip' [content]='item?.Note ?? ""' target="#targetmodalHistory">
               <div id="targetmodalHistory" style="width: 275px;" class="text-start text-truncate-2">{{item.Note}}
               </div>
             </ejs-tooltip>
@@ -197,10 +239,10 @@
         <e-column headerText="Món ăn đã đặt" textAlign='Left' width=340>
           <ng-template #template let-item>
             <div class="d-flex gap-2 flex-wrap">
-              <div [ngStyle]="{'background':defaultColor[i % 10]}" class="p-1 rounded"
+              <!-- <div [ngStyle]="{'background':defaultColor[i % 10]}" class="p-1 rounded"
                 *ngFor="let food of listFood;let i = index">
-                {{food.Name}}
-              </div>
+                //{{food.Name}}
+              </div> -->
             </div>
           </ng-template>
         </e-column>
@@ -239,10 +281,9 @@
         <e-column headerText="Thời hạn" textAlign='Left' width=390>
           <ng-template #template let-item>
             <div class="d-flex gap-2" *ngIf="item.Type == 0">
-              <div [ngStyle]="{'background':defaultColor[i % 10]}" class="p-1 rounded"
+              <!-- <div [ngStyle]="{'background':defaultColor[i % 10]}" class="p-1 rounded"
                 *ngFor="let food of listFood;let i = index">
-                {{food.Name}}
-              </div>
+              </div> -->
             </div>
             <div *ngIf="item.Type == 1">Công ty nạp định kỳ</div>
           </ng-template>

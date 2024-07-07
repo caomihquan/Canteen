@@ -16,35 +16,48 @@
         <span class="icon-General-101"></span>
         <span>Nhập khẩu</span>
       </div> -->
+      <div class="button-toolbar" (click)="ViewData()">
+        <span class="icon-General-93"></span>
+        <span>{{I18nLang.Common.View}}</span>
+      </div>
     </div>
   </div>
-  <!-- <div class="container-toolbar justify-content-start gap-4">
+  <div class="container-toolbar justify-content-start gap-4">
     <div class="d-flex align-items-center gap-2" >
-      <div class="text-common-black fs-14 fw-600">BU</div>
+      <div class="text-common-black fs-14 fw-600">{{I18nLang.CapPhatDinhMuc.BU}}</div>
       <div style="width: 228px;" class="bg-white">
-        <app-dropdown ></app-dropdown>
+        <app-dropdown [dataSource]="tblBU" (clickItem)="selectetedBU = $event" [selectedItem]="selectetedBU" fieldName="BU"></app-dropdown>
       </div>
     </div>
     <div class="d-flex align-items-center gap-2" >
-      <div class="text-common-black fs-14 fw-600">Phòng ban</div>
+      <div class="text-common-black fs-14 fw-600">{{I18nLang.CapPhatDinhMuc.PhongBan}}</div>
       <div style="width: 228px;" class="bg-white">
-        <app-dropdown ></app-dropdown>
+        <app-tree-view fieldName="DepartmentName" [selectedItem]="selectetedBoPhan" (clickItem)="selectetedBoPhan = $event" type="dropdown" [dataSource]="tblBoPhan"></app-tree-view>
       </div>
     </div>
     <div class="d-flex align-items-center gap-2" >
-      <div class="text-common-black fs-14 fw-600">Nhân viên</div>
+      <div class="text-common-black fs-14 fw-600">{{I18nLang.CapPhatDinhMuc.NhanVien}}</div>
       <div style="width: 228px;" class="bg-white">
-        <app-dropdown ></app-dropdown>
+        <app-combobox
+        [IsMultiSelect]="true"
+        [dataSource]="tblEmployees"
+        [showSeachDropDown]="true"
+        [selectedItem]="selectetedEmployees"
+        fieldName="EmployeeName"
+        fieldName2="EmployeeCode"
+        [searchField]="['EmployeeCode','EmployeeName']"
+        (clickItem)="handleSelectEmp($event)"
+        ></app-combobox>
       </div>
     </div>
 
     <div class="d-flex align-items-center gap-2" >
-      <div class="text-common-black fs-14 fw-600">Năm/Tháng</div>
+      <div class="text-common-black fs-14 fw-600">{{I18nLang.CapPhatDinhMuc.NamThang}}</div>
       <div style="width: 228px;" class="bg-white">
-        <app-dropdown ></app-dropdown>
+        <app-combobox [dataSource]="tblThang" fieldName="Thang" [selectedItem]="selectetedThang" (clickItem)="selectetedThang = $event"></app-combobox>
       </div>
     </div>
-  </div> -->
+  </div>
   <div class="mx-2 mt-2">
     <grid-view (clickPage)="ClickPage($event)" [totalItems]="totalItems" [template]="templategrid"></grid-view>
   </div>
@@ -57,31 +70,31 @@
   [allowTextWrap]="true"
   [textWrapSettings]='wrapSettings'>
     <e-columns>
-      <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
+      <e-column [headerText]="I18nLang.TheoDoiLichSuNV.FullName" textAlign='Left' width=150>
         <ng-template #template let-item>
             <div class="text-start">{{item.EmployeeName}}</div>
         </ng-template>
     </e-column>
 
-    <e-column headerText="V3ID" textAlign='Left' width=110>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.V3ID" textAlign='Left' width=110>
       <ng-template #template let-item>
           <div class="text-start">{{item.BarCode}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Giờ quét thẻ" textAlign='Left' width=150>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.GioQuetThe" textAlign='Left' width=150>
       <ng-template #template let-item>
           <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy hh:mm'}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Thứ" textAlign='Left' width=110>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.Thu" textAlign='Left' width=110>
       <ng-template #template let-item>
           <div class="text-start">{{item.ScanTime | date :'EEEE'}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Ngày quét thẻ" textAlign='Left' width=140>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.NgayQuetThe" textAlign='Left' width=140>
       <ng-template #template let-item>
           <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy' }}</div>
       </ng-template>
@@ -89,13 +102,13 @@
 
 
 
-    <e-column headerText="Line" textAlign='Left' width=140>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.Line" textAlign='Left' width=140>
       <ng-template #template let-item>
           <div class="text-start">{{item.TenLine}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Loại món" textAlign='Left' width=140>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.LoaiMon" textAlign='Left' width=140>
       <ng-template #template let-item>
           <div class="d-flex justify-content-between">
             <div class="d-flex gap-2 align-items-center" [ngClass]="{
@@ -111,7 +124,7 @@
       </ng-template>
     </e-column>
 
-    <e-column headerText="Nhóm phụ nhân viên" width=200 textAlign='Left'>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.NhomPhuNV" width=200 textAlign='Left'>
       <ng-template #template let-item>
         <div class="d-flex justify-content-center">
           <div class="d-flex gap-2 align-items-center" [ngClass]="{
@@ -126,7 +139,7 @@
       </ng-template>
     </e-column>
 
-    <e-column headerText="Loại nhân viên" width=150 textAlign='Left'>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.LoaiNhanVien" width=150 textAlign='Left'>
       <ng-template #template let-item>
           <div [ngClass]="{'status0': item.Status == 0,'status1': item.Status == 1}">
               <ng-container>{{item.EmployeeType}}</ng-container>
@@ -134,37 +147,37 @@
       </ng-template>
     </e-column>
 
-    <e-column headerText="Ca làm việc" textAlign='Left' width=180>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.CaLamViec" textAlign='Left' width=180>
       <ng-template #template let-item>
           <span class="text-start">{{item.MaCa}}</span>
       </ng-template>
     </e-column>
 
 
-    <e-column headerText="Costcenter" textAlign='Left' width=180>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.CostCenter" textAlign='Left' width=180>
       <ng-template #template let-item>
           <span class="text-start">{{item.CostCenter}}</span>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Phòng ban" textAlign='Left' width=180>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.PhongBan" textAlign='Left' width=180>
       <ng-template #template let-item>
           <span class="text-start">{{item.DepartmentName}}</span>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Số lượng" textAlign='Left' width=150>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.SoLuong" textAlign='Left' width=150>
       <ng-template #template let-item>
           <span class="text-start">{{item.SoLuong}}</span>
       </ng-template>
     </e-column>
-    <e-column headerText="Đơn giá" textAlign='Left' width=200>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.DonGia" textAlign='Left' width=200>
       <ng-template #template let-item>
           <span class="text-start">{{item.DonGia}}</span>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Thành tiền" textAlign='Left' width=200>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.ThanhTien" textAlign='Left' width=200>
       <ng-template #template let-item>
           <span class="text-start">{{item.ThanhTien}}</span>
       </ng-template>

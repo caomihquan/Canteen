@@ -61,12 +61,11 @@
               </div> -->
               <div>
                 <div class="text-common-black fw-500 pt-4 fs-14 pb-1">Tháng</div>
-                <app-combobox selectedItem="DowCode ? DowCode[0] : ''" (clickItem)="onChangeDowCode($event)" fieldName="DowCode" [dataSource]="DowCode"></app-combobox>
+                <app-combobox [selectedItem]="selectedDowCode" (clickItem)="onChangeDowCode($event)" fieldName="DowCode" [dataSource]="DowCode"></app-combobox>
               </div>
             </div>
             <div class="bottom">
-              <div (click)="LoadLineReport(Filter.DowCode)" class="button-toolbar w-50 d-flex justify-content-center float-end">
-                <!-- <span class="icon-General-101"></span> -->
+              <div (click)="LoadLineReport()" class="button-toolbar w-50 d-flex justify-content-center float-end">
                 <span>Áp dụng</span>
               </div>
             </div>
