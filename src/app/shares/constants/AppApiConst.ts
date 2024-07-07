@@ -95,5 +95,10 @@ export const AppAPIConst = {
     Line_spPostData:"HrmMobileApp/CnB/Danhmuc/Line_spPostData",
     Line_spdeleteData:"HrmMobileApp/CnB/Danhmuc/Line_spdeleteData",
     Line_spGetDefault:"HrmMobileApp/CnB/Danhmuc/Line_spGetDefault"
+  },
+  CapPhatDinhMucNV:{
+    capdinhmuc_spCapDinhMuc:"HrmMobileApp/CnB/Danhmuc/capdinhmuc_spCapDinhMuc",
+    capdinhmuc_spGetData:"HrmMobileApp/CnB/Danhmuc/capdinhmuc_spGetData",
+    capdinhmuc_spgetDefault:"HrmMobileApp/CnB/Danhmuc/capdinhmuc_spgetDefault"
   }
 }

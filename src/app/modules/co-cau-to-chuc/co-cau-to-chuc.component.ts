@@ -146,19 +146,28 @@ export class CoCauToChucComponent implements OnInit {
       return;
     }
     var DepartmentCode = this.selectedGrid?.DepartmentCode || this.tabSelected?.DepartmentCode
-    this._api.post(AppAPIConst.CoCauToChuc.Departments_spdeleteData,{
-      strCode:DepartmentCode
-    }).subscribe(res=>{
-      if(res && res?.Data){
-        if(res?.Data?.Error){
-          this._noti.ShowToastError(res?.Data?.Error)
-          return;
-        }
-        this.ResetModel();
-        this.getCoCauToChuc();
-        this._noti.ShowToastSuccess(this._languageService.I18LangService.Common.Success)
+
+    this._noti.Confirm({
+      content:this._languageService.I18LangService.Common.WantToDelete,
+      title:this._languageService.I18LangService.Common.Alert,
+      OkFunction:()=>{
+        this._api.post(AppAPIConst.CoCauToChuc.Departments_spdeleteData,{
+          strCode:DepartmentCode
+        }).subscribe(res=>{
+          if(res && res?.Data){
+            if(res?.Data?.Error){
+              this._noti.ShowToastError(res?.Data?.Error.Message)
+              return;
+            }
+            this.ResetModel();
+            this.getCoCauToChuc();
+            this._noti.ShowToastSuccess(this._languageService.I18LangService.Common.Success)
+          }
+        })
       }
     })
+
+
   }
   submitDialog(){
     this._api.post(AppAPIConst.CoCauToChuc.Departments_spPostData,{

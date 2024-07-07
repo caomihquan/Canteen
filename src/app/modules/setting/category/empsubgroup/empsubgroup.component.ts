@@ -94,9 +94,6 @@ export class EmpsubgroupComponent implements OnInit {
   }
 
   ResetModel(){
-    this.PageIndex = AppCommon.PageIndex;
-    this.PageSize = AppCommon.PageSize;
-    this.totalItems = 0;
     this.selectPhanLoai = null;
     this.NhomPhuName = ''
     this.DoiTuong = ''
@@ -116,9 +113,10 @@ export class EmpsubgroupComponent implements OnInit {
     }).subscribe(res=>{
       if(res && res.Data){
         if(res?.Data?.Error){
-          this._noti.ShowToastError(res?.Data?.Error)
+          this._noti.ShowToastError(res?.Data?.Error.Message)
           return;
         }
+        this.PageIndex = 0;
         this.dialogAdd.hide();
         this.ResetModel();
         this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
@@ -146,19 +144,28 @@ export class EmpsubgroupComponent implements OnInit {
       this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
       return;
     }
-    this._api.post(AppAPIConst.Cateogry.NhomPhu_spPostData,{
-      strCode:this.selectedGrid?.NhomPhuCode,
-    }).subscribe(res=>{
-      if(res && res.Data){
-        if(res?.Data?.Error){
-          this._noti.ShowToastError(res?.Data?.Error)
-          return;
-        }
-        this.ResetModel();
-        this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
-        this.getListEmpSub()
+
+    this._noti.Confirm({
+      content:this.I18Lang.Common.WantToDelete,
+      title:this.I18Lang.Common.Alert,
+      OkFunction:()=>{
+        this._api.post(AppAPIConst.Cateogry.NhomPhu_spPostData,{
+          strCode:this.selectedGrid?.NhomPhuCode,
+        }).subscribe(res=>{
+          if(res && res.Data){
+            if(res?.Data?.Error){
+              this._noti.ShowToastError(res?.Data?.Error.Message)
+              return;
+            }
+            this.PageIndex = 0;
+            this.ResetModel();
+            this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
+            this.getListEmpSub()
+          }
+        })
       }
     })
+
   }
 
 

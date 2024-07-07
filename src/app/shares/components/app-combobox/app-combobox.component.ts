@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, forwardRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, forwardRef } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DialogAllModule, TooltipModule } from '@syncfusion/ej2-angular-popups';
+import { DialogAllModule, DialogComponent, TooltipModule } from '@syncfusion/ej2-angular-popups';
 import { fnCommon } from '../../helpers/common';
 import { PagerModule } from '@syncfusion/ej2-angular-grids';
 import { AppCommon } from '../../constants/AppCommon';
@@ -15,7 +15,7 @@ import { AppCommon } from '../../constants/AppCommon';
 
 })
 export class AppComboboxComponent  {
-
+  @ViewChild('dialogCombobox') dialogCombobox:DialogComponent
   @Input() title:string = '';
   @Input() fieldName:string = '';
   @Input() fieldName2:string = '';
@@ -30,6 +30,7 @@ export class AppComboboxComponent  {
   @Input() totalItems:number = 0;
   @Input() pageSize:number = AppCommon.PageSize
   @Input() IsPaging = false;
+  @Input() IsMultiSelect = false;
 
   @Output() clickItem:EventEmitter<any> = new EventEmitter();
   @Output() clickPage:EventEmitter<any> = new EventEmitter();
@@ -79,5 +80,24 @@ export class AppComboboxComponent  {
     this.searchEvent.emit(this.textSearch)
   }
 
+  eventClickItem(item:any){
+    if(!this.IsMultiSelect){
+      this.dialogCombobox.hide();
+    }
+    else{
+      item.IsChecked = !item.IsChecked
+    }
+    this.clickItem.emit(item)
+  }
+  eventClickXoa(){
+    this.dialogCombobox.hide();
+    this.clickItem.emit(null)
+    this.dataSource.map((x:any) =>{
+      if(x?.IsChecked){
+        x.IsChecked = false;
+      }
+      return x
+    })
+  }
 
 }

@@ -51,11 +51,16 @@ export class MemberComponent implements OnInit {
   defaultColor = AppCommon.defaultColor
   user:UserModel | null
   @ViewChild('grid') public grid?: GridComponent;
-
+  selectedGrid:any;
   //model
   FullName:string;
   stringImage:any;
   stringImageBase64:any;
+  fileName:any;
+  fileSize:any;
+  fileImage:any;
+
+
   MaNhanVien:string;
   V3ID:string;
   BU:string;
@@ -64,6 +69,10 @@ export class MemberComponent implements OnInit {
   selectedNhomPhu:any;
   selectedTinhTrang:any;
   selectedEmployeeType:any;
+  CostCenter:string
+  TransactionEntry:string
+  Location:string
+  EmployeeCategory:string;
 
 
   I18Lang:any
@@ -85,17 +94,19 @@ export class MemberComponent implements OnInit {
       for (let file of files) {
         if(file.type != "image/jpeg" && file.type != "image/png" &&  file.type != "image/jpg")
         {
-          alert('chỉ hỗ trợ ảnh jpg, jpeg hoặc png');
+          this._noti.ShowToastError('chỉ hỗ trợ ảnh jpg, jpeg hoặc png')
+          return;
         }
-        else
-        {
-          let reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-            //reader.result
-          }
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.stringImage = reader.result;
+          this.stringImageBase64 = null;
+          let base64str = this.stringImage.split("base64,").length > 1 ? this.stringImage.split("base64,")[1] : "";     //
+          this.fileName = file.name;
+          this.fileSize = file.size;
+          this.fileImage = base64str;
         }
-
       }
     }
   }
@@ -117,7 +128,7 @@ export class MemberComponent implements OnInit {
         this.tblBoPhan = this.InitNested(res.Data.tblBoPhan,null);
         this.tblNhomPhu = res.Data.tblNhomPhu
         this.tblTinhTrang = res.Data.tblTinhTrang
-        this.tblEmployeeType = res.Data.tblTinhTrang
+        this.tblEmployeeType = res.Data.tblEmployeeType
       }
     })
   }
@@ -157,6 +168,10 @@ export class MemberComponent implements OnInit {
       if(res && res.Data){
         console.log(res);
         this.listEmployee = res.Data.Data
+        this.listEmployee.map(x => {
+          x.Photo = fnCommon.ConvertPhotoEmp(x.PhotoID)
+          return x;
+        })
         this.totalItems = res.Data.OutputParams.TotalItems
       }
     })
@@ -164,11 +179,11 @@ export class MemberComponent implements OnInit {
 
 
   LoadListHistory(){
-    this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
+    this._api.post(AppAPIConst.QuanLyNhanVien.employees_spLichSuThanhToan,{
       PageIndex:this.PageIndexHistory,
       PageSize:this.PageSizeHistory,
-      SearchText:this.EmployeeSelected.EmployeeCode,
-      Option:7
+      SearchText:'',
+      EmployeeCode:this.EmployeeSelected.EmployeeCode,
     }).subscribe(res=>{
       if(res && res.Data){
         this.listHistory = res.Data.Data
@@ -179,6 +194,7 @@ export class MemberComponent implements OnInit {
 
   ClickHistoryEmp(item:any){
     this.EmployeeSelected = item;
+    this.PageIndexHistory = 0;
     if(this.EmployeeSelected && this.EmployeeSelected?.EmployeeCode){
       this.LoadListHistory();
       this.dialogHistory.show()
@@ -186,28 +202,118 @@ export class MemberComponent implements OnInit {
   }
 
   ClickPagerHistory(page:any){
-    console.log(page);
+    this.PageIndexHistory = page;
+    this.LoadListHistory();
   }
 
 
 
 
   selectedRow(item:any){
+    const data = item.rowData
+    this.selectedGrid = data;
+    console.log(item);
+    this.V3ID = data.BarCode
+    this.BU = data.BU
+    this.FullName = data.EmployeeName
+    this.selectedPhongBan = this.tblBoPhanOrigin.find(x => x.DepartmentCode == data.DepartmentCode)
+    this.NgayNhanViec = data.JoinDate
+    this.selectedNhomPhu = this.tblBoPhanOrigin.find(x => x.NhomPhuCode == data.NhomPhuCode)
+    this.selectedTinhTrang = this.tblBoPhanOrigin.find(x => x.TinhTrangCode == data.TinhTrangCode)
+    this.CostCenter = data.CostCenter
+    this.Location = data.Location
+    this.selectedEmployeeType = this.tblBoPhanOrigin.find(x => x.EmployeeTypeCode == data.EmployeeTypeCode)
+    this.EmployeeCategory = data.EmployeeCategory
+    this.stringImageBase64 = this.selectedGrid.PhotoID
+
+    this.fileImage = this.selectedGrid.img;
+    this.stringImage = null// this.selectedUser.img ? 'data:image/png;base64,' + this.selectedUser.img : null
+    this.fileName = this.selectedGrid.fileName
+    this.fileSize = this.selectedGrid.FileSize
+    this.MaNhanVien = data.EmployeeCode
   }
 
   SaveEmployee(item:any){
-    this._api.post(AppAPIConst.QuanLyNhanVien.employee_post,{
-      dataEmp:item
+    this._api.post(AppAPIConst.QuanLyNhanVien.employees_spPostData,{
+      EmployeeCode:this.MaNhanVien,
+      BarCode:this.V3ID,
+      BU:this.BU,
+      EmployeeName:this.FullName,
+      DepartmentCode:this.selectedPhongBan?.DepartmentCode,
+      JoinDate:this.NgayNhanViec,
+      NhomPhu:this.selectedNhomPhu?.NhomPhuCode,
+      TinhTrang:this.selectedTinhTrang?.TinhTrangCode,
+      CostCenter:this.CostCenter,
+      Location:this.Location,
+      EmployeeType:this.selectedEmployeeType?.EmployeeTypeCode,
+      EmployeeCategory:this.EmployeeCategory
     }).subscribe(res=>{
       if(res && res.Data){
         if(res.Data.Error){
-          this._noti.ShowToastError(res.Data.Error)
+          this._noti.ShowToastError(res.Data.Error.Message)
           return;
         }
         this.PageIndex = 0;
+        this.empaddnewdialog.hide();
+        this.ResetModel();
         this.LoadListMember();
         this._noti.ShowToastSuccess('Thành công')
       }
     })
   }
+
+  ResetModel(){
+    this.V3ID = ''
+    this.BU = ''
+    this.FullName = ''
+    this.selectedPhongBan = null
+    this.NgayNhanViec = ''
+    this.selectedNhomPhu = null
+    this.selectedTinhTrang = null
+    this.CostCenter = ''
+    this.Location = ''
+    this.selectedEmployeeType = null
+    this.EmployeeCategory = ''
+    this.fileImage = null
+    this.fileSize = null
+    this.fileName = null
+    this.stringImage = null
+    this.stringImageBase64 = null
+  }
+
+  onEdit(){
+    if(!this.selectedGrid){
+      this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
+      return;
+    }
+    this.empaddnewdialog.show();
+  }
+
+  onDelete(){
+    if(!this.selectedGrid){
+      this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
+      return;
+    }
+    this._noti.Confirm({
+      content:this.I18Lang.Common.WantToDelete,
+      title:this.I18Lang.Common.Alert,
+      OkFunction:()=>{
+        this._api.post(AppAPIConst.QuanLyNhanVien.employees_spDeleteData,{
+          strCode:this.selectedGrid?.EmployeeCode,
+        }).subscribe(res=>{
+          if(res && res.Data){
+            if(res?.Data?.Error){
+              this._noti.ShowToastError(res?.Data?.Error.Message)
+              return;
+            }
+            this.PageIndex = 0;
+            this.ResetModel();
+            this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
+            this.LoadListMember()
+          }
+        })
+      }
+    })
+  }
+
 }

@@ -104,7 +104,28 @@
     "CaLamViec":"Ca làm việc",
     "SoLuong":"Số lượng",
     "DonGia":"Đơn giá",
-    "ThanhTien":"Thành tiền"
+    "ThanhTien":"Thành tiền",
+    "FullName":"Họ và tên (VN)",
+    "TinhTrang":"Tình trạng"
+  },
+  "CapPhatDinhMuc":{
+    "NamThang":"Năm/Tháng",
+    "CapPhatDinhMuc":"Cấp phát định mức",
+    "BU":"BU",
+    "PhongBan":"Phòng ban",
+    "NhanVien":"Nhân viên",
+    "MaNhanVien":"Mã nhân viên",
+    "TenNhanVien":"Tên nhân viên",
+    "V3ID":"Mã V3ID",
+    "NgayNhanViec":"Ngày nhận việc",
+    "NhomPhuNV":"Nhóm phụ nhân viên",
+    "FullName":"Họ và tên (VN)",
+    "ThangCapPhat":"Tháng cấp phát",
+    "TienDinhMuc1":"Tiền định mức lần 1",
+    "TienDinhMuc2":"Tiền định mức lần 2",
+    "TongDinhMuc":"Tổng định mức",
+    "ChonNhanVien":"Chọn nhân viên",
+    "ChonThang":"Chọn tháng"
   }
 
 

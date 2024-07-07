@@ -4,44 +4,53 @@
       <app-breadcum></app-breadcum>
     </div>
     <div class="right-toolbar">
+      <div class="button-toolbar" (click)="ViewData()">
+        <span class="icon-General-93"></span>
+        <span>{{I18nLang.Common.View}}</span>
+      </div>
       <div class="button-toolbar" (click)="dialogCapPhat.show()">
         <span class="icon-General-84"></span>
-        <span>Cấp phát định mức</span>
+        <span>{{I18nLang.CapPhatDinhMuc.CapPhatDinhMuc}}</span>
       </div>
-      <div class="button-toolbar">
-        <span class="icon-General-20"></span>
-        <span>Chọn nhiều dòng</span>
-      </div>
-      <div class="button-toolbar">
+      <!-- <div class="button-toolbar">
         <span class="icon-General-101"></span>
-        <span>Nhập khẩu</span>
-      </div>
+        <span>{{I18nLang.Common.Import}}</span>
+      </div> -->
     </div>
   </div>
   <div class="container-toolbar justify-content-start gap-4">
     <div class="d-flex align-items-center gap-2" >
-      <div class="text-common-black fs-14 fw-600">BU</div>
+      <div class="text-common-black fs-14 fw-600">{{I18nLang.CapPhatDinhMuc.BU}}</div>
       <div style="width: 228px;" class="bg-white">
-        <app-dropdown ></app-dropdown>
+        <app-dropdown [dataSource]="tblBU" (clickItem)="selectetedBU = $event" [selectedItem]="selectetedBU" fieldName="BU"></app-dropdown>
       </div>
     </div>
     <div class="d-flex align-items-center gap-2" >
-      <div class="text-common-black fs-14 fw-600">Phòng ban</div>
+      <div class="text-common-black fs-14 fw-600">{{I18nLang.CapPhatDinhMuc.PhongBan}}</div>
       <div style="width: 228px;" class="bg-white">
-        <app-dropdown ></app-dropdown>
+        <app-tree-view fieldName="DepartmentName" [selectedItem]="selectetedBoPhan" (clickItem)="selectetedBoPhan = $event" type="dropdown" [dataSource]="tblBoPhan"></app-tree-view>
       </div>
     </div>
     <div class="d-flex align-items-center gap-2" >
-      <div class="text-common-black fs-14 fw-600">Nhân viên</div>
+      <div class="text-common-black fs-14 fw-600">{{I18nLang.CapPhatDinhMuc.NhanVien}}</div>
       <div style="width: 228px;" class="bg-white">
-        <app-dropdown ></app-dropdown>
+        <app-combobox
+        [IsMultiSelect]="true"
+        [dataSource]="tblEmployees"
+        [showSeachDropDown]="true"
+        [selectedItem]="selectetedEmployees"
+        fieldName="EmployeeName"
+        fieldName2="EmployeeCode"
+        [searchField]="['EmployeeCode','EmployeeName']"
+        (clickItem)="handleSelectEmp($event)"
+        ></app-combobox>
       </div>
     </div>
 
     <div class="d-flex align-items-center gap-2" >
-      <div class="text-common-black fs-14 fw-600">Năm/Tháng</div>
+      <div class="text-common-black fs-14 fw-600">{{I18nLang.CapPhatDinhMuc.NamThang}}</div>
       <div style="width: 228px;" class="bg-white">
-        <app-dropdown ></app-dropdown>
+        <app-combobox [dataSource]="tblThang" fieldName="Thang" [selectedItem]="selectetedThang" (clickItem)="selectetedThang = $event"></app-combobox>
       </div>
     </div>
   </div>
@@ -63,25 +72,25 @@
         <ng-template #headerTemplate>
         </ng-template>
       </e-column>
-      <e-column headerText="Mã Nhân viên" textAlign='Left' width=150>
+      <e-column [headerText]="I18nLang.CapPhatDinhMuc.MaNhanVien" textAlign='Left' width=150>
         <ng-template #template let-item>
             <div class="text-start">{{item.EmployeeCode}}</div>
         </ng-template>
     </e-column>
 
-    <e-column headerText="V3ID" textAlign='Left' width=140>
+    <e-column [headerText]="I18nLang.CapPhatDinhMuc.V3ID" textAlign='Left' width=140>
       <ng-template #template let-item>
           <div class="text-start">{{item.BarCode}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="BU" textAlign='Left' width=140>
+    <e-column [headerText]="I18nLang.CapPhatDinhMuc.BU" textAlign='Left' width=140>
       <ng-template #template let-item>
           <span class="text-start">{{item.BU}}</span>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Họ và tên (VN)" width=250 textAlign='Left'>
+    <e-column [headerText]="I18nLang.CapPhatDinhMuc.FullName" width=250 textAlign='Left'>
         <ng-template #template let-item>
             <div class="d-flex align-items-center gap-2">
                 <img class="rounded-circle" width="40" height="40" [src]="getPhoto(item.EmployeeCode)" alt="" srcset="">
@@ -89,17 +98,17 @@
             </div>
         </ng-template>
     </e-column>
-    <e-column headerText="Phòng ban" textAlign='Left' width=180>
+    <e-column [headerText]="I18nLang.CapPhatDinhMuc.PhongBan" textAlign='Left' width=180>
         <ng-template #template let-item>
             <span class="text-start">{{item.DepartmentName}}</span>
         </ng-template>
     </e-column>
-    <e-column headerText="Ngày nhận việc" textAlign='Left' width=180>
+    <e-column [headerText]="I18nLang.CapPhatDinhMuc.NgayNhanViec" textAlign='Left' width=180>
       <ng-template #template let-item>
           <span class="text-start">{{item.JoinDate  | date:'dd/MM/yyyy'}}</span>
       </ng-template>
     </e-column>
-    <e-column headerText="Nhóm phụ nhân viên" width=200 textAlign='Left'>
+    <e-column [headerText]="I18nLang.CapPhatDinhMuc.NhomPhuNV" width=200 textAlign='Left'>
       <ng-template #template let-item>
         <div class="d-flex justify-content-center">
           <div class="d-flex gap-2 align-items-center" [ngClass]="{
@@ -114,23 +123,23 @@
       </ng-template>
     </e-column>
 
-    <e-column headerText="Tháng cấp phát" textAlign='Left' width=180>
+    <e-column [headerText]="I18nLang.CapPhatDinhMuc.ThangCapPhat" textAlign='Left' width=180>
       <ng-template #template let-item>
           <span class="text-start">{{item.Thang}}</span>
       </ng-template>
     </e-column>
-    <e-column headerText="Tiền định mức lần 1" textAlign='Left' width=200>
+    <e-column [headerText]="I18nLang.CapPhatDinhMuc.TienDinhMuc1" textAlign='Left' width=200>
       <ng-template #template let-item>
           <span class="text-start">{{item.DinhMuc1}}</span>
       </ng-template>
     </e-column>
-    <e-column headerText="Tiền định mức lần 2" textAlign='Left' width=200>
+    <e-column [headerText]="I18nLang.CapPhatDinhMuc.TienDinhMuc2" textAlign='Left' width=200>
       <ng-template #template let-item>
           <span class="text-start">{{item.DinhMuc2}}</span>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Tổng định mức" textAlign='Left' width=200>
+    <e-column [headerText]="I18nLang.CapPhatDinhMuc.TongDinhMuc" textAlign='Left' width=200>
       <ng-template #template let-item>
           <span class="text-start">{{item.TongDinhMuc}}</span>
       </ng-template>
@@ -164,15 +173,32 @@
   </ejs-grid>
 </ng-template>
 
-<app-dialog #dialogCapPhat headerText="Cấp phát định mức" [templateBody]="content"></app-dialog>
+<app-dialog height="714px" width="435px" #dialogCapPhat [headerText]="I18nLang.CapPhatDinhMuc.CapPhatDinhMuc" [templateBody]="content"></app-dialog>
 <ng-template #content>
   <div class="container mt-3">
     <div class="row g-3">
       <div class="col-12">
-        <app-input type="number" title="Thời điểm bắt đầu theo kế hoạch"></app-input>
+        <app-input [(ngModel)]="tienDM1" type="number" [title]="I18nLang.CapPhatDinhMuc.TienDinhMuc1"></app-input>
       </div>
       <div class="col-12">
-        <app-input type="number" title="Thời điểm kết thúc theo kế hoạch"></app-input>
+        <app-input [(ngModel)]="tienDM2" type="number" [title]="I18nLang.CapPhatDinhMuc.TienDinhMuc2"></app-input>
+      </div>
+      <div class="col-12">
+        <app-combobox
+        [title]="I18nLang.CapPhatDinhMuc.ChonNhanVien"
+        [IsMultiSelect]="true"
+        [dataSource]="tblEmployeesDialog"
+        [showSeachDropDown]="true"
+        [selectedItem]="selectetedEmployeesDialog"
+        fieldName="EmployeeName"
+        fieldName2="EmployeeCode"
+        [searchField]="['EmployeeCode','EmployeeName']"
+        (clickItem)="handleSelectEmpDialog($event)"
+        ></app-combobox>
+      </div>
+      <div class="col-12">
+
+        <app-combobox [title]="I18nLang.CapPhatDinhMuc.ChonThang"  [dataSource]="tblThang" fieldName="Thang" [selectedItem]="selectetedThangDialog" (clickItem)="selectetedThangDialog = $event"></app-combobox>
       </div>
     </div>
   </div>

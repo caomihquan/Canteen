@@ -21,6 +21,8 @@ export class FoodlineComponent implements OnInit {
   selectedDate = new Date().toISOString()
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
+
+
   totalItems:number;
   height:number = (window.innerHeight - 202)
   width:number = (window.innerWidth - 250)
@@ -84,10 +86,6 @@ export class FoodlineComponent implements OnInit {
     this.NhaThau = item.NhaThau
   }
 
-  onClickViewHistory(id:string){
-        //this.historydialog.onOpenDialog(id);
-  }
-
 
   getListFoodLine(){
     this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
@@ -137,9 +135,10 @@ export class FoodlineComponent implements OnInit {
     }).subscribe(res=>{
       if(res && res.Data){
         if(res?.Data?.Error){
-          this._noti.ShowToastError(res?.Data?.Error)
+          this._noti.ShowToastError(res?.Data?.Error.Message)
           return;
         }
+        this.PageIndex = 0;
         this.dialogAdd.hide();
         this.ResetModel();
         this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
@@ -167,17 +166,25 @@ export class FoodlineComponent implements OnInit {
       this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
       return;
     }
-    this._api.post(AppAPIConst.Cateogry.Line_spdeleteData,{
-      strCode:this.selectedGrid?.MaLine,
-    }).subscribe(res=>{
-      if(res && res.Data){
-        if(res?.Data?.Error){
-          this._noti.ShowToastError(res?.Data?.Error)
-          return;
-        }
-        this.ResetModel();
-        this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
-        this.getListFoodLine()
+
+    this._noti.Confirm({
+      content:this.I18Lang.Common.WantToDelete,
+      title:this.I18Lang.Common.Alert,
+      OkFunction:()=>{
+        this._api.post(AppAPIConst.Cateogry.Line_spdeleteData,{
+          strCode:this.selectedGrid?.MaLine,
+        }).subscribe(res=>{
+          if(res && res.Data){
+            if(res?.Data?.Error){
+              this._noti.ShowToastError(res?.Data?.Error.Message)
+              return;
+            }
+            this.PageIndex = 0;
+            this.ResetModel();
+            this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
+            this.getListFoodLine()
+          }
+        })
       }
     })
   }

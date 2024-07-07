@@ -3,15 +3,10 @@
   <div class="dropdown" (click)="dialogCombobox.show()">
     <div class="input-dropdown w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
       aria-expanded="false">
-      <div class="text-truncate" *ngIf="selectedItem">{{selectedItem[fieldName]}}</div>
+      <div class="text-truncate" *ngIf="selectedItem && !IsMultiSelect">{{selectedItem[fieldName]}}</div>
+      <div class="text-truncate" *ngIf="selectedItem && IsMultiSelect">{{selectedItem}}</div>
       <div *ngIf="!selectedItem" style="padding:8.5px 0;"></div>
       <span class="icon-Arrows-66"></span>
-    <!-- <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton1">
-      <div *ngIf="showSeachDropDown"  class="mx-2">
-        <input (input)="ChangeSearch()" class="rounded border p-2 rounded w-100 " type="text">
-      </div>
-      <li *ngFor="let item of dataSource" (click)="clickItem.emit(item)">{{item[fieldName]}}</li>
-    </ul> -->
   </div>
 </div>
 
@@ -28,9 +23,20 @@
         <input [(ngModel)]="textSearch" (keyup.enter)="EnterSearch()" class="rounded border p-2 rounded w-100 " type="text">
       </div>
       <div *ngFor="let item of dataSource">
-        <div class="item-combobox border-bottom d-flex flex-column" (click)="dialogCombobox.hide();clickItem.emit(item)">
-          <div>{{item[fieldName]}}</div>
-          <div *ngIf="fieldName2">{{item[fieldName2]}}</div>
+        <div class="item-combobox border-bottom d-flex flex-column" (click)="eventClickItem(item)">
+          <div class="d-flex align-items-center gap-4" *ngIf="IsMultiSelect">
+            <div>
+              <input type="checkbox" [checked]="item?.IsChecked">
+            </div>
+            <div>
+              <div>{{item[fieldName]}}</div>
+              <div *ngIf="fieldName2">{{item[fieldName2]}}</div>
+            </div>
+          </div>
+          <div *ngIf="!IsMultiSelect">
+              <div>{{item[fieldName]}}</div>
+              <div *ngIf="fieldName2">{{item[fieldName2]}}</div>
+          </div>
         </div>
       </div>
       <div>
@@ -44,7 +50,7 @@
         </ejs-pager>
       </div>
       <div class="d-flex align-items-center gap-2">
-        <button class="btn button-app-second " (click)="dialogCombobox.hide();clickItem.emit(null)">Xoá</button>
+        <button class="btn button-app-second " (click)="eventClickXoa()">Xoá</button>
         <!-- <button class="btn button-app" (click)="SubmitToolbarLeft()">Lưu</button> -->
       </div>
     </div>

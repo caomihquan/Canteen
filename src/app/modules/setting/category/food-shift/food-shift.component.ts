@@ -113,13 +113,15 @@ export class FoodShiftComponent implements OnInit {
       NhomPhuCode:this.MaCa,
       NhomPhuName:this.TenCa,
       DoiTuong:this.GhiChu,
-      HanMucNgay:this.BatDau,
+      ThoiGianBatDau:this.BatDau,
+      ThoiGianKetThuc:this.KetThuc,
     }).subscribe(res=>{
       if(res && res.Data){
         if(res?.Data?.Error){
-          this._noti.ShowToastError(res?.Data?.Error)
+          this._noti.ShowToastError(res?.Data?.Error.Message)
           return;
         }
+        this.PageIndex = 0;
         this.dialogAdd.hide();
         this.ResetModel();
         this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
@@ -141,19 +143,29 @@ export class FoodShiftComponent implements OnInit {
       this._noti.ShowToastError(this.I18Lang.Error.NoRowSelected)
       return;
     }
-    this._api.post(AppAPIConst.Cateogry.Ca_spdeleteData,{
-      strCode:this.selectedGrid?.MaCa,
-    }).subscribe(res=>{
-      if(res && res.Data){
-        if(res?.Data?.Error){
-          this._noti.ShowToastError(res?.Data?.Error)
-          return;
-        }
-        this.ResetModel();
-        this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
-        this.getListFoodShift()
+
+    this._noti.Confirm({
+      content:this.I18Lang.Common.WantToDelete,
+      title:this.I18Lang.Common.Alert,
+      OkFunction:()=>{
+        this._api.post(AppAPIConst.Cateogry.Ca_spdeleteData,{
+          strCode:this.selectedGrid?.MaCa,
+        }).subscribe(res=>{
+          if(res && res.Data){
+            if(res?.Data?.Error){
+              this._noti.ShowToastError(res?.Data?.Error.Message)
+              return;
+            }
+            this.PageIndex = 0;
+            this.ResetModel();
+            this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
+            this.getListFoodShift()
+          }
+        })
       }
     })
+
+
   }
 
 
