@@ -6,19 +6,19 @@
     <div class="right-toolbar">
       <div class="button-toolbar">
         <span class="icon-General-113"></span>
-        <span>Thêm</span>
+        <span>{{I18nLang.Common.Add}}</span>
       </div>
       <div class="button-toolbar">
         <span class="icon-General-84"></span>
-        <span>Sửa</span>
+        <span>{{I18nLang.Common.Edit}}</span>
       </div>
       <div class="button-toolbar">
         <span class="icon-General-163"></span>
-        <span>Xoá</span>
+        <span>{{I18nLang.Common.Delete}}</span>
       </div>
       <div class="button-toolbar">
         <span class="icon-Arrows-63"></span>
-        <span>Trả thẻ</span>
+        <span>{{I18nLang.TheKhach.TraThe}}</span>
       </div>
     </div>
   </div>
@@ -35,64 +35,63 @@
   [textWrapSettings]='wrapSettings'>
     <e-columns>
 
-
-    <e-column headerText="ID Thẻ" textAlign='Left' width=130>
+    <e-column [headerText]="I18nLang.TheKhach.IDThe" textAlign='Left' width=130>
       <ng-template #template let-item>
-          <div class="text-start">{{item.V3ID}}</div>
+          <div class="text-start">{{item.MaTheKhach}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Họ và tên (VN)" width=160 textAlign='Left'>
+    <e-column [headerText]="I18nLang.TheKhach.FullName" width=160 textAlign='Left'>
         <ng-template #template let-item>
             <div class="d-flex align-items-center gap-2">
                 <img width="40" height="40" src="./assets/images/avatar.png" alt="" srcset="">
-                <span class="text-start">{{item.FullName}}</span>
+                <span class="text-start">{{item.HoTen}}</span>
             </div>
         </ng-template>
     </e-column>
 
-    <e-column headerText="Hạn mức/Ngày" textAlign='Left' width=140>
+    <e-column [headerText]="I18nLang.TheKhach.HanMucNgay" textAlign='Left' width=140>
       <ng-template #template let-item>
-          <div class="text-start">50.000</div>
+          <div class="text-start">{{item.HanMucNgay  | number: '2.'}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Thời gian sử dụng" textAlign='Left' width=160>
+    <e-column [headerText]="I18nLang.TheKhach.ThoiGianSuDung" textAlign='Left' width=160>
       <ng-template #template let-item>
-          <div class="text-start">{{item.dateA | date: 'dd/MM/yyyy'}}</div>
+          <div class="text-start">{{item.ThoiGianSuDung | date: 'dd/MM/yyyy'}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Người cấp thẻ" width=220 textAlign='Left'>
+    <e-column [headerText]="I18nLang.TheKhach.NguoiCapThe" width=220 textAlign='Left'>
       <ng-template #template let-item>
           <div class="d-flex align-items-center gap-2">
-              <img width="40" height="40" src="./assets/images/avatar.png" alt="" srcset="">
+              <img width="40" height="40" [src]="getPhoto(item.NguoiCap)" alt="" srcset="">
               <div class="d-flex gap-2 flex-column">
-                <div class="text-start">{{item.FullName}}adsfaf</div>
+                <div class="text-start">{{item.NguoiCap}}</div>
                 <div class="d-flex gap-2">
-                  <div class="fs-12 text-common-gray fw-400">{{item.dateA | date: 'dd/MM/yyyy'}}</div>
-                  <div class="fs-12 text-common-gray fw-400">{{item.dateA | date: 'shortTime'}}</div>
+                  <div class="fs-12 text-common-gray fw-400">{{item.CreatedOn | date: 'dd/MM/yyyy'}}</div>
+                  <div class="fs-12 text-common-gray fw-400">{{item.CreatedOn | date: 'shortTime'}}</div>
                 </div>
               </div>
           </div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Ghi chú" textAlign='Left' width=170>
+    <e-column [headerText]="I18nLang.TheKhach.GhiChu" textAlign='Left' width=170>
       <ng-template #template let-item>
-          <ejs-tooltip id='tooltip' [content]='item.Note' target="#targetCard">
-              <div id="targetCard" style="width: 160px;" class="text-start text-truncate-2">{{item.Note}}</div>
+          <ejs-tooltip id='tooltip' [content]='item.GhiChu ?? ""' target="#targetCard">
+              <div id="targetCard" style="width: 160px;" class="text-start text-truncate-2">{{item.GhiChu}}</div>
           </ejs-tooltip>
       </ng-template>
     </e-column>
 
-    <e-column  headerText="Có trả thẻ" width="140" textAlign='Center'>
+    <e-column  [headerText]="I18nLang.TheKhach.CoTraThe" width="140" textAlign='Center'>
       <ng-template #template let-item>
-          <input class="point-none fs-20 form-check-input" type="checkbox" [checked]="item.IsAdministrator">
+          <input class="point-none fs-20 form-check-input" type="checkbox" [checked]="item.TraThe">
       </ng-template>
     </e-column>
 
-    <e-column headerText="Xem lịch sử" textAlign='Center' width=130>
+    <e-column [headerText]="I18nLang.TheKhach.XemLichSu" textAlign='Center' width=130>
       <ng-template #template let-item>
           <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">

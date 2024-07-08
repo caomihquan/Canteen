@@ -7,6 +7,10 @@
   <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}} <span *ngIf="IsRequire" style="color: red;"> *</span></label>
   <input  [disabled]="disabled" [placeholder]="placeholder" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text" onlyNumber/>
 </div>
+<div *ngIf="type=='numberFormat'">
+  <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}} <span *ngIf="IsRequire" style="color: red;"> *</span></label>
+  <input  [disabled]="disabled" [placeholder]="placeholder" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text" onlyNumber appFormatNumber/>
+</div>
 <div *ngIf="type=='text-area'">
   <label class="py-1 text-common-black fs-14 fw-500" *ngIf="title">{{title}} <span *ngIf="IsRequire" style="color: red;"> *</span></label>
   <textarea [rows]="rows" [placeholder]="placeholder"  [disabled]="disabled" [(ngModel)]="value" (keyup)="onInputChange($event)" class="input-text w-100" type="text"></textarea>

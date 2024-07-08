@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild, forwardRef } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OnlyNumberDirective } from '../../directive/only-number.directive';
+import { FormatNumberDirective } from '../../directive/format-thoundsand';
 
 @Component({
   selector: 'app-input',
   templateUrl: './app-input.component.html',
   styleUrls: ['./app-input.component.scss'],
   standalone:true,
-  imports:[FormsModule,CommonModule,OnlyNumberDirective],
+  imports:[FormsModule,CommonModule,OnlyNumberDirective,FormatNumberDirective],
   providers: [
     {
        provide: NG_VALUE_ACCESSOR,

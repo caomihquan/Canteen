@@ -30,7 +30,7 @@ export class CapPhatTheKhachComponent implements OnInit {
   ThoiHanSuDung = new Date().toISOString();
   HanMucNgay:string;
   selectedGrid:any
-
+  getPhoto = fnCommon.ConvertPhotoEmpByUserID
   //trathe
   selectedTheTra:any;
   NguoiTra:any;

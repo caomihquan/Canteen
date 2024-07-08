@@ -164,7 +164,15 @@
     "LichSuCapPhat":"Lịch sử cấp phát",
     "LanNapGapNhat":"Lần nạp gần nhất",
     "TinhTrang":"Tình trạng",
-    "V3ID":"Mã V3ID"
+    "V3ID":"Mã V3ID",
+    "TraThe":"Trả thẻ",
+    "IDThe":"ID Thẻ",
+    "FullName":"Họ và tên (VN)",
+    "HanMucNgay":"Hạn mức / Ngày",
+    "ThoiGianSuDung":"Thời gian sử dụng",
+    "NguoiCapThe":"Người cấp thẻ",
+    "XemLichSu":"Xem lịch sử",
+    "CoTraThe":"Có trả thẻ?"
   }
 
 
