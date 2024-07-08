@@ -4,6 +4,10 @@
       <app-breadcum></app-breadcum>
     </div>
     <div class="right-toolbar">
+      <div class="button-toolbar" (click)="ViewData()">
+        <span class="icon-General-93"></span>
+        <span>{{I18nLang.Common.View}}</span>
+      </div>
       <!-- <div class="button-toolbar">
         <span class="icon-General-113"></span>
         <span>Thêm</span>
@@ -29,25 +33,25 @@
 
 <ng-template #templateGrid>
   <ejs-grid
-  [dataSource]="LSitems"
+  [dataSource]="listHistory"
   [height]="heightGrid "
   [allowTextWrap]="true"
   [textWrapSettings]='wrapSettings'>
   <e-columns>
 
-    <e-column headerText="Mã thẻ" textAlign='Left' width=110>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.MaThe" textAlign='Left' width=110>
       <ng-template #template let-item>
           <div class="text-start">{{item.MaTheKhach}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Giờ quét thẻ" textAlign='Left' width=150>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.GioQuetThe" textAlign='Left' width=150>
       <ng-template #template let-item>
           <div class="text-start">{{item.ScanTime | date:'hh:mm'}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Thứ" textAlign='Left' width=110>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.Thu" textAlign='Left' width=110>
       <ng-template #template let-item>
           <div class="text-start">{{item.ScanTime | date:'EEEE'}}</div>
       </ng-template>
@@ -55,20 +59,20 @@
 
 
 
-    <e-column headerText="Ngày quét thẻ" textAlign='Left' width=140>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.NgayQuetThe" textAlign='Left' width=140>
       <ng-template #template let-item>
           <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy'}}</div>
       </ng-template>
     </e-column>
 
 
-    <e-column headerText="Line" textAlign='Left' width=140>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.Line" textAlign='Left' width=140>
       <ng-template #template let-item>
           <div class="text-start">{{item.TenLine}}</div>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Loại món" textAlign='Left' width=140>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.LoaiMon" textAlign='Left' width=140>
       <ng-template #template let-item>
           <div class="d-flex gap-2 align-items-center" >
             <span class="icon-FinanceCommerce-68"></span>
@@ -82,25 +86,25 @@
       'type-food-2': item.LoaiMon == 2,
       'type-food-3': item.LoaiMon == 3,
       }" -->
-    <e-column headerText="Ca làm việc" textAlign='Left' width=180>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.CaLamViec" textAlign='Left' width=180>
       <ng-template #template let-item>
           <span class="text-start">{{item.MaCa}}</span>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Số lượng" textAlign='Left' width=150>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.SoLuong" textAlign='Left' width=150>
       <ng-template #template let-item>
           <span class="text-start">{{item.SoLuong}}</span>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Đơn giá" textAlign='Left' width=200>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.DonGia" textAlign='Left' width=200>
       <ng-template #template let-item>
           <span class="text-start">{{item.DonGia}}</span>
       </ng-template>
     </e-column>
 
-    <e-column headerText="Thành tiền" textAlign='Left' width=200>
+    <e-column [headerText]="I18nLang.TheoDoiLichSuNV.ThanhTien" textAlign='Left' width=200>
       <ng-template #template let-item>
           <span class="text-start">{{item.ThanhTien}}</span>
       </ng-template>

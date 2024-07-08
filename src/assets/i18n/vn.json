@@ -151,7 +151,8 @@
     "FullName":"Họ và tên (VN)",
     "TinhTrang":"Tình trạng",
     "LoaiNhanVien":"Loại nhân viên",
-    "CostCenter":"CostCenter"
+    "CostCenter":"CostCenter",
+    "MaThe":"Mã Thẻ"
   },
   "TheKhach":{
     "MaThe":"Mã Thẻ",
