@@ -111,6 +111,7 @@ export class MemberComponent implements OnInit {
     }
   }
   onAddNewEmp(){
+    this.ResetModel();
     this.empaddnewdialog.show();
   }
 
@@ -218,11 +219,11 @@ export class MemberComponent implements OnInit {
     this.FullName = data.EmployeeName
     this.selectedPhongBan = this.tblBoPhanOrigin.find(x => x.DepartmentCode == data.DepartmentCode)
     this.NgayNhanViec = data.JoinDate
-    this.selectedNhomPhu = this.tblBoPhanOrigin.find(x => x.NhomPhuCode == data.NhomPhuCode)
-    this.selectedTinhTrang = this.tblBoPhanOrigin.find(x => x.TinhTrangCode == data.TinhTrangCode)
+    this.selectedNhomPhu = this.tblNhomPhu.find(x => x.NhomPhuCode == data.NhomPhuCode)
+    this.selectedTinhTrang = this.tblTinhTrang.find(x => x.TinhTrangCode == data.TinhTrangCode)
     this.CostCenter = data.CostCenter
     this.Location = data.Location
-    this.selectedEmployeeType = this.tblBoPhanOrigin.find(x => x.EmployeeTypeCode == data.EmployeeTypeCode)
+    this.selectedEmployeeType = this.tblEmployeeType.find(x => x.EmployeeTypeCode == data.EmployeeTypeCode)
     this.EmployeeCategory = data.EmployeeCategory
     this.stringImageBase64 = this.selectedGrid.PhotoID
 

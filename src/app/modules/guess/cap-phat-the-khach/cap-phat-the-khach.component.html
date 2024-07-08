@@ -107,7 +107,7 @@
   </ejs-grid>
 </ng-template>
 
-<app-dialog #dialogCapPhat [templateBody]="content"></app-dialog>
+<app-dialog (submit)="submitDialog()" #dialogCapPhat [templateBody]="content"></app-dialog>
 <ng-template #content>
   <div class="container mt-3">
     <div class="row gy-3">
@@ -125,6 +125,21 @@
       </div>
       <div class="col-6">
         <app-datetime [value]="NguoiNhanThe" (clickDate)="NguoiNhanThe = $event"></app-datetime>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<app-dialog (submit)="onSubmitTraThe()" #dialogTraThe [templateBody]="contentTraThe"></app-dialog>
+<ng-template #contentTraThe>
+  <div class="container mt-3">
+    <div class="row gy-3">
+      <div class="col-12">
+        <app-combobox [dataSource]="tblTheKhach" (clickItem)="selectedTheTra = $event" [selectedItem]="selectedTheTra" fieldName="MaTheKhach"></app-combobox>
+      </div>
+      <div class="col-12">
+        <app-input [(ngModel)]="NguoiTra"></app-input>
       </div>
     </div>
   </div>

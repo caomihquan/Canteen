@@ -80,7 +80,7 @@
   <div class="container mt-3">
     <div class="row gy-3">
       <div class="col-12">
-        <app-combobox [dataSource]="ListPhanLoai" [selectedItem]="selectPhanLoai" fieldName="Caption" (clickItem)="selectPhanLoai = $event"  [title]="_langSevice.I18LangService.EmpSubGroup.LoaiNhom"></app-combobox>
+        <app-input [(ngModel)]="NhomPhuCode" [title]="_langSevice.I18LangService.EmpSubGroup.LoaiNhom"></app-input>
       </div>
       <div class="col-12">
         <app-input [(ngModel)]="NhomPhuName" [title]="_langSevice.I18LangService.EmpSubGroup.TenNhom"></app-input>

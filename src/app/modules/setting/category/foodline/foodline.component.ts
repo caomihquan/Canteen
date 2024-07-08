@@ -66,8 +66,6 @@ export class FoodlineComponent implements OnInit {
     this._api.post(AppAPIConst.Cateogry.Line_spGetDefault)
     .subscribe(res=>{
       if(res && res.Data){
-        console.log(res);
-
         this.ListPhanLoai = res.Data.tblPhanLoaiLine;
         this.ListLineType = res.Data.tblLineType;
       }
@@ -123,7 +121,7 @@ export class FoodlineComponent implements OnInit {
     this.NhaThau = ''
   }
 
-  submitDialog(evt:any){
+  submitDialog(){
     this._api.post(AppAPIConst.Cateogry.NhomPhu_spPostData,{
       MaLine:this.MaLine,
       TenLine:this.TenLine,

@@ -36,6 +36,7 @@ export class EmpsubgroupComponent implements OnInit {
   listSubgroup:Array<any> = []
 
   I18Lang:any;
+  NhomPhuCode:string;
   NhomPhuName:string
   DoiTuong:string
   HanMucNgay:string
@@ -63,22 +64,12 @@ export class EmpsubgroupComponent implements OnInit {
       this.totalItems = res.Data.OutputParams.totalItems
     })
   }
-  getListPhanLoai(){
-    this._api.post(AppAPIConst.Cateogry.Line_spGetDefault)
-    .subscribe(res=>{
-      if(res && res.Data){
-        console.log(res);
 
-        this.ListPhanLoai = res.Data.tblLineType
-      }
-    })
-  }
 
   selectedRowTable(evt:any){
     const item = evt.rowData
     this.selectedGrid = item;
-    console.log(item);
-    this.selectPhanLoai = this.ListPhanLoai.find(x=>x.Value == item.NhomPhuCode)
+    this.NhomPhuCode = item.NhomPhuCode
     this.NhomPhuName = item.NhomPhuName
     this.DoiTuong = item.DoiTuong
     this.HanMucNgay = item.HanMucNgay
@@ -94,7 +85,7 @@ export class EmpsubgroupComponent implements OnInit {
   }
 
   ResetModel(){
-    this.selectPhanLoai = null;
+    this.NhomPhuCode = '';
     this.NhomPhuName = ''
     this.DoiTuong = ''
     this.HanMucNgay = ''
@@ -106,7 +97,7 @@ export class EmpsubgroupComponent implements OnInit {
 
   submitDialog(evt:any){
     this._api.post(AppAPIConst.Cateogry.NhomPhu_spPostData,{
-      NhomPhuCode:this.selectPhanLoai?.Value,
+      NhomPhuCode:this.NhomPhuCode,
       NhomPhuName:this.NhomPhuName,
       DoiTuong:this.DoiTuong,
       HanMucNgay:this.HanMucNgay

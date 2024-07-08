@@ -30,6 +30,10 @@ export class CapPhatTheKhachComponent implements OnInit {
   ThoiHanSuDung = new Date().toISOString();
   HanMucNgay:string;
   selectedGrid:any
+
+  //trathe
+  selectedTheTra:any;
+  NguoiTra:any;
   constructor(
     private _noti:NotificationService,
     private _api:ApiHttpService,
@@ -45,9 +49,7 @@ export class CapPhatTheKhachComponent implements OnInit {
 
   getConfigDefault(){
     this._api.post(AppAPIConst.TheKhach.capthekhach_spgetDefault).subscribe(res=>{
-      console.log(res);
       this.tblTheKhach = res.Data.tblTheKhach
-
     })
   }
 
@@ -70,7 +72,7 @@ export class CapPhatTheKhachComponent implements OnInit {
   }
 
 
-  submitDialog(evt:any){
+  submitDialog(){
     this._api.post(AppAPIConst.TheKhach.capthekhach_spPostData,{
       MaTheKhach:this.selectedTheKhach?.MaTheKhach,
       HoTen:this.NguoiNhanThe,
@@ -146,16 +148,13 @@ export class CapPhatTheKhachComponent implements OnInit {
       this._noti.ShowToastError(this.I18nLang.Error.NoRowSelected)
       return;
     }
-    this.dialogCapPhat.show();
+    this.dialogTraThe.show();
   }
 
   onSubmitTraThe(){
     this._api.post(AppAPIConst.TheKhach.capthekhach_spPostData,{
-      MaTheKhach:this.selectedTheKhach?.MaTheKhach,
-      HoTen:this.NguoiNhanThe,
-      HanMucNgay:this.HanMucNgay,
-      ThoiHanSuDung:this.ThoiHanSuDung,
-      GhiChu:this.GhiChu
+      MaTheKhach:this.selectedTheTra?.MaTheKhach,
+      HoTen:this.NguoiTra,
     }).subscribe(res=>{
       if(res && res.Data){
         if(res?.Data?.Error){
@@ -163,7 +162,7 @@ export class CapPhatTheKhachComponent implements OnInit {
           return;
         }
         this.PageIndex = 0;
-        this.dialogCapPhat.hide();
+        this.dialogTraThe.hide();
         this.ResetModel();
         this._noti.ShowToastSuccess(this.I18nLang.Common.Success)
         this.getListCapPhat()

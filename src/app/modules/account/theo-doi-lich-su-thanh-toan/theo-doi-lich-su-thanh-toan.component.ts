@@ -88,18 +88,19 @@ export class TheoDoiLichSuThanhToanComponent implements OnInit {
   }
 
   handleSelectEmp(emp:any){
-    if(emp == null){
-      this.lstEmpSelected = []
-      this.selectetedEmployees = ''
-      return;
-    }
-    if(emp?.IsChecked){
-      this.lstEmpSelected = this.lstEmpSelected.filter(x => x.EmployeeCode != emp.EmployeeCode)
-      this.lstEmpSelected.push(emp)
-    }
-    else{
-      this.lstEmpSelected = this.lstEmpSelected.filter(x => x.EmployeeCode != emp.EmployeeCode)
-    }
+    // if(emp == null){
+    //   this.lstEmpSelected = []
+    //   this.selectetedEmployees = ''
+    //   return;
+    // }
+    // if(emp?.IsChecked){
+    //   this.lstEmpSelected = this.lstEmpSelected.filter(x => x.EmployeeCode != emp.EmployeeCode)
+    //   this.lstEmpSelected.push(emp)
+    // }
+    // else{
+    //   this.lstEmpSelected = this.lstEmpSelected.filter(x => x.EmployeeCode != emp.EmployeeCode)
+    // }
+    this.lstEmpSelected = emp
     this.selectetedEmployees = this.lstEmpSelected.map(x => x?.EmployeeCode ?? '').join(';')
   }
 

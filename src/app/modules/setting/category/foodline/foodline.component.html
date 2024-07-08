@@ -95,10 +95,11 @@
     </ejs-grid>
 </ng-template>
 <app-history-dialog #historydialog></app-history-dialog>
-<app-dialog height="714px"
- #dialogAdd [templateBody]="content" headerText="{{I18Lang.FoodLine.PhanLoaiLineMonAn}}"></app-dialog>
 
-<ng-template #content>
+
+<app-dialog (submit)="submitDialog()" height="714px"
+ #dialogAdd [templateBody]="contentAdd" headerText="{{I18Lang.FoodLine.PhanLoaiLineMonAn}}"></app-dialog>
+<ng-template #contentAdd>
   <div class="container mt-3">
     <div class="row gy-3">
       <div class="col-12">

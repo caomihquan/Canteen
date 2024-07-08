@@ -92,7 +92,7 @@ export class CapPhatDinhMucComponent implements OnInit {
       PageSize:this.PageSize,
       BU:this.selectetedBU?.BU,
       BoPhan:this.selectetedBoPhan?.DepartmentCode,
-      EmployeeCode:this.selectetedEmployees,
+      EmployeeCode:this.lstEmpSelected.map(x => x?.EmployeeCode ?? '').join(';'),
       Thang:this.selectetedThang?.Thang
     },true).subscribe(res=>{
       if(res && res.Data){
@@ -133,34 +133,35 @@ export class CapPhatDinhMucComponent implements OnInit {
   }
 
   handleSelectEmp(emp:any){
-    if(emp == null){
-      this.lstEmpSelected = []
-      this.selectetedEmployees = ''
-      return;
-    }
-    if(emp?.IsChecked){
-      this.lstEmpSelected = this.lstEmpSelected.filter(x => x.EmployeeCode != emp.EmployeeCode)
-      this.lstEmpSelected.push(emp)
-    }
-    else{
-      this.lstEmpSelected = this.lstEmpSelected.filter(x => x.EmployeeCode != emp.EmployeeCode)
-    }
-    this.selectetedEmployees = this.lstEmpSelected.map(x => x?.EmployeeCode ?? '').join(';')
+    // if(emp == null){
+    //   this.lstEmpSelected = []
+    //   this.selectetedEmployees = ''
+    //   return;
+    // }
+    // if(emp?.IsChecked){
+    //   this.lstEmpSelected = this.lstEmpSelected.filter(x => x.EmployeeCode != emp.EmployeeCode)
+    //   this.lstEmpSelected.push(emp)
+    // }
+    // else{
+    //   this.lstEmpSelected = this.lstEmpSelected.filter(x => x.EmployeeCode != emp.EmployeeCode)
+    // }
+    this.lstEmpSelected = emp
+    this.selectetedEmployees = this.lstEmpSelected.map(x => x?.EmployeeName ?? '').join(';')
   }
   handleSelectEmpDialog(emp:any){
-    if(emp == null){
-      this.lstEmpSelected = []
-      this.selectetedEmployees = ''
-      return;
-    }
-    if(emp?.IsChecked){
-      this.lstEmpSelectedDialog = this.lstEmpSelectedDialog.filter(x => x.EmployeeCode != emp.EmployeeCode)
-      this.lstEmpSelectedDialog.push(emp)
-    }
-    else{
-      this.lstEmpSelectedDialog = this.lstEmpSelectedDialog.filter(x => x.EmployeeCode != emp.EmployeeCode)
-    }
-    this.selectetedEmployeesDialog = this.lstEmpSelectedDialog.map(x => x?.EmployeeCode ?? '').join(';')
+    // if(emp == null){
+    //   this.lstEmpSelected = []
+    //   this.selectetedEmployees = ''
+    //   return;
+    // }
+    // if(emp?.IsChecked){
+    //   this.lstEmpSelectedDialog = this.lstEmpSelectedDialog.filter(x => x.EmployeeCode != emp.EmployeeCode)
+    //   this.lstEmpSelectedDialog.push(emp)
+    // }
+    // else{
+    // }
+    this.lstEmpSelectedDialog = emp
+    this.selectetedEmployeesDialog = this.lstEmpSelectedDialog.map(x => x?.EmployeeName ?? '').join(';')
     console.log(this.selectetedEmployeesDialog);
   }
 
@@ -172,7 +173,7 @@ export class CapPhatDinhMucComponent implements OnInit {
 
   onSubmit(){
     this._api.post(AppAPIConst.CapPhatDinhMucNV.capdinhmuc_spGetData,{
-      EmployeeCode:this.selectetedEmployeesDialog,
+      EmployeeCode:this.lstEmpSelectedDialog.map(x => x?.EmployeeCode ?? '').join(';'),
       Thang:this.selectetedThangDialog?.Thang,
       TienDinhMuc1:this.tienDM1,
       TienDinhMuc2:this.tienDM2

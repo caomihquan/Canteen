@@ -41,6 +41,8 @@ export class AppComboboxComponent  {
   height = window.innerHeight - 300
   dataOrigin:any[] = []
   id = fnCommon.uuidv4();
+  listSelected:Array<any> = []
+  isCheckAll:boolean = false;
   constructor(){}
 
   onBeforeOpen = function(args: any): void {
@@ -83,15 +85,15 @@ export class AppComboboxComponent  {
   eventClickItem(item:any){
     if(!this.IsMultiSelect){
       this.dialogCombobox.hide();
+      this.clickItem.emit(item)
     }
-    else{
-      item.IsChecked = !item.IsChecked
-    }
-    this.clickItem.emit(item)
+    // else{
+    //   item.IsChecked = !item.IsChecked
+    // }
   }
   eventClickXoa(){
     this.dialogCombobox.hide();
-    this.clickItem.emit(null)
+    this.clickItem.emit([])
     this.dataSource.map((x:any) =>{
       if(x?.IsChecked){
         x.IsChecked = false;
@@ -100,4 +102,23 @@ export class AppComboboxComponent  {
     })
   }
 
+  eventFilter(){
+    var data = this.dataSource.filter((x:any) => x?.IsChecked)
+    this.clickItem.emit(data)
+  }
+
+  eventCheckAll(){
+    if(this.isCheckAll){
+      this.dataSource.map((x:any) =>{
+        x.IsChecked = true;
+        return x
+      })
+    }
+    else{
+      this.dataSource.map((x:any) =>{
+        x.IsChecked = false;
+        return x
+      })
+    }
+  }
 }

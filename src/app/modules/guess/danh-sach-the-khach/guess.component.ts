@@ -1,9 +1,7 @@
-import { Component, OnInit, Renderer2, ViewChild, signal } from '@angular/core';
-import { OrdinalService } from 'src/app/shares/services/ordinal/ordinal.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
-import { TranslateService } from '@ngx-translate/core';
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { GuessService } from '../services/guess.service';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
@@ -42,9 +40,9 @@ export class GuessComponent implements OnInit {
   TinhTrang = '0';
   DinhMucConLai:string;
   HanMucSuDung:string;
-
+  BarCode:string;
   DinhMucCongThem:string
-
+  IsEdit:boolean = false;
 
   constructor(
     private _languageService:LanguageService,
@@ -111,8 +109,9 @@ export class GuessComponent implements OnInit {
   selectedRowTable(evt:any){
     const item = evt.rowData
     this.selectedGrid = item;
-    this.MaThe = item.MaThe
+    this.MaThe = item.MaTheKhach
     this.HanMucSuDung = item.HanMucSuDung
+    this.BarCode = item.V3ID
     this.GhiChu = item.Mota
     this.DinhMucConLai = item.DinhMucConLai
   }
@@ -139,6 +138,7 @@ export class GuessComponent implements OnInit {
     this.TinhTrang = '0'
     this.DinhMucConLai = ''
     this.HanMucSuDung = ''
+    this.BarCode = ''
   }
 
 
@@ -150,6 +150,7 @@ export class GuessComponent implements OnInit {
 
   AddCard(){
     this.ResetModel();
+    this.IsEdit = false;
     this.dialogAdd.show();
   }
   EditCard(){
@@ -157,6 +158,7 @@ export class GuessComponent implements OnInit {
       this._noti.ShowToastError(this.I18nLang.Error.NoRowSelected)
       return;
     }
+    this.IsEdit = true;
     this.dialogAdd.show();
   }
   DeleteCard(){
@@ -190,6 +192,7 @@ export class GuessComponent implements OnInit {
     this._api.post(AppAPIConst.TheKhach.thekhach_spPostData,{
       MaTheKhach:this.MaThe,
       Mota:this.GhiChu,
+      BarCode:this.BarCode,
       HanMucSuDung:this.HanMucSuDung,
       DinhMucConLai:this.DinhMucConLai,
       TinhTrang:this.TinhTrang,

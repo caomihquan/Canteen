@@ -173,7 +173,7 @@
   </ejs-grid>
 </ng-template>
 
-<app-dialog height="714px" width="435px" #dialogCapPhat [headerText]="I18nLang.CapPhatDinhMuc.CapPhatDinhMuc" [templateBody]="content"></app-dialog>
+<app-dialog (submit)="onSubmit()" height="714px" width="435px" #dialogCapPhat [headerText]="I18nLang.CapPhatDinhMuc.CapPhatDinhMuc" [templateBody]="content"></app-dialog>
 <ng-template #content>
   <div class="container mt-3">
     <div class="row g-3">
