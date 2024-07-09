@@ -107,7 +107,7 @@
   </ejs-grid>
 </ng-template>
 
-<app-dialog (submit)="submitDialog()" #dialogCapPhat [templateBody]="content"></app-dialog>
+<app-dialog [headerText]="I18nLang.TheKhach.CapPhatTheKhach" (submit)="submitDialog()" #dialogCapPhat [templateBody]="content"></app-dialog>
 <ng-template #content>
   <div class="container mt-3">
     <div class="row gy-3">
@@ -131,7 +131,7 @@
 </ng-template>
 
 
-<app-dialog [isFooter]="true" [templateFooter]="footerDialog" (submit)="onSubmitTraThe()" #dialogTraThe [templateBody]="contentTraThe"></app-dialog>
+<app-dialog [headerText]="I18nLang.TheKhach.TraThe" [isFooter]="true" [templateFooter]="footerDialog" (submit)="onSubmitTraThe()" #dialogTraThe [templateBody]="contentTraThe"></app-dialog>
 <ng-template #contentTraThe>
   <div class="container mt-3">
     <div class="row gy-3">
