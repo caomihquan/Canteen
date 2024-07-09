@@ -18,6 +18,7 @@ export class AppDialogComponent {
   @Input() height:number | string = 500
   @Input() width:number | string = '585px';
   @Input() isFooter:boolean = true;
+  @Input() templateFooter:TemplateRef<any>;
   @ViewChild('dialog') dialog:DialogComponent;
 
 

@@ -32,8 +32,9 @@ export class CapPhatTheKhachComponent implements OnInit {
   selectedGrid:any
   getPhoto = fnCommon.ConvertPhotoEmpByUserID
   //trathe
-  selectedTheTra:any;
+  MaTheTra:any;
   NguoiTra:any;
+  isNotTraThe:boolean = false;
   constructor(
     private _noti:NotificationService,
     private _api:ApiHttpService,
@@ -51,6 +52,18 @@ export class CapPhatTheKhachComponent implements OnInit {
     this._api.post(AppAPIConst.TheKhach.capthekhach_spgetDefault).subscribe(res=>{
       this.tblTheKhach = res.Data.tblTheKhach
     })
+  }
+
+  clickGrid(event:any){
+    const item = event.rowData
+    this.selectedTheKhach = this.tblTheKhach.find(x => x.MaTheKhach == item.MaTheKhach)
+    this.NguoiNhanThe = item.HoTen
+    this.GhiChu = item.GhiChu
+    this.ThoiHanSuDung = item.ThoiGianSuDung
+    this.HanMucNgay = item.HanMucNgay
+    this.isNotTraThe = !item.TraThe
+    this.MaTheTra = item.MaTheKhach
+    this.NguoiTra = item.HoTen
   }
 
   getListCapPhat(){
@@ -100,6 +113,9 @@ export class CapPhatTheKhachComponent implements OnInit {
     this.NguoiNhanThe = '';
     this.GhiChu = '';
     this.ThoiHanSuDung = new Date().toISOString();
+    this.isNotTraThe = false;
+    this.MaTheTra = ''
+    this.NguoiTra = ''
   }
   onAdd(){
     this.ResetModel();
@@ -153,7 +169,7 @@ export class CapPhatTheKhachComponent implements OnInit {
 
   onSubmitTraThe(){
     this._api.post(AppAPIConst.TheKhach.capthekhach_spPostData,{
-      MaTheKhach:this.selectedTheTra?.MaTheKhach,
+      MaTheKhach:this.MaTheTra,
       HoTen:this.NguoiTra,
     }).subscribe(res=>{
       if(res && res.Data){

@@ -16,5 +16,9 @@
       </div>
     </div>
   </ng-template>
+  <ng-template #footerTemplate *ngIf="templateFooter">
+    <ng-container *ngTemplateOutlet="templateFooter"></ng-container>
+  </ng-template>
+  
 </ejs-dialog>
 
