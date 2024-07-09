@@ -168,7 +168,7 @@ export class CapPhatTheKhachComponent implements OnInit {
   }
 
   onSubmitTraThe(){
-    this._api.post(AppAPIConst.TheKhach.capthekhach_spPostData,{
+    this._api.post(AppAPIConst.TheKhach.capthekhach_spTraThe,{
       MaTheKhach:this.MaTheTra,
       HoTen:this.NguoiTra,
     }).subscribe(res=>{
