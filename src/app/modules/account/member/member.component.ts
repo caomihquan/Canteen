@@ -14,6 +14,7 @@ import { NotificationService } from 'src/app/shares/services/notification/notifi
 import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { ExportCommonService } from 'src/app/shares/services/export/export.service';
+import { SideBarService } from 'src/app/shares/services/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-member',
@@ -86,6 +87,7 @@ export class MemberComponent implements OnInit {
     private _export:ExportCommonService,
     private _noti:NotificationService,
     private _langS:LanguageService,
+    private _sideBar:SideBarService,
     private _userService: AuthService,){
       this.user = this._userService.getUser();
       this.I18Lang = this._langS.I18LangService;
@@ -321,7 +323,9 @@ export class MemberComponent implements OnInit {
   ExportMember(){
     this._export.excute({
       data:{
-        DepartmentCode:""
+        DepartmentCode:"",
+        FunctionID:this._sideBar.FunctionID,
+        TypeCode:this._sideBar.FunctionID,
       },
       path:'export/getlistaccount'
     })
