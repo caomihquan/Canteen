@@ -58,14 +58,18 @@ export class AppComboboxComponent  {
 
   ChangeSearch(){
     if(this.dataOrigin.length === 0){
-      this.dataOrigin = this.dataSource;
+      this.dataOrigin = this.dataSource.map((x:any) =>{
+        x['IsChecked'] = false;
+        return x
+      });
     }
     if (!this.textSearch) {
-      this.dataSource = this.dataOrigin
+      this.dataSource = JSON.parse(JSON.stringify(this.dataOrigin))
       return;
     }
     if(this.searchField.length > 0){
       var data = JSON.parse(JSON.stringify(this.dataOrigin))
+      console.log(data);
       var dataFilters = [];
       for (var j = 0; j < this.searchField.length; j++) {
           for (var i = 0; i < data.length; i++) {
@@ -83,13 +87,26 @@ export class AppComboboxComponent  {
   }
 
   eventClickItem(item:any){
+    if(this.dataOrigin.length === 0){
+      this.dataOrigin = JSON.parse(JSON.stringify(this.dataSource.map((x:any) =>{
+        x['IsChecked'] = false;
+        return x
+      })));
+    }
     if(!this.IsMultiSelect){
       this.dialogCombobox.hide();
       this.clickItem.emit(item)
     }
-    // else{
-    //   item.IsChecked = !item.IsChecked
-    // }
+    else{
+      item['IsChecked'] = !item['IsChecked']
+      this.dataOrigin.map((x:any) =>{
+        if(x[this.fieldName2] == item[this.fieldName2]){
+
+          x.IsChecked = !x.IsChecked;
+        }
+        return x
+      })
+    }
   }
   eventClickXoa(){
     this.dialogCombobox.hide();
@@ -100,22 +117,38 @@ export class AppComboboxComponent  {
       }
       return x
     })
+    this.dataOrigin.map((x:any) =>{
+      if(x?.IsChecked){
+        x.IsChecked = false;
+      }
+      return x
+    })
   }
 
   eventFilter(){
-    var data = this.dataSource.filter((x:any) => x?.IsChecked)
+    var data = this.dataOrigin.filter((x:any) => x?.IsChecked)
     this.clickItem.emit(data)
+    this.dialogCombobox.hide();
   }
 
   eventCheckAll(){
+    this.isCheckAll = !this.isCheckAll
     if(this.isCheckAll){
       this.dataSource.map((x:any) =>{
+        x.IsChecked = true;
+        return x
+      })
+      this.dataOrigin.map((x:any) =>{
         x.IsChecked = true;
         return x
       })
     }
     else{
       this.dataSource.map((x:any) =>{
+        x.IsChecked = false;
+        return x
+      })
+      this.dataOrigin.map((x:any) =>{
         x.IsChecked = false;
         return x
       })

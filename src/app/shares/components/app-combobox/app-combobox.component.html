@@ -13,8 +13,8 @@
 
 <ejs-dialog (overlayClick)="dialogCombobox.hide()" [isModal]="true" (beforeOpen)="onBeforeOpen($event)"  [position]="{ X: 'center', Y: 'center' }" #dialogCombobox showCloseIcon='true' [height]='600' width='400px' [visible]='false'>
   <ng-template #header>
-    <div class="d-flex gap-4 align-items-center">
-      <input type="checkbox" [(ngModel)]="isCheckAll" (click)="eventCheckAll()"/>
+    <div class="d-flex gap-3 align-items-baseline pb-2">
+      <input class="ms-3 form-check-input" *ngIf="IsMultiSelect" type="checkbox" [(ngModel)]="isCheckAll" (click)="eventCheckAll()"/>
       <div class="text-common-black fs-18 fw-600">{{title}}</div>
     </div>
   </ng-template>
@@ -29,7 +29,7 @@
         <div class="item-combobox border-bottom d-flex flex-column" (click)="eventClickItem(item)">
           <div class="d-flex align-items-center gap-4" *ngIf="IsMultiSelect">
             <div>
-              <input type="checkbox" [checked]="item?.IsChecked">
+              <input class="form-check-input" type="checkbox" [checked]="item?.IsChecked">
             </div>
             <div>
               <div>{{item[fieldName]}}</div>

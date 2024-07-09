@@ -29,7 +29,7 @@
 <ng-template #templategrid>
     <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
         <e-columns>
-            <e-column headerText="{{I18Lang.FoodLine.MaLine}}" textAlign='Left' width=110>
+            <e-column headerText="{{I18Lang.FoodLine.MaLine}}" textAlign='Center' width=110>
                 <ng-template #template let-item>
                     <div>{{item.MaLine}}</div>
                 </ng-template>
@@ -40,6 +40,11 @@
 
                 </ng-template>
             </e-column>
+            <!-- <e-column headerText="LineType" width=110 textAlign='Center'>
+              <ng-template #template let-item>
+                  <span>{{item.LineType}}</span>
+              </ng-template>
+            </e-column> -->
             <e-column headerText="{{I18Lang.FoodLine.PhanLoai}}" width=110 textAlign='Center'>
                 <ng-template #template let-item>
                     <div class="w-100 d-flex justify-content-center">
@@ -109,10 +114,10 @@
         <app-input [(ngModel)]="TenLine" [title]="I18Lang.FoodLine.TenLine"></app-input>
       </div>
       <div class="col-12">
-        <app-combobox [dataSource]="ListPhanLoai" [selectedItem]="selectPhanLoai" fieldName="Caption" (clickItem)="selectPhanLoai = $event"  [title]="I18Lang.FoodLine.PhanLoai"></app-combobox>
+        <app-combobox [dataSource]="ListPhanLoai" [selectedItem]="selectPhanLoai" fieldName="PhanLoaiLineName" (clickItem)="selectPhanLoai = $event"  [title]="I18Lang.FoodLine.PhanLoai"></app-combobox>
       </div>
       <div class="col-12">
-        <app-combobox [dataSource]="ListLineType" [selectedItem]="selectLineType" fieldName="Caption" (clickItem)="selectLineType = $event"  [title]="I18Lang.FoodLine.LineType"></app-combobox>
+        <app-combobox [dataSource]="ListLineType" [selectedItem]="selectLineType" fieldName="LineType1" (clickItem)="selectLineType = $event"  [title]="I18Lang.FoodLine.LineType"></app-combobox>
       </div>
       <div class="col-12">
         <app-input [(ngModel)]="NhaThau" [title]="I18Lang.FoodLine.NhaThau"></app-input>

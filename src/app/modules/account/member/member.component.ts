@@ -13,6 +13,7 @@ import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { NotificationService } from 'src/app/shares/services/notification/notification.service';
 import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
 import { LanguageService } from 'src/app/shares/services/language/language.service';
+import { ExportCommonService } from 'src/app/shares/services/export/export.service';
 
 @Component({
   selector: 'app-member',
@@ -82,6 +83,7 @@ export class MemberComponent implements OnInit {
     private _router:Router,
     private _ordinal:OrdinalService,
     private _sanitized: DomSanitizer,
+    private _export:ExportCommonService,
     private _noti:NotificationService,
     private _langS:LanguageService,
     private _userService: AuthService,){
@@ -316,5 +318,12 @@ export class MemberComponent implements OnInit {
       }
     })
   }
-
+  ExportMember(){
+    this._export.excute({
+      data:{
+        DepartmentCode:""
+      },
+      path:'export/getlistaccount'
+    })
+  }
 }

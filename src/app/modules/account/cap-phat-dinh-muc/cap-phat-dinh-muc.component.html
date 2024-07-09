@@ -35,6 +35,8 @@
       <div class="text-common-black fs-14 fw-600">{{I18nLang.CapPhatDinhMuc.NhanVien}}</div>
       <div style="width: 228px;" class="bg-white">
         <app-combobox
+        [title]="I18nLang.CapPhatDinhMuc.NhanVien"
+        [hideTitle]="true"
         [IsMultiSelect]="true"
         [dataSource]="tblEmployees"
         [showSeachDropDown]="true"

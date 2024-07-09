@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../authentication/authentication.service';
 import { ApiHttpService } from '../apihttp/api-htttp.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
 import { ExportCommonService } from '../export/export.service';
 import { SideBarService } from '../sidebar/sidebar.service';
 import { MultiProcessService } from '../multi-process/multi-process.service';
+import { NotificationService } from '../notification/notification.service';
 
 export class ImportModel {
   ImportKey:string
@@ -30,7 +30,7 @@ export class ImportService {
   ) {}
 
   private fnDone(model:ImportModel){
-    this.api.post("HrmMobileApp/CnB/table/get",null,{
+    this.api.post("HrmMobileApp/CnB/table/get",{
       ImportKey: model.ImportKey,
     }).subscribe(res=>{
       if(res.Data.IsHasError){
@@ -61,7 +61,7 @@ export class ImportService {
   }
 
   private excute(model:ImportModel){
-    this.api.post("HrmMobileApp/CnB/table/post",'',model,true)
+    this.api.post("HrmMobileApp/CnB/table/post",model,true)
       .subscribe(res =>{
         if(res && res.Data){
           if(res.Data.Error){

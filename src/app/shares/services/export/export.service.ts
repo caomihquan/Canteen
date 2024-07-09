@@ -20,11 +20,11 @@ export class ExportCommonService {
     model.data["Language"] = model.data["Language"] ? model.data["Language"] : "vn";
     model.data["Token"] = model.data["Token"] ? model.data["Token"] : loginInfo?.TokenID;
     model.data["FunctionID"] = model.data["FunctionID"] ? model.data["FunctionID"] : "";
-    this.api.post('export/gettoken',null,{
+    this.api.post('export/gettoken',{
       Parameters: JSON.stringify(model.data)
     },true).subscribe(res =>{
       if (res && res.Data.Token) {
-        this.api.post(model.path,null,{
+        this.api.post(model.path,{
           Token:res.Data.Token
         }).subscribe(res =>{
           if(!res.Error && res.Data){

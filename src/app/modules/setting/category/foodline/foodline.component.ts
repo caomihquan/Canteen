@@ -68,6 +68,8 @@ export class FoodlineComponent implements OnInit {
       if(res && res.Data){
         this.ListPhanLoai = res.Data.tblPhanLoaiLine;
         this.ListLineType = res.Data.tblLineType;
+        console.log(this.ListPhanLoai);
+        console.log(this.ListLineType);
       }
     })
   }
@@ -77,10 +79,10 @@ export class FoodlineComponent implements OnInit {
     this.selectedGrid = item;
     this.MaLine = item.MaLine,
     this.TenLine = item.TenLine
-    this.selectPhanLoai = this.ListPhanLoai.find(x => x.Value == item.PhanLoaiLine)
+    this.selectPhanLoai = this.ListPhanLoai.find(x => x.PhanLoaiLine == item.PhanLoaiLine)
     this.DonGia = item.DonGia
     this.NgayHieuLuc = item.NgayHieuLuc
-    this.selectLineType =  this.ListLineType.find(x => x.Value == item.LineType)
+    this.selectLineType =  this.ListLineType.find(x => x.LineType == item.LineType)
     this.NhaThau = item.NhaThau
   }
 
@@ -125,10 +127,10 @@ export class FoodlineComponent implements OnInit {
     this._api.post(AppAPIConst.Cateogry.NhomPhu_spPostData,{
       MaLine:this.MaLine,
       TenLine:this.TenLine,
-      PhanLoaiLine:this.selectPhanLoai?.Value,
+      PhanLoaiLine:this.selectPhanLoai?.PhanLoaiLine,
       DonGia:this.DonGia,
       NgayHieuLuc:this.NgayHieuLuc,
-      LineType:this.selectLineType?.Value,
+      LineType:this.selectLineType?.LineType,
       NhaThau:this.NhaThau
     }).subscribe(res=>{
       if(res && res.Data){
