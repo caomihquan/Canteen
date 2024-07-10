@@ -26,7 +26,7 @@ export class MultiProcessService {
 
 
   private _fnGetDataProcess(model:MultiProcessModel) {
-    this.api.post('multiprocess/getinfo',null,{
+    this.api.post('multiprocess/getinfo',{
       ProcessName: model.ProcessName
     }).subscribe((data)=>{
       if (data) {

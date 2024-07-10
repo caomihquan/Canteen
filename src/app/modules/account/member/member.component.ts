@@ -15,6 +15,7 @@ import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dia
 import { LanguageService } from 'src/app/shares/services/language/language.service';
 import { ExportCommonService } from 'src/app/shares/services/export/export.service';
 import { SideBarService } from 'src/app/shares/services/sidebar/sidebar.service';
+import { ImportService } from 'src/app/shares/services/import/import.service';
 
 @Component({
   selector: 'app-member',
@@ -81,13 +82,11 @@ export class MemberComponent implements OnInit {
 
   constructor(
     private _api:ApiHttpService,
-    private _router:Router,
-    private _ordinal:OrdinalService,
-    private _sanitized: DomSanitizer,
     private _export:ExportCommonService,
     private _noti:NotificationService,
     private _langS:LanguageService,
     private _sideBar:SideBarService,
+    private _import:ImportService,
     private _userService: AuthService,){
       this.user = this._userService.getUser();
       this.I18Lang = this._langS.I18LangService;
@@ -323,11 +322,22 @@ export class MemberComponent implements OnInit {
   ExportMember(){
     this._export.excute({
       data:{
-        DepartmentCode:"",
         FunctionID:this._sideBar.FunctionID,
         TypeCode:this._sideBar.FunctionID,
       },
       path:'export/getlistaccount'
     })
+  }
+
+  ImportMember(event:any){
+    this._import.selectFileImport(event,{
+      FunctionID:this._sideBar.FunctionID,
+      TypeCode:this._sideBar.FunctionID,
+      callBack:()=>{
+        this.PageIndex = 0;
+        this.ResetModel();
+        this.LoadListMember()
+      }
+    });
   }
 }
