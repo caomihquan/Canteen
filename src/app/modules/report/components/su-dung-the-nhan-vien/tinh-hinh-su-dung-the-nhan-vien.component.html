@@ -46,9 +46,8 @@
         </div>
       </div>
       <div class="p-2" [ngStyle]="{'width': width + 'px'}">
-
         <div class="mt-2">
-          <grid-view [totalItems]="TotalItems" (clickPage)="ClickPageEmp($event)" [template]="templateGrid"></grid-view>
+          <grid-view (clickPage)="ClickPageEmp($event)" [template]="templateGrid"></grid-view>
         </div>
       </div>
     </div>
@@ -67,6 +66,11 @@
       <e-column field="EmployeeCode" headerText="Mã Nhân viên" textAlign='Left' width=150>
         <ng-template #template let-item>
           <div class="text-start">{{item.EmployeeCode}}</div>
+        </ng-template>
+      </e-column>
+      <e-column field="EmployeeName" headerText="Tên Nhân viên" textAlign='Left' width=150>
+        <ng-template #template let-item>
+          <div class="text-start">{{item.EmployeeName}}</div>
         </ng-template>
       </e-column>
 

@@ -66,6 +66,7 @@ export class FoodShiftComponent implements OnInit {
       Option:3,
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
+      SearchText:this.searchText
     }).subscribe(res=>{
       console.log(res);
       this.listSubgroup = res.Data.Data
@@ -122,6 +123,8 @@ export class FoodShiftComponent implements OnInit {
           return;
         }
         this.PageIndex = 0;
+        this.searchText = ''
+
         this.dialogAdd.hide();
         this.ResetModel();
         this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
@@ -157,6 +160,7 @@ export class FoodShiftComponent implements OnInit {
               return;
             }
             this.PageIndex = 0;
+            this.searchText = ''
             this.ResetModel();
             this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
             this.getListFoodShift()
@@ -167,6 +171,13 @@ export class FoodShiftComponent implements OnInit {
 
 
   }
+
+  onSearch(){
+    this.PageIndex = 0;
+    this.ResetModel();
+    this.getListFoodShift()
+  }
+
 
 
 

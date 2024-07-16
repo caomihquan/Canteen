@@ -15,7 +15,7 @@ export class TheoDoiLichSuThanhToanComponent implements OnInit {
   wrapSettings = { wrapMode: 'Content' };
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
-
+  SearchText:string;
   I18nLang:any
 
   constructor(private langS:LanguageService){

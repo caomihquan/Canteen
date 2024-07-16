@@ -14,6 +14,7 @@ import { BreadcumComponent } from 'src/app/shares/components/breadcum/breadcum.c
 import { AppComboboxComponent } from 'src/app/shares/components/app-combobox/app-combobox.component';
 import { AppInputComponent } from 'src/app/shares/components/app-input/app-input.component';
 import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app-datetime.component';
+import { AppSearchToolbarComponent } from 'src/app/shares/components/app-search-toolbar/search-toolbar.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
     AppComboboxComponent,
     AppInputComponent,
     AppDateTimeComponent,
+    AppSearchToolbarComponent,
     RouterModule.forChild(routes),
     GridViewComponent,
   ],

@@ -92,6 +92,7 @@ export class FoodlineComponent implements OnInit {
       Option:4,
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
+      SearchText:this.searchText
     }).subscribe(res=>{
       console.log(res);
       this.listSubgroup = res.Data.Data
@@ -100,11 +101,7 @@ export class FoodlineComponent implements OnInit {
     })
   }
 
-  onSearch(event:KeyboardEvent){
-    if(event.key == 'Enter'){
-      this.ResetModel();
-    }
-  }
+
 
 
   ClickPagerIndex(evt:any){
@@ -138,7 +135,8 @@ export class FoodlineComponent implements OnInit {
           this._noti.ShowToastError(res?.Data?.Error.Message)
           return;
         }
-        this.PageIndex = 0;
+            this.searchText = ''
+            this.PageIndex = 0;
         this.dialogAdd.hide();
         this.ResetModel();
         this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
@@ -180,6 +178,7 @@ export class FoodlineComponent implements OnInit {
               return;
             }
             this.PageIndex = 0;
+            this.searchText = ''
             this.ResetModel();
             this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
             this.getListFoodLine()
@@ -188,6 +187,14 @@ export class FoodlineComponent implements OnInit {
       }
     })
   }
+
+  onSearch(){
+    this.PageIndex = 0;
+    this.ResetModel();
+    this.getListFoodLine()
+  }
+
+
 
 
 

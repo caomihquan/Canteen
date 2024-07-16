@@ -12,6 +12,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { BreadcumComponent } from 'src/app/shares/components/breadcum/breadcum.component';
+import { AppSearchToolbarComponent } from 'src/app/shares/components/app-search-toolbar/search-toolbar.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
     DialogAllModule,
     TreeViewComponent,
     BreadcumComponent,
+    AppSearchToolbarComponent,
     RouterModule.forChild(routes),
   ]
 })

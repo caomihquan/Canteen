@@ -4,6 +4,7 @@
             <!-- <span class="icon-Development-29 fs-24 text-common-black fw-600"></span>
             <span class="text-common-black fw-600 fs-16">Cơ cấu tổ chức</span> -->
             <app-breadcum></app-breadcum>
+            <search-toolbar [(ngModel)]="searchText" (onSearch)="onSearch()"></search-toolbar>
         </div>
         <div class="right-toolbar">
             <div class="button-toolbar" (click)="onOpenAdd()">

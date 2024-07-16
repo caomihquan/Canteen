@@ -1,0 +1,13 @@
+.icon-search{
+  position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.input-search{
+  padding: 8px 0 8px 38px;
+    border-radius: 100px;
+    border: 0.5px solid var(--Text2, #dedede);
+    outline: none;
+    font-size: 12px;
+}

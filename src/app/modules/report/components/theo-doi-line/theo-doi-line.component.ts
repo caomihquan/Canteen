@@ -97,14 +97,8 @@ export class TheoDoiLineComponent implements OnInit {
 
   LoadDowCode() {
     this._api.post(AppAPIConst.Report.reportsudungthe_getCombo, {
-      // PageIndex: this.PageIndex,
-      // PageSize: this.PageSize,
-      // DowCode: this.Filter.DowCode,
-      // SearchText: '',
-      // Option: 1
     }).subscribe(res => {
       if (res.Data) {
-        debugger;
         this.DowCode = res.Data.tblDowCode;
         if(this.DowCode && this.DowCode.length > 0){
           this.selectedDowCode =  this.DowCode[0];

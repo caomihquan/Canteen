@@ -18,7 +18,7 @@ export class TheoDoiLichSuThanhToanComponent implements OnInit {
   PageSize:number = AppCommon.PageSize;
   totalPages:number;
   totalItems:number;
-
+  SearchText:string;
   tblBU : Array<any> = []
   tblBoPhan : Array<any> = []
   tblEmployees : Array<any> = []
@@ -55,6 +55,7 @@ export class TheoDoiLichSuThanhToanComponent implements OnInit {
     this._api.post(AppAPIConst.QuanLyNhanVien.theodoilichnv_spGetData,{
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
+      SearchText:this.SearchText,
       BU:this.selectetedBU?.BU,
       BoPhan:this.selectetedBoPhan?.DepartmentCode,
       EmployeeCode:this.selectetedEmployees,

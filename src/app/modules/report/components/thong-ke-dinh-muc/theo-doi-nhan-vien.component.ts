@@ -90,7 +90,6 @@ export class TheoDoiNhanVienComponent implements OnInit {
       // Option: 0
     }).subscribe(res => {
       if (res.Data) {
-        debugger;
         this.DowCode = res.Data.tblDowCode;
         if(this.DowCode && this.DowCode.length > 0){
           this.Filter.DowCode =  this.DowCode[0];
@@ -105,7 +104,7 @@ export class TheoDoiNhanVienComponent implements OnInit {
       PageIndex: this.PageIndex,
       PageSize: this.PageSize,
       DowCode: this.Filter.DowCode.DowCode,
-      SearchText: Filter ? Filter : '',
+      SearchText: '',
       Option: 0
     }).subscribe(res => {
       if (res.Data) {

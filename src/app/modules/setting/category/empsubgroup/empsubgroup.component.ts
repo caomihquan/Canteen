@@ -59,6 +59,7 @@ export class EmpsubgroupComponent implements OnInit {
       Option:1,
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
+      SearchText:this.searchText
     }).subscribe(res=>{
       this.listSubgroup = res.Data.Data
       this.totalItems = res.Data.OutputParams.totalItems
@@ -108,6 +109,7 @@ export class EmpsubgroupComponent implements OnInit {
           return;
         }
         this.PageIndex = 0;
+        this.searchText = ''
         this.dialogAdd.hide();
         this.ResetModel();
         this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
@@ -148,6 +150,7 @@ export class EmpsubgroupComponent implements OnInit {
               this._noti.ShowToastError(res?.Data?.Error.Message)
               return;
             }
+            this.searchText = ''
             this.PageIndex = 0;
             this.ResetModel();
             this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
@@ -157,6 +160,12 @@ export class EmpsubgroupComponent implements OnInit {
       }
     })
 
+  }
+
+  onSearch(){
+    this.PageIndex = 0;
+    this.ResetModel();
+    this.getListEmpSub()
   }
 
 

@@ -30,6 +30,7 @@ export class MemberComponent implements OnInit {
   PageSize:number = AppCommon.PageSize;
   PageIndexHistory:number = AppCommon.PageIndex;
   PageSizeHistory:number = AppCommon.PageSize;
+
   height:number = (window.innerHeight - 202)
   totalPages:number;
   totalItems:number;
@@ -167,7 +168,9 @@ export class MemberComponent implements OnInit {
   LoadListMember(){
     this._api.post(AppAPIConst.QuanLyNhanVien.Employees_get,{
       PageIndex:this.PageIndex,
-      PageSize:this.PageSize
+      PageSize:this.PageSize,
+      SearchText:this.SearchText,
+
     },true).subscribe(res=>{
       if(res && res.Data){
         console.log(res);
@@ -186,7 +189,6 @@ export class MemberComponent implements OnInit {
     this._api.post(AppAPIConst.QuanLyNhanVien.employees_spLichSuThanhToan,{
       PageIndex:this.PageIndexHistory,
       PageSize:this.PageSizeHistory,
-      SearchText:'',
       EmployeeCode:this.EmployeeSelected.EmployeeCode,
     }).subscribe(res=>{
       if(res && res.Data){
@@ -258,6 +260,7 @@ export class MemberComponent implements OnInit {
           return;
         }
         this.PageIndex = 0;
+        this.SearchText = ''
         this.empaddnewdialog.hide();
         this.ResetModel();
         this.LoadListMember();
@@ -311,6 +314,7 @@ export class MemberComponent implements OnInit {
               return;
             }
             this.PageIndex = 0;
+            this.SearchText = ''
             this.ResetModel();
             this._noti.ShowToastSuccess(this.I18Lang.Common.Success)
             this.LoadListMember()
@@ -335,9 +339,16 @@ export class MemberComponent implements OnInit {
       TypeCode:this._sideBar.FunctionID,
       callBack:()=>{
         this.PageIndex = 0;
+        this.SearchText = ''
         this.ResetModel();
         this.LoadListMember()
       }
     });
+  }
+
+  onSearch(){
+    this.PageIndex = 0;
+    this.ResetModel();
+    this.LoadListMember()
   }
 }

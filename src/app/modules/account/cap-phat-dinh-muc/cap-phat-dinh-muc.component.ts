@@ -22,7 +22,7 @@ export class CapPhatDinhMucComponent implements OnInit {
   height:number = (window.innerHeight - 202)
   totalPages:number;
   totalItems:number;
-
+  SearchText:string;
   tblBU : Array<any> = []
   tblBoPhan : Array<any> = []
   tblEmployees : Array<any> = []
@@ -90,6 +90,7 @@ export class CapPhatDinhMucComponent implements OnInit {
     this._api.post(AppAPIConst.CapPhatDinhMucNV.capdinhmuc_spGetData,{
       PageIndex:this.PageIndex,
       PageSize:this.PageSize,
+      SearchText:this.SearchText,
       BU:this.selectetedBU?.BU,
       BoPhan:this.selectetedBoPhan?.DepartmentCode,
       EmployeeCode:this.lstEmpSelected.map(x => x?.EmployeeCode ?? '').join(';'),
@@ -195,5 +196,6 @@ export class CapPhatDinhMucComponent implements OnInit {
     this.PageIndex = page;
     this.getListCapPhatDinhMuc();
   }
+
 
 }

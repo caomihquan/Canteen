@@ -31,6 +31,7 @@ export class CoCauToChucComponent implements OnInit {
   TenDonVi:string;
   DonViCha:any;
   selectedGrid:any;
+  searchText:string
   constructor(
     private _api:ApiHttpService,
     protected _languageService:LanguageService,
@@ -57,7 +58,9 @@ export class CoCauToChucComponent implements OnInit {
 
 
   getCoCauToChuc(){
-    this._api.post(AppAPIConst.CoCauToChuc.Departments_get).subscribe(res=>{
+    this._api.post(AppAPIConst.CoCauToChuc.Departments_get,{
+      SearchText:this.searchText
+    }).subscribe(res=>{
       this.listDepartmentOrigin = res.Data.Data;
       this.listDepartment = this.InitNested(res.Data.Data,null);
       this.tabSelected = this.listDepartment.length > 0 ? this.listDepartment[0] : null;
@@ -186,5 +189,12 @@ export class CoCauToChucComponent implements OnInit {
         this._noti.ShowToastSuccess(this._languageService.I18LangService.Common.Success)
       }
     })
+  }
+
+  onSearch(){
+    console.log(this.searchText,'1231323');
+
+    this.ResetModel();
+    this.getCoCauToChuc();
   }
 }

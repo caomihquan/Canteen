@@ -47,7 +47,7 @@
         <div class="p-2" [ngStyle]="{'width': width + 'px'}">
 
           <div class="mt-2">
-            <grid-view [pageSize]="99999999" [totalItems]="TotalItems" (clickPage)="ClickPageEmp($event)" [template]="templateGrid"></grid-view>
+            <grid-view  (clickPage)="ClickPageEmp($event)" [template]="templateGrid"></grid-view>
           </div>
         </div>
       </div>

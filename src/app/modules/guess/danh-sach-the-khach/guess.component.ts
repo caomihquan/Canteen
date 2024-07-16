@@ -19,6 +19,7 @@ export class GuessComponent implements OnInit {
   @ViewChild('dialogCapPhat') dialogCapPhat:AppDialogComponent
   PageIndex:number = AppCommon.PageIndex;
   PageSize:number = AppCommon.PageSize;
+  SearchText:string;
   totalItems:number;
   totalHistoryCPItems: number;
   height:number = (window.innerHeight - 202)
@@ -99,7 +100,7 @@ export class GuessComponent implements OnInit {
     });
   }
   initTheKhachData(condition?:boolean){
-    this.guessService.TheKhach_Get(this.PageIndex,'',this.PageSize).subscribe((res) =>{
+    this.guessService.TheKhach_Get(this.PageIndex,this.SearchText,this.PageSize).subscribe((res) =>{
         this.listCard = res.Data.Data;
         console.log(this.listCard);
         this.totalItems = res.Data.OutputParams.TotalItems;
@@ -119,10 +120,10 @@ export class GuessComponent implements OnInit {
 
 
 
-  onSearch(event:KeyboardEvent){
-    if(event.key == 'Enter'){
-      this.ResetModel();
-    }
+  onSearch(){
+    this.PageIndex = 0;
+    this.ResetModel();
+    this.initTheKhachData();
   }
 
 

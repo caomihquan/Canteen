@@ -15,6 +15,7 @@ import { AppSwitchComponent } from 'src/app/shares/components/app-switch/app-swi
 import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
 import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
 import { BreadcumComponent } from 'src/app/shares/components/breadcum/breadcum.component';
+import { AppSearchToolbarComponent } from 'src/app/shares/components/app-search-toolbar/search-toolbar.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
     AppDialogComponent,
     HistoryDialogComponent,
     BreadcumComponent,
+    AppSearchToolbarComponent,
     RouterModule.forChild(routes),
   ],
 })

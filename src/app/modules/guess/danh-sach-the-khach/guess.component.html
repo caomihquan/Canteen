@@ -2,6 +2,8 @@
   <div class="container-toolbar">
     <div class="left-toolbar d-flex gap-2 align-items-center">
       <app-breadcum></app-breadcum>
+      <search-toolbar [(ngModel)]="SearchText" (onSearch)="onSearch()"></search-toolbar>
+
     </div>
     <div class="right-toolbar">
       <div class="button-toolbar" (click)="AddCard()">

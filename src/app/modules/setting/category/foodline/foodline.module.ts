@@ -15,6 +15,7 @@ import { AppComboboxComponent } from 'src/app/shares/components/app-combobox/app
 import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app-datetime.component';
 import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
 import { BreadcumComponent } from 'src/app/shares/components/breadcum/breadcum.component';
+import { AppSearchToolbarComponent } from 'src/app/shares/components/app-search-toolbar/search-toolbar.component';
 
 
 
@@ -44,6 +45,7 @@ const routes: Routes = [
     AppDateTimeComponent,
     HistoryDialogComponent,
     BreadcumComponent,
+    AppSearchToolbarComponent,
     RouterModule.forChild(routes),
   ],
 })

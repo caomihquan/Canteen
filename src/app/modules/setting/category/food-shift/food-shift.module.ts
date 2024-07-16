@@ -14,6 +14,7 @@ import { AppDateTimeComponent } from 'src/app/shares/components/app-datetime/app
 import { AppInputComponent } from 'src/app/shares/components/app-input/app-input.component';
 import { BreadcumComponent } from 'src/app/shares/components/breadcum/breadcum.component';
 import { AppTimeComponent } from 'src/app/shares/components/app-time/app-time.component';
+import { AppSearchToolbarComponent } from 'src/app/shares/components/app-search-toolbar/search-toolbar.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
     AppTimeComponent,
     AppDialogComponent,
     BreadcumComponent,
+    AppSearchToolbarComponent,
     RouterModule.forChild(routes),
   ],
 })

@@ -99,12 +99,19 @@ export class CapPhatTheKhachComponent implements OnInit {
           return;
         }
         this.PageIndex = 0;
+        this.SearchText = ''
         this.dialogCapPhat.hide();
         this.ResetModel();
         this._noti.ShowToastSuccess(this.I18nLang.Common.Success)
         this.getListCapPhat()
       }
     })
+  }
+
+  onSearch(){
+    this.PageIndex = 0;
+    this.ResetModel();
+    this.getListCapPhat()
   }
 
 
@@ -149,6 +156,7 @@ export class CapPhatTheKhachComponent implements OnInit {
               return;
             }
             this.PageIndex = 0;
+            this.SearchText = ''
             this.ResetModel();
             this._noti.ShowToastSuccess(this.I18nLang.Common.Success)
             this.getListCapPhat()
@@ -178,6 +186,7 @@ export class CapPhatTheKhachComponent implements OnInit {
         }
         this.PageIndex = 0;
         this.dialogTraThe.hide();
+        this.SearchText = ''
         this.ResetModel();
         this._noti.ShowToastSuccess(this.I18nLang.Common.Success)
         this.getListCapPhat()

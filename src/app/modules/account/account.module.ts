@@ -16,6 +16,7 @@ import { AppInputComponent } from 'src/app/shares/components/app-input/app-input
 import { AppDialogComponent } from 'src/app/shares/components/app-dialog/app-dialog.component';
 import { TreeViewComponent } from 'src/app/shares/components/tree-view/tree-view.component';
 import { BreadcumComponent } from 'src/app/shares/components/breadcum/breadcum.component';
+import { AppSearchToolbarComponent } from 'src/app/shares/components/app-search-toolbar/search-toolbar.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,7 @@ const routes: Routes = [
     TreeViewComponent,
     DialogAllModule,
     BreadcumComponent,
+    AppSearchToolbarComponent,
     RouterModule.forChild(routes),
   ],
 })
