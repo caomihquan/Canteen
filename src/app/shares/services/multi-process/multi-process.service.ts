@@ -50,17 +50,19 @@ export class MultiProcessService {
 
         //[{"IsDone":true,"Percent":100,"State":2,"Error":null}]
         var bodyModal = document.querySelector('.z-body');
-        dataProcess.forEach(v=>{
-          var processTemplate = '' +
-                '<div class="progress">' +
+        var processTemplate = ''
+        dataProcess.forEach(v =>{
+          processTemplate +=
+                '<div class="progress mt-4">' +
                 '    <div class="progress-bar" role="progressbar" aria-valuenow="' + v.Percent + '" aria-valuemin="0" aria-valuemax="100" style="width:' + v.Percent + '%">' +
                 '        ' + v.Percent + '%' +
                 '    </div>' +
                 '</div>';
-            if(bodyModal){
-              bodyModal.innerHTML = processTemplate;
-            }
+
         })
+        if(bodyModal){
+          bodyModal.innerHTML = processTemplate;
+        }
         setTimeout(() => {
             if (this._isDoneProcess(dataProcess)) {
               var modal = document.getElementById("dialog-percent")

@@ -40,7 +40,7 @@
       </e-column>
       <e-column [headerText]="I18nLang.TheKhach.V3ID" textAlign='Left' width=110>
         <ng-template #template let-item>
-          <div>{{item.V3ID}}</div>
+          <div>{{item.BarCode}}</div>
         </ng-template>
       </e-column>
       <e-column [headerText]="I18nLang.TheKhach.GhiChu" textAlign='Left' width=250>
@@ -137,8 +137,9 @@ height="415px"
 <!-- dialog Add - Edit -->
  <app-dialog
  #dialogAdd
- [headerText]="''"
+ [headerText]="'Thẻ khách'"
  [templateBody]="contentDialogAdd"
+ height="714px"
  (submit)="submitDialog()"
 ></app-dialog>
 <ng-template #contentDialogAdd>

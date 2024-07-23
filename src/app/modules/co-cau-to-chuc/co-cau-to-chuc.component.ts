@@ -192,8 +192,6 @@ export class CoCauToChucComponent implements OnInit {
   }
 
   onSearch(){
-    console.log(this.searchText,'1231323');
-
     this.ResetModel();
     this.getCoCauToChuc();
   }

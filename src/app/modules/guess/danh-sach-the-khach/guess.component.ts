@@ -112,7 +112,7 @@ export class GuessComponent implements OnInit {
     this.selectedGrid = item;
     this.MaThe = item.MaTheKhach
     this.HanMucSuDung = item.HanMucSuDung
-    this.BarCode = item.V3ID
+    this.BarCode = item.BarCode
     this.GhiChu = item.Mota
     this.DinhMucConLai = item.DinhMucConLai
   }

@@ -10,7 +10,7 @@
           <span>In</span>
         </div> -->
         <div class="button-toolbar"  (click)="Export()">
-          <span class="icon-General-101"></span>
+          <span class="icon-General-3"></span>
           <span>Tải xuống</span>
         </div>
       </div>
@@ -21,8 +21,8 @@
           <div  class="container-sidebar pe-4 pt-2 position-relative" [ngStyle]="{height: '100%'}">
               <div class="top">
                 <div class="d-flex justify-content-between title">
-                  <span>Lọc dữ liệu</span>
-                  <i class='icon-Arrows-63' (click)="onHideFilter()"></i>
+                  <span class="text-black">Lọc dữ liệu</span>
+                  <!-- <i class='icon-Arrows-63' (click)="onHideFilter()"></i> -->
                 </div>
                 <div class="text-common-black fw-500 pt-4 fs-14 pb-1">
                     <app-datetime title="Từ ngày" (clickDate)="FromDate = $event" [value]="FromDate"></app-datetime>

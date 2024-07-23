@@ -682,3 +682,25 @@ div.input-dropdown{
   background-color: var(--Color-Primary);
   color: #fff !important;
 }
+.z-modal-dialog{
+  background: white;
+  border: 1px solid;
+  width: 500px;
+  border-radius: 6px;
+  position: fixed;
+  padding: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#dialog-percent{
+  z-index: 8000;
+  position: fixed;
+  top: 0;
+  background: #80808036;
+  left: 0;
+  width: 100vw;
+  height: 100vw;
+  display: none;
+}
