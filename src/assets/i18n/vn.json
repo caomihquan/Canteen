@@ -162,6 +162,7 @@
     "TheKhach":"Thẻ khách",
     "DinhMucCongThem":"Định mức cộng thêm",
     "LichSuXu":"Lịch sử xu",
+    "LichSuThanhToan":"Lịch sử thanh toán",
     "LichSuCapPhat":"Lịch sử cấp phát",
     "LanNapGapNhat":"Lần nạp gần nhất",
     "TinhTrang":"Tình trạng",
@@ -174,7 +175,11 @@
     "NguoiCapThe":"Người cấp thẻ",
     "XemLichSu":"Xem lịch sử",
     "CoTraThe":"Có trả thẻ?",
-    "CapPhatTheKhach":"Cấp phát thẻ khách"
+    "CapPhatTheKhach":"Cấp phát thẻ khách",
+    "HoTenNguoiNhanThe":"Họ và tên người nhận thẻ",
+    "ThoiHanSuDungNgay":"Thời hạn sử dụng ngày",
+    "TongDinhMuc":"Tổng định mức",
+    "HanMucSuDungNgay":"Hạn mức sử dụng ngày"
   }
 
 

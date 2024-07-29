@@ -121,7 +121,7 @@ export class FoodlineComponent implements OnInit {
   }
 
   submitDialog(){
-    this._api.post(AppAPIConst.Cateogry.NhomPhu_spPostData,{
+    this._api.post(AppAPIConst.Cateogry.Line_spPostData,{
       MaLine:this.MaLine,
       TenLine:this.TenLine,
       PhanLoaiLine:this.selectPhanLoai?.PhanLoaiLine,

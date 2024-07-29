@@ -24,13 +24,13 @@
             </div>
         </div>
     </div>
-    <div class="mx-2">
+    <div class="mx-2 mt-2">
         <grid-view [totalItems]="totalItems" (clickPage)="ClickPagerIndex($event)" [template]="templategrid"></grid-view>
     </div>
 </div>
 
 <ng-template #templategrid>
-    <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
+    <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height - 16" [sortSettings]='sortOptions' [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
         <e-columns>
             <e-column headerText="{{I18Lang.FoodShift.MaCa}}" textAlign='Left' width=50>
                 <ng-template #template let-item>

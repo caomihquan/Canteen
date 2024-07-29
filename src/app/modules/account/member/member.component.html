@@ -30,12 +30,12 @@
             </div>
         </div>
     </div>
-    <div class="mx-2">
+    <div class="mx-2 mt-2">
         <grid-view (clickPage)="ClickPageMember($event)" [totalItems]="totalItems" [template]="templategrid"></grid-view>
     </div>
 </div>
 <ng-template #templategrid>
-    <ejs-grid #grid allowTextWrap='true' [textWrapSettings]='wrapSettings' (recordClick)="selectedRow($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listEmployee' [allowSorting]="true" [pageSettings]="pageSettings">
+    <ejs-grid #grid allowTextWrap='true' [textWrapSettings]='wrapSettings' (recordClick)="selectedRow($event)" [height]="height - 16" [sortSettings]='sortOptions' [dataSource]='listEmployee' [allowSorting]="true" [pageSettings]="pageSettings">
         <e-columns>
             <e-column [headerText]="I18Lang.Account.MaNhanVien" textAlign='Left' width=150>
                 <ng-template #template let-item>

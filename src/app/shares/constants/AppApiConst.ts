@@ -88,7 +88,8 @@ export const AppAPIConst = {
     thekhach_spcapdinhmuc:"HrmMobileApp/CnB/Danhmuc/thekhach_spcapdinhmuc",
     TheKhach_spDeleteData:"HrmMobileApp/CnB/Danhmuc/TheKhach_spDeleteData",
     thekhach_spPostData:"HrmMobileApp/CnB/Danhmuc/thekhach_spPostData",
-    capthekhach_spTraThe:"HrmMobileApp/CnB/Danhmuc/capthekhach_spTraThe"
+    capthekhach_spTraThe:"HrmMobileApp/CnB/Danhmuc/capthekhach_spTraThe",
+    thekhach_spLichSuThanhToan:"HrmMobileApp/CnB/Danhmuc/thekhach_spLichSuThanhToan"
   },
   Report:{
     reportsudungthe_get: 'HrmMobileApp/CnB/Danhmuc/reportsudungthe_get',

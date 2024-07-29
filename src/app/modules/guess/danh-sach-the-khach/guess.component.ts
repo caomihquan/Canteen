@@ -34,7 +34,15 @@ export class GuessComponent implements OnInit {
   listCard:Array<any> = []
 
   listHistory:any[] = []
-  listHistoryXu = []
+  PageIndexHistory:number = AppCommon.PageIndex;
+  PageSizeHistory:number = AppCommon.PageSize;
+  TotalItemsHistory:number = 0
+
+  listCapPhat:any[] = []
+  PageIndexCPHistory:number = AppCommon.PageIndex;
+  PageSizeCPHistory:number = AppCommon.PageSize;
+  TotalItemsCPHistory:number = 0
+
 
   MaThe:string;
   GhiChu:string;
@@ -58,53 +66,56 @@ export class GuessComponent implements OnInit {
   }
 
 
-  onOpenCPHistory(theID:string){
-    this.listHistory =[];
-    var data = {
-      Option: 10,
-      SearchText: '',
-      PageIndex: this.PageIndex,
-      PageSize: this.PageSize
-    }
-    this.guessService.TheKhach_GetHistoryTK(data).subscribe((res) => {
-      var data = res.Data.Data;
-      if(data.length > 0){
-        this.listHistory = (data as any[]).filter(x => x['MaTheKhach'] == theID);
-        this. totalHistoryCPItems = res.Data.OutputParams.TotalItems;
-      }
-      else{
-        this.listHistory =[];
-        this.ResetModel()
-      }
-    });
+  onOpenThanhToanHistory(item:any){
+    this.selectedGrid = item;
+    this.PageIndexHistory = 0;
+    this.listHistory = []
+    this.getLichSuThanhToan();
   }
-  onOpenXuHistory(theID:string){
-    this.listHistory =[];
-    var data = {
-      Option: 10,
-      SearchText: '',
-      PageIndex: this.PageIndex,
-      PageSize: this.PageSize
-    }
-  this.guessService.TheKhach_GetHistoryTK(data).subscribe((res) => {
-        var data = res.Data.Data;
-        if(data.length > 0){
-          this.listHistory = (data as any[]).filter(x => x['MaTheKhach'] == theID);
-          this. totalHistoryCPItems = res.Data.OutputParams.TotalItems;
-        }
-        else{
-          this.listHistory =[];
-          this.ResetModel()
-        }
 
-    });
+  onOpenCPHistory(item:any){
+    this.selectedGrid = item;
+    this.PageIndexCPHistory = 0;
+    this.listCapPhat = []
+    this.getListCapPhat();
   }
+
+
   initTheKhachData(condition?:boolean){
     this.guessService.TheKhach_Get(this.PageIndex,this.SearchText,this.PageSize).subscribe((res) =>{
         this.listCard = res.Data.Data;
         console.log(this.listCard);
         this.totalItems = res.Data.OutputParams.TotalItems;
     });
+  }
+
+
+  getLichSuThanhToan(){
+    this._api.post(AppAPIConst.TheKhach.thekhach_spLichSuThanhToan,{
+      PageIndex:this.PageIndexHistory,
+      PageSize:this.PageSizeHistory,
+      MaTheKhach:this.selectedGrid?.MaTheKhach
+    }).subscribe(res=>{
+      this.listHistory = res.Data.Data;
+      this.TotalItemsHistory = res.Data.OutputParams.TotalItems;
+    })
+  }
+
+  getListCapPhat(){
+    this._api.post(AppAPIConst.TheKhach.capthekhach_spGetData,{
+      PageIndex:this.PageIndexCPHistory,
+      PageSize:this.PageSizeCPHistory,
+      MaTheKhach:this.selectedGrid?.MaTheKhach
+    }).subscribe(res=>{
+      if(res.Data){
+        if(res.Data.Error){
+          this._noti.ShowToastError(res.Data.Error.Message)
+          return;
+        }
+        this.listCapPhat = res.Data.Data
+        this.totalHistoryCPItems = res.Data.OutputParams.TotalItems
+      }
+    })
   }
 
   selectedRowTable(evt:any){
@@ -131,6 +142,16 @@ export class GuessComponent implements OnInit {
   ClickPagerIndex(evt:any){
     this.PageIndex = evt;
     this.initTheKhachData();
+  }
+
+  ClickPagerIndexHistory(evt:any){
+    this.PageIndexHistory = evt;
+    this.getLichSuThanhToan();
+  }
+
+  ClickPagerIndexCPHistory(evt:any){
+    this.PageIndexCPHistory = evt;
+    this.getListCapPhat();
   }
 
   ResetModel(){
@@ -208,6 +229,7 @@ export class GuessComponent implements OnInit {
         this.PageIndex = 0
         this.initTheKhachData();
         this._noti.ShowToastSuccess(this.I18nLang.Common.Success)
+        this.dialogAdd.hide();
       }
     })
   }
@@ -233,6 +255,7 @@ export class GuessComponent implements OnInit {
         this.ResetModel();
         this.PageIndex = 0
         this.initTheKhachData();
+        this.dialogCapPhat.hide();
         this._noti.ShowToastSuccess(this.I18nLang.Common.Success)
       }
     })

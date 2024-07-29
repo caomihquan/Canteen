@@ -27,7 +27,7 @@ export class CapPhatTheKhachComponent implements OnInit {
   selectedTheKhach:any;
   NguoiNhanThe:string;
   GhiChu:string;
-  ThoiHanSuDung = new Date().toISOString();
+  ThoiHanSuDungNgay = new Date().toISOString();
   HanMucNgay:string;
   selectedGrid:any
   getPhoto = fnCommon.ConvertPhotoEmpByUserID
@@ -35,6 +35,14 @@ export class CapPhatTheKhachComponent implements OnInit {
   MaTheTra:any;
   NguoiTra:any;
   isNotTraThe:boolean = false;
+  listHistory:Array<any> = []
+  heightHistory:number = (window.innerHeight - 170)
+
+  PageIndexHistory:number = AppCommon.PageIndex;
+  PageSizeHistory:number = AppCommon.PageSize;
+  TotalItemsHistory:number = 0
+
+
   constructor(
     private _noti:NotificationService,
     private _api:ApiHttpService,
@@ -53,13 +61,23 @@ export class CapPhatTheKhachComponent implements OnInit {
       this.tblTheKhach = res.Data.tblTheKhach
     })
   }
+  onOpenCPHistory(item:any){
+    this.selectedGrid = item;
+    this.PageIndexHistory = 0;
+    this.getLichSuThanhToan();
+  }
+  ClickPagerIndexHistory(evt:any){
+    this.PageIndexHistory = evt;
+    this.getLichSuThanhToan();
+  }
 
   clickGrid(event:any){
     const item = event.rowData
+    this.selectedGrid = item
     this.selectedTheKhach = this.tblTheKhach.find(x => x.MaTheKhach == item.MaTheKhach)
     this.NguoiNhanThe = item.HoTen
     this.GhiChu = item.GhiChu
-    this.ThoiHanSuDung = item.ThoiGianSuDung
+    this.ThoiHanSuDungNgay = item.ThoiGianSuDung
     this.HanMucNgay = item.HanMucNgay
     this.isNotTraThe = !item.TraThe
     this.MaTheTra = item.MaTheKhach
@@ -87,10 +105,11 @@ export class CapPhatTheKhachComponent implements OnInit {
 
   submitDialog(){
     this._api.post(AppAPIConst.TheKhach.capthekhach_spPostData,{
+      ID:this.selectedGrid?.ID ?? 0,
       MaTheKhach:this.selectedTheKhach?.MaTheKhach,
       HoTen:this.NguoiNhanThe,
       HanMucNgay:this.HanMucNgay,
-      ThoiHanSuDung:this.ThoiHanSuDung,
+      ThoiHanSuDung:this.ThoiHanSuDungNgay,
       GhiChu:this.GhiChu
     }).subscribe(res=>{
       if(res && res.Data){
@@ -114,16 +133,33 @@ export class CapPhatTheKhachComponent implements OnInit {
     this.getListCapPhat()
   }
 
+  clickPage(page:any){
+    this.PageIndex = page;
+    this.ResetModel();
+    this.getListCapPhat()
+  }
 
   ResetModel(){
     this.selectedTheKhach = null
     this.NguoiNhanThe = '';
     this.GhiChu = '';
-    this.ThoiHanSuDung = new Date().toISOString();
+    this.ThoiHanSuDungNgay = new Date().toISOString();
     this.isNotTraThe = false;
     this.MaTheTra = ''
     this.NguoiTra = ''
   }
+
+  getLichSuThanhToan(){
+    this._api.post(AppAPIConst.TheKhach.thekhach_spLichSuThanhToan,{
+      PageIndex:this.PageIndexHistory,
+      PageSize:this.PageSizeHistory,
+      MaTheKhach:this.selectedGrid?.MaTheKhach
+    }).subscribe(res=>{
+      this.listHistory = res.Data.Data;
+      this.TotalItemsHistory = res.Data.OutputParams.TotalItems;
+    })
+  }
+
   onAdd(){
     this.ResetModel();
     this.dialogCapPhat.show();
@@ -148,7 +184,7 @@ export class CapPhatTheKhachComponent implements OnInit {
       title:this.I18nLang.Common.Alert,
       OkFunction:()=>{
         this._api.post(AppAPIConst.TheKhach.capthekhach_spDeleteData,{
-          strCode:this.selectedGrid?.MaTheKhach,
+          strCode:this.selectedGrid?.ID,
         }).subscribe(res=>{
           if(res && res.Data){
             if(res?.Data?.Error){
@@ -176,7 +212,7 @@ export class CapPhatTheKhachComponent implements OnInit {
   }
 
   onSubmitTraThe(){
-    this._api.post(AppAPIConst.TheKhach.capthekhach_spPostData,{
+    this._api.post(AppAPIConst.TheKhach.capthekhach_spTraThe,{
       ID:this.selectedGrid?.ID
     }).subscribe(res=>{
       if(res && res.Data){

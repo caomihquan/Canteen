@@ -1,5 +1,5 @@
 <div class="bg-white width-screen">
-  <div class="container-toolbar pb-2">
+  <div class="container-toolbar pb-0">
     <div class="left-toolbar d-flex gap-2 align-items-center">
       <app-breadcum></app-breadcum>
     </div>
@@ -68,7 +68,7 @@
 <ng-template #templategrid>
   <ejs-grid
   [dataSource]="listHistory"
-  [height]="heightGrid + 10"
+  [height]="heightGrid - 50"
   [allowTextWrap]="true"
   [textWrapSettings]='wrapSettings'>
     <e-columns>

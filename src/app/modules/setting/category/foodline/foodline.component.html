@@ -24,12 +24,12 @@
             </div> -->
         </div>
     </div>
-    <div class="mx-2">
+    <div class="mx-2 mt-2">
         <grid-view [totalItems]="totalItems" (clickPage)="ClickPagerIndex($event)" [template]="templategrid"></grid-view>
     </div>
 </div>
 <ng-template #templategrid>
-    <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height" [sortSettings]='sortOptions' [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
+    <ejs-grid (recordClick)="selectedRowTable($event)" [height]="height - 16" [sortSettings]='sortOptions' [dataSource]='listSubgroup' [allowSorting]="true" [pageSettings]="pageSettings">
         <e-columns>
             <e-column headerText="{{I18Lang.FoodLine.MaLine}}" textAlign='Center' width=110>
                 <ng-template #template let-item>
@@ -74,15 +74,15 @@
                     <span>{{item.NgayHieuLuc | date:'dd/MM/yyyy'}}</span>
                 </ng-template>
             </e-column>
-            <e-column headerText="{{I18Lang.FoodLine.NguoiChinhSua}}" width=120 textAlign='Center'>
+            <e-column headerText="{{I18Lang.FoodLine.NguoiChinhSua}}" width=150 textAlign='Left'>
                 <ng-template #template let-item>
                     <div class="user-container" *ngIf="item.ModifiedBy">
                         <div class="user-img">
-                            <img [src]="getPhoto(item.ModifiedBy)" alt="">
+                            <img width="40" height="40" class="rounded-circle" [src]="getPhoto(item.ModifiedBy)" alt="">
                         </div>
-                        <div class="user-info">
+                        <div class="user-info fs-12">
                             <span class="name"> {{item.ModifiedBy}}</span>
-                            <span class="time">{{item.ModifiedOn | date:'dd/MM/yyyy hh:mm'}}</span>
+                            <span class="time fs-10">{{item.ModifiedOn | date:'dd/MM/yyyy hh:mm'}}</span>
                         </div>
                     </div>
                 </ng-template>

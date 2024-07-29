@@ -134,18 +134,18 @@
     </e-column>
     <e-column [headerText]="I18nLang.CapPhatDinhMuc.TienDinhMuc1" textAlign='Left' width=200>
       <ng-template #template let-item>
-          <span class="text-start">{{item.DinhMuc1}}</span>
+          <span class="text-start">{{item.DinhMuc1 | number: '2.'}}</span>
       </ng-template>
     </e-column>
     <e-column [headerText]="I18nLang.CapPhatDinhMuc.TienDinhMuc2" textAlign='Left' width=200>
       <ng-template #template let-item>
-          <span class="text-start">{{item.DinhMuc2}}</span>
+          <span class="text-start">{{item.DinhMuc2 | number: '2.'}}</span>
       </ng-template>
     </e-column>
 
     <e-column [headerText]="I18nLang.CapPhatDinhMuc.TongDinhMuc" textAlign='Left' width=200>
       <ng-template #template let-item>
-          <span class="text-start">{{item.TongDinhMuc}}</span>
+          <span class="text-start">{{item.TongDinhMuc | number: '2.'}}</span>
       </ng-template>
     </e-column>
 
