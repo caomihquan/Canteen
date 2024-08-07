@@ -308,3 +308,11 @@ input:focus{
   text-align: right;
   margin-top: 8px;
 }
+
+
+.flag{
+  opacity: 0.5;
+}
+.flag.active{
+  opacity: 1;
+}

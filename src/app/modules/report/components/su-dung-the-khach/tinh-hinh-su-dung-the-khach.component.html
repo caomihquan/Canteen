@@ -2,16 +2,11 @@
     <div class="container-toolbar">
       <div class="left-toolbar d-flex gap-2 align-items-center">
         <app-breadcum></app-breadcum>
-
       </div>
       <div class="right-toolbar">
-        <!-- <div class="button-toolbar">
-          <span class="icon-General-163"></span>
-          <span>In</span>
-        </div> -->
         <div class="button-toolbar"  (click)="Export()">
           <span class="icon-General-3"></span>
-          <span>Tải xuống</span>
+          <span>{{I18nLang.Common.Download}}</span>
         </div>
       </div>
     </div>
@@ -21,24 +16,24 @@
           <div  class="container-sidebar pe-4 pt-2 position-relative" [ngStyle]="{height: '100%'}">
               <div class="top">
                 <div class="d-flex justify-content-between title">
-                  <span class="text-black">Lọc dữ liệu</span>
+                  <span class="text-black">{{I18nLang.Common.Filter}}</span>
                   <!-- <i class='icon-Arrows-63' (click)="onHideFilter()"></i> -->
                 </div>
                 <div class="text-common-black fw-500 pt-4 fs-14 pb-1">
-                    <app-datetime title="Từ ngày" (clickDate)="FromDate = $event" [value]="FromDate"></app-datetime>
+                    <app-datetime [title]="I18nLang.Report.FromDate" (clickDate)="FromDate = $event" [value]="FromDate"></app-datetime>
                 </div>
                 <div class="text-common-black fw-500 pt-4 fs-14 pb-1">
-                  <app-datetime title="Từ ngày" (clickDate)="ToDate = $event" [value]="ToDate"></app-datetime>
+                  <app-datetime [title]="I18nLang.Report.ToDate" (clickDate)="ToDate = $event" [value]="ToDate"></app-datetime>
                 </div>
                 <div class="text-common-black fw-500 pt-4 fs-14 pb-1">
-                  <app-combobox title="Mã thẻ" [dataSource]="listCombo" (clickItem)="selectedCard = $event" [selectedItem]="selectedCard" fieldName="MaTheKhach" [dataSource]=""></app-combobox>
+                  <app-combobox [title]="I18nLang.Report.MaThe" [dataSource]="listCombo" (clickItem)="selectedCard = $event" [selectedItem]="selectedCard" fieldName="MaTheKhach" [dataSource]=""></app-combobox>
                 </div>
 
               </div>
               <div class="bottom">
                 <div class="button-toolbar w-50 d-flex justify-content-center float-end" (click)="ViewReport()">
                   <!-- <span class="icon-General-101"></span> -->
-                  <span>Áp dụng</span>
+                  <span>{{I18nLang.Common.Apply}}</span>
                 </div>
               </div>
 
@@ -64,45 +59,45 @@
       <e-columns>
 
 
-        <e-column field="BarCode" headerText="Mã thẻ" textAlign='Left' width=140>
+        <e-column field="BarCode" [headerText]="I18nLang.Report.MaThe" textAlign='Left' width=140>
           <ng-template #template let-item>
             <div class="text-start">{{item.BarCode}}</div>
           </ng-template>
         </e-column>
 
-        <e-column field="Hour" headerText="Giờ quét thẻ" textAlign='Left' width=150>
+        <e-column field="Hour" [headerText]="I18nLang.Report.GioQuetThe" textAlign='Left' width=150>
           <ng-template #template let-item>
               <div class="text-start">{{item.ScanTime | date:'hh:mm'}}</div>
           </ng-template>
         </e-column>
 
 
-        <e-column field="WeekDay" headerText="Thứ" textAlign='Center' width=110>
+        <e-column field="WeekDay" [headerText]="I18nLang.Report.Thu" textAlign='Center' width=110>
           <ng-template #template let-item>
               <div class="text-center fw-600">{{item.ScanTime | weekdayVn}}</div>
           </ng-template>
         </e-column>
 
-        <e-column field="Date" headerText="Ngày quét thẻ" textAlign='Left' width=140>
+        <e-column field="Date" [headerText]="I18nLang.Report.NgayQuetThe" textAlign='Left' width=140>
           <ng-template #template let-item>
               <div class="text-start">{{item.ScanTime | date:'dd/MM/yyyy'}}</div>
           </ng-template>
         </e-column>
 
 
-        <e-column field="TenLine" headerText="Line" textAlign='Left' width=140>
+        <e-column field="TenLine" [headerText]="I18nLang.Report.Line" textAlign='Left' width=140>
           <ng-template #template let-item>
               <div class="text-start">{{item.TenLine}}</div>
           </ng-template>
         </e-column>
 
-        <e-column field="Vendor" headerText="Vendor" textAlign='Left' width=140>
+        <e-column field="Vendor" [headerText]="I18nLang.Report.Vendor" textAlign='Left' width=140>
           <ng-template #template let-item>
               <div class="text-start">{{item.Vendor}}</div>
           </ng-template>
         </e-column>
 
-        <e-column field="LoaiMon" headerText="Loại món" textAlign='Left' width=140>
+        <e-column field="LoaiMon" [headerText]="I18nLang.Report.LoaiMon" textAlign='Left' width=140>
           <ng-template #template let-item>
               <div class="d-flex gap-2 align-items-center" [ngClass]="{
                 'type-food-1': item.LoaiMon == 1 || true,
@@ -120,50 +115,50 @@
 
 
 
-        <e-column field="MaCa" headerText="Ca làm việc" textAlign='Left' width=180>
+        <e-column field="MaCa" [headerText]="I18nLang.Report.CaLamViec" textAlign='Left' width=180>
           <ng-template #template let-item>
               <span class="text-start">{{item.MaCa}}</span>
           </ng-template>
         </e-column>
 
 
-        <e-column field="SoLuong" headerText="Số lượng" textAlign='Left' width=180>
+        <e-column field="SoLuong" [headerText]="I18nLang.Report.SoLuong" textAlign='Left' width=180>
           <ng-template #template let-item>
               <span class="text-start">{{item.SoLuong}}</span>
           </ng-template>
         </e-column>
 
-        <e-column field="DonGia" headerText="Đơn giá" textAlign='Left' width=180>
+        <e-column field="DonGia" [headerText]="I18nLang.Report.DonGia" textAlign='Left' width=180>
           <ng-template #template let-item>
               <span class="text-start">{{item.DonGia}}</span>
           </ng-template>
         </e-column>
 
-        <e-column field="ThanhTien" headerText="Thành tiền" textAlign='Left' width=180>
+        <e-column field="ThanhTien" [headerText]="I18nLang.Report.ThanhTien" textAlign='Left' width=180>
           <ng-template #template let-item>
               <span class="text-start">{{item.ThanhTien}}</span>
           </ng-template>
         </e-column>
 
-        <e-column field="EmployeeCode" headerText="Mã Nhân viên" textAlign='Left' width=150>
+        <e-column field="EmployeeCode" [headerText]="I18nLang.Report.MaNhanVien" textAlign='Left' width=150>
           <ng-template #template let-item>
             <div class="text-start">{{item.EmployeeCode}}</div>
           </ng-template>
         </e-column>
 
-        <e-column headerText="V3ID" textAlign='Left' width=140>
+        <e-column [headerText]="I18nLang.Report.V3ID" textAlign='Left' width=140>
           <ng-template #template let-item>
             <div class="text-start">{{item.BarCode}}</div>
           </ng-template>
         </e-column>
 
-        <e-column headerText="BU" textAlign='Left' width=140>
+        <e-column [headerText]="I18nLang.Report.BU" textAlign='Left' width=140>
           <ng-template #template let-item>
             <span class="text-start">{{item.BU}}</span>
           </ng-template>
         </e-column>
 
-        <e-column headerText="Họ và tên (VN)" width=180 textAlign='Left'>
+        <e-column [headerText]="I18nLang.Report.FullName" width=180 textAlign='Left'>
           <ng-template #template let-item>
             <div class="d-flex align-items-center gap-2">
               <img width="40" height="40" [src]="getPhoto(item.EmployeeCode)" alt="" srcset="">
@@ -171,17 +166,17 @@
             </div>
           </ng-template>
         </e-column>
-        <e-column headerText="Phòng ban" textAlign='Left' width=180>
+        <e-column [headerText]="I18nLang.Report.PhongBan" textAlign='Left' width=180>
           <ng-template #template let-item>
             <span class="text-start">{{item.DepartmentCode}}</span>
           </ng-template>
         </e-column>
-        <e-column headerText="Ngày nhận việc" textAlign='Left' width=180>
+        <e-column [headerText]="I18nLang.Report.NgayNhanViec" textAlign='Left' width=180>
           <ng-template #template let-item>
             <span class="text-start">{{item.JoinDate | date:'dd/MM/yyyy'}}</span>
           </ng-template>
         </e-column>
-        <e-column headerText="Nhóm phụ nhân viên" width=200 textAlign='Left'>
+        <e-column [headerText]="I18nLang.Report.NhomPhuNV" width=200 textAlign='Left'>
           <ng-template #template let-item>
             <div class="d-flex justify-content-center">
               <div class="d-flex gap-2 align-items-center" [ngClass]="{
@@ -195,34 +190,34 @@
             </div>
           </ng-template>
         </e-column>
-        <e-column headerText="Tình trạng" width=120 textAlign='Left'>
+        <e-column [headerText]="I18nLang.Report.TinhTrang" width=120 textAlign='Left'>
           <ng-template #template let-item>
             <div [ngClass]="{'status0': item.Status == 0,'status1': item.Status == 1}">
               <ng-container>{{item.TinhTrang}}</ng-container>
             </div>
           </ng-template>
         </e-column>
-        <e-column headerText="CostCenter" textAlign='Left' width=150>
+        <e-column [headerText]="I18nLang.Report.CostCenter" textAlign='Left' width=150>
           <ng-template #template let-item>
             <span class="text-start">{{item.CostCenter}}</span>
           </ng-template>
         </e-column>
-        <e-column headerText="Transaction Entry" textAlign='Left' width=180>
+        <e-column [headerText]="I18nLang.Report.TransactionEntry" textAlign='Left' width=180>
           <ng-template #template let-item>
             <span class="text-start">{{item.TranSactionEntry}}</span>
           </ng-template>
         </e-column>
-        <e-column headerText="Location" textAlign='Left' width=150>
+        <e-column [headerText]="I18nLang.Report.Location" textAlign='Left' width=150>
           <ng-template #template let-item>
             <span class="text-start">{{item.Location}}</span>
           </ng-template>
         </e-column>
-        <e-column headerText="EmployeeType" textAlign='Left' width=150>
+        <e-column [headerText]="I18nLang.Report.EmployeeType" textAlign='Left' width=150>
           <ng-template #template let-item>
             <span class="text-start">{{item.EmployeeType}}</span>
           </ng-template>
         </e-column>
-        <e-column headerText="EmployeeCategory" textAlign='Left' width=180>
+        <e-column [headerText]="I18nLang.Report.EmployeeCategory" textAlign='Left' width=180>
           <ng-template #template let-item>
             <span class="text-start">{{item.EmployeeCategory}}</span>
           </ng-template>

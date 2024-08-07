@@ -137,7 +137,7 @@ height="415px"
 <!-- dialog Add - Edit -->
  <app-dialog
  #dialogAdd
- [headerText]="'Thẻ khách'"
+ [headerText]="I18nLang.TheKhach.TheKhach"
  [templateBody]="contentDialogAdd"
  height="714px"
  (submit)="submitDialog()"
@@ -166,7 +166,7 @@ height="415px"
 
 
 <!-- Lịch sử cấp phát thẻ -->
-<app-dialog [isFooter]="false" height="100vh" width="70%"  #historyProvide headerText="Lịch sử cấp phát" [templateBody]="content"></app-dialog>
+<app-dialog [isFooter]="false" height="100vh" width="70%"  #historyProvide [headerText]="I18nLang.TheKhach.LichSuCapPhat" [templateBody]="content"></app-dialog>
 <ng-template #content>
   <div class="mt-3">
     <grid-view [template]="temphistoryProvide" [totalItems]="totalHistoryCPItems" (clickPage)="ClickPagerIndexCPHistory($event)"></grid-view>
@@ -235,7 +235,7 @@ height="415px"
 </ng-template>
 
 <!-- lich su xu -->
-<app-dialog  [isFooter]="false" height="100vh" width="70%" #historyCoin headerText="Lịch sử thanh toán" [templateBody]="contentCoin"></app-dialog>
+<app-dialog  [isFooter]="false" height="100vh" width="70%" #historyCoin [headerText]="I18nLang.TheKhach.LichSuThanhToan" [templateBody]="contentCoin"></app-dialog>
 <ng-template #contentCoin>
   <div class="mt-3">
     <grid-view [template]="temphistoryCoin" [totalItems]="TotalItemsHistory" (clickPage)="ClickPagerIndexHistory($event)"></grid-view>

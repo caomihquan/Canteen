@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AppRoutes } from '../../constants/AppRoutes';
 import { NotificationService } from '../notification/notification.service';
 import { SideBarService } from '../sidebar/sidebar.service';
+import { LanguageService } from '../language/language.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +20,8 @@ export class ApiHttpService {
     private auth:AuthService,
     private route:Router,
     private noti:NotificationService,
-    private sidebar:SideBarService
+    private sidebar:SideBarService,
+    private _lang:LanguageService
   ) {}
 
   post(url:string, datas?:any,loading:boolean = false) {
@@ -39,7 +41,7 @@ export class ApiHttpService {
       _headers["HRM-Token-ID"] = loginInfo.TokenID;
       _headers["HRM-JWT-ID"] = loginInfo.Jwt;
     }
-    let _payload = {...datas,FunctionID:this.sidebar.FunctionID};
+    let _payload = {...datas,FunctionID:this.sidebar.FunctionID,Language:this._lang.currentLang};
     let urlencoded = "headers=" + window.encodeURIComponent(JSON.stringify(_headers));
     if (_payload) {
       urlencoded += "&payload=" + window.encodeURIComponent(JSON.stringify(_payload));

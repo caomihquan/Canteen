@@ -4,6 +4,7 @@ import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
+import { LanguageService } from 'src/app/shares/services/language/language.service';
 
 @Component({
   selector: 'app-theo-doi-line',
@@ -51,9 +52,11 @@ export class TheoDoiLineComponent implements OnInit {
       //   totalXu: 30000
       // }
   ]
+  I18nLang:any;
 
-
-  constructor(private _api: ApiHttpService) { }
+  constructor(private _api: ApiHttpService,private _languageService:LanguageService) {
+    this.I18nLang = this._languageService.I18LangService
+   }
 
   ngOnInit(): void {
     //this.getCoCauToChuc();

@@ -20,13 +20,13 @@
             </div>
             <div class="button-toolbar" (click)="ExportMember()">
                 <span class="icon-General-3"></span>
-                <span>Xuất khẩu</span>
+                <span>{{I18Lang.Common.Import}}</span>
             </div>
             <div class="button-toolbar" (click)="import.click()">
                 <input onclick="this.value=null;" [hidden]="true" (change)="ImportMember($event)" type="file" #import
                 accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
                 <span class="icon-General-101"></span>
-                <span>Nhập khẩu</span>
+                <span>{{I18Lang.Common.Export}}</span>
             </div>
         </div>
     </div>

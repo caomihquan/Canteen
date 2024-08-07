@@ -47,7 +47,7 @@ export class HeaderComponent {
     private _router:Router,
     private _user:AuthService,
     private _serviceChangePassword:ChangePasswordService,
-    private _langService:LanguageService,
+    protected _langService:LanguageService,
     private _apiHttp:ApiHttpService,
     protected _ordinal:OrdinalService,
     private _translate:TranslateService
@@ -118,5 +118,9 @@ export class HeaderComponent {
     return Math.abs(number)
   }
 
+  changeLanguage(lang:string){
+     localStorage.setItem('Language',lang)
+     window.location.reload();
+  }
 
 }

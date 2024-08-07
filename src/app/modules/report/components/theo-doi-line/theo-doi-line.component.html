@@ -12,7 +12,7 @@
       </div> -->
       <div class="button-toolbar" (click)="Export()">
         <span class="icon-General-3"></span>
-        <span>Tải xuống</span>
+        <span>{{I18nLang.Common.Download}}</span>
       </div>
     </div>
   </div>
@@ -22,7 +22,7 @@
         <div  class="container-sidebar pe-4 pt-2 position-relative" [ngStyle]="{height: '100%'}">
             <div class="top">
               <div class="d-flex justify-content-between title">
-                <span class="text-black">Lọc dữ liệu</span>
+                <span class="text-black">{{I18nLang.Common.Filter}}</span>
                 <!-- <i class='icon-Arrows-63' (click)="onHideFilter()"></i> -->
               </div>
 
@@ -60,13 +60,13 @@
                 <app-combobox fieldName="" [dataSource]=""></app-combobox>
               </div> -->
               <div>
-                <div class="text-common-black fw-500 pt-4 fs-14 pb-1">Tháng</div>
+                <div class="text-common-black fw-500 pt-4 fs-14 pb-1">{{I18nLang.Report.Thang}}</div>
                 <app-combobox [selectedItem]="selectedDowCode" (clickItem)="onChangeDowCode($event)" fieldName="DowCode" [dataSource]="DowCode"></app-combobox>
               </div>
             </div>
             <div class="bottom">
               <div (click)="LoadLineReport()" class="button-toolbar w-50 d-flex justify-content-center float-end">
-                <span>Áp dụng</span>
+                <span>{{I18nLang.Common.Apply}}</span>
               </div>
             </div>
 
@@ -92,25 +92,25 @@
   (excelExportComplete)='excelExportComplete()'
   [allowSorting]="true">
     <e-columns>
-      <e-column field="TenLine" headerText="Line" textAlign='Left' width=150>
+      <e-column field="TenLine" [headerText]="I18nLang.Report.Line" textAlign='Left' width=150>
         <ng-template #template let-item>
           <div class="text-start">{{item.TenLine}}</div>
         </ng-template>
       </e-column>
 
-      <e-column field="NhaThau" headerText="Vendor" textAlign='Left' width=140>
+      <e-column field="NhaThau" [headerText]="I18nLang.Report.Vendor" textAlign='Left' width=140>
         <ng-template #template let-item>
           <div class="text-start">{{item.NhaThau}}</div>
         </ng-template>
       </e-column>
 
-      <e-column field="Thang" headerText="Tháng" textAlign='Left' width=140>
+      <e-column field="Thang" [headerText]="I18nLang.Report.Thang" textAlign='Left' width=140>
         <ng-template #template let-item>
           <span class="text-start">{{item.Thang}}</span>
         </ng-template>
       </e-column>
 
-      <e-column field="TongSuDung" headerText="Tổng số xu sử dụng" width=180 textAlign='Left'>
+      <e-column field="TongSuDung" [headerText]="I18nLang.Report.TongSoXuSuDung" width=180 textAlign='Left'>
         <ng-template #template let-item>
           <span class="text-start">{{item.TongSuDung}}</span>
         </ng-template>

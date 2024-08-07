@@ -5,6 +5,7 @@ import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
+import { LanguageService } from 'src/app/shares/services/language/language.service';
 
 @Component({
   selector: 'app-tinh-hinh-su-dung-the-khach',
@@ -30,9 +31,14 @@ export class TinhHinhSuDungTheKhachComponent implements OnInit {
   ToDate:string = new Date().toISOString();
   selectedCard:any;
   listCombo:Array<any> = []
-  constructor(private _api: ApiHttpService) { }
+  I18nLang:any;
+  constructor(private _api: ApiHttpService,private _languageService:LanguageService) {
+    this.I18nLang = this._languageService.I18LangService
+  }
   public toolbarOptions?: ToolbarItems[];
   @ViewChild('grid')  public grid?: GridComponent;
+
+
   ngOnInit(): void {
     //this.getCoCauToChuc();
     this.getCombo();
