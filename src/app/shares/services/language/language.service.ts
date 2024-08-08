@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 export class LanguageService {
   Lang = new Subject<any>();
   currentLang:string = ''
-  I18LangService:any;
+  I18LangService:any = {};
   constructor(
     private translate: TranslateService,
   ) {
