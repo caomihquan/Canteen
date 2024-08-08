@@ -25,14 +25,12 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private _serviceChangePassword:ChangePasswordService,
     private _router:Router,
     private _langService:LanguageService,
-  ){}
+  ){
+    this.I18nLang = this._langService.I18LangService
+  }
   ngOnInit(): void {
-    this.getLanguage();
   }
 
-  getLanguage = async () => {
-    this.I18nLang = await this._langService.getLanguage();
-  }
 
 
   onSubmit(){

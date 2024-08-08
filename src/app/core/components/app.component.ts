@@ -66,6 +66,7 @@ export class AppComponent {
       }
     })
     this.getLanguage();
+
   }
 
   getLanguage = async() =>{

@@ -17,7 +17,14 @@
     "CapPhatDinhMuc":"Allocate quota",
     "Dowload":"Download",
     "Filter":"Filter data",
-    "Apply":"Apply"
+    "Apply":"Apply",
+    "OK":"OK",
+    "Cancel":"Cancel"
+  },
+  "Message":{
+    "DeleteSucess":"Deleted successfully",
+    "SaveSuccess":"Saved successfully",
+    "WantToDelete":"Are you sure you want to delete?"
   },
   "Error":{
     "Require":"Some required fields are missing",
@@ -216,5 +223,23 @@
     "TongSuDung":"Total usage",
     "TongSoTopUp":"Total Top up",
     "SoDuConLai":"Remaining balance"
+  },
+  "NhomTaiKhoan":{
+    "TenNhomTaiKhoan":"Account Group Name",
+    "GhiChu":"Note",
+    "NgungSuDung":"Stop Using",
+    "NhomTaiKhoan":"Account Group",
+    "ThuocNhomTaiKhoan":"Belong to Account Group"
+  },
+  "PhanQuyen":{
+    "DanhSachThanhVien":"List of Members",
+    "PhanQuyenSuDung":"Authorization of Use",
+    "NhomChucNang":"Function Group",
+    "ChucNang":"Function",
+    "Xem":"View",
+    "DuocPhepSuDung":"Permitted to Use",
+    "TaiKhoanNguoiDung":"User Account",
+    "NhomTaiKhoan":"Account Group",
+    "ThemNguoiDung":"Add User"
   }
 }

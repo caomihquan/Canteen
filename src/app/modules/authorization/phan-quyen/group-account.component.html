@@ -1,0 +1,175 @@
+<div class="bg-white width-screen">
+  <div class="container-toolbar">
+    <div class="left-toolbar d-flex gap-2 align-items-center">
+      <app-breadcum></app-breadcum>
+    </div>
+  <div class="right-toolbar">
+    <ng-container *ngIf="selectedTabRight() == 1 && !isHideAction">
+      <ng-container *ngFor="let item of ListPermission">
+        <div class="button-toolbar"  (click)="OpenDialogRole()" *ngIf="item.Action == '1'">
+          <span class="icon-General-113"></span>
+          <span>{{I18Language.Common.Add}}</span>
+        </div>
+        <div class="button-toolbar" (click)="DeleteUser()"  *ngIf="item.Action == '3'">
+          <span class="icon-General-163"></span>
+          <span>{{I18Language.Common.Delete}}<</span>
+        </div>
+      </ng-container>
+    </ng-container>
+    <div class="button-toolbar" (click)="SavePermission()" *ngIf="selectedTabRight() == 2">
+      <span class="icon-General-110"></span>
+      <span>{{I18Language.Common.Save}}</span>
+    </div>
+  </div>
+</div>
+<div class="mx-2">
+    <div class="container-group">
+      <div class="border-end">
+        <div class="container-sidebar pe-4 pt-2 position-relative" [ngStyle]="{height: height + 'px'}">
+          <ul>
+            <ng-template #templateTree let-dataList>
+              <li *ngFor="let item of dataList" class="mb-2">
+                <div (click)="ToggleTabs(item)"  [ngClass]="{'active-child':item.RoleID == tabSelected?.RoleID}" class="tabs d-flex gap-2 align-items-center rounded w-100 pointer">
+                  <i class="bi bi-dot" style="font-size: 30px;"></i>
+                  <span  class="caret flex-1 fs-14 fw-500">{{item.RoleName}}</span>
+                </div>
+                <ul class="nested mt-2" *ngIf="item.Children.length > 0">
+                  <ng-container *ngTemplateOutlet="templateTree; context: {$implicit: item.Children}"></ng-container>
+                </ul>
+              </li>
+            </ng-template>
+            <ng-container *ngTemplateOutlet="templateTree; context: {$implicit: listUserRole}"></ng-container>
+          </ul>
+        </div>
+      </div>
+      <div class="p-2">
+        <div class="d-flex gap-4 align-item">
+          <div (click)="ClickTabRight(1)" class="tab-right-group p-2 pointer" [ngClass]="{'active': selectedTabRight() == 1}">{{I18Language.PhanQuyen.DanhSachThanhVien}}</div>
+          <div (click)="ClickTabRight(2)"class="tab-right-group p-2 pointer" [ngClass]="{'active': selectedTabRight() == 2}">{{I18Language.PhanQuyen.PhanQuyenSuDung}}</div>
+        </div>
+        <div>
+          <div class="mt-2" *ngIf="selectedTabRight() == 1">
+            <grid-view (clickPage)="ClickPage($event)" [totalItems]="totalItem" [template]="templateGrid"></grid-view>
+          </div>
+          <div class="d-flex" *ngIf="selectedTabRight() == 2" >
+            <div class="d-flex mt-2 flex-column gap-4 align-items-start" style="min-width:150px ;" >
+                <div style="background-color:#f7f9fd;transition: all 0.15s ease;" class="fs-16 fw-600 py-3 text-center w-100" [ngClass]="{'border': mtHeader >=  15}" [ngStyle]="{'margin-top': mtHeader + 'px'}">{{I18Language.PhanQuyen.NhomChucNang}}</div>
+                <div
+                class="fs-14 fw-500 p-2 tab-left w-100 pointer"
+                [ngClass]="{'active': this.selectedGroup?.GroupID == item?.GroupID}"
+                (click)="this.selectedGroup = item"
+                 *ngFor="let item of ListGroupPerssion">{{item.GroupName}}</div>
+            </div>
+            <div class="mt-2 permission" [ngStyle]="{'height': height - 70 + 'px'}" style="overflow: auto;" (scroll)="scrollEvent($event)">
+              <table style="width: 100%">
+                <tr class="header-permisson border">
+                   <th>{{I18Language.PhanQuyen.ChucNang}}/th>
+                   <th>{{I18Language.PhanQuyen.Xem}}</th>
+                   <th>{{I18Language.PhanQuyen.DuocPhepSuDung}}</th>
+                </tr>
+                <tr>
+                   <td style="width: 250px;">
+                    <div [ngClass]="{'height-120':this.selectedGroup?.GroupID == 'QLDM'}" class="p-3 function-name fs-14" *ngFor="let func of CheckListFunction(this.selectedGroup?.GroupID)">
+                      {{func.DefaultName}}
+                    </div>
+                   </td>
+                   <td>
+                    <div [ngClass]="{'height-120':this.selectedGroup?.GroupID == 'QLDM'}" *ngFor="let func of CheckListFunction(this.selectedGroup?.GroupID)" class="form-check form-switch">
+                      <input (change)="ChangeCheckedPermission(func.FunctionID,0)" class="form-check-input" type="checkbox" role="switch" [checked]="func['A0']">
+                    </div>
+                  </td>
+                  <td style="vertical-align: top;">
+                    <div *ngFor="let func of CheckListFunction(this.selectedGroup?.GroupID)" class="d-flex gap-1 flex-wrap permission align-items-start" [ngClass]="{'height-120':this.selectedGroup?.GroupID == 'QLDM'}">
+                        <div class="form-check pointer" *ngFor="let item of CheckListPermission(func.ActionDefault)">
+                          <input (change)="ChangeCheckedPermission(func.FunctionID,item.Value)" class="form-check-input me-2" type="checkbox" [checked]="func['A'+item.Value]" id="check{{item.Value}}{{func.FunctionID}}">
+                          <label class="form-check-label me-2 fs-14" for="check{{item.Value}}{{func.FunctionID}}">
+                            {{item.Caption}}
+                          </label>
+                        </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+<ng-template #templateGrid>
+  <ejs-grid
+  [dataSource]="listUser"
+  [height]="height - 150"
+  locale='vi-VN'
+  (actionComplete)="actionComplete($event)"
+  (recordClick)="RowGridClick($event)">
+    <e-columns>
+        <e-column type="string" field="UserName" [headerText]="I18Language.PhanQuyen.TaiKhoanNguoiDung" width="250" textAlign='Left'>
+          <ng-template #template let-item>
+            <div class="d-flex gap-2">
+                <img class="rounded-circle" width="40" height="40" [src]="getPhoto(item.UserID)" alt="" srcset="">
+                <div class="d-flex flex-column">
+                    <div class="fs-14 text-common-black fw-500">{{item.UserName}}</div>
+                    <div class="fs-12 text-common-black fw-400">Tài khoản: {{item.LoginAccount}}</div>
+                </div>
+            </div>
+          </ng-template>
+        </e-column>
+        <e-column  type="string" field="RoleName" [headerText]="I18Language.PhanQuyen.NhomTaiKhoan" width="150" textAlign='Left'>
+            <ng-template #template let-item>
+              <div
+                [ngClass]="{
+                  'roletype1':item.RoleType == 1,
+                  'roletype2':item.RoleType == 2,
+                  'roletype3':item.RoleType == 3,
+                  'roletype4':item.RoleType == 4,
+                  'roletype5':item.RoleType == 5,
+                  }"
+                class="status-group">
+                  <span>{{item.RoleName}}</span>
+                </div>
+            </ng-template>
+        </e-column>
+        <!-- <e-column type="string" field="ProvinceName"  [headerText]="Tỉnh" width="150" textAlign='Left'>
+            <ng-template #template let-item>
+                <span class="text-common-black fs-14 fw-400">{{item.ProvinceName}}</span>
+            </ng-template>
+        </e-column> -->
+        <e-column type="string" field="Email"  headerText="Email" width="200" textAlign='Left'>
+            <ng-template #template let-item>
+                <span class="text-common-black fs-14 fw-400">{{item.Email}}</span>
+            </ng-template>
+        </e-column>
+    </e-columns>
+  </ejs-grid>
+</ng-template>
+
+
+<app-dialog [templateBody]="content" [height]='500' width='585px' (submit)="SubmitAddUserToGroup()" [headerText]="I18Language.PhanQuyen.ThemNguoiDung"></app-dialog>
+<ng-template #content>
+  <div class="container mt-3">
+    <div class="row gy-3">
+      <div class="col-12">
+        <app-combobox
+        (clickItem)="SelectUser($event)"
+        [selectedItem]="selectedUser"
+        [IsMultiSelect]="true"
+        [searchField]="['UserName','UserID']"
+        [showSeachDropDown]="true" fieldName="UserName"
+        fieldName2="UserID"
+        [dataSource]="CbbUser" [title]="I18Language.PhanQuyen.TaiKhoanNguoiDung"></app-combobox>
+      </div>
+      <div class="col-12">
+        <app-tree-view fieldName="RoleName" [selectedItem]="RoleSelected" (clickItem)="ClickUserRole($event)" [title]="I18Language.PhanQuyen.NhomTaiKhoan" [dataSource]="listUserRole"></app-tree-view>
+      </div>
+      <!-- <div class="col-12">
+        <app-combobox [searchField]="['ProvinceName']" [showSeachDropDown]="true" fieldName="ProvinceName" fieldName2="ProvinceCode" title="Tỉnh/Thành phố" [dataSource]="VLLProvince" [selectedItem]="ProvinceSelected" (clickItem)="ClickProvince($event)"></app-combobox>
+      </div> -->
+      <div class="col-12" >
+        <app-input title="Email" [(ngModel)]="Email"></app-input>
+      </div>
+    </div>
+  </div>
+</ng-template>

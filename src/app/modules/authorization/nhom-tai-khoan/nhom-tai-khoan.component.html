@@ -1,0 +1,138 @@
+<div class="bg-white width-screen">
+  <div class="container-toolbar">
+    <div class="left-toolbar d-flex gap-2 align-items-center">
+      <app-breadcum></app-breadcum>
+    </div>
+    <div class="right-toolbar">
+      <ng-container *ngFor="let item of ListPermission">
+        <div class="button-toolbar" (click)="AddNhom()" *ngIf="item.Action == '1'">
+          <span class="icon-General-113"></span>
+          <span>{{I18Language.Common.Add}}</span>
+        </div>
+        <div class="button-toolbar" (click)="Delete()" *ngIf="item.Action == '3'">
+          <span class="icon-General-163"></span>
+          <span>{{I18Language.Common.Delete}}</span>
+        </div>
+        <!-- <div class="button-toolbar" *ngIf="item.Action == '4'">
+          <span class="icon-General-101"></span>
+          <span>Nhập Excel</span>
+        </div> -->
+      </ng-container>
+    </div>
+  </div>
+  <div>
+    <div class="container-group">
+        <div class="border-end ps-3" style="overflow: auto;" [ngStyle]="{'height':height + 97 + 'px'}">
+            <div class="container-sidebar pe-4 pt-2 position-relative">
+                <ul>
+                    <ng-template #templateTree let-dataList>
+                        <li *ngFor="let item of dataList" class="mb-2">
+                            <div (click)="ClickGroupUser(item)" [ngClass]="{'active-child':item.RoleID == GroupSelected?.RoleID}" class="tabs d-flex gap-2 align-items-center rounded w-100 pointer">
+                                <i class="bi bi-dot" style="font-size: 30px;"></i>
+                                <span class="caret flex-1 fs-14 fw-500">{{item?.RoleName}}</span>
+                            </div>
+                            <ul class="nested mt-2" *ngIf="item?.Children && item?.Children?.length > 0">
+                                <ng-container *ngTemplateOutlet="templateTree; context: {$implicit: item?.Children}"></ng-container>
+                            </ul>
+                        </li>
+                    </ng-template>
+                    <ng-container *ngTemplateOutlet="templateTree; context: {$implicit: listNhomTaiKhoan}"></ng-container>
+                </ul>
+            </div>
+        </div>
+        <div class="p-2" [ngStyle]="{'width': width + 'px'}">
+            <div class="d-flex align-items-center justify-content-between mx-2">
+                <!-- <div class="d-flex flex-column gap-2">
+                    <div class="text-common-black fs-22 fw-600">{{tabSelected?.DepartmentName}}</div>
+                </div>
+                <div class="d-flex flex-column gap-2 align-items-center justify-content-center">
+                    <div class="NumMember">{{TotalItems}}</div>
+                    <div>Nhân Viên</div>
+                </div> -->
+            </div>
+            <div class="mt-2" *ngIf="listNhomTaiKhoanChild.length > 0">
+                <grid-view [totalItems]="totalItems" (clickPage)="ClickPageIndex($event)" [template]="template"></grid-view>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- <div class="mx-2 pt-2">
+    <grid-view
+      [dataSource]="listNhomTaiKhoan"
+      [template]="template"
+      [totalItems]="totalItems"
+      (clickPage)="ClickPageIndex($event)"
+    ></grid-view>
+  </div> -->
+</div>
+<ng-template #template>
+  <ejs-grid
+  [dataSource]="listNhomTaiKhoanChild"
+  [allowTextWrap]="true"
+  [textWrapSettings]="wrapSettings"
+  [height]="height"
+  (actionComplete)="actionComplete($event)"
+  locale='vi-VN'
+  (recordClick)="ClickRowGrid($event)">
+    <e-columns>
+        <e-column [headerText]="I18Language.Common.View" textAlign="Center"  width='100' *ngIf="IsEdit">
+          <ng-template #template let-item>
+            <div  class="d-flex align-items-center justify-content-center" (click)="EditNhom(item)">
+              <span class="icon-General-93 eye-icon  p-2 "></span>
+            </div>
+          </ng-template>
+        </e-column>
+        <e-column type="string" field="RoleName"  [headerText]="I18Language.NhomTaiKhoan.TenNhomTaiKhoan" width="200" textAlign='Left'>
+            <ng-template #template let-item>
+                <span class="text-common-black fs-12 fw-400">{{item.RoleName}}</span>
+            </ng-template>
+        </e-column>
+
+        <!-- <e-column  [headerText]="I18Language.NhomTaiKhoan.GhiChu" width="280" textAlign='Left'>
+          <ng-template #template let-item>
+              <span class="text-common-black fs-12 fw-400">{{item.Note}}</span>
+          </ng-template>
+        </e-column> -->
+        <e-column  [headerText]="I18Language.NhomTaiKhoan.NgungSuDung" width="180" textAlign='Center'>
+          <ng-template #template let-item>
+              <input class="point-none fs-20 form-check-input" type="checkbox" [checked]="item.Lock">
+          </ng-template>
+        </e-column>
+    </e-columns>
+  </ejs-grid>
+</ng-template>
+
+<app-dialog #dialogAdd (submit)="SubmitDialog()" [templateBody]="content" [headerText]="I18Language.NhomTaiKhoan.NhomTaiKhoan"></app-dialog>
+
+<ng-template #content>
+  <div class="container mt-3">
+    <div class="row gy-3">
+      <div class="col-12">
+        <app-input [(ngModel)]="RoleName" [title]="I18Language.NhomTaiKhoan.NhomTaiKhoan"></app-input>
+      </div>
+      <div class="col-12">
+        <app-tree-view fieldName="RoleName" [selectedItem]="RoleSelected" (clickItem)="RoleSelected = $event" [title]="I18Language.NhomTaiKhoan.ThuocNhomTaiKhoan" type="dropdown" [dataSource]="listNhomTaiKhoan"></app-tree-view>
+      </div>
+      <div class="col-12">
+        <app-input className="fs-14" type="switch" [(ngModel)]="Lock" [title]="I18Language.NhomTaiKhoan.NgungSuDung"></app-input>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- <ejs-dialog (open)="$event.preventFocus = true" [isModal]="true" [position]="{ X: 'center', Y: 'top' }" #dialogAdd showCloseIcon='true' [height]='500' width='585px' [visible]='false'>
+  <ng-template #header>
+    <div class="text-common-black fs-18 fw-600">{{}}</div>
+  </ng-template>
+
+  <ng-template #footerTemplate>
+    <div class="d-flex gap-2 align-items-center justify-content-between ms-4">
+      <div>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn button-app-second " (click)="dialogAdd.hide()">{{I18Language.Common.Close}}</button>
+        <button class="btn button-app" (click)="SubmitDialog()">{{I18Language.Common.Save}}</button>
+      </div>
+    </div>
+  </ng-template>
+</ejs-dialog> -->

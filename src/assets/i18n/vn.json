@@ -17,7 +17,14 @@
     "CapPhatDinhMuc":"Cấp phát định mức",
     "Dowload":"Tải xuống",
     "Filter":"Lọc dữ liệu",
-    "Apply":"Áp dụng"
+    "Apply":"Áp dụng",
+    "OK":"Đồng ý",
+    "Cancel":"Huỷ bỏ"
+  },
+  "Message":{
+    "DeleteSucess":"Xoá thành công",
+    "SaveSuccess":"Lưu thành công",
+    "WantToDelete":"Bạn có thực sự muốn xoá?"
   },
   "Error":{
     "Require":"Thiếu dữ liệu một số trường bắt buộc",
@@ -219,6 +226,24 @@
     "TongSuDung":"Tổng sử dụng",
     "TongSoTopUp":"Tổng số Top up",
     "SoDuConLai":"Số dư còn lại"
+  },
+  "NhomTaiKhoan":{
+    "TenNhomTaiKhoan":"Tên nhóm tài khoản",
+    "GhiChu":"Ghi chú",
+    "NgungSuDung":"Ngưng sử dụng",
+    "NhomTaiKhoan":"Nhóm tài khoản",
+    "ThuocNhomTaiKhoan":"Thuộc nhóm tài khoản"
+  },
+  "PhanQuyen":{
+    "DanhSachThanhVien":"Danh sách thành viên",
+    "PhanQuyenSuDung":"Phân quyền sử dụng",
+    "NhomChucNang":"Nhóm chức năng",
+    "ChucNang":"Chức năng",
+    "Xem":"Xem",
+    "DuocPhepSuDung":"Được phép sử dụng",
+    "TaiKhoanNguoiDung":"Tài khoản người dùng",
+    "NhomTaiKhoan":"Nhóm tài khoản",
+    "ThemNguoiDung":"Thêm người dùng"
   }
 
 

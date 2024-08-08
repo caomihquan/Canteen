@@ -16,33 +16,37 @@ import { NotificationService } from 'src/app/shares/services/notification/notifi
 })
 export class LoginComponent implements OnInit {
   isShowPassword = false;
-  I18nLang:any;
   @ViewChild('template') dialog:TemplateRef<any>
   @ViewChild('changePassword') dlgChangePassword:ElementRef
   form = new FormGroup({
     UserName: new FormControl('', Validators.required),
     Password: new FormControl('', Validators.required)
   });
-  I18Lang = this._languageService.I18LangService
+  I18Lang:any
   constructor(
     private _router: Router,
     private _loginService:LoginService,
     private _AuthService:AuthService,
-    private _translate:TranslateService,
     private _noti:NotificationService,
     private _languageService:LanguageService
     ){
-      _translate.use('en')
+      this.I18Lang = this._languageService.I18LangService;
+      if(!this.I18Lang){
+        this.getLanguage();
+      }
   }
 
 
   ngOnInit(): void {
-    this.getLanguage();
+
   }
 
-  getLanguage = async() => {
-    this.I18nLang = await this._languageService.getLanguage();
+  getLanguage = async() =>{
+    this._languageService.I18LangService = await this._languageService.getLanguage();
+    this.I18Lang = this._languageService.I18LangService;
   }
+
+
   onSubmit(){
     const _loginInfo = this.form.value;
     this._loginService.login(_loginInfo).subscribe(res => {
@@ -66,7 +70,7 @@ export class LoginComponent implements OnInit {
     const userData = data.Data || {};
     if (data.IsMaintenance === 1 && !userData.NeverExpire)
     {
-        this._noti.ShowToastError(this.I18nLang.LoginPage.IsMaintenance)
+        this._noti.ShowToastError(this.I18Lang.LoginPage.IsMaintenance)
         return;
     }else {
         if (userData.FirstChange) {

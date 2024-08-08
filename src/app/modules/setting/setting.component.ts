@@ -39,7 +39,7 @@ export class SettingComponent implements OnInit,AfterViewInit {
     private _translate:TranslateService,
     private videoService: VideoService
     ){
-      _translate.use('vn');
+      this.I18nLang = this._languageService.I18LangService;
   }
 
 
@@ -54,17 +54,9 @@ export class SettingComponent implements OnInit,AfterViewInit {
     // });
   }
   ngOnInit() {
-    // this.getLanguage()
-    // this._ordinal.finishSideBar.subscribe(res=>{
-    //   if(res){
-    //       this.GetMenu();
-    //   }
-    // })
-    //this.streamVideo('cmquan.mp4');
+
   }
-  getLanguage = async()=>{
-    this.I18nLang = await this._languageService.getLanguage();
-  }
+
 
 
   RegisterCardForCustomer(){

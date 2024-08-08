@@ -109,5 +109,27 @@ export const AppAPIConst = {
     capdinhmuc_spCapDinhMuc:"HrmMobileApp/CnB/Danhmuc/capdinhmuc_spCapDinhMuc",
     capdinhmuc_spGetData:"HrmMobileApp/CnB/Danhmuc/capdinhmuc_spGetData",
     capdinhmuc_spgetDefault:"HrmMobileApp/CnB/Danhmuc/capdinhmuc_spgetDefault"
-  }
+  },
+  ACCOUNT:{
+    GetListUser:'HrmMobileApp/CnB/Danhmuc/Danhmuc_get',
+    UserRole_getData:'HrmMobileApp/CnB/Danhmuc/UserRole_getData',
+    tblUser_getData:'HrmMobileApp/CnB/Danhmuc/tblUser_getData',
+    PostDataUser:'HrmMobileApp/CnB/Danhmuc/PostDataXML',
+    DeleteUser:'HrmMobileApp/CnB/Danhmuc/Danhmuc_delete',
+    UserRole_getDataWithRoleID:'HrmMobileApp/CnB/Danhmuc/UserRole_getDataWithRoleID',
+    Permission_getdata:'HrmMobileApp/CnB/Danhmuc/Permission_getdata',
+    Danhmucpost:'HrmMobileApp/CnB/Danhmuc/Danhmucpost',
+    PhanCong_getData:'HrmMobileApp/CnB/Danhmuc/PhanCong_getData',
+    PhanCong_CreateData:'HrmMobileApp/CnB/Danhmuc/PhanCong_CreateData',
+    PhanCong_SaveData:'HrmMobileApp/CnB/Danhmuc/PhanCong_SaveData',
+    PhanCong_SaveTmp:'HrmMobileApp/CnB/Danhmuc/PhanCong_SaveTmp',
+    PhanCong_getUserTW:'HrmMobileApp/CnB/Danhmuc/PhanCong_getUserTW',
+    tblUserRoleProvice_spDeleteProvince:"HrmMobileApp/CnB/Danhmuc/tblUserRoleProvice_spDeleteProvince",
+    tblUserRoleProvice_spAddProvince:"HrmMobileApp/CnB/Danhmuc/tblUserRoleProvice_spAddProvince",
+    tblUserRoleProvice_spAddFieldGroup:"HrmMobileApp/CnB/Danhmuc/tblUserRoleProvice_spAddFieldGroup",
+    tblUserRoleProvice_spDeleteFieldGroup:"HrmMobileApp/CnB/Danhmuc/tblUserRoleProvice_spDeleteFieldGroup",
+    tblUserRoleProvice_spGetProvince:"HrmMobileApp/CnB/Danhmuc/tblUserRoleProvice_spGetProvince",
+    tblUserRoleProvice_getDefault:"HrmMobileApp/CnB/Danhmuc/tblUserRoleProvice_getDefault",
+    tblUserRoleProvice_spGetPhanQuyen:"HrmMobileApp/CnB/Danhmuc/tblUserRoleProvice_spGetPhanQuyen",
+  },
 }

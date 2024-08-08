@@ -43,9 +43,6 @@ export class CoCauToChucComponent implements OnInit {
     this.getCoCauToChuc();
   }
 
-  // getLanguage = async() => {
-  //   this.I18Lang = await this._languageService.getLanguage();
-  // }
 
   ToggleTabs(item:any){
     this.tabSelected = item

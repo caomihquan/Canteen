@@ -75,9 +75,7 @@ export class FoodShiftComponent implements OnInit {
     })
   }
 
-  getLanguage = async()=>{
-    this.I18nLang = await this._languageService.getLanguage();
-  }
+
 
 
 
