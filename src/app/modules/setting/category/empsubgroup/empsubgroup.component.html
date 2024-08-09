@@ -77,7 +77,7 @@
  [headerText]="_langSevice.I18LangService.EmpSubGroup.NhomPhucNV"
  (submit)="submitDialog($event)"
  ></app-dialog>
-<app-history-dialog #dialogHistory></app-history-dialog>
+<app-history-dialog [Option]="2" [ID]="this.selectedGrid?.NhomPhuCode" #dialogHistory></app-history-dialog>
 <ng-template #content>
   <div class="container mt-3">
     <div class="row gy-3">

@@ -68,8 +68,10 @@ export class MemberComponent implements OnInit {
   MaNhanVien:string;
   V3ID:string;
   BU:string;
+
   selectedPhongBan:any;
   NgayNhanViec = new Date().toISOString();
+  EndDate = new Date().toISOString();
   selectedNhomPhu:any;
   selectedTinhTrang:any;
   selectedEmployeeType:any;
@@ -224,6 +226,7 @@ export class MemberComponent implements OnInit {
     this.FullName = data.EmployeeName
     this.selectedPhongBan = this.tblBoPhanOrigin.find(x => x.DepartmentCode == data.DepartmentCode)
     this.NgayNhanViec = data.JoinDate
+    this.EndDate = data.EndDate
     this.selectedNhomPhu = this.tblNhomPhu.find(x => x.NhomPhuCode == data.NhomPhuCode)
     this.selectedTinhTrang = this.tblTinhTrang.find(x => x.TinhTrangCode == data.TinhTrangCode)
     this.CostCenter = data.CostCenter
@@ -247,6 +250,7 @@ export class MemberComponent implements OnInit {
       EmployeeName:this.FullName,
       DepartmentCode:this.selectedPhongBan?.DepartmentCode,
       JoinDate:this.NgayNhanViec,
+      EndDate:this.EndDate,
       NhomPhu:this.selectedNhomPhu?.NhomPhuCode,
       TinhTrang:this.selectedTinhTrang?.TinhTrangCode,
       CostCenter:this.CostCenter,
@@ -275,6 +279,7 @@ export class MemberComponent implements OnInit {
     this.FullName = ''
     this.selectedPhongBan = null
     this.NgayNhanViec = ''
+    this.EndDate = ''
     this.selectedNhomPhu = null
     this.selectedTinhTrang = null
     this.CostCenter = ''

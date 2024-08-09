@@ -17,8 +17,12 @@ import { GroupAccountComponent } from './phan-quyen/group-account.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path:'roles',
     component:NhomTaiKhoanComponent
+  },
+  {
+    path:'userroles',
+    component:GroupAccountComponent
   },
 ];
 

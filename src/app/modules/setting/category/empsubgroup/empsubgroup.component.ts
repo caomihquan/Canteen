@@ -48,6 +48,7 @@ export class EmpsubgroupComponent implements OnInit {
     protected _langSevice:LanguageService
     ){
       this.loginInfo = this._userService.getUser();
+      this.I18Lang = this._langSevice.I18LangService
   }
   ngOnInit() {
     this.getListEmpSub();
@@ -142,7 +143,7 @@ export class EmpsubgroupComponent implements OnInit {
       content:this.I18Lang.Common.WantToDelete,
       title:this.I18Lang.Common.Alert,
       OkFunction:()=>{
-        this._api.post(AppAPIConst.Cateogry.NhomPhu_spPostData,{
+        this._api.post(AppAPIConst.Cateogry.NhomPhu_spdeleteData,{
           strCode:this.selectedGrid?.NhomPhuCode,
         }).subscribe(res=>{
           if(res && res.Data){

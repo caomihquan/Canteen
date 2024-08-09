@@ -19,13 +19,13 @@
                 <span>{{I18Lang.Common.Delete}}</span>
             </div>
             <div class="button-toolbar" (click)="ExportMember()">
-                <span class="icon-General-3"></span>
+                <span class="icon-General-101"></span>
                 <span>{{I18Lang.Common.Import}}</span>
             </div>
             <div class="button-toolbar" (click)="import.click()">
                 <input onclick="this.value=null;" [hidden]="true" (change)="ImportMember($event)" type="file" #import
                 accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
-                <span class="icon-General-101"></span>
+                <span class="icon-General-3"></span>
                 <span>{{I18Lang.Common.Export}}</span>
             </div>
         </div>
@@ -71,6 +71,11 @@
             <e-column [headerText]="I18Lang.Account.NgayNhanViec" textAlign='Left' width=180>
                 <ng-template #template let-item>
                     <span class="text-start">{{item.JoinDate  | date:'dd/MM/yyyy'}}</span>
+                </ng-template>
+            </e-column>
+            <e-column [headerText]="I18Lang.Account.NgayNghiViec" textAlign='Left' width=180>
+                <ng-template #template let-item>
+                    <span class="text-start">{{item.EndDate  | date:'dd/MM/yyyy'}}</span>
                 </ng-template>
             </e-column>
             <e-column [headerText]="I18Lang.Account.NhomPhuNV" width=200 textAlign='Left'>
@@ -169,6 +174,9 @@
       </div>
       <div class="col-6">
         <app-datetime [value]="NgayNhanViec" (clickDate)="NgayNhanViec = $event"  [title]="I18Lang.Account.NgayNhanViec"></app-datetime>
+      </div>
+      <div class="col-6">
+        <app-datetime [value]="EndDate" (clickDate)="EndDate = $event"  [title]="I18Lang.Account.NgayNghiViec"></app-datetime>
       </div>
       <div class="col-6">
         <app-combobox fieldName="NhomPhuName" [dataSource]="tblNhomPhu" (clickItem)="selectedNhomPhu = $event" [selectedItem]="selectedNhomPhu" [title]="I18Lang.Account.NhomPhuNV"></app-combobox>

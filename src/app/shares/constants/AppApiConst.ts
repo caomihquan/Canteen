@@ -1,7 +1,8 @@
 export const AppAPIConst = {
   SYSTEM:{
     CheckUploadFile:'core/system/checkuploadfile',
-    CheckPermission:'HrmMobileApp/CnB/QuestionAndAnswer/CheckPermission'
+    CheckPermission:'HrmMobileApp/CnB/QuestionAndAnswer/CheckPermission',
+    MenuWIthUser:'HrmMobileApp/CnB/Danhmuc/MenuWIthUser'
   },
   LOGIN: {
     Login:'core/authentication/login'

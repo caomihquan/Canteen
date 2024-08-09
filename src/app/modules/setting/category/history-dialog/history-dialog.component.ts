@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {  GridModule, PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { DialogAllModule, DialogComponent } from '@syncfusion/ej2-angular-popups';
@@ -8,6 +8,7 @@ import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppCommon } from 'src/app/shares/constants/AppCommon';
 import { fnCommon } from 'src/app/shares/helpers/common';
 import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
+import { LanguageService } from 'src/app/shares/services/language/language.service';
 
 @Component({
   selector: 'app-history-dialog',
@@ -18,6 +19,8 @@ import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.servic
 })
 export class HistoryDialogComponent{
   @ViewChild('ejDialog') ejDialog: DialogComponent;
+  @Input() Option:any
+  @Input() ID:any
   height:number = window.innerHeight  - 180;
   public sortOptions?: object;
   public pageSettings?: PageSettingsModel;
@@ -27,20 +30,24 @@ export class HistoryDialogComponent{
   totalItems:number = 0;
   lstHistory = [
   ]
-  constructor(private _api:ApiHttpService ){
-
+  getPhoto = fnCommon.ConvertPhotoEmpByUserID
+  I18Lang:any
+  constructor(private _api:ApiHttpService,private _lang:LanguageService ){
+    this.I18Lang = this._lang.I18LangService
   }
 
 
 
   getListHistory(){
     this._api.post(AppAPIConst.QuanLyNhanVien.Danhmuc_get,{
-      Option:2,
+      Option:this.Option,
+      ID:this.ID,
       PageInde:this.PageIndex,
       PageSize:this.PageSize,
     }).subscribe(res=>{
       this.lstHistory = res.Data.Data;
       this.totalItems = res.Data.OutputParams.totalItems
+      console.log(res);
     })
   }
 

@@ -4,7 +4,7 @@
       <app-breadcum></app-breadcum>
     </div>
   <div class="right-toolbar">
-    <ng-container *ngIf="selectedTabRight() == 1 && !isHideAction">
+    <ng-container>
       <ng-container *ngFor="let item of ListPermission">
         <div class="button-toolbar"  (click)="OpenDialogRole()" *ngIf="item.Action == '1'">
           <span class="icon-General-113"></span>
@@ -63,7 +63,7 @@
             <div class="mt-2 permission" [ngStyle]="{'height': height - 70 + 'px'}" style="overflow: auto;" (scroll)="scrollEvent($event)">
               <table style="width: 100%">
                 <tr class="header-permisson border">
-                   <th>{{I18Language.PhanQuyen.ChucNang}}/th>
+                   <th>{{I18Language.PhanQuyen.ChucNang}}</th>
                    <th>{{I18Language.PhanQuyen.Xem}}</th>
                    <th>{{I18Language.PhanQuyen.DuocPhepSuDung}}</th>
                 </tr>

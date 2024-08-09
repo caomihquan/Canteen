@@ -99,6 +99,7 @@
     "BU":"BU",
     "PhongBan":"Phòng ban",
     "NgayNhanViec":"Ngày nhận việc",
+    "NgayNghiViec":"Ngày nghỉ việc",
     "NhomPhuNV":"Nhóm phụ nhân viên",
     "CostCenter":"CostCenter",
     "TransactionEntry":"Transaction Entry",
@@ -244,6 +245,12 @@
     "TaiKhoanNguoiDung":"Tài khoản người dùng",
     "NhomTaiKhoan":"Nhóm tài khoản",
     "ThemNguoiDung":"Thêm người dùng"
+  },
+  "LichSuDialogDM":{
+    "LichSuCapNhat":"Lịch sử cập nhật",
+    "NguoiCapNhat":"Người cập nhật",
+    "NgayCapNhat":"Ngày cập nhật",
+    "NoiDungCapNhat":"Nội dung cập nhật"
   }
 
 

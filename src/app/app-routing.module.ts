@@ -35,6 +35,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/co-cau-to-chuc/co-cau-to-chuc.module').then(m => m.CoCauToChucModule)
       },
       {
+        path: 'system',
+        loadChildren: () => import('./modules/authorization/authorization.module').then(m => m.AuthorizationModule)
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: 'co-cau-to-chuc'

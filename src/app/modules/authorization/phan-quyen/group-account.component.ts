@@ -84,7 +84,6 @@ export class GroupAccountComponent implements OnInit {
   selectedProvinceDlg:any;
   lstselectedProvinceDlg:Array<any> = []
   totalItemProvince:any;
-  isHideAction = false;
   user:UserModel | null;
   I18Language:any;
   constructor(
@@ -177,21 +176,8 @@ export class GroupAccountComponent implements OnInit {
     })
   }
 
-
-  CheckHideAction(){
-    this._Api.post(AppAPIConst.ACCOUNT.tblUserRoleProvice_spGetPhanQuyen,{
-      UserID:this.user?.UserID,
-      RoleID:this.tabSelected?.RoleID
-    }).subscribe(res=>{
-      if(res && !res.Error){
-       this.isHideAction = res.Data.tblPhanQuyen[0].IsNotEdit
-      }
-    })
-  }
-
   ToggleTabs(item:any){
     this.tabSelected = item
-    this.CheckHideAction();
     if(this.selectedTabRight() == 1){
       this.ResetList()
       this.getDataWithRoleID()
@@ -279,7 +265,7 @@ export class GroupAccountComponent implements OnInit {
 
   getPermission(){
     this._Api.post(AppAPIConst.ACCOUNT.Permission_getdata,{
-      RoleID:this.tabSelected.RoleID
+      RoleID:this.tabSelected?.RoleID
     }).subscribe(res=>{
       console.log(res);
       if(res && !res.Error){

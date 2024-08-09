@@ -101,7 +101,7 @@
         </e-columns>
     </ejs-grid>
 </ng-template>
-<app-history-dialog #historydialog></app-history-dialog>
+<app-history-dialog [Option]="5" [ID]="this.selectedGrid?.MaLine" #historydialog></app-history-dialog>
 
 
 <app-dialog (submit)="submitDialog()" height="714px"

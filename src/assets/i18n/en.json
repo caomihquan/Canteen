@@ -95,7 +95,8 @@
     "V3ID":"V3IDCode",
     "BU":"BU",
     "PhongBan":"Department",
-    "NgayNhanViec":"Date of employment",
+    "NgayNhanViec":"Joined Date",
+    "NgayNghiViec":"Ended Date",
     "NhomPhuNV":"EmployeeSubgroup",
     "CostCenter":"CostCenter",
     "TransactionEntry":"Transaction Entry",
@@ -241,5 +242,11 @@
     "TaiKhoanNguoiDung":"User Account",
     "NhomTaiKhoan":"Account Group",
     "ThemNguoiDung":"Add User"
+  },
+  "LichSuDialogDM":{
+    "LichSuCapNhat":"Update History",
+    "NguoiCapNhat":"Updater",
+    "NgayCapNhat":"Update Date",
+    "NoiDungCapNhat":"Update Content"
   }
 }

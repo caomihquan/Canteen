@@ -1,8 +1,10 @@
 import {  Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { AppAPIConst } from 'src/app/shares/constants/AppApiConst';
 import { AppRoutes } from 'src/app/shares/constants/AppRoutes';
 import { SidebarModel } from 'src/app/shares/models/SidebarModel';
+import { ApiHttpService } from 'src/app/shares/services/apihttp/api-htttp.service';
 import { AuthService } from 'src/app/shares/services/authentication/authentication.service';
 import { NotificationService } from 'src/app/shares/services/notification/notification.service';
 import { SideBarService } from 'src/app/shares/services/sidebar/sidebar.service';
@@ -15,7 +17,8 @@ import { SideBarService } from 'src/app/shares/services/sidebar/sidebar.service'
 export class SidebarComponent implements OnInit {
   ListSideBar: Array<SidebarModel> = [];
   height = window.innerHeight;
-  ListSideBarCheck: Array<SidebarModel> = [
+  lisTabOrigin:SidebarModel[] = []
+  ListSideBarCheck1: Array<SidebarModel> = [
     {
       FunctionID: 'M001',
       DefaultName: 'Cơ cấu tổ chức',
@@ -190,7 +193,8 @@ export class SidebarComponent implements OnInit {
     private _auth: AuthService,
     private _activeRoute: ActivatedRoute,
     private _noti: NotificationService,
-    private _sidebarService:SideBarService
+    private _sidebarService:SideBarService,
+    private _apiHttp:ApiHttpService
   ) {
 
 
@@ -231,59 +235,72 @@ export class SidebarComponent implements OnInit {
     return nestedTabs;
   }
 
+  startWithDash(url:string){
+    return  url && url.startsWith('/') ? url :`/${url}`;
+  }
 
   getMenu() {
-    this.ListSideBar = this.buildNested(this.ListSideBarCheck, null)
-    this._sidebarService.ListSideBar = this.ListSideBarCheck
-    this._sidebarService.finishSideBar.next(true);
-    this._activeRoute.params.subscribe(x=>{
-     if(this.ListSideBarCheck.length > 0){
-       let url = this._router.url;
-       if(url == "/"){
-         url = "/co-cau-to-chuc"
-       }
-       let itemCheck = this.ListSideBarCheck.find(y => y.Url == this._router.url);
-       if(itemCheck){
-         let item = this.ListSideBarCheck.find(y => y.Url == this._router.url);
-         if(item){
-           this._sidebarService.FunctionID = item.FunctionID;
-           this.tabSelected = item.FunctionID;
-           this._sidebarService.breadcrumb.next(item)
-           let parentExist = this.ListSideBarCheck.find(y => y.FunctionID == item?.ParentID);
-           if(parentExist){
-             let parentIndex = this.ListSideBar.findIndex(y => y.FunctionID == parentExist?.FunctionID);
-             this.ListSideBar[parentIndex]['Active'] = true
-           }
-         }
-         else{
-           item = this.ListSideBarCheck.find(x => x.Url);
-           if(item){
-             this._sidebarService.FunctionID = item?.FunctionID;
-             this._sidebarService.breadcrumb.next(item)
-             this.tabSelected = item?.FunctionID;
-             this._router.navigateByUrl(item.Url ?? '')
-           }else{
-             this._router.navigate([AppRoutes.notAuthor])
-           }
-         }
-       }
-       else{
-         itemCheck = this.ListSideBarCheck.find(x => x.Url);
-         if(itemCheck){
-           this._sidebarService.FunctionID = itemCheck?.FunctionID;
-           this._sidebarService.breadcrumb.next(itemCheck)
-           this.tabSelected = itemCheck?.FunctionID;
-           console.log(itemCheck?.Url);
-           this._router.navigateByUrl(itemCheck.Url ?? '')
-         }else{
-           this._router.navigate([AppRoutes.notAuthor])
-         }
-       }
-     }
-     else{
-       this._router.navigate([AppRoutes.notAuthor])
-     }
-    })
+
+    this._apiHttp.post(AppAPIConst.SYSTEM.MenuWIthUser,{},true).subscribe(res=>{
+      if(!res.Error){
+        this.lisTabOrigin = res.Data.tblMenu.map((x:any)=>{
+          x['Active'] = false
+          x['Children'] = []
+          return x
+        })
+
+      this.ListSideBar = this.buildNested(this.lisTabOrigin, null)
+      this._sidebarService.ListSideBar = this.lisTabOrigin
+      this._sidebarService.finishSideBar.next(true);
+      this._activeRoute.params.subscribe(x=>{
+      if(this.lisTabOrigin.length > 0){
+        let url = this._router.url;
+        if(url == "/"){
+          url = "/co-cau-to-chuc"
+        }
+        let itemCheck = this.lisTabOrigin.find(y => this.startWithDash(y.Url ?? '') == this._router.url);
+        if(itemCheck){
+          let item = this.lisTabOrigin.find(y => this.startWithDash(y.Url ?? '') == this._router.url);
+          if(item){
+            this._sidebarService.FunctionID = item.FunctionID;
+            this.tabSelected = item.FunctionID;
+            this._sidebarService.breadcrumb.next(item)
+            let parentExist = this.lisTabOrigin.find(y => y.FunctionID == item?.ParentID);
+            if(parentExist){
+              let parentIndex = this.ListSideBar.findIndex(y => y.FunctionID == parentExist?.FunctionID);
+              this.ListSideBar[parentIndex]['Active'] = true
+            }
+          }
+          else{
+            item = this.lisTabOrigin.find(x => this.startWithDash(x.Url ?? ''));
+            if(item){
+              this._sidebarService.FunctionID = item?.FunctionID;
+              this._sidebarService.breadcrumb.next(item)
+              this.tabSelected = item?.FunctionID;
+              this._router.navigateByUrl(this.startWithDash(item.Url ?? ''))
+            }else{
+              this._router.navigate([AppRoutes.notAuthor])
+            }
+          }
+        }
+        else{
+          itemCheck = this.lisTabOrigin.find(x => x.Url);
+          if(itemCheck){
+            this._sidebarService.FunctionID = itemCheck?.FunctionID;
+            this._sidebarService.breadcrumb.next(itemCheck)
+            this.tabSelected = itemCheck?.FunctionID;
+            this._router.navigateByUrl(this.startWithDash(itemCheck.Url ?? ''))
+          }else{
+            this._router.navigate([AppRoutes.notAuthor])
+          }
+        }
+      }
+      else{
+        this._router.navigate([AppRoutes.notAuthor])
+      }
+      })
+    }})
+
   }
 
   ToogleTabs(item: any) {
